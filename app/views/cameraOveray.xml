@@ -1,0 +1,16 @@
+<Alloy>
+	<View class="container">
+		<View class="buttonWrap">
+			<Button id="sendBtn"></Button>
+		</View>
+		<View class="fieldWrap">
+			<View class="filedBgView"></View>
+			<View class="filedBorder">
+			</View>
+			<TextField id="contentFiled"></TextField>
+		</View>
+		<View class="infoWrap">
+			<Label id="geoLabel" >위치 확인 중..</Label>
+		</View>
+	</View>
+</Alloy>

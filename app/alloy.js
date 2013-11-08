@@ -9,3 +9,5 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+
+Ti.Geolocation.purpose = '현재 위치 확인';

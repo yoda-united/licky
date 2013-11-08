@@ -1,0 +1,58 @@
+
+".container" : {
+  //backgroundColor : 'white'
+  layout : 'vertical'
+}
+
+"#sendBtn" : {
+	height : 40,
+	title : 'Send'
+}
+
+"#contentFiled" : {
+	width : '100%',
+	height : 80,
+	value : 'TTT',
+	backgroundColor : 'transparent',
+	color : 'white',
+	font : {
+		fontSize : 40
+	}
+}
+
+"#contentFiled[platform=android]" : {
+	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS
+}
+
+".buttonWrap" : {
+	backgroundColor : 'white',
+	height : 100
+}
+
+".fieldWrap" : {
+	height : 160,
+	backgroundColor : 'transparent'
+}
+
+".filedBorder" : {
+	left: -1,
+	right : -1,
+	height : 80,
+	borderColor : 'white',
+	backgroundColor : 'transparent',
+	borderWidth : '1px',
+	opacity : 0.2
+}
+
+".filedBgView" : {
+	backgroundColor : 'black',
+	opacity : 0.4
+}
+
+".infoWrap" : {
+	backgroundColor : 'white',
+}
+
+"#geoLabel" : {
+	top : 0
+}
