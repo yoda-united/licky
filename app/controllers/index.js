@@ -8,8 +8,6 @@ function doClick(e) {
 
 $.index.open();
 
-var cameraTransform = Ti.UI.create2DMatrix();
-cameraTransform = cameraTransform.scale(1);
 Ti.Media.showCamera({
 	success : function(event) {
 		//alert('Your photo was saved to the Photo Gallery');
@@ -36,7 +34,7 @@ Ti.Media.showCamera({
 	showControls : false,
 	animated : false,
 	autohide : false,
-	transform : cameraTransform,
+	transform : Ti.UI.create2DMatrix().scale(1),
 	mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO]
 });
 
