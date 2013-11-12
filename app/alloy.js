@@ -10,4 +10,21 @@
 //
 // Alloy.Globals.someGlobalFunction = function(){};
 
+//alias
+var AG = Alloy.Globals;
+
+// Cloud는 Global에서 바로 접근하도록 함.
+var Cloud = require('ti.cloud');
+
+// settings
 Ti.Geolocation.purpose = '현재 위치 확인';
+AG.facebook = require('facebook');
+AG.facebook.appid = "***REMOVED***";
+//AG.facebook.permissions = [FACEBOOK_APP_PERMISSIONS];
+
+
+//singleton Models (static id)
+AG.settings = Alloy.Models.instance('settings');
+AG.settings.fetch();
+AG.loggedInUser = Alloy.Models.instance('loggedInUser');
+AG.loggedInUser.fetch();

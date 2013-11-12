@@ -1,5 +1,5 @@
 <Alloy>
 	<Window class="container">
-		
+		<Button onClick="showCamera">Write</Button>
 	</Window>
 </Alloy>
