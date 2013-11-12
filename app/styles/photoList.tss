@@ -1,0 +1,31 @@
+
+".container" : {
+  
+}
+
+".photo": {
+	height : 80,
+	width : Ti.UI.FILL
+}
+
+".title" : {
+	font : {
+		fontSize: 40
+	},
+	left : 10,
+	color : 'white'
+}
+
+"#cameraBtn[platform=android]" : {
+	bottom : 10,
+	width : '80%',
+	height : 40,
+	backgroundColor : '#9b59b6',
+	color : 'white',
+	selectedColor : '#bdc3c7',
+	title : L('takePhoto')
+}
+
+"#cameraBtn[platform=ios]" : {
+	title : L('takePhoto')
+}

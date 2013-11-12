@@ -14,7 +14,10 @@
 var AG = Alloy.Globals;
 
 // Cloud는 Global에서 바로 접근하도록 함.
-var Cloud = require('ti.cloud');
+AG.Cloud = require('ti.cloud');
+if(ENV_DEV || ENV_TEST){
+	AG.Cloud.debug = true;
+}
 
 // settings
 Ti.Geolocation.purpose = '현재 위치 확인';

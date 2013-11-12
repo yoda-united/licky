@@ -60,7 +60,7 @@ exports.showCamera = function(){
 	
 	Ti.Media.showCamera({
 		success : function(event) {
-			//alert('Your photo was saved to the Photo Gallery');
+			
 			Ti.Media.hideCamera();
 		},
 		cancel : function() {

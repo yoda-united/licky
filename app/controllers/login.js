@@ -4,14 +4,14 @@ var fbHandler = function(e){
 	if (e.success) {
         var token = this.accessToken;
         Ti.API.info('Logged in ' + token);
-        Cloud.SocialIntegrations.externalAccountLogin({
+        AG.Cloud.SocialIntegrations.externalAccountLogin({
 		    type: 'facebook',
 		    token: token
 		}, function (e) {
 		    if (e.success) {
 		        var user = e.users[0];
 		        
-		        AG.settings.save('cloudSessionId', Cloud.sessionId);
+		        AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
 		        AG.loggedInUser.save(user);
 				$.fbLogin.title = L("facebookConnect");
 				currentWindow.close();
@@ -54,7 +54,7 @@ currentWindow.addEventListener('close', function(e) {
 function subscribePushChannel(callback){
 	var token = Ti.App.Properties.getString('deviceToken');
 	if(token){
-		Cloud.PushNotifications.subscribe({
+		AG.Cloud.PushNotifications.subscribe({
 		    channel: 'quest',
 		    device_token: token,
 		    type: 'gcm'
@@ -74,8 +74,8 @@ function subscribePushChannel(callback){
 
 //최초 복구
 if(AG.settings.get('cloudSessionId')){
-	Cloud.sessionId = AG.settings.get('cloudSessionId');
-	Cloud.Users.showMe(function(e) {
+	AG.Cloud.sessionId = AG.settings.get('cloudSessionId');
+	AG.Cloud.Users.showMe(function(e) {
 		if (e.success) {
 			var user = e.users[0];
 			AG.loggedInUser.save(user);
@@ -103,7 +103,7 @@ exports.requireLogin = function(callback){
 };
 
 exports.logout = function(callback){
-	Cloud.Users.logout(function(e) {
+	AG.Cloud.Users.logout(function(e) {
 		if (e.success) {
 			// AG.settings.unset('cloudSessionId',{silent:false});
 			AG.settings.save('cloudSessionId',null);
