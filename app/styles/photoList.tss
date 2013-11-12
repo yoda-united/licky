@@ -4,8 +4,8 @@
 }
 
 ".photo": {
-	height : 80,
-	width : Ti.UI.FILL
+	// height : 80,
+	width : 320
 }
 
 ".title" : {

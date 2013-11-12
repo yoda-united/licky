@@ -2,7 +2,9 @@ var currentWindow = $.photoList;
 
 function showCamera(){
 	AG.loginController.requireLogin(function(){
-			Alloy.createController('cameraOveray').showCamera();
+			Alloy.createController('cameraOveray',{
+				collection : photoCol
+			}).showCamera();
 	});
 }
 

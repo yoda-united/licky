@@ -1,3 +1,6 @@
+var args = arguments[0],
+	photoCol = args.collection;
+	
 if(OS_IOS){
 	setTimeout(function(){
 		// Ti.Media.hideCamera();
@@ -62,6 +65,12 @@ exports.showCamera = function(){
 		success : function(event) {
 			
 			Ti.Media.hideCamera();
+			photoCol.create({
+				title : $.contentFiled.value,
+				photo : event.media
+			},{
+				wait:true
+			});
 		},
 		cancel : function() {
 		},
