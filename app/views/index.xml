@@ -1,5 +1,12 @@
 <Alloy>
-	<Window class="container">
-		
-	</Window>
+	<TabGroup>
+		<Tab title="L('photoList')">
+			<Window class="container">
+				<Button onClick="showCamera">Write</Button>
+			</Window>
+		</Tab>
+		<Tab title="L('me')">
+			<Require src="setting"/>
+		</Tab>
+	</TabGroup>
 </Alloy>

@@ -1,0 +1,31 @@
+".container" : {
+	navBarHidden : true,
+	backgroundColor : 'white'
+}
+
+".wrap" : {
+	layout : 'vertical',
+	height : Ti.UI.SIZE
+}
+
+"#closeBtn" : {
+	left : 10,
+	top : 10
+}
+
+"#fbLogin" : {
+	borderRadius: 4,
+	backgroundColor : '#2980b9',
+    backgroundImage: 'none',
+	color : 'white',
+	width : '80%',
+	font : {
+		fontSize: 20
+	}
+}
+
+".or" : {
+	top : 20
+}
+
+
