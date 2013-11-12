@@ -1,5 +1,6 @@
 <Alloy>
 	<Window class="container">
+		<Button id="closeBtn">Close</Button>
 		<View class="wrap">
 			<Button id="fbLogin">Connect Facebook</Button>
 			<Label id="emailBtn" class="or"> or use email</Label>

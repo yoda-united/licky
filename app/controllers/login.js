@@ -1,39 +1,40 @@
-var currentWindow = $.getView();
+var currentWindow = $.login;
+
 var fbHandler = function(e){
-	// alert(e);
 	if (e.success) {
         var token = this.accessToken;
         Ti.API.info('Logged in ' + token);
-        
-        $.fbLogin.title = "연결중..";
         Cloud.SocialIntegrations.externalAccountLogin({
 		    type: 'facebook',
 		    token: token
 		}, function (e) {
 		    if (e.success) {
 		        var user = e.users[0];
-		        Ti.App.Properties.setString('cloudSessionId', Cloud.sessionId);
-		        // alert(String.format('%s님 반갑습니다.',user.last_name+user.first_name));
-		        Alloy.Collections.instance('user').reset([]); //reset
 		        
-		        var loginUser = Alloy.Models.instance('user');
-		        loginUser.set(user);
-		        loginUser.save();
-
-		        subscribePushChannel(function(){
-		        		currentWindow.close();
-		        });
-		        //
+		        AG.settings.save('cloudSessionId', Cloud.sessionId);
+		        AG.loggedInUser.save(user);
+				$.fbLogin.title = L("facebookConnect");
+				currentWindow.close();
+				
+				// 푸쉬는 현재 미구현
+		        // subscribePushChannel(function(){
+		        		// currentWindow.close();
+		        // });
 		    } else {
 		        alert('Error:\n' +
 		            ((e.error && e.message) || JSON.stringify(e)));
-		     	   $.fbLogin.title = "Connect Facebook";
+		     	$.fbLogin.title = L("facebookConnect");
 		    }
 		});
     }
 };
 
+$.closeBtn.addEventListener('click', function(e) {
+	currentWindow.close();
+});
+
 $.fbLogin.addEventListener('click', function(e) {
+	$.fbLogin.title = L('facebookConnecting');
 	AG.facebook.authorize();
 });
 
@@ -77,26 +78,40 @@ if(AG.settings.get('cloudSessionId')){
 	Cloud.Users.showMe(function(e) {
 		if (e.success) {
 			var user = e.users[0];
-			AG.settings.save({
-				loggedInUser : user
-			});
+			AG.loggedInUser.save(user);
 		} else {
 			alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
 		}
 	}); 
 }
 
-exports.requireLogin = function(args){
-	args = args || {};
-
-	var callback = args.callback; 
+exports.requireLogin = function(callback){
 	if(AG.settings.get('cloudSessionId')){
 		callback && callback();
 	}else{
-		$.getView().open();
+		//window 닫힐때 로그인 성공했으면 callback 실행
+		currentWindow.addEventListener('close', function(e) {
+			if(AG.settings.get('cloudSessionId')){
+				callback && callback();
+			}
+			currentWindow.removeEventListener('close', arguments.callee);
+		});
+		currentWindow.open({
+			
+		});
 	}
 };
 
 exports.logout = function(callback){
-	
+	Cloud.Users.logout(function(e) {
+		if (e.success) {
+			// AG.settings.unset('cloudSessionId',{silent:false});
+			AG.settings.save('cloudSessionId',null);
+			AG.loggedInUser.clear();
+			AG.loggedInUser.save();
+			AG.facebook.logout();
+		} else {
+			alert("로그 아웃이 실패 했는데..\n다시 시도 해보실래요?;;");
+		}
+	});
 };

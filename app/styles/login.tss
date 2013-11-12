@@ -8,6 +8,11 @@
 	height : Ti.UI.SIZE
 }
 
+"#closeBtn" : {
+	left : 10,
+	top : 10
+}
+
 "#fbLogin" : {
 	borderRadius: 4,
 	backgroundColor : '#2980b9',
@@ -22,3 +27,5 @@
 ".or" : {
 	top : 20
 }
+
+

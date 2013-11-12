@@ -28,3 +28,6 @@ AG.settings = Alloy.Models.instance('settings');
 AG.settings.fetch();
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');
 AG.loggedInUser.fetch();
+
+
+AG.loginController =  Alloy.createController('login');
