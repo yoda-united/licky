@@ -9,9 +9,9 @@ function showCamera(){
 }
 
 var photoCol = Alloy.createCollection('photo');
-photoCol.on('reset',function(col){
+photoCol.on('reset add',function(col){
 	var items = []; 
-	col.each(function(photo){
+	photoCol.each(function(photo){
 		Ti.API.info(photo.attributes);
 		var urls = photo.get('urls');
 		items.push({

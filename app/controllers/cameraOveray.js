@@ -1,15 +1,14 @@
 var args = arguments[0],
 	photoCol = args.collection;
 	
-if(OS_IOS){
-	setTimeout(function(){
-		// Ti.Media.hideCamera();
-	},3000);
-}
-
 $.sendBtn.addEventListener('click', function(e) {
 	Ti.Media.takePicture();
 });
+
+$.closeBtn.addEventListener('click', function(e) {
+	Ti.Media.hideCamera();
+});
+
 
 function getCurrentPosition(){
 	// reverse geo
@@ -64,13 +63,25 @@ exports.showCamera = function(){
 	Ti.Media.showCamera({
 		success : function(event) {
 			
-			Ti.Media.hideCamera();
+			Ti.API.info(event.media.width);
+			Ti.API.info(event.media.height);
+			var height = parseInt(640*event.media.height/event.media.width);
+			$.capturedImage.height = height;
+			$.capturedImage.top = -parseInt(height/4);
+			$.capturedImage.image = event.media;
+			
+			$.captureLabel.text = $.contentFiled.value;
 			photoCol.create({
 				title : $.contentFiled.value,
-				photo : event.media
+				photo : $.capture.toImage(null),
+				'photo_sync_sizes[]' : 'original'
 			},{
 				wait:true
 			});
+			
+			Ti.Media.hideCamera();
+			
+			
 		},
 		cancel : function() {
 		},

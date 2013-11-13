@@ -1,6 +1,7 @@
 <Alloy>
 	<View class="container">
 		<View class="buttonWrap">
+			<Button id="closeBtn"></Button>
 			<Button id="sendBtn"></Button>
 		</View>
 		<View class="fieldWrap">
@@ -11,6 +12,11 @@
 		</View>
 		<View class="infoWrap">
 			<Label id="geoLabel" >위치 확인 중..</Label>
+		</View>
+		<View id="capture">
+			<View class="filedBgView"></View>
+			<ImageView id="capturedImage"></ImageView>
+			<Label id="captureLabel"></Label>
 		</View>
 	</View>
 </Alloy>

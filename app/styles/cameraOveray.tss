@@ -4,8 +4,15 @@
   layout : 'vertical'
 }
 
+"#closeBtn" : {
+	height : Ti.UI.FILL,
+	width : '50%',
+	title : L('close')
+}
+
 "#sendBtn" : {
-	height : 40,
+	height : Ti.UI.FILL,
+	width : '50%',
 	title : 'Send'
 }
 
@@ -25,7 +32,8 @@
 
 ".buttonWrap" : {
 	backgroundColor : 'white',
-	height : 100
+	height : 100,
+	layout : 'horizontal'
 }
 
 ".fieldWrap" : {
@@ -54,4 +62,23 @@
 
 "#geoLabel" : {
 	top : 0
+}
+
+"#capture" : {
+	width : 640,
+	height : 320
+}
+"#captureLabel" : {
+	width : '100%',
+	height : 320,
+	backgroundColor : 'transparent',
+	color : 'white',
+	font : {
+		fontSize : 80
+	},
+	left: 20
+}
+
+"#capturedImage" : {
+	width : 640
 }

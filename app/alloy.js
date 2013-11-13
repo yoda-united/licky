@@ -13,6 +13,9 @@
 //alias
 var AG = Alloy.Globals;
 
+
+// var NappUI = require("dk.napp.ui");
+
 // Cloud는 Global에서 바로 접근하도록 함.
 AG.Cloud = require('ti.cloud');
 if(ENV_DEV || ENV_TEST){

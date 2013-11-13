@@ -5,7 +5,8 @@
 
 ".photo": {
 	// height : 80,
-	width : 320
+	width : 320,
+	height : 160
 }
 
 ".title" : {
@@ -13,7 +14,8 @@
 		fontSize: 40
 	},
 	left : 10,
-	color : 'white'
+	color : 'white',
+	visible : false
 }
 
 "#cameraBtn[platform=android]" : {

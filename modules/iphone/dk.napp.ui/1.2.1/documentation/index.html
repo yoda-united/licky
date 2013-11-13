@@ -1,0 +1,225 @@
+<h1>nappui Module</h1>
+<h2>Description</h2>
+<p>This module extends the native UI components provided by the Titanium Mobile SDK. We are more properties to a bunch of UI components, giving you more freedom for styling and functionality.</p>
+<p>This is not a set of new UI components. Instead, we are extending the existing framework.</p>
+<p>See this module as a collection of extended functionality. I did not invent all of the below functionality, but want to put these together in one united module.</p>
+<h2>Accessing the nappui Module</h2>
+<p>Instantiate the module through <code>require();</code>  This will modify and override the native Titanium classes with the NappUI methods.<br />
+</p>
+<p>Note: Creating a <code>NappUI</code> object is optional, but may be useful if methods, properties or custom proxy objects are defined.</p>
+<p><code>javascript
+var NappUI = require("dk.napp.ui");</code></p>
+<h2>Reference</h2>
+<p>The following lists the UI components and its new extended functionality.</p>
+<h3>Window</h3>
+<ul>
+<li>Add a blur effect</li>
+<li>1.0: No blur effect</li>
+<li>0: Maximum blur effect</li>
+</ul>
+<p><code>javascript
+var win = Ti.UI.createWindow({
+    blur:0.2
+});</code></p>
+<h3>View</h3>
+<ul>
+<li>Add drop shadow to your view</li>
+<li>Add a blur effect to the view</li>
+</ul>
+<p><code>javascript
+var view = Ti.UI.createView({
+    shadow:{
+        shadowRadius:10,
+        shadowOpacity:1,
+        shadowOffset:{x:2, y:2}
+    },
+    blur:0.75
+});</code></p>
+<h3>ImageView</h3>
+<ul>
+<li>Add pan, rotate or/and pinch control to your image view</li>
+<li>Eventlisteners for each new gesture control</li>
+</ul>
+<p>```javascript
+var image = Ti.UI.createImageView({
+    image:"image.png",
+    recognizeSimultaneously:"pinching,rotate",
+    rotateGesture:true,
+    pinchingGesture:true,
+    panGesture:true
+});</p>
+<p>image.addEventListener('pan', function(e){});
+image.addEventListener('panend', function(e){});</p>
+<p>image.addEventListener('rotate', function(e){});
+image.addEventListener('rotateend', function(e){});</p>
+<p>image.addEventListener('pinching', function(e){});
+image.addEventListener('pinchingend', function(e){});</p>
+<p>image.addEventListener('pan', function(e){});
+image.addEventListener('panend', function(e){});
+```</p>
+<h3>WebView</h3>
+<ul>
+<li>Custom WebView scroll speed (Same TableView / ScrollView scroll speed)</li>
+<li>Remove scroll bounce shadow</li>
+<li>Remove scroll delay</li>
+<li>Communication between WebView and Titanium app</li>
+<li>Change UserAgent</li>
+</ul>
+<p><code>javascript
+var webView = Ti.UI.createWebView({
+    normalScrollSpeed: true,
+    removeShadow: true,
+    removeScrollDelay: true,
+    userAgentForiOS: 'My Awesome Application UserAgent'
+    url: 'http://www.appcelerator.com'
+});
+webView.addEventListener('fromWebView', function(){});</code></p>
+<h3>ScrollableView</h3>
+<ul>
+<li>Set the indicator color for the Paging Control</li>
+<li>Set the current indicator color for the Paging Control</li>
+</ul>
+<p><code>javascript
+var scrollableView = Ti.UI.createScrollableView({
+    views:[view1,view2,view3],
+    showPagingControl:true,
+    pagingControlCurrentIndicatorColor:"blue",
+    pagingControlIndicatorColor: "red"
+});</code></p>
+<h3>TabGroup</h3>
+<ul>
+<li>Custom active tab indicator image</li>
+<li>Custom active tab icon color</li>
+<li>Custom tab background image</li>
+<li>Custom tab background color (Same Ti.UI.TabGroup.tabsBackgroundColor property)</li>
+</ul>
+<p><code>javascript
+var tabGroup = Ti.UI.createTabGroup({
+    customBackgroundColor: "#151515",
+    customBackgroundImage: "/images/tabbg.png",
+    customActiveIndicator: "/images/activeIndicator.png",
+    customActiveIconColor: "#FF3300"
+});</code></p>
+<h3>TextField</h3>
+<ul>
+<li>Added hintTextColor</li>
+</ul>
+<p><code>javascript
+var textfield = Ti.UI.createTextField({
+    hintTextColor:"red"
+});</code></p>
+<h3>SearchBar</h3>
+<ul>
+<li>SearchField BackgroundImage</li>
+<li>Custom Cancel button</li>
+<li>barColor - background gradient of the button. (similar to navbar)</li>
+<li>color - color of the button title</li>
+<li>title - change the default <em>Cancel</em> text</li>
+<li>font - set the font of the button</li>
+<li>Appearance of the keyboard</li>
+<li>Disable the search icon</li>
+</ul>
+<p><code>javascript
+var searchBar = Ti.UI.createSearchBar({
+    searchFieldBackgroundImage:"searchbg.png",
+    showsScopeBar:true,
+    scopeButtonTitles:["hello", "yes"],
+    customCancel:{
+        barColor:"#333",
+        color:"#ddd",
+        title:"Hit me",
+        font:{
+            fontSize:16,
+            fontWeight:"bold",
+            fontFamily:"Georgia"
+        }
+    },
+    appearance:Titanium.UI.KEYBOARD_APPEARANCE_ALERT,
+    barColor:"transparent",
+    disableSearchIcon:true //disables the search icon in the left side
+});</code></p>
+<h3>Picker</h3>
+<ul>
+<li>Mask the background to invisible. </li>
+</ul>
+<p><code>javascript
+var picker = Ti.UI.createPicker({
+    mask:{
+        left:14,
+        top:10,
+        width:293,
+        height:196
+    }
+});</code></p>
+<h3>Toolbar</h3>
+<ul>
+<li>TintColor</li>
+</ul>
+<p><code>javascript
+var toolbar = Ti.UI.iOS.createToolbar({
+    items:[send, flexSpace, camera],
+    tintColor:"red"
+});</code></p>
+<h3>NavigationGroup</h3>
+<ul>
+<li>Close all windows in the navigationGroup, and return to the very first window in the group.</li>
+</ul>
+<p><code>javascript
+navGroup.popToRoot();</code></p>
+<h2>Changelog</h2>
+<ul>
+<li>1.0.4<ul>
+<li>Removed the need for requiring NappUI.js.  Modifed the symbol preloader file to a module asset.  See ticket <a href="https://github.com/viezel/NappUI/issues/5">#5</a>.</li>
+</ul>
+</li>
+<li>
+<p>1.0.3</p>
+</li>
+<li>Added <code>popToRoot()</code> to extend NavigationGroup. Feature request <a href="https://github.com/viezel/NappUI/issues/3">#3</a></li>
+<li>
+<p>Changed <code>setBlurred(true)</code> to <code>setBlur(0.2)</code>. Feature request <a href="https://github.com/viezel/NappUI/issues/1">#1</a></p>
+</li>
+<li>
+<p>1.0.2</p>
+</li>
+<li>
+<p>Aded NappUI.js for better use of this module. This is due to some limitations of the Titanium mMdule SDK.</p>
+</li>
+<li>
+<p>1.0.1</p>
+</li>
+<li>
+<p>Bugfix - invalid build, and some functions did not work as expected. </p>
+</li>
+<li>
+<p>1.0</p>
+</li>
+<li>Init commit, working module.</li>
+</ul>
+<h2>Author</h2>
+<p><strong>Mads Moller</strong><br />
+web: http://www.napp.dk<br />
+email: mm@napp.dk<br />
+twitter: @nappdev<br />
+</p>
+<h2>License</h2>
+<pre><code>Copyright (c) 2010-2013 Mads Moller
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</code></pre>
