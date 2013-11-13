@@ -25,7 +25,7 @@ if(ENV_DEV || ENV_TEST){
 // settings
 Ti.Geolocation.purpose = '현재 위치 확인';
 AG.facebook = require('facebook');
-AG.facebook.appid = "***REMOVED***";
+AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 //AG.facebook.permissions = [FACEBOOK_APP_PERMISSIONS];
 
 
