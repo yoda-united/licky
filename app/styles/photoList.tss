@@ -3,10 +3,20 @@
   
 }
 
+".itemTemplate" : {
+	height : 80
+}
+
+".selectedItemTemplate" : {
+	height : 160
+}
+
 ".photo": {
 	// height : 80,
+	// top : -45,
 	width : 320,
-	height : 160
+	height : 160,
+	preventDefaultImage : true
 }
 
 ".title" : {

@@ -9,8 +9,9 @@ function showCamera(){
 }
 
 var photoCol = Alloy.createCollection('photo');
+var items = []; 
 photoCol.on('reset add',function(col){
-	var items = []; 
+	items = [];
 	photoCol.each(function(photo){
 		Ti.API.info(photo.attributes);
 		var urls = photo.get('urls');
@@ -23,11 +24,24 @@ photoCol.on('reset add',function(col){
 				text : photo.get('title')
 			},
 			properties :{
-				itemId : photo.id,
-				height : 70
+				itemId : photo.id
 			},
 		});
 	});
 	$.section.setItems(items);
 });
+
+$.listView.addEventListener('itemclick', function(e) {
+	if(e.itemId){
+		_.each(items, function(item){
+			if(e.itemId==item.properties.itemId){
+				item.template = 'selectedItemTemplate';
+			}else{
+				item.template = 'itemTemplate';
+			}
+		});
+		$.section.setItems(items);
+	}
+});
+
 photoCol.fetch();
