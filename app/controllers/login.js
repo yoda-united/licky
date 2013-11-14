@@ -35,7 +35,35 @@ $.closeBtn.addEventListener('click', function(e) {
 
 $.fbLogin.addEventListener('click', function(e) {
 	$.fbLogin.title = L('facebookConnecting');
-	AG.facebook.authorize();
+	
+	if(OS_IOS){
+		AG.facebook.authorize({
+			forceDialogAuth : false
+		});
+	}else{
+		AG.Cloud.Users.login({
+		    login: 'admin',
+		    password: 'bogoyo'
+		}, function (e) {
+		    if (e.success) {
+		        var user = e.users[0];
+		        
+		        AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
+		        AG.loggedInUser.save(user);
+				$.fbLogin.title = L("facebookConnect");
+				currentWindow.close();
+				
+				// 푸쉬는 현재 미구현
+		        // subscribePushChannel(function(){
+		        		// currentWindow.close();
+		        // });
+		    } else {
+		        alert('Error:\n' +
+		            ((e.error && e.message) || JSON.stringify(e)));
+		     	$.fbLogin.title = L("facebookConnect");
+		    }
+		});
+	}
 });
 
 $.emailBtn.addEventListener('click', function(e) {

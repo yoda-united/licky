@@ -17,13 +17,16 @@
 }
 
 "#contentFiled" : {
-	width : '100%',
+	width : 300,
+	textAlign : 'left',
+	left : 10,
 	height : 80,
 	backgroundColor : 'transparent',
 	color : 'white',
 	font : {
-		fontSize : 40
-	}
+		fontSize : 70
+	},
+	maxLength : 6
 }
 
 "#contentFiled[platform=android]" : {
@@ -74,7 +77,7 @@
 	backgroundColor : 'transparent',
 	color : 'white',
 	font : {
-		fontSize : 80
+		fontSize : 140
 	},
 	left: 20
 }

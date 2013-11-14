@@ -6,7 +6,19 @@ $.sendBtn.addEventListener('click', function(e) {
 });
 
 $.closeBtn.addEventListener('click', function(e) {
-	Ti.Media.hideCamera();
+	if(OS_IOS){
+		Ti.Media.hideCamera();
+	}else{
+		alert(Ti.Android);
+		var activity = Ti.Android.currentActivity;
+	}
+});
+
+$.contentFiled.addEventListener('change', function(e) {
+	// if(this.value.length>5){
+		// this.value = this.value.substr(0,5);
+	// }
+	Ti.API.info(this.value +', ' + this.value.length);
 });
 
 
@@ -67,21 +79,33 @@ exports.showCamera = function(){
 			Ti.API.info(event.media.height);
 			var height = parseInt(640*event.media.height/event.media.width);
 			$.capturedImage.height = height;
-			$.capturedImage.top = -parseInt(height/4);
+			$.capturedImage.top = -200;//-parseInt(height/4) +'px';
 			$.capturedImage.image = event.media;
 			
-			$.captureLabel.text = $.contentFiled.value;
+			$.captureLabel.text = $.contentFiled.value.substr(0,5);
+			
+			var blob = $.capture.toImage(null,false);
+			
+			if(OS_ANDROID){
+				// var imgViewForAndroid = Ti.UI.createImageView({
+					// width : '640px',
+					// height : '320px',
+					// image : blob
+				// });
+				// blob = imgViewForAndroid.toBlob();
+			}
+			
 			photoCol.create({
 				title : $.contentFiled.value,
-				photo : $.capture.toImage(null),
+				photo : blob,
 				'photo_sync_sizes[]' : 'original'
 			},{
 				wait:true
 			});
 			
-			Ti.Media.hideCamera();
-			
-			
+			if(OS_IOS){
+				Ti.Media.hideCamera();
+			}
 		},
 		cancel : function() {
 		},
