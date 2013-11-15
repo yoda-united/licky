@@ -1,12 +1,26 @@
-if(OS_IOS){
-	setTimeout(function(){
-		// Ti.Media.hideCamera();
-	},3000);
-}
-
+var args = arguments[0],
+	photoCol = args.collection;
+	
 $.sendBtn.addEventListener('click', function(e) {
 	Ti.Media.takePicture();
 });
+
+$.closeBtn.addEventListener('click', function(e) {
+	if(OS_IOS){
+		Ti.Media.hideCamera();
+	}else{
+		alert(Ti.Android);
+		var activity = Ti.Android.currentActivity;
+	}
+});
+
+$.contentFiled.addEventListener('change', function(e) {
+	// if(this.value.length>5){
+		// this.value = this.value.substr(0,5);
+	// }
+	Ti.API.info(this.value +', ' + this.value.length);
+});
+
 
 function getCurrentPosition(){
 	// reverse geo
@@ -60,8 +74,38 @@ exports.showCamera = function(){
 	
 	Ti.Media.showCamera({
 		success : function(event) {
-			//alert('Your photo was saved to the Photo Gallery');
-			Ti.Media.hideCamera();
+			
+			Ti.API.info(event.media.width);
+			Ti.API.info(event.media.height);
+			var height = parseInt(640*event.media.height/event.media.width);
+			$.capturedImage.height = height;
+			$.capturedImage.top = -200;//-parseInt(height/4) +'px';
+			$.capturedImage.image = event.media;
+			
+			$.captureLabel.text = $.contentFiled.value.substr(0,5);
+			
+			var blob = $.capture.toImage(null,false);
+			
+			if(OS_ANDROID){
+				// var imgViewForAndroid = Ti.UI.createImageView({
+					// width : '640px',
+					// height : '320px',
+					// image : blob
+				// });
+				// blob = imgViewForAndroid.toBlob();
+			}
+			
+			photoCol.create({
+				title : $.contentFiled.value,
+				photo : blob,
+				'photo_sync_sizes[]' : 'original'
+			},{
+				wait:true
+			});
+			
+			if(OS_IOS){
+				Ti.Media.hideCamera();
+			}
 		},
 		cancel : function() {
 		},

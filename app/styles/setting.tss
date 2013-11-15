@@ -9,11 +9,13 @@
 ".afterLogin" : {
 	title : L('logout'),
 	backgroundColor : '#c0392b',
-	color : 'white'
+	color : 'white',
+	selectedColor : 'gray'
 }
 
 ".beforeLogin" : {
 	title : L('login'),
 	backgroundColor : '#2ecc71',
-	color : 'white'
+	color : 'white',
+	selectedColor : 'gray'
 }

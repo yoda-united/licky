@@ -4,14 +4,14 @@ var fbHandler = function(e){
 	if (e.success) {
         var token = this.accessToken;
         Ti.API.info('Logged in ' + token);
-        Cloud.SocialIntegrations.externalAccountLogin({
+        AG.Cloud.SocialIntegrations.externalAccountLogin({
 		    type: 'facebook',
 		    token: token
 		}, function (e) {
 		    if (e.success) {
 		        var user = e.users[0];
 		        
-		        AG.settings.save('cloudSessionId', Cloud.sessionId);
+		        AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
 		        AG.loggedInUser.save(user);
 				$.fbLogin.title = L("facebookConnect");
 				currentWindow.close();
@@ -35,7 +35,35 @@ $.closeBtn.addEventListener('click', function(e) {
 
 $.fbLogin.addEventListener('click', function(e) {
 	$.fbLogin.title = L('facebookConnecting');
-	AG.facebook.authorize();
+	
+	if(OS_IOS){
+		AG.facebook.authorize({
+			forceDialogAuth : false
+		});
+	}else{
+		AG.Cloud.Users.login({
+		    login: 'admin',
+		    password: 'bogoyo'
+		}, function (e) {
+		    if (e.success) {
+		        var user = e.users[0];
+		        
+		        AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
+		        AG.loggedInUser.save(user);
+				$.fbLogin.title = L("facebookConnect");
+				currentWindow.close();
+				
+				// 푸쉬는 현재 미구현
+		        // subscribePushChannel(function(){
+		        		// currentWindow.close();
+		        // });
+		    } else {
+		        alert('Error:\n' +
+		            ((e.error && e.message) || JSON.stringify(e)));
+		     	$.fbLogin.title = L("facebookConnect");
+		    }
+		});
+	}
 });
 
 $.emailBtn.addEventListener('click', function(e) {
@@ -54,7 +82,7 @@ currentWindow.addEventListener('close', function(e) {
 function subscribePushChannel(callback){
 	var token = Ti.App.Properties.getString('deviceToken');
 	if(token){
-		Cloud.PushNotifications.subscribe({
+		AG.Cloud.PushNotifications.subscribe({
 		    channel: 'quest',
 		    device_token: token,
 		    type: 'gcm'
@@ -74,8 +102,8 @@ function subscribePushChannel(callback){
 
 //최초 복구
 if(AG.settings.get('cloudSessionId')){
-	Cloud.sessionId = AG.settings.get('cloudSessionId');
-	Cloud.Users.showMe(function(e) {
+	AG.Cloud.sessionId = AG.settings.get('cloudSessionId');
+	AG.Cloud.Users.showMe(function(e) {
 		if (e.success) {
 			var user = e.users[0];
 			AG.loggedInUser.save(user);
@@ -103,7 +131,7 @@ exports.requireLogin = function(callback){
 };
 
 exports.logout = function(callback){
-	Cloud.Users.logout(function(e) {
+	AG.Cloud.Users.logout(function(e) {
 		if (e.success) {
 			// AG.settings.unset('cloudSessionId',{silent:false});
 			AG.settings.save('cloudSessionId',null);

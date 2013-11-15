@@ -1,0 +1,25 @@
+<Alloy>
+	<Window class="container">
+		<ListView id="listView">
+			<Templates>
+				<ItemTemplate class="itemTemplate" name="itemTemplate">
+					<ImageView class="photo" bindId="photo"></ImageView>
+					<Label class="title" bindId="title"></Label>
+					<Label class="time" bindId="time"></Label>
+					<Label class="userName" bindId="userName"></Label>
+				</ItemTemplate>
+				<ItemTemplate class="selectedItemTemplate" name="selectedItemTemplate">
+					<ImageView class="photo" bindId="photo"></ImageView>
+					<Label class="title" bindId="title"></Label>
+					<Label class="time" bindId="time"></Label>
+					<Label class="userName" bindId="userName"></Label>
+				</ItemTemplate>
+			</Templates>
+			<ListSection id="section"></ListSection>
+		</ListView>
+		<RightNavButton platform="ios">
+			<Button id="cameraBtn" class="cameraBtn" onClick="showCamera"></Button>
+		</RightNavButton>
+		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
+	</Window>
+</Alloy>

@@ -1,9 +1,10 @@
 <Alloy>
 	<TabGroup>
 		<Tab title="L('photoList')">
-			<Window class="container">
+			<!-- <Window class="container">
 				<Button onClick="showCamera">Write</Button>
-			</Window>
+			</Window> -->
+			<Require src="photoList"/>
 		</Tab>
 		<Tab title="L('me')">
 			<Require src="setting"/>

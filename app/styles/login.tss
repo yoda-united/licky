@@ -17,6 +17,7 @@
 	borderRadius: 4,
 	backgroundColor : '#2980b9',
     backgroundImage: 'none',
+    selectedColor : 'gray',
 	color : 'white',
 	width : '80%',
 	font : {

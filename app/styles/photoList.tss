@@ -1,0 +1,43 @@
+
+".container" : {
+  
+}
+
+".itemTemplate" : {
+	height : 80
+}
+
+".selectedItemTemplate" : {
+	height : 160
+}
+
+".photo": {
+	// height : 80,
+	// top : -45,
+	width : 320,
+	height : 160,
+	preventDefaultImage : true
+}
+
+".title" : {
+	font : {
+		fontSize: 40
+	},
+	left : 10,
+	color : 'white',
+	visible : false
+}
+
+"#cameraBtn[platform=android]" : {
+	bottom : 10,
+	width : '80%',
+	height : 40,
+	backgroundColor : '#9b59b6',
+	color : 'white',
+	selectedColor : '#bdc3c7',
+	title : L('takePhoto')
+}
+
+"#cameraBtn[platform=ios]" : {
+	title : L('takePhoto')
+}
