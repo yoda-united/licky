@@ -1,3 +1,18 @@
 "Window":{
 	backgroundColor : 'white'
 }
+
+".photoTitle" : {
+	width : 300,
+	textAlign : 'right',
+	right : 10,
+	bottom : 0,
+	height : 80,
+	backgroundColor : 'transparent',
+	color : 'white',
+	font : {
+		fontSize : 70
+	},
+	minimumFontSize : 5,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
+}

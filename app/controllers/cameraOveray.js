@@ -1,6 +1,6 @@
 var args = arguments[0],
 	photoCol = args.collection;
-	
+
 $.sendBtn.addEventListener('click', function(e) {
 	Ti.Media.takePicture();
 });
@@ -18,7 +18,9 @@ $.contentFiled.addEventListener('change', function(e) {
 	// if(this.value.length>5){
 		// this.value = this.value.substr(0,5);
 	// }
-	Ti.API.info(this.value +', ' + this.value.length);
+	//Ti.API.info(this.value +', ' + this.value.length);
+	$.contentFiled.width  = Ti.UI.SIZE;
+	// $.contentFiled.bottom = 0;
 });
 
 
@@ -67,33 +69,44 @@ $.contentFiled.addEventListener('postlayout', function(e) {
 	$.contentFiled.focus();
 });
 
+
 exports.showCamera = function(){
 	if(OS_IOS){
 		Ti.Media.hideCamera();
 	}
+	var catureSize = _.clone(AG.cameraInfo);
+	_.each(catureSize,function(value,key){
+		catureSize[key]=value*2;
+	});
+	
+					  
+	Ti.API.info(catureSize);
 	
 	Ti.Media.showCamera({
 		success : function(event) {
-			
 			Ti.API.info(event.media.width);
 			Ti.API.info(event.media.height);
-			var height = parseInt(640*event.media.height/event.media.width);
-			$.capturedImage.height = height;
-			$.capturedImage.top = -200;//-parseInt(height/4) +'px';
-			$.capturedImage.image = event.media;
+			var height = parseInt(catureSize.width*event.media.height/event.media.width);
+			// event.media.imageAsCropped({
+				// x: 0,
+				// y: top,
+				// width: 640,
+				// height : height
+			// })
+			Ti.API.info(event.media.mimeType);
+			var resizedImage = event.media.imageAsResized(catureSize.width,height);
+			//Ti.API.info(resizedImage.width +',' + resizedImage.height);
+			Ti.API.info(resizedImage.mimeType);
+			var croppedImage = resizedImage.imageAsCropped({
+				x: 0,
+				y: 0,// catureSize.top,
+				width: catureSize.width,
+				height : catureSize.height
+			});
+			Ti.API.info(croppedImage.mimeType);
+			//$.captureLabel.text = $.contentFiled.value.substr(0,5);
 			
-			$.captureLabel.text = $.contentFiled.value.substr(0,5);
-			
-			var blob = $.capture.toImage(null,false);
-			
-			if(OS_ANDROID){
-				// var imgViewForAndroid = Ti.UI.createImageView({
-					// width : '640px',
-					// height : '320px',
-					// image : blob
-				// });
-				// blob = imgViewForAndroid.toBlob();
-			}
+			var blob = croppedImage;
 			
 			photoCol.create({
 				title : $.contentFiled.value,

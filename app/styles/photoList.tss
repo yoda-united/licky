@@ -4,28 +4,33 @@
 }
 
 ".itemTemplate" : {
-	height : 80
+	height : 90
 }
 
 ".selectedItemTemplate" : {
-	height : 160
+	height : Alloy.Globals.cameraInfo.height
 }
 
 ".photo": {
 	// height : 80,
 	// top : -45,
-	width : 320,
-	height : 160,
-	preventDefaultImage : true
+	width : Alloy.Globals.cameraInfo.width,
+	height : 180,
+	preventDefaultImage : true,
+	bottom : 0
 }
 
-".title" : {
-	font : {
-		fontSize: 40
-	},
-	left : 10,
+".time" : {
 	color : 'white',
-	visible : false
+	right : 7,
+	top : 7,
+	font : {
+		fontSize : 16
+	}
+}
+
+".photoTitle" : {
+	editable : false
 }
 
 "#cameraBtn[platform=android]" : {

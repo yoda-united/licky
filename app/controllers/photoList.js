@@ -21,7 +21,11 @@ photoCol.on('reset add',function(col){
 				image : urls.medium_640 || urls.original 
 			},
 			title :{
-				text : photo.get('title')
+				text : photo.get('title'),
+				value : photo.get('title')
+			},
+			time : {
+				text : AG.moment(photo.get('created_at')).fromNow()
 			},
 			properties :{
 				itemId : photo.id

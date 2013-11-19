@@ -27,6 +27,40 @@ Ti.Geolocation.purpose = '현재 위치 확인';
 AG.facebook = require('facebook');
 AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 //AG.facebook.permissions = [FACEBOOK_APP_PERMISSIONS];
+AG.moment = require('alloy/moment');
+moment.lang('ko', {
+//    
+    // longDateFormat : {
+        // LT : "A h시 mm분",
+        // L : "YYYY.MM.DD",
+        // LL : "YYYY년 MMMM D일",
+        // LLL : "YYYY년 MMMM D일 LT",
+        // LLLL : "YYYY년 MMMM D일 dddd LT"
+    // },
+    relativeTime : {
+        future : "in %s",
+        past : "%s",
+        s : "1s",
+        ss : "%ds",
+        m : "1m",
+        mm : "%dm",
+        h : "1h",
+        hh : "%dh",
+        d : "1d",
+        dd : "%dd",
+        M : "L",
+        MM : "L",
+        y : "L",
+        yy : "L"
+    }
+});
+
+AG.cameraInfo = {
+	top : 100,
+	width : 320,
+	height : 180
+};
+
 
 
 //singleton Models (static id)
