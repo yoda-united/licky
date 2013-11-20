@@ -11,8 +11,8 @@
 	backgroundColor : 'transparent',
 	color : 'white',
 	font : {
-		fontSize : 70
+		fontSize : 60
 	},
-	minimumFontSize : 5,
+	minimumFontSize : 4,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }

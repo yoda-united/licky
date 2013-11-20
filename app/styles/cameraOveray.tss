@@ -17,7 +17,7 @@
 }
 
 "#contentFiled" : {
-	maxLength : 11,
+	maxLength : 22,
 }
 
 "#contentFiled[platform=android]" : {

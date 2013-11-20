@@ -3,6 +3,10 @@
   
 }
 
+"#listView" : {
+	separatorColor: 'white'
+}
+
 ".itemTemplate" : {
 	height : 90
 }
@@ -20,17 +24,42 @@
 	bottom : 0
 }
 
-".time" : {
+".userName" : {
 	color : 'white',
-	right : 7,
-	top : 7,
+	top : 5,
+	left: 60,
 	font : {
 		fontSize : 16
 	}
 }
 
+".profileImage" : {
+	backgroundColor : 'gray',
+	borderColor : 'white',
+	borderWidth : 1,
+	left : 10,
+	top : 5,
+	width : 40,
+	height : 40,
+	borderRadius : 20
+}
+
+".time" : {
+	color : 'white',
+	right : 10,
+	top : 7,
+	font : {
+		fontSize : 13
+	}
+}
+
 ".photoTitle" : {
-	editable : false
+	left: 50,
+	width : null,
+	right : 10,
+	bottom : -5,
+	//borderColor : 'red',
+	verticalAlign : null
 }
 
 "#cameraBtn[platform=android]" : {
