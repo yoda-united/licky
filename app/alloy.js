@@ -69,3 +69,5 @@ AG.loggedInUser.fetch();
 
 
 AG.loginController =  Alloy.createController('login');
+
+

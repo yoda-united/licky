@@ -15,6 +15,36 @@ exports.definition = {
 	extendModel: function(Model) {
 		_.extend(Model.prototype, {
 			// extended functions and properties go here
+			doDefaultTransform : function(){
+				var urls = this.get('urls');
+				var profileUrl = 
+					String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d",
+								this.get('user').external_accounts[0].external_id,
+								80,
+								80);
+				return({
+					//template : 'itemTemplate',
+					photo : {
+						image : urls.medium_640 || urls.original 
+					},
+					title :{
+						text : this.get('title'),
+						value : this.get('title')
+					},
+					userName:{
+						text : this.get('user').first_name
+					},
+					time : {
+						text : AG.moment(this.get('created_at')).fromNow()
+					},
+					profileImage : {
+						image : profileUrl
+					},
+					properties :{
+						itemId : this.id
+					},
+				});
+			}
 		});
 
 		return Model;

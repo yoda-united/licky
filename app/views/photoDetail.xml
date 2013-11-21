@@ -1,0 +1,11 @@
+<Alloy>
+	<Window class="container">
+		<ListView>
+			<Templates>
+				<Require id="photoTemplate" src="photoItemTemplate"/>
+			</Templates>
+			<ListSection id="contentSection"></ListSection>
+			<ListSection id="commentSection"></ListSection>
+		</ListView>
+	</Window>
+</Alloy>
