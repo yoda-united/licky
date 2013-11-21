@@ -5,16 +5,18 @@
 
 "#listView" : {
 	separatorColor: 'white',
-	defaultItemTemplate : 'selectedItemTemplate'
-	// defaultItemTemplate : 'itemTemplate'
+	//defaultItemTemplate : 'selectedItemTemplate'
+	defaultItemTemplate : 'itemTemplate'
 }
 
 ".itemTemplate" : {
-	height : 90
+	height : 108
+	//height : 90
 }
 
 ".selectedItemTemplate" : {
 	height : Alloy.Globals.cameraInfo.height
+	//height : 108
 }
 
 
