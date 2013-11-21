@@ -1,4 +1,18 @@
-
-".container" : {
-  
+"#listView" : {
+	separatorColor: 'black'
 }
+
+
+
+".commentTemplate" : {
+	height : 44
+}
+
+".userName" : {
+	color : 'black'
+}
+
+".time" : {
+	color : 'black'
+}
+
