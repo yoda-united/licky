@@ -15,12 +15,6 @@ $.closeBtn.addEventListener('click', function(e) {
 });
 
 $.contentFiled.addEventListener('change', function(e) {
-	// if(this.value.length>5){
-		// this.value = this.value.substr(0,5);
-	// }
-	//Ti.API.info(this.value +', ' + this.value.length);
-	$.contentFiled.width  = Ti.UI.SIZE;
-	// $.contentFiled.bottom = 0;
 });
 
 
