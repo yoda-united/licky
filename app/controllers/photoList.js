@@ -21,14 +21,12 @@ photoCol.on('reset add',function(col){
 
 $.listView.addEventListener('itemclick', function(e) {
 	if(e.itemId){
-		_.each(items, function(item){
-			if(e.itemId==item.properties.itemId){
-				item.template = 'selectedItemTemplate';
-			}else{
-				item.template = 'itemTemplate';
+		AG.utils.openController(AG.mainTabGroup.activeTab,
+			'photoDetail',
+			{
+				photoModel : photoCol.get(e.itemId) //clicked Model
 			}
-		});
-		$.section.setItems(items);
+		);
 	}
 });
 
