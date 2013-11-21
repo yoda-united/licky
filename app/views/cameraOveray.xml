@@ -8,15 +8,10 @@
 			<View class="filedBgView"></View>
 			<View class="filedBorder">
 			</View>
-			<TextField id="contentFiled"></TextField>
+			<TextField id="contentFiled" class="photoTitle"></TextField>
 		</View>
 		<View class="infoWrap">
 			<Label id="geoLabel" >위치 확인 중..</Label>
-		</View>
-		<View id="capture">
-			<View class="filedBgView"></View>
-			<ImageView id="capturedImage"></ImageView>
-			<Label id="captureLabel"></Label>
 		</View>
 	</View>
 </Alloy>

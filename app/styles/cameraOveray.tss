@@ -17,46 +17,33 @@
 }
 
 "#contentFiled" : {
-	width : 300,
-	textAlign : 'left',
-	left : 10,
-	height : 80,
-	backgroundColor : 'transparent',
-	color : 'white',
-	font : {
-		fontSize : 70
-	},
-	maxLength : 6
+	maxLength : 22,
 }
 
 "#contentFiled[platform=android]" : {
-	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS
+	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }
 
 ".buttonWrap" : {
 	backgroundColor : 'white',
-	height : 100,
+	height : Alloy.Globals.cameraInfo.top,
 	layout : 'horizontal'
 }
 
 ".fieldWrap" : {
-	height : 160,
+	height : 180,
 	backgroundColor : 'transparent'
 }
 
 ".filedBorder" : {
 	left: -1,
 	right : -1,
-	height : 80,
+	height : 1,
 	borderColor : 'white',
-	backgroundColor : 'transparent',
+	backgroundColor : 'white',
 	borderWidth : '1px',
 	opacity : 0.2
-}
-
-".filedBgView" : {
-	backgroundColor : 'black',
-	opacity : 0.25
 }
 
 ".infoWrap" : {
@@ -65,23 +52,4 @@
 
 "#geoLabel" : {
 	top : 0
-}
-
-"#capture" : {
-	width : 640,
-	height : 320
-}
-"#captureLabel" : {
-	width : '100%',
-	height : 320,
-	backgroundColor : 'transparent',
-	color : 'white',
-	font : {
-		fontSize : 140
-	},
-	left: 20
-}
-
-"#capturedImage" : {
-	width : 640
 }

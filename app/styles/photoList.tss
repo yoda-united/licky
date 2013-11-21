@@ -3,30 +3,23 @@
   
 }
 
+"#listView" : {
+	separatorColor: 'white',
+	//defaultItemTemplate : 'selectedItemTemplate'
+	defaultItemTemplate : 'itemTemplate'
+}
+
 ".itemTemplate" : {
-	height : 80
+	height : 108
+	//height : 90
 }
 
 ".selectedItemTemplate" : {
-	height : 160
+	height : Alloy.Globals.cameraInfo.height
+	//height : 108
 }
 
-".photo": {
-	// height : 80,
-	// top : -45,
-	width : 320,
-	height : 160,
-	preventDefaultImage : true
-}
 
-".title" : {
-	font : {
-		fontSize: 40
-	},
-	left : 10,
-	color : 'white',
-	visible : false
-}
 
 "#cameraBtn[platform=android]" : {
 	bottom : 10,
