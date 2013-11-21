@@ -61,8 +61,6 @@ AG.cameraInfo = {
 	height : 180
 };
 
-
-
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');
 AG.settings.fetch();

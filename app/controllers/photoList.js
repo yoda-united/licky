@@ -22,7 +22,7 @@ photoCol.on('reset add',function(col){
 						80,
 						80);
 		items.push({
-			template : 'itemTemplate',
+			//template : 'itemTemplate',
 			photo : {
 				image : urls.medium_640 || urls.original 
 			},

@@ -4,7 +4,9 @@
 }
 
 "#listView" : {
-	separatorColor: 'white'
+	separatorColor: 'white',
+	defaultItemTemplate : 'selectedItemTemplate'
+	// defaultItemTemplate : 'itemTemplate'
 }
 
 ".itemTemplate" : {
@@ -15,52 +17,7 @@
 	height : Alloy.Globals.cameraInfo.height
 }
 
-".photo": {
-	// height : 80,
-	// top : -45,
-	width : Alloy.Globals.cameraInfo.width,
-	height : 180,
-	preventDefaultImage : true,
-	bottom : 0
-}
 
-".userName" : {
-	color : 'white',
-	top : 5,
-	left: 60,
-	font : {
-		fontSize : 16
-	}
-}
-
-".profileImage" : {
-	backgroundColor : 'gray',
-	borderColor : 'white',
-	borderWidth : 1,
-	left : 10,
-	top : 5,
-	width : 40,
-	height : 40,
-	borderRadius : 20
-}
-
-".time" : {
-	color : 'white',
-	right : 10,
-	top : 7,
-	font : {
-		fontSize : 13
-	}
-}
-
-".photoTitle" : {
-	left: 50,
-	width : null,
-	right : 10,
-	bottom : -5,
-	//borderColor : 'red',
-	verticalAlign : null
-}
 
 "#cameraBtn[platform=android]" : {
 	bottom : 10,
