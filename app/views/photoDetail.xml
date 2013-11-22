@@ -1,18 +1,25 @@
 <Alloy>
 	<Window class="container">
-		<ListView id="listView">
-			<Templates>
-				<Require id="photoTemplate" src="photoItemTemplate"/>
-				<ItemTemplate class="commentTemplate" name="commentTemplate">
-					<Label class="time" bindId="time"></Label>
-					<Label class="userName" bindId="userName"></Label>
-					<ImageView class="profileImage" bindId="profileImage"></ImageView>
-				</ItemTemplate>
-			</Templates>
-			<ListSection id="contentSection"></ListSection>
-			<ListSection id="commentSection">
-				<ListItem template="commentTemplate" userName:text="JongEun" ></ListItem>
-			</ListSection>
-		</ListView>
+		<View id="mainWrap">
+			<ListView id="listView">
+				<Templates>
+					<Require id="photoTemplate" src="photoItemTemplate"/>
+					<ItemTemplate class="commentTemplate" name="commentTemplate">
+						<Label class="time" bindId="time"></Label>
+						<Label class="userName" bindId="userName"></Label>
+						<ImageView class="profileImage" bindId="profileImage"></ImageView>
+					</ItemTemplate>
+				</Templates>
+				<ListSection id="contentSection"></ListSection>
+				<ListSection id="commentSection">
+					<ListItem template="commentTemplate" selectionStyle="Ti.UI.iPhone.ListViewCellSelectionStyle.NONE"
+						userName:text="JongEun" ></ListItem>
+				</ListSection>
+			</ListView>
+			<View class="commentFormWrap">
+				<TextArea id="commentField"></TextArea>
+				<Button id="sendBtn"></Button>
+			</View>
+		</View>
 	</Window>
 </Alloy>
