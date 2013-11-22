@@ -1,5 +1,6 @@
 ".container" : {
-	tabBarHidden : true
+	tabBarHidden : true,
+	fullscreen : false
 }
 
 "#listView" : {

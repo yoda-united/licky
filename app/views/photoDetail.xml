@@ -12,7 +12,7 @@
 				</Templates>
 				<ListSection id="contentSection"></ListSection>
 				<ListSection id="commentSection">
-					<ListItem template="commentTemplate" selectionStyle="Ti.UI.iPhone.ListViewCellSelectionStyle.NONE"
+					<ListItem template="commentTemplate" 
 						userName:text="JongEun" ></ListItem>
 				</ListSection>
 			</ListView>

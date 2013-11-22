@@ -3,7 +3,9 @@ var args = arguments[0] || {},
 
 var contentItem = photoModel.doDefaultTransform();
 contentItem.template = 'photoItemTemplate';
-contentItem.properties.selectionStyle = Ti.UI.iPhone.ListViewCellSelectionStyle.NONE;
+if(OS_IOS){
+	contentItem.properties.selectionStyle = Ti.UI.iPhone.ListViewCellSelectionStyle.NONE;
+}
 contentItem.properties.height = 180;
 $.contentSection.setItems([
 	contentItem
@@ -40,23 +42,29 @@ commentCol.on('reset',function(col){
 // });
 
 $.commentField.addEventListener('focus', function(e) {
-	$.mainWrap.animate({
-		bottom:216,
-		duration : 200
-	});
+	if(OS_IOS){
+		$.mainWrap.animate({
+			bottom:216,
+			duration : 200
+		});
+	}
 });
 $.commentField.addEventListener('blur', function(e) {
-	$.mainWrap.animate({
-		bottom:0,
-		duration : 200
-	});
+	if(OS_IOS){
+		$.mainWrap.animate({
+			bottom:0,
+			duration : 200
+		});
+	}
 });
 
 var doCommentBlur = function(){
-	$.mainWrap.animate({
-		bottom:0,
-		duration : 200
-	});
+	if(OS_IOS){
+		$.mainWrap.animate({
+			bottom:0,
+			duration : 200
+		});
+	}
 	$.commentField.blur();
 };
 
@@ -71,10 +79,12 @@ $.sendBtn.addEventListener('click', function(e) {
 	doCommentBlur();
 });
 
-Ti.App.addEventListener('keyboardframechanged', function(e) {
-	if(e.keyboardFrame.width==320 && e.keyboardFrame.y<400){ //appear
-		$.mainWrap.bottom = e.keyboardFrame.height;
-	}else{ //disappear
-		
-	}
-});
+if(OS_IOS){
+	Ti.App.addEventListener('keyboardframechanged', function(e) {
+		if(e.keyboardFrame.width==320 && e.keyboardFrame.y<400){ //appear
+			$.mainWrap.bottom = e.keyboardFrame.height;
+		}else{ //disappear
+			
+		}
+	});
+}
