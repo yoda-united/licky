@@ -6,7 +6,8 @@
 "#listView" : {
 	separatorColor: 'white',
 	//defaultItemTemplate : 'selectedItemTemplate'
-	defaultItemTemplate : 'photoItemTemplate'
+	defaultItemTemplate : 'photoItemTemplate',
+	showVerticalScrollIndicator : false
 }
 
 

@@ -12,34 +12,42 @@ $.contentSection.setItems([
 ]);
 
 
-var commentCol = Alloy.createCollection('review');
-commentCol.on('reset',function(col){
-	col.each(function(comment){
-		Ti.APi.info(comment.attributes);
-	});
-});
-// commentCol.fetch({
-	// data : {
-		// photo_id : photoModel.id
-	// }
-// });
+Ti.API.info(photoModel.attributes);
 
-// AG.Cloud.Reviews.create({
-    // photo_id: '528c6a3f00de2c0b32001120',
-    // content: 'Good'
-// }, function (e) {
-    // if (e.success) {
-        // var review = e.reviews[0];
-        // alert('Success:\n' +
-            // 'id: ' + review.id + '\n' +
-            // 'rating: ' + review.rating + '\n' +
-            // 'content: ' + review.content + '\n' +
-            // 'updated_at: ' + review.updated_at);
-    // } else {
-        // alert('Error:\n' +
-            // ((e.error && e.message) || JSON.stringify(e)));
-    // }
-// });
+
+var commentCol = Alloy.createCollection('review');
+
+var resetItems = function(){
+	var items = [];
+	commentCol.each(function(comment){
+		Ti.API.info(JSON.stringify(comment.attributes));
+		var item = comment.doDefaultTransform();
+		item.template = "commentTemplate";
+		items.push(item);
+	});
+	$.commentSection.setItems(items);
+	return items;
+};
+
+commentCol.on('reset',function(col){
+	resetItems();
+});
+commentCol.on('add',function(col){
+	var items = resetItems();
+	
+	//TODO : 일단 200을 주었지만 이건 나중에 깔끔한 해결책 찾아야함. reset이 아닌 addItem을 하면 잘 될것 같기도 함.
+	// 실제 item이 세팅되기 전에 scrollTo가 실행되어서 ui가 깨짐
+	setTimeout(function(){
+		$.listView.scrollToItem(1,items.length-1);	
+	},200);
+});
+
+commentCol.fetch({
+	data : {
+		photo_id : photoModel.id,
+		per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
+	}
+});
 
 $.commentField.addEventListener('focus', function(e) {
 	if(OS_IOS){
@@ -75,8 +83,22 @@ $.listView.addEventListener('singletap', function(e) {
 
 $.sendBtn.addEventListener('click', function(e) {
 	//alert($.commentField.value);
-	$.commentField.value = '';
-	doCommentBlur();
+	$.sendBtn.enabled = false;
+	commentCol.create({
+		photo_id: photoModel.id,
+	    content: $.commentField.value,
+	    allow_duplicate : true
+	},{
+		wait : true, //TODO : wait true하기전에 먼저 보여주고 나중에 update하도록 변경
+		success : function(){
+			$.commentField.value = '';
+			doCommentBlur();
+			$.sendBtn.enabled = true;
+		},
+		error : function(){
+			$.sendBtn.enabled = true;
+		}
+	});
 });
 
 if(OS_IOS){

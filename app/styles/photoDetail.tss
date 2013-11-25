@@ -4,8 +4,8 @@
 }
 
 "#listView" : {
-	separatorColor: 'black',
-	bottom : 40
+	separatorColor: 'white',
+	bottom : 44
 }
 
 
@@ -48,4 +48,11 @@
 	bottom : 4,
 	title : L('send','Send'),
 	color : 'white'
+}
+
+".commentContent" : {
+	left : 60,
+	right : 40,
+	top : 23,
+	height: Ti.UI.SIZE
 }
