@@ -13,6 +13,10 @@
 //alias
 var AG = Alloy.Globals;
 
+var slimer = require("ti.cloud.slimer");
+slimer.index(function(r,e){
+	alert(JSON.stringify(r));
+});
 
 // var NappUI = require("dk.napp.ui");
 
