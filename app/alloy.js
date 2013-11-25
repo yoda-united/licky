@@ -14,10 +14,10 @@
 var AG = Alloy.Globals;
 
 var slimer = require("ti.cloud.slimer");
-slimer.index(function(r,e){
-	alert(JSON.stringify(r));
+slimer.application_index(function(r,e){
+	Ti.API.info(JSON.stringify(r));
 });
-
+Ti.API.info("asdi");
 // var NappUI = require("dk.napp.ui");
 
 // Cloud는 Global에서 바로 접근하도록 함.
