@@ -5,6 +5,7 @@
 		<Label class="photoTitle photoTitleLabel" bindId="title"></Label>
 		<Label class="time" bindId="time"></Label>
 		<Label class="userName" bindId="userName"></Label>
+		<Label class="commentCount" bindId="commentCount"></Label>
 		<ImageView class="profileImage" bindId="profileImage"></ImageView>
 	</ItemTemplate>
 </Alloy>

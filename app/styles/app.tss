@@ -64,3 +64,14 @@
 	//borderColor : 'red',
 	verticalAlign : null
 }
+
+".commentCount" : {
+	left: 10,
+	top : 50,
+	width : 40,
+	textAlign : 'center',
+	font : {
+		fontSize : 12
+	},
+	color : 'white'
+}

@@ -40,6 +40,9 @@ exports.definition = {
 					profileImage : {
 						image : profileUrl
 					},
+					commentCount : {
+						text : String.format('댓글 %d',this.get('reviews_count') || 0)
+					},
 					properties :{
 						itemId : this.id
 					},
