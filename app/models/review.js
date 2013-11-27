@@ -33,7 +33,7 @@ exports.definition = {
 						text : AG.moment(this.get('created_at')).fromNow()
 					},
 					profileImage : {
-						image : profileUrl
+						mask : profileUrl
 					},
 					properties :{
 						itemId : this.id

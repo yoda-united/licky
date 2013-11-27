@@ -7,8 +7,8 @@
 					<ItemTemplate class="commentTemplate" name="commentTemplate">
 						<Label class="time" bindId="time"></Label>
 						<Label class="userName" bindId="userName"></Label>
-						<ImageView class="profileImage" bindId="profileImage"></ImageView>
-						<Label class="commentContent" bindId="content"></Label>>
+						<MaskedImage class="maskedProfile" bindId="profileImage"></MaskedImage>
+						<Label class="commentContent" bindId="content"></Label>
 					</ItemTemplate>
 				</Templates>
 				<ListSection id="contentSection"></ListSection>

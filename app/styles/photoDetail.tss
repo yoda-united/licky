@@ -56,3 +56,14 @@
 	top : 23,
 	height: Ti.UI.SIZE
 }
+
+".maskedProfile" : {
+	width : 40,
+	height : 40,
+	left: 10,
+	top : 5,
+	borderRadius : 0,
+	mode : Ti.UI.iOS.BLEND_MODE_DESTINATION_IN,
+	image : 'images/testmask.png' //TODO: 마스크 이미지 다시 제작 필요 현재는 임시
+}
+
