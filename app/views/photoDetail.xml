@@ -1,0 +1,25 @@
+<Alloy>
+	<Window class="container">
+		<View id="mainWrap">
+			<ListView id="listView">
+				<Templates>
+					<Require id="photoTemplate" src="photoItemTemplate"/>
+					<ItemTemplate class="commentTemplate" name="commentTemplate">
+						<Label class="time" bindId="time"></Label>
+						<Label class="userName" bindId="userName"></Label>
+						<MaskedImage class="maskedProfile" bindId="profileImage"></MaskedImage>
+						<Label class="commentContent" bindId="content"></Label>
+					</ItemTemplate>
+				</Templates>
+				<ListSection id="contentSection"></ListSection>
+				<ListSection id="commentSection">
+					<!-- <ListItem></ListItem> -->
+				</ListSection>
+			</ListView>
+			<View class="commentFormWrap">
+				<TextArea id="commentField"></TextArea>
+				<Button id="sendBtn"></Button>
+			</View>
+		</View>
+	</Window>
+</Alloy>

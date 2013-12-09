@@ -3,20 +3,19 @@ exports.definition = {
 
 		adapter: {
 			type: "acs",
-			collection_name: "photo",
+			collection_name: "review",
 			idAttribute : 'id',
 		},
 		
 		"settings": {
-	        "object_name": "photos", 
-	        "object_method": "Photos"
+	        "object_name": "reviews", 
+	        "object_method": "Reviews"
 	    }
 	},
 	extendModel: function(Model) {
 		_.extend(Model.prototype, {
 			// extended functions and properties go here
 			doDefaultTransform : function(){
-				var urls = this.get('urls');
 				var profileUrl = 
 					String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d",
 								this.get('user').external_accounts[0].external_id,
@@ -24,12 +23,8 @@ exports.definition = {
 								80);
 				return({
 					//template : 'itemTemplate',
-					photo : {
-						image : urls.medium_640 || urls.original 
-					},
-					title :{
-						text : this.get('title'),
-						value : this.get('title')
+					content :{
+						text : this.get('content')
 					},
 					userName:{
 						text : this.get('user').first_name
@@ -38,10 +33,7 @@ exports.definition = {
 						text : AG.moment(this.get('created_at')).fromNow()
 					},
 					profileImage : {
-						image : profileUrl
-					},
-					commentCount : {
-						text : String.format('댓글 %d',this.get('reviews_count') || 0)
+						mask : profileUrl
 					},
 					properties :{
 						itemId : this.id
@@ -55,8 +47,8 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			comparator : function(modelA, modelB) {
-				if (modelA.get('updated_at') > modelB.get('updated_at')) return -1; // before
-				  if (modelB.get('updated_at') > modelA.get('updated_at')) return 1; // after
+				if (modelA.get('updated_at') > modelB.get('updated_at')) return 1; // before
+				  if (modelB.get('updated_at') > modelA.get('updated_at')) return -1; // after
 				  return 0; // equal
 			}
 		});

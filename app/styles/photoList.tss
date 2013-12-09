@@ -1,18 +1,15 @@
 
 ".container" : {
-  
+  extendEdges : [Ti.UI.EXTEND_EDGE_TOP]
 }
 
 "#listView" : {
 	separatorColor: 'white',
 	//defaultItemTemplate : 'selectedItemTemplate'
-	defaultItemTemplate : 'itemTemplate'
+	defaultItemTemplate : 'photoItemTemplate',
+	showVerticalScrollIndicator : false
 }
 
-".itemTemplate" : {
-	height : 108
-	//height : 90
-}
 
 ".selectedItemTemplate" : {
 	height : Alloy.Globals.cameraInfo.height

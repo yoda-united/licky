@@ -1,0 +1,69 @@
+".container" : {
+	tabBarHidden : true,
+	fullscreen : false
+}
+
+"#listView" : {
+	separatorColor: 'white',
+	bottom : 44
+}
+
+
+
+".commentTemplate" : {
+	height : 44
+}
+
+".userName" : {
+	color : 'black'
+}
+
+".time" : {
+	color : 'black'
+}
+
+".commentFormWrap" : {
+	height : Ti.UI.SIZE,
+	bottom: 0,
+	backgroundColor :'gray'
+}
+
+"#commentField" : {
+	left: 10,
+	right : 55,
+	top : 5,
+	backgroundColor :'white',
+	suppressReturn : false,
+	height : Ti.UI.SIZE,
+	font : {
+		fontSize :15
+	},
+	bottom : 5
+}
+
+"#sendBtn" : {
+	right : 5,
+	width : 50,
+	height : 40,
+	bottom : 4,
+	title : L('send','Send'),
+	color : 'white'
+}
+
+".commentContent" : {
+	left : 60,
+	right : 40,
+	top : 23,
+	height: Ti.UI.SIZE
+}
+
+".maskedProfile" : {
+	width : 40,
+	height : 40,
+	left: 10,
+	top : 5,
+	borderRadius : 0,
+	mode : Ti.UI.iOS.BLEND_MODE_DESTINATION_IN,
+	image : 'images/profileMask.png' //TODO: 마스크 이미지 다시 제작 필요 현재는 임시
+}
+
