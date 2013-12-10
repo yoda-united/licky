@@ -1,6 +1,7 @@
 
 ".container" : {
-  extendEdges : [Ti.UI.EXTEND_EDGE_TOP]
+  extendEdges : [Ti.UI.EXTEND_EDGE_TOP],
+  autoAdjustScrollViewInsets : true
 }
 
 "#listView" : {
