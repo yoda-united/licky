@@ -18,12 +18,22 @@ Ti.API.info(photoModel.attributes);
 
 var commentCol = Alloy.createCollection('review');
 
+var testLabel = Ti.UI.createLabel();
 var resetCommentItems = function(){
 	var items = [];
 	commentCol.each(function(comment){
 		Ti.API.info(JSON.stringify(comment.attributes));
 		var item = comment.doDefaultTransform();
 		item.template = "commentTemplate";
+		if(!comment.get('_itemHeight')){
+			testLabel.text = comment.get('content');
+			comment.set({
+				'_itemHeight' : testLabel.heightFromWidth(220)	
+			},{
+				silent : true
+			});
+		}
+		item.properties.height = comment.get('_itemHeight')+23;
 		items.push(item);
 	});
 	$.commentSection.setItems(items);

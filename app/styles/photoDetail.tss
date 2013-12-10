@@ -11,7 +11,7 @@
 
 
 ".commentTemplate" : {
-	height : 44
+	height : Ti.UI.SIZE
 }
 
 ".userName" : {
