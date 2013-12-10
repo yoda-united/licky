@@ -10,11 +10,15 @@ function showCamera(){
 
 var photoCol = Alloy.createCollection('photo');
 var items = []; 
+
+
 photoCol.on('reset add',function(col){
 	items = [];
 	photoCol.each(function(photo){
 		Ti.API.info(photo.attributes);
-		items.push(photo.doDefaultTransform());
+		var item = photo.doDefaultTransform();
+		
+		items.push(item);
 	});
 	$.section.setItems(items);
 });
@@ -32,6 +36,19 @@ $.listView.addEventListener('itemclick', function(e) {
 
 photoCol.fetch();
 
+Titanium.Geolocation.getCurrentPosition(function(e){
+	if (!e.success || e.error)
+	{
+		currentLocation.text = 'error: ' + JSON.stringify(e.error);
+		Ti.API.info("Code translation: "+translateErrorCode(e.code));
+		alert('error ' + JSON.stringify(e.error));
+		return;
+	}
+	AG.currentPosition.set(e.coords);	
+	photoCol.trigger('reset');
+});
+
+
 //TEST CODE
 // currentWindow.addEventListener('open', function(e) {
 	// var cacheModel = Alloy.createModel('photo');
@@ -43,3 +60,5 @@ photoCol.fetch();
 		// }
 	// );
 // });
+
+

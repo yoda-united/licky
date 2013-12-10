@@ -22,6 +22,19 @@ exports.definition = {
 								this.get('user').external_accounts[0].external_id,
 								80,
 								80);
+								
+				var custom = this.get("custom_fields");
+				var coordi = custom && custom.coordinates;
+				
+				var distance;
+				if(coordi) {
+					distance = {
+						text : String.format("%.2fkm",AG.utils.calculateDistance([
+							coordi[0],
+							AG.currentPosition.attributes
+						]))
+					};
+				}
 				return({
 					//template : 'itemTemplate',
 					photo : {
@@ -43,6 +56,7 @@ exports.definition = {
 					commentCount : {
 						text : String.format('댓글 %d',this.get('reviews_count') || 0)
 					},
+					distance : distance,
 					properties :{
 						itemId : this.id
 					},
