@@ -9,6 +9,7 @@
 						<Label class="userName" bindId="userName"></Label>
 						<MaskedImage class="maskedProfile" bindId="profileImage"></MaskedImage>
 						<Label class="commentContent" bindId="content"></Label>
+						<Label class="distance" bindId="distance"></Label>
 					</ItemTemplate>
 				</Templates>
 				<ListSection id="contentSection"></ListSection>

@@ -2,6 +2,7 @@ var args = arguments[0] || {},
 	photoModel = args.photoModel;
 
 var contentItem = photoModel.doDefaultTransform();
+
 contentItem.template = 'photoItemTemplate';
 if(OS_IOS){
 	contentItem.properties.selectionStyle = Ti.UI.iPhone.ListViewCellSelectionStyle.NONE;
@@ -17,7 +18,7 @@ Ti.API.info(photoModel.attributes);
 
 var commentCol = Alloy.createCollection('review');
 
-var resetItems = function(){
+var resetCommentItems = function(){
 	var items = [];
 	commentCol.each(function(comment){
 		Ti.API.info(JSON.stringify(comment.attributes));
@@ -30,10 +31,10 @@ var resetItems = function(){
 };
 
 commentCol.on('reset',function(col){
-	resetItems();
+	resetCommentItems();
 });
 commentCol.on('add',function(col){
-	var items = resetItems();
+	var items = resetCommentItems();
 	
 	//TODO : 일단 200을 주었지만 이건 나중에 깔끔한 해결책 찾아야함. reset이 아닌 addItem을 하면 잘 될것 같기도 함.
 	// 실제 item이 세팅되기 전에 scrollTo가 실행되어서 ui가 깨짐

@@ -69,7 +69,18 @@
 	left: 10,
 	top : 50,
 	width : 40,
-	textAlign : 'center',
+	textAlign : 'left',
+	font : {
+		fontSize : 12
+	},
+	color : 'white'
+}
+
+".distance" : {
+	left: 10,
+	top : 65,
+	width : 60,
+	textAlign : 'left',
 	font : {
 		fontSize : 12
 	},

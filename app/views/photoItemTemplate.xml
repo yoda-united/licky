@@ -7,5 +7,6 @@
 		<Label class="userName" bindId="userName"></Label>
 		<Label class="commentCount" bindId="commentCount"></Label>
 		<ImageView class="profileImage" bindId="profileImage"></ImageView>
+		<Label class="distance" bindId="distance"></Label>
 	</ItemTemplate>
 </Alloy>

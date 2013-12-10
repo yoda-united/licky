@@ -1,3 +1,5 @@
+var currentPosition = {};
+
 var args = arguments[0],
 	photoCol = args.collection;
 
@@ -32,6 +34,9 @@ function getCurrentPosition(){
 	
 		var longitude = e.coords.longitude;
 		var latitude = e.coords.latitude;
+		
+		currentPosition.longitude = longitude;
+		currentPosition.latitude = latitude;
 		
 		Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt)
 		{
@@ -105,7 +110,10 @@ exports.showCamera = function(){
 			photoCol.create({
 				title : $.contentFiled.value,
 				photo : blob,
-				'photo_sync_sizes[]' : 'original'
+				'photo_sync_sizes[]' : 'original',
+				custom_fields : {
+					coordinates: [currentPosition.longitude, currentPosition.latitude ]
+				}
 			},{
 				wait:true
 			});
