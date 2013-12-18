@@ -3,13 +3,28 @@ exports.baseController = 'photoList';
 var photoCol = $.getCollection();
 
 $.afterWindowOpened = function(){
-	photoCol.fetch({
-		data : {
-			where : {
-				"coordinates":{"$nearSphere":[-122.1, 37.1]}
-			}
-		}
-	});
+	fetchByCurrentPosition();
 };
+
+function fetchByCurrentPosition(){
+	Titanium.Geolocation.getCurrentPosition(function(e){
+		if (!e.success || e.error){
+			currentLocation.text = 'error: ' + JSON.stringify(e.error);
+			Ti.API.info("Code translation: "+translateErrorCode(e.code));
+			alert('error ' + JSON.stringify(e.error));
+			return;
+		}
+		photoCol.fetch({
+			data : {
+				where : {
+					"coordinates":{
+						"$nearSphere": [e.coords.longitude, e.coords.latitude],
+						"$maxDistance" : 5/6371 // km/6371 or mile/3959 )
+					 }
+				}
+			}
+		});
+	});
+}
 
 
