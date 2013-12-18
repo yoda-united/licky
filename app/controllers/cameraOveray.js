@@ -1,4 +1,5 @@
-var currentPosition = {};
+var currentPosition = {},
+	currentAddress = [];
 
 var args = arguments[0],
 	photoCol = args.collection;
@@ -42,13 +43,15 @@ function getCurrentPosition(){
 		{
 			if (evt.success) {
 				var places = evt.places;
+				Ti.API.info(evt);
 				if (places && places.length) {
-					$.geoLabel.text = places[0].address;
-					// _.each(places,function(p){
-						// $.geoLabel.text += p.address+'\n'; 
-					// });
+					currentAddress = places[0];
+					
+					//Ti.API.info(AG.utils.getShortAddress(currentAddress));
+					$.geoLabel.text = AG.utils.getShortAddress(currentAddress);
 				} else {
 					$.geoLabel.text = "No address found";
+					currentAddress = [];
 				}
 				Ti.API.debug("reverse geolocation result = "+JSON.stringify(evt));
 			}
@@ -98,7 +101,7 @@ exports.showCamera = function(){
 			Ti.API.info(resizedImage.mimeType);
 			var croppedImage = resizedImage.imageAsCropped({
 				x: 0,
-				y: 0,// catureSize.top,
+				y: catureSize.top,
 				width: catureSize.width,
 				height : catureSize.height
 			});
@@ -112,7 +115,8 @@ exports.showCamera = function(){
 				photo : blob,
 				'photo_sync_sizes[]' : 'original',
 				custom_fields : {
-					coordinates: [currentPosition.longitude, currentPosition.latitude ]
+					coordinates: [currentPosition.longitude, currentPosition.latitude ],
+					address : currentAddress
 				}
 			},{
 				wait:true

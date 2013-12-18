@@ -62,3 +62,18 @@ exports.openController = function(navGroup,name,args){
 };
 
    
+exports.getShortAddress = function(p,localeOnly){
+	if(!p) {
+		return '';
+	}
+	var results = [];
+	_.each(['street','city','country_code'],function(key){
+		if(p[key]){
+			results.push(p[key].replace(' (','('));
+		}
+	});
+	
+	var resultStr = results.join(' ');
+	
+	return (localeOnly)?resultStr.replace(/\(.*?\)/ig,''):resultStr;
+};

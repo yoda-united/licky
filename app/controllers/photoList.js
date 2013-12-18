@@ -34,7 +34,20 @@ $.listView.addEventListener('itemclick', function(e) {
 	}
 });
 
-photoCol.fetch();
+
+$.afterWindowOpened = function(){
+	photoCol.fetch();
+};
+exports.getCollection = function(){
+	return photoCol;
+};
+
+
+currentWindow.addEventListener('open', function(){
+	$.afterWindowOpened();
+});
+
+
 
 Titanium.Geolocation.getCurrentPosition(function(e){
 	if (!e.success || e.error)

@@ -29,10 +29,13 @@ exports.definition = {
 				var distance;
 				if(coordi) {
 					distance = {
-						text : String.format("%.2fkm",AG.utils.calculateDistance([
-							coordi[0],
-							AG.currentPosition.attributes
-						]))
+						text : String.format("%.1fkm, %s",
+							AG.utils.calculateDistance([
+								coordi[0],
+								AG.currentPosition.attributes
+							]),
+							AG.utils.getShortAddress(custom.address, true)
+						)
 					};
 				}
 				return({
