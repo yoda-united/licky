@@ -13,6 +13,7 @@ var items = [];
 
 
 photoCol.on('reset add',function(col){
+	alert(col.meta);
 	items = [];
 	photoCol.each(function(photo){
 		Ti.API.info(photo.attributes);
@@ -21,6 +22,11 @@ photoCol.on('reset add',function(col){
 		items.push(item);
 	});
 	$.section.setItems(items);
+	
+	$.listView.setMarker({
+		sectionIndex:0,
+		itemIndex : items.length-1
+	});
 });
 
 $.listView.addEventListener('itemclick', function(e) {
@@ -61,6 +67,24 @@ Titanium.Geolocation.getCurrentPosition(function(e){
 	photoCol.trigger('reset');
 });
 
+$.listView.addEventListener('marker', function(e) {
+	// alert(e);
+});
+
+
+// var control = Ti.UI.createRefreshControl({
+    // tintColor:'red'
+// });
+// $.listView.refreshControl=control;
+
+// control.addEventListener('refreshstart',function(e){
+    // Ti.API.info('refreshstart');
+    // setTimeout(function(){
+        // Ti.API.debug('Timeout');
+        // //section.appendItems(genData());
+        // control.endRefreshing();
+    // }, 2000);
+// });
 
 //TEST CODE
 // currentWindow.addEventListener('open', function(e) {
