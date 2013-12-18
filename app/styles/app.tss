@@ -19,8 +19,6 @@
 }
 
 ".photo": {
-	// height : 80,
-	// top : -45,
 	width : Alloy.Globals.cameraInfo.width,
 	height : 180,
 	preventDefaultImage : true,
@@ -77,9 +75,9 @@
 }
 
 ".distance" : {
-	left: 10,
-	top : 65,
-	width : 60,
+	left: 60,
+	top : 26,
+	// width : 60,
 	textAlign : 'left',
 	font : {
 		fontSize : 12

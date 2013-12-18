@@ -13,6 +13,9 @@
 //alias
 var AG = Alloy.Globals;
 
+//utils
+AG.utils = require('utils');
+
 // var slimer = require("ti.cloud.slimer");
 // slimer.application_index(function(r,e){
 	// Ti.API.info(JSON.stringify(r));
@@ -75,6 +78,3 @@ AG.loggedInUser.fetch();
 
 AG.loginController =  Alloy.createController('login');
 
-
-//utils
-AG.utils = require('utils');
