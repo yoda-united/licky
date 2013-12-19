@@ -15,6 +15,7 @@ var AG = Alloy.Globals;
 
 //utils
 AG.utils = require('utils');
+AG.Map = require('ti.map');
 
 // var slimer = require("ti.cloud.slimer");
 // slimer.application_index(function(r,e){

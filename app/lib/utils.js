@@ -6,6 +6,8 @@ Number.prototype.toRad = function() {
 };
 
 exports.calculateDistance = function(args,type){
+	if(!args.length || args.length<2) return 0;
+	
 	var lat1,lon1,lat2,lon2;
 	lat1= args[0].latitude || args[0][1]; //40.28;
 	lon1= args[0].longitude || args[0][0]; //-74.82;

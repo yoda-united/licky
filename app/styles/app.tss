@@ -35,14 +35,12 @@
 }
 
 ".profileImage" : {
-	backgroundColor : 'gray',
-	borderColor : 'white',
-	borderWidth : 1,
 	left : 10,
 	top : 5,
 	width : 40,
 	height : 40,
-	borderRadius : 20
+	mode : Ti.UI.iOS.BLEND_MODE_DESTINATION_IN,
+	image : 'images/profileMask.png' 
 }
 
 ".time" : {
