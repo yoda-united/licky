@@ -1,16 +1,21 @@
 var args = arguments[0] || {},
 	photoModel = args.photoModel;
 
-var contentItem = photoModel.doDefaultTransform();
 
-contentItem.template = 'photoItemTemplate';
-if(OS_IOS){
-	contentItem.properties.selectionStyle = Ti.UI.iPhone.ListViewCellSelectionStyle.NONE;
+function resetPhotoContent(){
+	var contentItem = photoModel.doDefaultTransform();
+	contentItem.template = 'photoItemTemplate';
+	if(OS_IOS){
+		contentItem.properties.selectionStyle = Ti.UI.iPhone.ListViewCellSelectionStyle.NONE;
+	}
+	contentItem.properties.height = 180;
+	$.contentSection.setItems([
+		contentItem
+	]);
 }
-contentItem.properties.height = 180;
-$.contentSection.setItems([
-	contentItem
-]);
+resetPhotoContent();
+
+photoModel.on('change',resetPhotoContent);
 
 
 Ti.API.info(photoModel.attributes);
@@ -53,12 +58,17 @@ commentCol.on('add',function(col){
 	},200);
 });
 
-commentCol.fetch({
-	data : {
-		photo_id : photoModel.id,
-		per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
-	}
-});
+
+function fetchComments(){
+	commentCol.fetch({
+		data : {
+			photo_id : photoModel.id,
+			per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
+		}
+	});
+}
+fetchComments();
+
 
 $.commentField.addEventListener('focus', function(e) {
 	if(OS_IOS){
@@ -101,10 +111,16 @@ $.sendBtn.addEventListener('click', function(e) {
 	    allow_duplicate : true
 	},{
 		wait : true, //TODO : wait true하기전에 먼저 보여주고 나중에 update하도록 변경
-		success : function(){
+		success : function(nextModel, resp){
 			$.commentField.value = '';
 			doCommentBlur();
 			$.sendBtn.enabled = true;
+			
+			//댓글 개수가 2개 이상 차이가 나면 댓글을 다시 불러옴.. 아니면 말구
+			if(nextModel.attributes.photo.reviews_count - photoModel.get('reviews_count')>1){
+				fetchComments();
+			}
+			photoModel.set(nextModel.attributes.photo);
 		},
 		error : function(){
 			$.sendBtn.enabled = true;
@@ -120,4 +136,8 @@ if(OS_IOS){
 			
 		}
 	});
+}
+
+function onMapClick(e){
+	alert(e);
 }

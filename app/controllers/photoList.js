@@ -14,7 +14,7 @@ var photoCol = Alloy.createCollection('photo');
 var items = []; 
 
 
-photoCol.on('reset',function(col,option){
+photoCol.on('reset change',function(col,option){
 	items = [];
 	photoCol.each(function(photo){
 		Ti.API.info(photo.attributes);
