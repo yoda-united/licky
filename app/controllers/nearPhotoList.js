@@ -2,9 +2,12 @@ exports.baseController = 'photoList';
 
 var photoCol = $.getCollection();
 
+
 $.afterWindowOpened = function(){
 	fetchByCurrentPosition();
 };
+
+
 
 function fetchByCurrentPosition(){
 	Titanium.Geolocation.getCurrentPosition(function(e){
@@ -14,15 +17,17 @@ function fetchByCurrentPosition(){
 			alert('error ' + JSON.stringify(e.error));
 			return;
 		}
-		photoCol.fetch({
-			data : {
-				where : {
-					"coordinates":{
-						"$nearSphere": [e.coords.longitude, e.coords.latitude],
-						"$maxDistance" : 5/6371 // km/6371 or mile/3959 )
-					 }
-				}
+		
+		$.defaultFetchData = {
+			where : {
+				"coordinates":{
+					"$nearSphere": [e.coords.longitude, e.coords.latitude],
+					"$maxDistance" : 5/6371 // km/6371 or mile/3959 )
+				 }
 			}
+		};
+		photoCol.fetch({
+			data : $.defaultFetchData
 		});
 	});
 }

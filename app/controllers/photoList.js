@@ -1,4 +1,6 @@
 var currentWindow = $.photoList;
+var NUM_PER_PAGE = 6;
+$.defaultFetchData = {};
 
 function showCamera(){
 	AG.loginController.requireLogin(function(){
@@ -12,8 +14,7 @@ var photoCol = Alloy.createCollection('photo');
 var items = []; 
 
 
-photoCol.on('reset add',function(col){
-	alert(col.meta);
+photoCol.on('reset',function(col,option){
 	items = [];
 	photoCol.each(function(photo){
 		Ti.API.info(photo.attributes);
@@ -21,11 +22,49 @@ photoCol.on('reset add',function(col){
 		
 		items.push(item);
 	});
-	$.section.setItems(items);
+	$.section.setItems(items,{
+		animated : false,
+		animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
+	});
 	
-	$.listView.setMarker({
-		sectionIndex:0,
-		itemIndex : items.length-1
+	if(col.meta && col.meta.total_pages>col.meta.page){
+		$.listView.setMarker({
+			sectionIndex:0,
+			itemIndex : items.length-1
+		});
+	}else{
+		//끝까지 로딩 한경우
+	}
+});
+
+var willAddItems = [];
+photoCol.on('add',function(model,col,options){
+	if(options && options.addLater){
+		willAddItems.push(model.doDefaultTransform());
+	}else{
+		$.section.insertItemsAt(0,[model.doDefaultTransform()],{
+			
+		});
+	}
+});
+
+$.listView.addEventListener('marker', function(e) {
+	photoCol.fetch({
+		data : _.extend($.defaultFetchData,{
+			per_page : photoCol.meta.per_page,
+			page : photoCol.meta.page+1
+		}),
+		add : true,
+		addLater : true,
+		success : function(){
+			//photoCol.trigger('reset',photoCol);
+			//flush stack
+			$.section.appendItems(willAddItems,{
+				animated : false,
+				animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
+			});
+			willAddItems = [];
+		}
 	});
 });
 
@@ -42,7 +81,11 @@ $.listView.addEventListener('itemclick', function(e) {
 
 
 $.afterWindowOpened = function(){
-	photoCol.fetch();
+	photoCol.fetch({
+		data : _.extend($.defaultFetchData,{
+			per_page : NUM_PER_PAGE
+		})
+	});
 };
 exports.getCollection = function(){
 	return photoCol;
@@ -58,18 +101,15 @@ currentWindow.addEventListener('open', function(){
 Titanium.Geolocation.getCurrentPosition(function(e){
 	if (!e.success || e.error)
 	{
-		currentLocation.text = 'error: ' + JSON.stringify(e.error);
+		// currentLocation.text = 'error: ' + JSON.stringify(e.error);
 		Ti.API.info("Code translation: "+translateErrorCode(e.code));
 		alert('error ' + JSON.stringify(e.error));
 		return;
 	}
 	AG.currentPosition.set(e.coords);	
-	photoCol.trigger('reset');
+	//photoCol.trigger('reset',photoCol);
 });
 
-$.listView.addEventListener('marker', function(e) {
-	// alert(e);
-});
 
 
 // var control = Ti.UI.createRefreshControl({
