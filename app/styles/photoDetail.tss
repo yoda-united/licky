@@ -5,7 +5,8 @@
 
 "#listView" : {
 	separatorColor: 'white',
-	bottom : 44
+	bottom : 44,
+	willScrollOnStatusTap : true
 }
 
 
@@ -38,7 +39,8 @@
 	font : {
 		fontSize :15
 	},
-	bottom : 5
+	bottom : 5,
+	scrollsToTop : false
 }
 
 "#sendBtn" : {
