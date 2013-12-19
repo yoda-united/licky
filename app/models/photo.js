@@ -54,7 +54,7 @@ exports.definition = {
 						text : AG.moment(this.get('created_at')).fromNow()
 					},
 					profileImage : {
-						image : profileUrl
+						mask : profileUrl
 					},
 					commentCount : {
 						text : String.format('댓글 %d',this.get('reviews_count') || 0)
