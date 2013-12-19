@@ -22,7 +22,7 @@ exports.definition = {
 								this.get('user').external_accounts[0].external_id,
 								80,
 								80);
-								
+				
 				var custom = this.get("custom_fields");
 				var coordi = custom && custom.coordinates;
 				
@@ -37,7 +37,13 @@ exports.definition = {
 							AG.utils.getShortAddress(custom.address, true)
 						)
 					};
+					
+					// setTimeout(function(){
+						// Ti.API.info(profileUrl);
+					// },3000);
 				}
+				
+				
 				return({
 					//template : 'itemTemplate',
 					photo : {
@@ -54,7 +60,10 @@ exports.definition = {
 						text : AG.moment(this.get('created_at')).fromNow()
 					},
 					profileImage : {
-						mask : profileUrl
+						image : profileUrl
+					},
+					hiddenProfile : {
+						image : profileUrl
 					},
 					commentCount : {
 						text : String.format('댓글 %d',this.get('reviews_count') || 0)

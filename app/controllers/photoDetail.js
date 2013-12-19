@@ -141,3 +141,11 @@ if(OS_IOS){
 function onMapClick(e){
 	alert(e);
 }
+
+function hiddenProfileOnLoad(){
+	// _.find(this.parent.children,function(proxy){
+		// return proxy.bindId === 'profileImage';
+	// }).image = this.image;
+	Ti.API.info(this.parent.children[2]);
+	this.parent.children[2].image = this.image;
+}

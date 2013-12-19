@@ -137,5 +137,3 @@ Titanium.Geolocation.getCurrentPosition(function(e){
 		// }
 	// );
 // });
-
-

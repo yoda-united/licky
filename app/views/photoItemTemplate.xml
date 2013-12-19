@@ -6,7 +6,8 @@
 		<Label class="time" bindId="time"></Label>
 		<Label class="userName" bindId="userName"></Label>
 		<Label class="commentCount" bindId="commentCount"></Label>
-		<MaskedImage class="profileImage" bindId="profileImage"></MaskedImage>
+		<MaskedImage id="profileImage" class="profileImage" bindId="profileImage"></MaskedImage>
 		<Label class="distance" bindId="distance"></Label>
+		<ImageView onLoad="hiddenProfileOnLoad" visible="false" bindId="hiddenProfile"></ImageView>
 	</ItemTemplate>
 </Alloy>

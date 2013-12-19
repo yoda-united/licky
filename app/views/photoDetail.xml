@@ -10,6 +10,7 @@
 						<MaskedImage class="maskedProfile" bindId="profileImage"></MaskedImage>
 						<Label class="commentContent" bindId="content"></Label>
 						<Label class="distance" bindId="distance"></Label>
+						<ImageView onLoad="hiddenProfileOnLoad" visible="false" bindId="hiddenProfile"></ImageView>
 					</ItemTemplate>
 				</Templates>
 				<ListSection id="contentSection"></ListSection>

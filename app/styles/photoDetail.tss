@@ -64,8 +64,7 @@
 	height : 40,
 	left: 10,
 	top : 5,
-	borderRadius : 0,
-	mode : Ti.UI.iOS.BLEND_MODE_DESTINATION_IN,
-	image : 'images/profileMask.png' 
+	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
+	mask : 'images/profileMask.png'
 }
 
