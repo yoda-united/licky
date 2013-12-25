@@ -5,6 +5,7 @@ var args = arguments[0],
 	photoCol = args.collection;
 
 $.sendBtn.addEventListener('click', function(e) {
+	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
 	Ti.Media.takePicture();
 });
 
