@@ -13,6 +13,8 @@
 //alias
 var AG = Alloy.Globals;
 
+Titanium.UI.createMaskedImage;
+
 //utils
 AG.utils = require('utils');
 // AG.Map = require('ti.map');

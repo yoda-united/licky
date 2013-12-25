@@ -2,6 +2,8 @@ var currentWindow = $.photoList;
 var NUM_PER_PAGE = 6;
 $.defaultFetchData = {};
 
+$.loadingActivity.show();
+
 function showCamera(){
 	AG.loginController.requireLogin(function(){
 			Alloy.createController('cameraOveray',{
@@ -14,6 +16,27 @@ var photoCol = Alloy.createCollection('photo');
 var items = []; 
 
 
+/**
+ * 다음페이지를 더 불러올지를 판단하여 listView의 marker를 지정한다.
+ * 다 불러왔을 때는 다 불러왔음을 표시하는 item 을 맨 하단에 추가한다.
+ * @param {Object} col
+ * @param {Object} itemIndex
+ */
+function updateListMarker(col,itemIndex){
+	if(col.meta && col.meta.total_pages>col.meta.page){
+		$.listView.setMarker({
+			sectionIndex:0,
+			itemIndex : $.section.items.length-1
+		});
+	}else{
+		//끝까지 로딩 한경우
+		$.listView.footerView = Ti.UI.createLabel({
+			height : 30,
+			text : '-'
+		});
+	}
+}
+
 photoCol.on('reset change',function(col,option){
 	items = [];
 	photoCol.each(function(photo){
@@ -22,19 +45,24 @@ photoCol.on('reset change',function(col,option){
 		
 		items.push(item);
 	});
-	$.section.setItems(items,{
+	
+	////이상한 에니메이션이 싫어서 넣은 코드
+	//TODO : 이 버그 수정되면 없애야할 코드 https://jira.appcelerator.org/browse/TC-3432
+	$.section.deleteItemsAt(NUM_PER_PAGE-1,$.section.items.length-NUM_PER_PAGE, {
 		animated : false,
 		animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
 	});
 	
-	if(col.meta && col.meta.total_pages>col.meta.page){
-		$.listView.setMarker({
-			sectionIndex:0,
-			itemIndex : items.length-1
-		});
-	}else{
-		//끝까지 로딩 한경우
+	$.section.setItems(items,{
+		animated : false,
+		animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
 	}
+	);
+	
+	
+	$.listView.footerView = $.loadingFooterView;
+	
+	updateListMarker(col);
 });
 
 var willAddItems = [];
@@ -50,13 +78,13 @@ photoCol.on('add',function(model,col,options){
 
 $.listView.addEventListener('marker', function(e) {
 	photoCol.fetch({
-		data : _.extend($.defaultFetchData,{
+		data : _.extend({
 			per_page : photoCol.meta.per_page,
 			page : photoCol.meta.page+1
-		}),
+		},$.defaultFetchData),
 		add : true,
 		addLater : true,
-		success : function(){
+		success : function(col){
 			//photoCol.trigger('reset',photoCol);
 			//flush stack
 			$.section.appendItems(willAddItems,{
@@ -64,6 +92,7 @@ $.listView.addEventListener('marker', function(e) {
 				animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
 			});
 			willAddItems = [];
+			updateListMarker(col);
 		}
 	});
 });
@@ -82,9 +111,9 @@ $.listView.addEventListener('itemclick', function(e) {
 
 $.afterWindowOpened = function(){
 	photoCol.fetch({
-		data : _.extend($.defaultFetchData,{
+		data : _.extend({
 			per_page : NUM_PER_PAGE
-		})
+		},$.defaultFetchData)
 	});
 };
 exports.getCollection = function(){
@@ -111,20 +140,28 @@ Titanium.Geolocation.getCurrentPosition(function(e){
 });
 
 
-
-// var control = Ti.UI.createRefreshControl({
-    // tintColor:'red'
-// });
-// $.listView.refreshControl=control;
-
-// control.addEventListener('refreshstart',function(e){
-    // Ti.API.info('refreshstart');
-    // setTimeout(function(){
-        // Ti.API.debug('Timeout');
-        // //section.appendItems(genData());
-        // control.endRefreshing();
-    // }, 2000);
-// });
+if(OS_IOS){
+	var control = Ti.UI.createRefreshControl({
+	    tintColor:'red'
+	});
+	$.listView.refreshControl=control;
+	
+	control.addEventListener('refreshstart',function(e){
+	    Ti.API.info('refreshstart');
+	    photoCol.fetch({
+			data : _.extend({
+				per_page : NUM_PER_PAGE,
+			},$.defaultFetchData),
+			success : function(col){
+				control.endRefreshing();
+			},
+			error : function(){
+				control.endRefreshing();
+			},
+			reset : true
+		});
+	});
+}
 
 //TEST CODE
 // currentWindow.addEventListener('open', function(e) {

@@ -3,15 +3,13 @@
 		<ListView id="listView">
 			<Templates>
 				<Require id="photoTemplate" src="photoItemTemplate"/>
-				<ItemTemplate class="selectedItemTemplate" name="selectedItemTemplate">
-					<ImageView class="photo" bindId="photo"></ImageView>
-					<Label class="photoTitle photoTitleLabel" bindId="title"></Label>
-					<Label class="time" bindId="time"></Label>
-					<Label class="userName" bindId="userName"></Label>
-					<ImageView class="profileImage" bindId="profileImage"></ImageView>
-				</ItemTemplate>
 			</Templates>
 			<ListSection id="section"></ListSection>
+			<FooterView>
+                <View id="loadingFooterView">
+                    <ActivityIndicator id="loadingActivity"></ActivityIndicator>
+                </View>
+            </FooterView>
 		</ListView>
 		<RightNavButton platform="ios">
 			<Button id="cameraBtn" class="cameraBtn" onClick="showCamera"></Button>

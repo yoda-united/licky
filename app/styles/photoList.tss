@@ -5,17 +5,17 @@
 }
 
 "#listView" : {
-	separatorColor: 'white',
+	// separatorColor: 'white',
 	//defaultItemTemplate : 'selectedItemTemplate'
 	defaultItemTemplate : 'photoItemTemplate',
 	showVerticalScrollIndicator : false
 }
 
 
-".selectedItemTemplate" : {
-	height : Alloy.Globals.cameraInfo.height
-	//height : 108
-}
+// ".selectedItemTemplate" : {
+	// height : Alloy.Globals.cameraInfo.height
+	// //height : 108
+// }
 
 
 
@@ -31,4 +31,12 @@
 
 "#cameraBtn[platform=ios]" : {
 	title : L('takePhoto')
+}
+
+"#loadingActivity" : {
+	style : Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+}
+
+"#loadingFooterView" : {
+	height : 30
 }
