@@ -18,6 +18,7 @@
 
 "#contentFiled" : {
 	maxLength : 22,
+	tintColor : 'red'
 }
 
 "#contentFiled[platform=android]" : {
@@ -33,7 +34,8 @@
 
 ".fieldWrap" : {
 	height : 180,
-	backgroundColor : 'transparent'
+	backgroundColor : 'transparent',
+	touchEnabled : false
 }
 
 ".filedBorder" : {
