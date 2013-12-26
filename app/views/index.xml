@@ -6,6 +6,12 @@
 			</Window> -->
 			<Require src="photoList"/>
 		</Tab>
+		<Tab title="L('friendList')">
+			<!-- <Window class="container">
+				<Button onClick="showCamera">Write</Button>
+			</Window> -->
+			<Require src="friendsPhotoList"/>
+		</Tab>
 		<Tab title="L('nearList')">
 			<!-- <Window class="container">
 				<Button onClick="showCamera">Write</Button>
