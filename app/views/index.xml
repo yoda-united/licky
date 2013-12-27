@@ -1,6 +1,6 @@
 <Alloy>
 	<TabGroup>
-		<Tab title="L('photoList')">
+		<Tab title="L('allList')">
 			<!-- <Window class="container">
 				<Button onClick="showCamera">Write</Button>
 			</Window> -->

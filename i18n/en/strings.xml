@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="allList">All</string>
+	<string name="friendList">Friend's</string>
+	<string name="nearList">Near</string>
+	<string name="me">Me</string>
+</resources>
