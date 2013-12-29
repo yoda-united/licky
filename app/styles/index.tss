@@ -5,4 +5,14 @@
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	color: "#000"
-} 
+},
+"#mainTabGroup":{
+	tabsTintColor : "#FD9426"
+}
+"#allTab": {
+	tintColor: "#FD9426",
+	backgroundFocusedColor : "#FD9426", 
+	activeIcon: "images/tabIcon_all_active.png",
+	icon: "images/tabIcon_all_inactive.png"
+}
+

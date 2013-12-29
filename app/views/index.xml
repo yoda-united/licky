@@ -1,24 +1,24 @@
 <Alloy>
-	<TabGroup>
-		<Tab title="L('allList')">
+	<TabGroup id="mainTabGroup">
+		<Tab id="allTab" title="L('allList')">
 			<!-- <Window class="container">
 				<Button onClick="showCamera">Write</Button>
 			</Window> -->
 			<Require src="photoList"/>
 		</Tab>
-		<Tab title="L('friendList')">
+		<Tab id="friendTab" title="L('friendList')">
 			<!-- <Window class="container">
 				<Button onClick="showCamera">Write</Button>
 			</Window> -->
 			<Require src="friendsPhotoList"/>
 		</Tab>
-		<Tab title="L('nearList')">
+		<Tab id="nearTab" title="L('nearList')">
 			<!-- <Window class="container">
 				<Button onClick="showCamera">Write</Button>
 			</Window> -->
 			<Require src="nearPhotoList"/>
 		</Tab>
-		<Tab title="L('me')">
+		<Tab id="meTab" title="L('me')">
 			<Require src="setting"/>
 		</Tab>
 	</TabGroup>
