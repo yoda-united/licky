@@ -7,12 +7,21 @@
 	color: "#000"
 },
 "#mainTabGroup":{
-	tabsTintColor : "#FD9426"
-}
+	tabsTintColor : "#FD9426",
+	barColor: "#FFF",
+	tabsBackgroundColor : "#FFF"
+},
 "#allTab": {
-	tintColor: "#FD9426",
-	backgroundFocusedColor : "#FD9426", 
 	activeIcon: "images/tabIcon_all_active.png",
 	icon: "images/tabIcon_all_inactive.png"
+},
+"#nearTab": {
+	activeIcon: "images/tabIcon_near_active.png",
+	icon: "images/tabIcon_near_inactive.png"
+},
+"#meTab": {
+	activeIcon: "images/tabIcon_me_active.png",
+	icon: "images/tabIcon_me_inactive.png"
 }
+
 
