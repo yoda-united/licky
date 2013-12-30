@@ -79,3 +79,42 @@ exports.getShortAddress = function(p,localeOnly){
 	
 	return (localeOnly)?resultStr.replace(/\(.*?\)/ig,''):resultStr;
 };
+
+exports.getGoogleShortAddress = function(address){
+	if(!address) return '';
+	
+	var add = address[1];
+	var resultArray = _.map(add.address_components,function(item){
+		return item.short_name;
+	});
+	
+	return resultArray.slice(0,3).join(', ');
+};
+
+exports.googleReverseGeo = function(args){
+	args = args || {};
+	
+	// Create an HTTPClient.
+	var anXhr = Ti.Network.createHTTPClient();
+	anXhr.setTimeout(10000);
+	
+	// Define the HTTPClient callbacks.
+	anXhr.onload = function() {
+		if (this.status === 200) {
+			args.success && args.success(JSON.parse(this.responseText));
+		} else {
+			args.error && args.error(this);
+		}
+	};
+	anXhr.onerror = function() {
+		args.error && args.error(this);
+	};
+	
+	var param = String.format('latlng=%.20f,%.20f&sensor=true',args.latitude,args.longitude);
+
+	// Send the request for binary data.
+	anXhr.open('GET', 'http://maps.googleapis.com/maps/api/geocode/json?'+param);
+	anXhr.setRequestHeader("Accept-Language", args.locale);
+	anXhr.send();
+	
+};
