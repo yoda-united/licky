@@ -6,8 +6,10 @@
 	height: Ti.UI.SIZE,
 	color: "#000"
 },
-"#mainTabGroup":{
-	tabsTintColor : "#FD9426",
+"#index":{
+	// activeTabIconTint : "red",
+	tintColor: "#FD9426",
+	// tabsTintColor : "#FD9426",
 	barColor: "#FFF",
 	tabsBackgroundColor : "#FFF"
 },

@@ -1,5 +1,5 @@
 <Alloy>
-	<TabGroup id="mainTabGroup">
+	<TabGroup >
 		<Tab id="allTab" title="L('allList')">
 			<!-- <Window class="container">
 				<Button onClick="showCamera">Write</Button>
