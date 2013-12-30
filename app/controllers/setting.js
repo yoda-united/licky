@@ -14,7 +14,7 @@ AG.loggedInUser.on('change',function(model){
 
 function loginChangeHandler(){
 	// 최초에 이미 로그인 되어 있을 경우에 대한 처리
-	if(AG.settings.get('cloudSessionId')){
+	if(AG.isLogIn()){
 		$.resetClass($.loginBtn,'afterLogin');
 	}else{
 		$.resetClass($.loginBtn,'beforeLogin');

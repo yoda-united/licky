@@ -77,6 +77,9 @@ AG.currentPosition = new Backbone.Model();
 AG.settings.fetch();
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');
 AG.loggedInUser.fetch();
+AG.isLogIn = function(){
+	return !!AG.settings.get('cloudSessionId');
+};
 
 
 AG.loginController =  Alloy.createController('login');
