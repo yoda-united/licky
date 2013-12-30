@@ -17,6 +17,10 @@
 	activeIcon: "images/tabIcon_all_active.png",
 	icon: "images/tabIcon_all_inactive.png"
 },
+"#friendTab": {
+	activeIcon: "images/tabIcon_friends_active.png",
+	icon: "images/tabIcon_friends_inactive.png"
+},
 "#nearTab": {
 	activeIcon: "images/tabIcon_near_active.png",
 	icon: "images/tabIcon_near_inactive.png"
