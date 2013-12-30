@@ -34,13 +34,11 @@ exports.definition = {
 								coordi[0],
 								AG.currentPosition.attributes
 							]),
-							AG.utils.getShortAddress(custom.address, true)
+							AG.utils.getGoogleShortAddress(
+								custom['address_'+(( AG.currentLanguage == 'ko')?'ko':'en')]
+							)
 						)
 					};
-					
-					// setTimeout(function(){
-						// Ti.API.info(profileUrl);
-					// },3000);
 				}
 				
 				

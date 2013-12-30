@@ -80,8 +80,18 @@ exports.getShortAddress = function(p,localeOnly){
 	return (localeOnly)?resultStr.replace(/\(.*?\)/ig,''):resultStr;
 };
 
+exports.getGoogleShortAddress = function(address){
+	if(!address) return '';
+	
+	var add = address[1];
+	var resultArray = _.map(add.address_components,function(item){
+		return item.short_name;
+	});
+	
+	return resultArray.slice(0,3).join(', ');
+};
+
 exports.googleReverseGeo = function(args){
-	Ti.API.info(args);
 	args = args || {};
 	
 	// Create an HTTPClient.

@@ -74,6 +74,7 @@ AG.cameraInfo = {
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');
 AG.currentPosition = new Backbone.Model();
+AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 AG.settings.fetch();
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');
 AG.loggedInUser.fetch();
