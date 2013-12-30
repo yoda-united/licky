@@ -1,6 +1,8 @@
 var currentWindow = $.photoList;
-var NUM_PER_PAGE = 6;
-$.defaultFetchData = {};
+var NUM_PER_PAGE = 10;
+$.defaultFetchData = {
+	order : "-updated_at"
+};
 
 $.loadingActivity.show();
 
@@ -112,7 +114,7 @@ $.listView.addEventListener('itemclick', function(e) {
 $.afterWindowOpened = function(){
 	photoCol.fetch({
 		data : _.extend({
-			per_page : NUM_PER_PAGE
+			per_page : NUM_PER_PAGE,
 		},$.defaultFetchData)
 	});
 };

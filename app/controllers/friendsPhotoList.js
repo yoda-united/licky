@@ -34,7 +34,8 @@ function fetchOnlyFriendsPhoto(userIds) {
 		
 		$.defaultFetchData = {
 			where : {
-				user_id: {'$in' : userIds}
+				user_id: {'$in' : userIds},
+				//order : "-updated_at"
 			}
 		};
 		photoCol.fetch({
