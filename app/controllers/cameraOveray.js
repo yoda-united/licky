@@ -48,21 +48,19 @@ function getCurrentPosition(){
 			},
 			error: function(){
 				
-			}
+			},
+			locale : 'ko'
 		},currentPosition));
 		
-		if(Ti.Locale.getCurrentLanguage() !== 'en' ){
-			AG.utils.googleReverseGeo(_.extend({
-				success: function(add){
-					Ti.API.info(add);
-					currentAddress.en = add;
-				},
-				error: function(){
-					
-				},
-				locale: 'en-US'
-			},currentPosition));
-		}
+		AG.utils.googleReverseGeo(_.extend({
+			success: function(add){
+				currentAddress.en = add;
+			},
+			error: function(){
+				
+			},
+			locale: 'en-US'
+		},currentPosition));
 		
 		
 		// Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt)

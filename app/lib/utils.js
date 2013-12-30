@@ -114,7 +114,7 @@ exports.googleReverseGeo = function(args){
 
 	// Send the request for binary data.
 	anXhr.open('GET', 'http://maps.googleapis.com/maps/api/geocode/json?'+param);
-	anXhr.setRequestHeader("Accept-Language", "");
+	anXhr.setRequestHeader("Accept-Language", args.locale);
 	anXhr.send();
 	
 };
