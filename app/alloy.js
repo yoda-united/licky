@@ -17,7 +17,6 @@ Titanium.UI.createMaskedImage;
 
 //utils
 AG.utils = require('utils');
-// AG.Map = require('ti.map');
 
 // var slimer = require("ti.cloud.slimer");
 // slimer.application_index(function(r,e){
@@ -86,6 +85,8 @@ AG.loginController =  Alloy.createController('login');
 
 
 
+/*
+
 function updateAddress(obj){
     AG.Cloud.Photos.update(obj, function (e) {
 	    if (e.success) {
@@ -103,7 +104,7 @@ function updateAddress(obj){
 
 
 AG.Cloud.Photos.query({
-    page: 5,
+    page: 1,
     per_page: 5,
     order : 'created_at'
 }, function (e) {
@@ -118,15 +119,15 @@ AG.Cloud.Photos.query({
 			if(photo.custom_fields && photo.custom_fields.coordinates){
 	            AG.utils.googleReverseGeo(_.extend({
 					success: function(add){
-						obj.custom_fields.address_ko = add.results[0];
+						obj.custom_fields.address_en = add.results[0];
 						Ti.API.info(add);
 						updateAddress(obj);
 					},
 					error: function(){
 						
 					},
-					locale : 'ko',
-					// locale : 'en-US'
+					// locale : 'ko',
+					locale : 'en-US'
 				},{
 					latitude : photo.custom_fields.coordinates[0][1],
 					longitude : photo.custom_fields.coordinates[0][0]
@@ -139,5 +140,6 @@ AG.Cloud.Photos.query({
     }
 });
 
+*/
 
 

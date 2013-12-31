@@ -67,4 +67,3 @@
 	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
 	mask : 'images/profileMask.png'
 }
-

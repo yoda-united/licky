@@ -2,6 +2,29 @@ var args = arguments[0] || {},
 	photoModel = args.photoModel;
 
 
+/**
+ * Google Map
+ */
+var GoogleMapsClass = require('GoogleMaps');
+var GoogleMaps = new GoogleMapsClass({
+	iOSKey: "***REMOVED***"
+});
+var coord = photoModel.get("custom_fields").coordinates;
+var mapView = GoogleMaps.initMap({
+	latitude:coord[0][1],
+	longitude:coord[0][0],
+	zoom: 16, //15, 16이 적당해 보임
+	width : Ti.UI.FILL,
+	height : 90,
+});
+var mapWrap = Ti.UI.createView({
+	width : Ti.UI.FILL,
+	height : 90,
+	// touchEnabled : false
+});
+mapWrap.add(mapView);
+$.mapSection.footerView = mapWrap;
+
 function resetPhotoContent(){
 	var contentItem = photoModel.doDefaultTransform();
 	contentItem.template = 'photoItemTemplate';
