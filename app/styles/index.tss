@@ -5,4 +5,29 @@
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	color: "#000"
-} 
+},
+"#index":{
+	// activeTabIconTint : "red",
+	tintColor: "#FD9426",
+	// tabsTintColor : "#FD9426",
+	barColor: "#FFF",
+	tabsBackgroundColor : "#FFF"
+},
+"#allTab": {
+	activeIcon: "images/tabIcon_all_active.png",
+	icon: "images/tabIcon_all_inactive.png"
+},
+"#friendTab": {
+	activeIcon: "images/tabIcon_friends_active.png",
+	icon: "images/tabIcon_friends_inactive.png"
+},
+"#nearTab": {
+	activeIcon: "images/tabIcon_near_active.png",
+	icon: "images/tabIcon_near_inactive.png"
+},
+"#meTab": {
+	activeIcon: "images/tabIcon_me_active.png",
+	icon: "images/tabIcon_me_inactive.png"
+}
+
+
