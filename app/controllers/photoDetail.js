@@ -12,6 +12,12 @@ function resetPhotoContent(){
 	$.contentSection.setItems([
 		contentItem
 	]);
+	
+	var coord = photoModel.get("custom_fields").coordinates;
+	$.mapView.setLocation({ //47.279229,-116.455078
+		latitude:coord[0][1], longitude:coord[0][0], animate:true,
+		latitudeDelta:0.01, longitudeDelta:0.01
+	});
 }
 resetPhotoContent();
 

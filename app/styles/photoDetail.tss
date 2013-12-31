@@ -68,3 +68,11 @@
 	mask : 'images/profileMask.png'
 }
 
+"#mapView" : {
+	mapType: Alloy.Globals.Map.STANDARD_TYPE,
+	animate:true,
+	regionFit:true,
+	userLocation:true,
+	width : 320,
+	height : 100
+}

@@ -13,8 +13,13 @@
 						<ImageView onLoad="hiddenProfileOnLoad" visible="false" bindId="hiddenProfile"></ImageView>
 					</ItemTemplate>
 				</Templates>
-				<ListSection id="contentSection"></ListSection>
+				<ListSection id="contentSection">
+					<FooterView>
+						<View id="mapView" ns="Alloy.Globals.Map"/>
+					</FooterView>
+				</ListSection>
 				<ListSection id="commentSection">
+					
 					<!-- <ListItem></ListItem> -->
 				</ListSection>
 			</ListView>
@@ -23,5 +28,6 @@
 				<Button id="sendBtn"></Button>
 			</View>
 		</View>
+		
 	</Window>
 </Alloy>
