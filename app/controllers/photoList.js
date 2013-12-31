@@ -110,6 +110,19 @@ $.listView.addEventListener('itemclick', function(e) {
 	}
 });
 
+$.listView.addEventListener('delete', function(e) {
+	var photo = photoCol.get(e.itemId);
+	photo.destroy({
+		success: function(){
+			
+		},
+		error : function(){
+			alert('정상적으로 삭제하지 못했습니다. 새로고침 후 다시 시도해주세요.');
+		}
+	});
+});
+
+
 
 $.afterWindowOpened = function(){
 	photoCol.fetch({

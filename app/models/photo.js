@@ -41,6 +41,7 @@ exports.definition = {
 					};
 				}
 				
+				var isMyPhoto = this.get('user').id == AG.loggedInUser.id; 
 				
 				return({
 					//template : 'itemTemplate',
@@ -68,7 +69,8 @@ exports.definition = {
 					},
 					distance : distance,
 					properties :{
-						itemId : this.id
+						itemId : this.id,
+						canEdit : isMyPhoto
 					},
 				});
 			}
