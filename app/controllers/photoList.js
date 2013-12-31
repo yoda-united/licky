@@ -1,7 +1,7 @@
 var currentWindow = $.photoList;
 var NUM_PER_PAGE = 10;
 $.defaultFetchData = {
-	order : "-updated_at"
+	order : "-created_at"
 };
 
 $.loadingActivity.show();

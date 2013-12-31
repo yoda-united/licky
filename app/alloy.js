@@ -77,11 +77,67 @@ AG.currentPosition = new Backbone.Model();
 AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 AG.settings.fetch();
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');
-AG.loggedInUser.fetch();
+AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동기 방식.
 AG.isLogIn = function(){
 	return !!AG.settings.get('cloudSessionId');
 };
 
-
 AG.loginController =  Alloy.createController('login');
+
+
+
+function updateAddress(obj){
+    AG.Cloud.Photos.update(obj, function (e) {
+	    if (e.success) {
+	        var photo = e.photos[0];
+	        Ti.API.info('Success:\n' +
+	            'id: ' + photo.id + '\n' +
+	            'filename: ' + photo.filename + '\n' +
+	            'updated_at: ' + photo.updated_at);
+	    } else {
+	        Ti.API.info('Error:\n' +
+	            ((e.error && e.message) || JSON.stringify(e)));
+	    }
+	});
+}
+
+
+AG.Cloud.Photos.query({
+    page: 5,
+    per_page: 5,
+    order : 'created_at'
+}, function (e) {
+    if (e.success) {
+        alert('Success:\n' +
+            'Count: ' + e.photos.length);
+        _.each(e.photos,function(photo){
+        	var obj = {
+			    photo_id: photo.id,
+			    custom_fields : photo.custom_fields
+			};
+			if(photo.custom_fields && photo.custom_fields.coordinates){
+	            AG.utils.googleReverseGeo(_.extend({
+					success: function(add){
+						obj.custom_fields.address_ko = add.results[0];
+						Ti.API.info(add);
+						updateAddress(obj);
+					},
+					error: function(){
+						
+					},
+					locale : 'ko',
+					// locale : 'en-US'
+				},{
+					latitude : photo.custom_fields.coordinates[0][1],
+					longitude : photo.custom_fields.coordinates[0][0]
+				}));
+			}
+        });
+    } else {
+        alert('Error:\n' +
+            ((e.error && e.message) || JSON.stringify(e)));
+    }
+});
+
+
 

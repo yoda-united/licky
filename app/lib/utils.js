@@ -80,15 +80,22 @@ exports.getShortAddress = function(p,localeOnly){
 	return (localeOnly)?resultStr.replace(/\(.*?\)/ig,''):resultStr;
 };
 
-exports.getGoogleShortAddress = function(address){
-	if(!address) return '';
+exports.getGoogleShortAddress = function(add){
+	if(!add) return '';
 	
-	var add = address[1];
-	var resultArray = _.map(add.address_components,function(item){
-		return item.short_name;
+	// var add = add;address[0];
+	// var resultArray = _.map(add.address_components,function(item){
+		// return item.short_name;
+	// });
+	
+	var resultArray = [];
+	_.each(add.address_components,function(item){
+		if(_.contains(item.types,'sublocality') || _.contains(item.types,'locality')){
+			resultArray.push(item.short_name);
+		}
 	});
 	
-	return resultArray.slice(0,3).join(', ');
+	return resultArray.join(', ');
 };
 
 exports.googleReverseGeo = function(args){

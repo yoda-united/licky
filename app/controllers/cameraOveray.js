@@ -141,8 +141,8 @@ exports.showCamera = function(){
 				'photo_sync_sizes[]' :'original',
 				custom_fields : {
 					coordinates: [currentPosition.longitude, currentPosition.latitude ],
-					address_ko : currentAddress.ko.results,
-					address_en : currentAddress.en.results 
+					address_ko : currentAddress.ko.results[0],
+					address_en : currentAddress.en.results[0]
 				}
 			},{
 				wait:true,
