@@ -83,6 +83,11 @@ function Sync( method, model, opts) {
                 params[id_name] = model.id;
             }
 
+			if(model.config.settings.object_method === "Reviews"){
+				var reviewdObject = model.get('reviewed_object');
+            	params[reviewdObject.type.toLowerCase()+'_id'] = reviewdObject.id;
+            }
+            
             object_method.remove(params, function(e) {
                 if (e.success) {
                     model.meta = e.meta;
