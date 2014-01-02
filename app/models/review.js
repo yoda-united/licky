@@ -21,6 +21,7 @@ exports.definition = {
 								this.get('user').external_accounts[0].external_id,
 								80,
 								80);
+				var isMine = this.get('user').id == AG.loggedInUser.id;
 				return({
 					//template : 'itemTemplate',
 					content :{
@@ -39,7 +40,8 @@ exports.definition = {
 						image : profileUrl
 					},
 					properties :{
-						itemId : this.id
+						itemId : this.id,
+						canEdit : isMine
 					},
 				});
 			}

@@ -77,7 +77,8 @@ commentCol.on('add',function(col){
 	//TODO : 일단 200을 주었지만 이건 나중에 깔끔한 해결책 찾아야함. reset이 아닌 addItem을 하면 잘 될것 같기도 함.
 	// 실제 item이 세팅되기 전에 scrollTo가 실행되어서 ui가 깨짐
 	setTimeout(function(){
-		$.listView.scrollToItem(1,items.length-1);	
+		// #56 이슈 관련 해서 일단 주석 처리: https://bitbucket.org/yomybaby/bogoyo/issue/56/listview-scrolltoitem-canedit-true 
+		//$.listView.scrollToItem(1,items.length-1);	
 	},200);
 });
 
@@ -123,6 +124,24 @@ var doCommentBlur = function(){
 $.listView.addEventListener('singletap', function(e) {
 	//$.commentField.blur();
 	doCommentBlur();
+});
+
+$.listView.addEventListener('delete', function(e) {
+	if(e.sectionIndex==2){ //댓글 
+		var comment = commentCol.get(e.itemId);
+		comment.destroy({
+			success: function(){
+				var current = photoModel.get('reviews_count')-1;
+				if(current>=0){
+					photoModel.set('reviews_count',current);
+				}
+			},
+			error : function(e){
+				alert(e);
+				alert('댓글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.');
+			}
+		});
+	}
 });
 
 $.sendBtn.addEventListener('click', function(e) {
