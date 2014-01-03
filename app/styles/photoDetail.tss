@@ -65,5 +65,15 @@
 	left: 10,
 	top : 5,
 	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
-	mask : 'images/profileMask.png'
+	mask : 'images/profileMask.png',
+	// image : 'images/profileMask.png'
+}
+
+".hiddenProfile" : {
+	width : 10,
+	height : 10,
+	left: -10,
+	top : 0,
+	image : 'images/profileMask.png',
+	visible : 'false'
 }
