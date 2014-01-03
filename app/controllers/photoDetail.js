@@ -41,7 +41,6 @@ resetPhotoContent();
 photoModel.on('change',resetPhotoContent);
 
 
-Ti.API.info(photoModel.attributes);
 
 
 var commentCol = Alloy.createCollection('review');
@@ -50,7 +49,6 @@ var testLabel = Ti.UI.createLabel();
 var resetCommentItems = function(){
 	var items = [];
 	commentCol.each(function(comment){
-		Ti.API.info(JSON.stringify(comment.attributes));
 		var item = comment.doDefaultTransform();
 		item.template = "commentTemplate";
 		if(!comment.get('_itemHeight')){
@@ -71,14 +69,16 @@ var resetCommentItems = function(){
 commentCol.on('reset',function(col){
 	resetCommentItems();
 });
-commentCol.on('add',function(col){
+commentCol.on('add',function(model,col,options){
+	// TODO : 원인파악 필요. append 썼을 때 imateView의 load 이벤트 핸들링 때문인지 이상해짐. 일단 전부 다시 그림
 	var items = resetCommentItems();
-	
-	//TODO : 일단 200을 주었지만 이건 나중에 깔끔한 해결책 찾아야함. reset이 아닌 addItem을 하면 잘 될것 같기도 함.
+	var item = model.doDefaultTransform();
+
+	//TODO : 딜레이 0을 주었지만 이건 나중에 깔끔한 해결책 찾아야함. reset이 아닌 addItem을 하면 잘 될것 같기도 함.
 	// 실제 item이 세팅되기 전에 scrollTo가 실행되어서 ui가 깨짐
-	setTimeout(function(){
-		$.listView.scrollToItem(1,items.length-1);	
-	},200);
+	setTimeout(function(){ 
+		$.listView.scrollToItem(2,$.commentSection.items.length-1);	
+	},0);
 });
 
 
@@ -123,6 +123,24 @@ var doCommentBlur = function(){
 $.listView.addEventListener('singletap', function(e) {
 	//$.commentField.blur();
 	doCommentBlur();
+});
+
+$.listView.addEventListener('delete', function(e) {
+	if(e.sectionIndex==2){ //댓글 
+		var comment = commentCol.get(e.itemId);
+		comment.destroy({
+			success: function(){
+				var current = photoModel.get('reviews_count')-1;
+				if(current>=0){
+					photoModel.set('reviews_count',current);
+				}
+			},
+			error : function(e){
+				alert(e);
+				alert('댓글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.');
+			}
+		});
+	}
 });
 
 $.sendBtn.addEventListener('click', function(e) {

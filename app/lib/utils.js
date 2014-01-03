@@ -6,13 +6,13 @@ Number.prototype.toRad = function() {
 };
 
 exports.calculateDistance = function(args,type){
-	if(!args.length || args.length<2) return 0;
+	if(!args.length || args.length<2 || !args[1].latitude) return 0;
 	
 	var lat1,lon1,lat2,lon2;
 	lat1= args[0].latitude || args[0][1]; //40.28;
 	lon1= args[0].longitude || args[0][0]; //-74.82;
 	lat2= args[1].latitude || args[1][1]; //40.17;
-	lon2= args[1].longitude || args[1][0]; -47.12;
+	lon2= args[1].longitude || args[1][0]; //-47.12;
 	
 	var R = 6371; // km
 	var dLat = (lat2-lat1).toRad();
