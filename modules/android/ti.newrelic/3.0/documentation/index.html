@@ -1,0 +1,15 @@
+<h1>New Relic for Mobile - Android Titanium Module</h1>
+<h2>Installing the New Relic for Mobile Android Titanium Module</h2>
+<p>Copy and unzip the ti.newrelic-android-0.1.zip zipfile into your Titanium SDK directory. Typically this will be ~/Library/Application Support/Titanium
+   or /Library/Application Support/Titanium.</p>
+<h2>Registering the module in your app</h2>
+<p>Register the module with your application by editing <code>tiapp.xml</code> and adding the module.</p>
+<p><modules>
+    <module version="0.1">ti.newrelic</module>
+</modules></p>
+<h2>Starting New Relic</h2>
+<p>To start using New Relic, simply require the ti.newrelic module and call start with your app token:</p>
+<p>require('ti.newrelic').start("YOUR_APP_TOKEN");</p>
+<p>In a Titanium Alloy app, alloy.js is a perfect place to add this line of code.</p>
+<p>In a Titanium Classic app, just add it to your app.js or wherever your app initialization happens.</p>
+<h2>Start monitoring your code!</h2>

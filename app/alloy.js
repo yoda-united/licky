@@ -10,6 +10,8 @@
 //
 // Alloy.Globals.someGlobalFunction = function(){};
 
+var newrelic = require('ti.newrelic'); newrelic.start("***REMOVED***");
+
 //alias
 var AG = Alloy.Globals;
 
