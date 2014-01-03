@@ -160,7 +160,6 @@ if(OS_IOS){
 	    tintColor:'red'
 	});
 	$.listView.refreshControl=control;
-	
 	control.addEventListener('refreshstart',function(e){
 	    Ti.API.info('refreshstart');
 	    photoCol.fetch({
@@ -176,6 +175,32 @@ if(OS_IOS){
 			reset : true
 		});
 	});
+	
+	/*
+	$.listView.applyProperties({
+		refreshControlEnabled: true, // optional
+	    refreshControlTintColor: '#f00', // optional
+	   // refreshControlBackgroundColor: '#00f', // optional
+	});
+	
+	$.listView.refreshBegin();
+	
+	$.listView.addEventListener('refreshstart',function(e){
+	    Ti.API.info('refreshstart');
+	    photoCol.fetch({
+			data : _.extend({
+				per_page : NUM_PER_PAGE,
+			},$.defaultFetchData),
+			success : function(col){
+				$.listView.refreshFinish();
+			},
+			error : function(){
+				$.listView.refreshFinish();
+			},
+			reset : true
+		});
+	});	
+	*/
 }
 
 //TEST CODE
