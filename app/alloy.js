@@ -86,7 +86,7 @@ AG.isLogIn = function(){
 AG.loginController =  Alloy.createController('login');
 
 
-
+// jira에 올라가는지 테스트 하기 위한 커밋용 ^^
 /*
 
 function updateAddress(obj){
