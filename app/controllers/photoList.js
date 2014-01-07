@@ -110,6 +110,19 @@ $.listView.addEventListener('itemclick', function(e) {
 	}
 });
 
+$.listView.addEventListener('delete', function(e) {
+	var photo = photoCol.get(e.itemId);
+	photo.destroy({
+		success: function(){
+			
+		},
+		error : function(){
+			alert('정상적으로 삭제하지 못했습니다. 새로고침 후 다시 시도해주세요.');
+		}
+	});
+});
+
+
 
 $.afterWindowOpened = function(){
 	photoCol.fetch({
@@ -147,7 +160,6 @@ if(OS_IOS){
 	    tintColor:'red'
 	});
 	$.listView.refreshControl=control;
-	
 	control.addEventListener('refreshstart',function(e){
 	    Ti.API.info('refreshstart');
 	    photoCol.fetch({
@@ -163,6 +175,32 @@ if(OS_IOS){
 			reset : true
 		});
 	});
+	
+	/*
+	$.listView.applyProperties({
+		refreshControlEnabled: true, // optional
+	    refreshControlTintColor: '#f00', // optional
+	   // refreshControlBackgroundColor: '#00f', // optional
+	});
+	
+	$.listView.refreshBegin();
+	
+	$.listView.addEventListener('refreshstart',function(e){
+	    Ti.API.info('refreshstart');
+	    photoCol.fetch({
+			data : _.extend({
+				per_page : NUM_PER_PAGE,
+			},$.defaultFetchData),
+			success : function(col){
+				$.listView.refreshFinish();
+			},
+			error : function(){
+				$.listView.refreshFinish();
+			},
+			reset : true
+		});
+	});	
+	*/
 }
 
 //TEST CODE

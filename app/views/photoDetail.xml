@@ -9,17 +9,12 @@
 						<Label class="userName" bindId="userName"></Label>
 						<MaskedImage class="maskedProfile" bindId="profileImage"></MaskedImage>
 						<Label class="commentContent" bindId="content"></Label>
-						<Label class="distance" bindId="distance"></Label>
-						<ImageView onLoad="hiddenProfileOnLoad" visible="false" bindId="hiddenProfile"></ImageView>
+						<ImageView onLoad="hiddenProfileOnLoad" class="hiddenProfile" bindId="hiddenProfile"></ImageView>
 					</ItemTemplate>
 				</Templates>
-				<ListSection id="contentSection">
-				</ListSection>
+				<ListSection id="contentSection"></ListSection>
 				<ListSection id="mapSection"></ListSection>
-				<ListSection id="commentSection">
-					
-					<!-- <ListItem></ListItem> -->
-				</ListSection>
+				<ListSection id="commentSection"></ListSection>
 			</ListView>
 			<View class="commentFormWrap">
 				<TextArea id="commentField"></TextArea>

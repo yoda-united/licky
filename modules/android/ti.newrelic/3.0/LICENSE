@@ -1,0 +1,110 @@
+----------------------------------------------------------------
+
+This product includes 'Android SDK' (http://developer.android.com/), which is released under the following license(s):
+    Creative Commons Attribution <http://creativecommons.org/licenses/by/2.5/legalcode>
+
+----------------------------------------------------------------
+
+This product includes 'Apache Ant' (http://ant.apache.org/), which is released under the following license(s):
+    Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
+
+----------------------------------------------------------------
+
+This product includes 'asm' (http://asm.ow2.org/), which is released under the following license(s):
+    asm license <http://asm.ow2.org/license.html>
+
+----------------------------------------------------------------
+
+This product includes 'Apache Commons Logging' (http://commons.apache.org/logging/), which is released under the following license(s):
+    Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
+
+----------------------------------------------------------------
+
+This product includes 'DOM4J' (http://dom4j.sourceforge.net/dom4j-1.6.1/), which is released under the following license(s):
+    dom4j License <http://dom4j.sourceforge.net/dom4j-1.6.1/license.html>
+
+----------------------------------------------------------------
+
+This product includes 'gson' (http://code.google.com/p/google-gson/), which is released under the following license(s):
+    Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
+
+----------------------------------------------------------------
+
+This product includes 'Guava' (http://code.google.com/p/guava-libraries/), which is released under the following license(s):
+    Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
+
+----------------------------------------------------------------
+
+This product includes 'Apache HttpClient' (http://hc.apache.org/httpclient-3.x/), which is released under the following license(s):
+    Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
+
+----------------------------------------------------------------
+
+This product includes 'Javassist' (http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/), which is released under the following license(s):
+    Apache License 2.0 <http://www.apache.org/licenses/LICENSE-2.0>
+
+----------------------------------------------------------------
+
+This product includes 'org.json' (https://github.com/douglascrockford/JSON-java), which is released under the following license(s):
+    JSON License <http://www.json.org/license.html>
+
+----------------------------------------------------------------
+
+This product includes 'JSR305' (http://code.google.com/p/jsr-305/), which is released under the following license(s):
+    BSD 3-Clause License <http://opensource.org/licenses/BSD-3-Clause>
+
+----------------------------------------------------------------
+
+This product includes 'junit' (http://junit.org/), which is released under the following license(s):
+    Common Public License 1.0 (CPL) <http://opensource.org/licenses/cpl1.0.php>
+
+----------------------------------------------------------------
+
+This product includes 'Mockito' (http://code.google.com/p/mockito/), which is released under the following license(s):
+    MIT <http://opensource.org/licenses/mit-license.html>
+
+----------------------------------------------------------------
+
+This product includes 'Reflections' (http://reflections.googlecode.com/), which is released under the following license(s):
+    WTFPL <http://www.wtfpl.net/about/>
+
+----------------------------------------------------------------
+
+This product includes 'SLF4J' (http://www.slf4j.org/), which is released under the following license(s):
+    slf4j License <http://www.slf4j.org/license.html>
+
+----------------------------------------------------------------
+
+This product includes 'xml-commons' (http://xerces.apache.org/xml-commons/), which is released under the following license(s):
+    XML Commons License <http://xerces.apache.org/xml-commons/licenses.html>
+
+----------------------------------------------------------------
+
+All other components of this product are: Copyright (c) 2010-2013 New Relic, Inc. All rights reserved.
+
+Certain inventions disclosed in this file may be claimed within patents owned or patent applications
+filed by New Relic, Inc. or third parties. Subject to the terms of this notice, New Relic grants you
+a nonexclusive, nontransferable license, without the right to sublicense, to (a) install and execute
+one copy of these files on any number of workstations owned or controlled by you and (b) distribute
+verbatim copies of these files to third parties. As a condition to the foregoing grant, you must
+provide this notice along with each copy you distribute and you must not remove, alter, or obscure
+this notice.
+
+All other use, reproduction, modification, distribution, or other exploitation of these
+files is strictly prohibited, except as may be set forth in a separate written license agreement
+between you and New Relic. The terms of any such license agreement will control over this notice. The
+license stated above will be automatically terminated and revoked if you exceed its scope or violate
+any of the terms of this notice.
+
+This License does not grant permission to use the trade names, trademarks, service marks, or product
+names of New Relic, except as required for reasonable and customary use in describing the origin of
+this file and reproducing the content of this notice. You may not mark or brand this file with any
+trade name, trademarks, service marks, or product names other than the original brand (if any) provided
+by New Relic.
+
+Unless otherwise expressly agreed by New Relic in a separate written license agreement, these files
+are provided AS IS, WITHOUT WARRANTY OF ANY KIND, including without any implied warranties of
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, or NON-INFRINGEMENT. As a condition to your
+use of these files, you are solely responsible for such use. New Relic will have no liability to you
+for direct, indirect, consequential, incidental, special, or punitive damages or for lost profits or
+data.
