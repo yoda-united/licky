@@ -7,7 +7,9 @@ exports.definition = {
 	},
 	extendModel: function(Model) {
 		_.extend(Model.prototype, {
-			id : 'staticSettings' //id를 고정하여 id 지정 없이 singleton을 사용 가능하게 함
+			defaults : {
+				id : 'staticSettings' //id를 고정하여 id 지정 없이 singleton을 사용 가능하게 함
+			}
 			// extended functions and properties go here
 		});
 
