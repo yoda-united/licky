@@ -9,7 +9,6 @@ exports.definition = {
 	extendModel: function(Model) {
 		_.extend(Model.prototype, {
 			bogoyoLoggedInUser : 'staticId'
-			// extended functions and properties go here
 		});
 
 		return Model;

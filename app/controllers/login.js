@@ -10,9 +10,9 @@ var fbHandler = function(e){
 		}, function (e) {
 		    if (e.success) {
 		        var user = e.users[0];
-		        
 		        AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
 		        AG.loggedInUser.save(user);
+		        
 				$.fbLogin.title = L("facebookConnect");
 				currentWindow.close();
 				

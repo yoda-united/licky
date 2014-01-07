@@ -1,3 +1,15 @@
+var args = arguments[0] || {},
+	user = args.user;
+
+if(user){
+	Ti.API.info("[profile.js] user is"+ JSON.stringify(user));
+}else{
+	Ti.API.info("[profile.js] ");
+	user = AG.loggedInUser;
+}
+
+
+
 $.loginBtn.addEventListener('click', function(e) {
 	AG.settings.get('cloudSessionId')?
 	AG.loginController.logout():AG.loginController.requireLogin();

@@ -19,7 +19,7 @@
 			<Require src="nearPhotoList"/>
 		</Tab>
 		<Tab id="meTab" title="L('me')">
-			<Require src="setting"/>
+			<Require src="profile" asdf="asdf" />
 		</Tab>
 	</TabGroup>
 </Alloy>

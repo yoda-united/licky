@@ -77,6 +77,7 @@ AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 AG.settings.fetch();
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');
 AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동기 방식.
+alert(AG.loggedInUser.id);
 AG.isLogIn = function(){
 	return !!AG.settings.get('cloudSessionId');
 };
