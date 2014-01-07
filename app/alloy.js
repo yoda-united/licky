@@ -86,7 +86,6 @@ AG.isLogIn = function(){
 AG.loginController =  Alloy.createController('login');
 
 
-
 /*
 
 function updateAddress(obj){
