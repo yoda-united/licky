@@ -19,3 +19,34 @@
 	color : 'white',
 	selectedColor : 'gray'
 }
+
+"#profileBannerImage": {
+	height: 160,
+	width: 320, //'100%',
+	left: 0,
+	top: 0,
+	backgroundColor: "#777"
+}
+"#profileImage": {
+	height: 48,
+	width: 48,
+	top: 13,
+	borderColor: "#eee",
+	borderWidth: 2,
+	borderRadius: 5
+}
+"#name": {
+	// borderWidth:1,
+	// textAlign:Ti.UI.TEXT_ALIGNMENT_LEFT,
+	top: 65,
+	right: 0,
+	color: "#fff",
+	font: {
+		fontSize: 19,
+		fontWeight: "bold"
+	}
+}
+"#name[platform=ios]": {
+	shadowColor: '#aaa',
+	shadowOffset: {x:1, y:1}
+}

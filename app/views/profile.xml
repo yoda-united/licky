@@ -1,5 +1,17 @@
 <Alloy>
 	<Window class="container">
-		<Button id="loginBtn" class="beforeLogin afterLogin"></Button>
+		<RightNavButton platform="ios">
+			<Button id="cameraBtn" class="cameraBtn" onClick="showCamera"></Button>
+		</RightNavButton>
+		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
+		
+		<View>
+			<ImageView id="profileBannerImage" />
+			<ImageView id="profileImage" />
+			<Label id="name" />
+		</View>
+		
+		<Button id="loginBtn" class="beforeLogin afterLogin" zIndex="10" />
+		<Require id="photoListC" src="photoListView"></Require>
 	</Window>
 </Alloy>

@@ -1,14 +1,17 @@
 var args = arguments[0] || {},
 	user = args.user;
 
+$.photoListC.getView().top=200;
+
 if(user){
-	Ti.API.info("[profile.js] user is"+ JSON.stringify(user));
+	Ti.API.info("[profile.js] another user");
 }else{
-	Ti.API.info("[profile.js] ");
+	Ti.API.info("[profile.js] loggedInUser");
 	user = AG.loggedInUser;
+	if( !AG.isLogIn() ){
+		alert("[profile.js] need login!");
+	}
 }
-
-
 
 $.loginBtn.addEventListener('click', function(e) {
 	AG.settings.get('cloudSessionId')?
@@ -32,6 +35,26 @@ function loginChangeHandler(){
 		$.resetClass($.loginBtn,'beforeLogin');
 	}
 }
-
 loginChangeHandler();
+
+function showCamera(){
+	AG.loginController.requireLogin(function(){
+			Alloy.createController('cameraOveray',{
+				collection : photoCol
+			}).showCamera();
+	});
+}
+
+function setProperties(user){
+	$.name.text = user.get('first_name');
+	$.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d",
+								user.get('external_accounts')[0].external_id, 80, 80);
+								
+// 페이스북에서 정보가져와서 석세스 되면 셋팅하는 코드 쓸 차례 (커버 사진등 )
+}
+setProperties(user);
+
+
+
+
 

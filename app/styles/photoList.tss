@@ -23,19 +23,7 @@
 
 
 
-"#cameraBtn[platform=android]" : {
-	bottom : 10,
-	width : '80%',
-	height : 40,
-	backgroundColor : '#9b59b6',
-	color : 'white',
-	selectedColor : '#bdc3c7',
-	title : L('takePhoto')
-}
 
-"#cameraBtn[platform=ios]" : {
-	title : L('takePhoto')
-}
 
 "#loadingActivity" : {
 	style : Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
