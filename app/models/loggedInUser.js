@@ -16,6 +16,26 @@ exports.definition = {
 			idAttribute : 'bogoyoLoggedInUser',
 			defaults :{
 				bogoyoLoggedInUser : 'staticId'
+			},
+			updateFbUserData: function(){
+				//http call
+				
+				
+				// Create an HTTPClient.
+				var anXhr = Ti.Network.createHTTPClient();
+				anXhr.setTimeout(10000);
+				
+				// Define the callback.
+				anXhr.onload = function() {
+					// Handle the XML data.
+					var result = this.responseText;
+					//result parse  해서 this.save('fbUserData',parseResult);
+				};				
+				// Send the request data.
+				anXhr.open('GET','http://twitter.com/statuses/show/123.xml');
+				anXhr.send();
+				
+					
 			}
 			// extended functions and properties go here
 		});
@@ -25,6 +45,7 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			// extended functions and properties go here
+			
 		});
 
 		return Collection;

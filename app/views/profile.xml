@@ -9,8 +9,18 @@
 			<ImageView id="profileBannerImage" />
 			<ImageView id="profileImage" />
 			<Label id="name" />
+			<ImageView id="wireForBtnImg" />
+			<Button id="profileSettingBtn" />
 		</View>
-		
+
+        <OptionDialog id="settingDialog" title="need more settings...">
+            <!-- The Options tag sets the options property. -->
+            <Options>
+                <Option>logout</Option>
+                <Option>cancel</Option>
+            </Options>
+        </OptionDialog>
+
 		<Button id="loginBtn" class="beforeLogin afterLogin" zIndex="10" />
 		<Require id="photoListC" src="photoListView"></Require>
 	</Window>

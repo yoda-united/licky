@@ -21,32 +21,52 @@
 }
 
 "#profileBannerImage": {
-	height: 160,
+	height: 212.5,
 	width: 320, //'100%',
 	left: 0,
 	top: 0,
 	backgroundColor: "#777"
 }
 "#profileImage": {
-	height: 48,
-	width: 48,
-	top: 13,
+	height: 70,
+	width: 70,
+	top: 30,
+	zIndex: 10,
 	borderColor: "#eee",
-	borderWidth: 2,
-	borderRadius: 5
+	borderWidth: 1,
+	borderRadius: 35
+}
+"#wireForBtnImg": {
+	width: 72,
+	height: 32,
+	top: 66,
+	left: 158,
+	// borderColor: "#red",
+	// borderWidth: 1,
+	image: "images/wireForButton.png"
+}
+"#profileSettingBtn": {
+	height: 25,
+	width: 25,
+	top: 84,
+	left: 220,
+	zIndex: 10,
+	backgroundImage: "images/profileSettingButton.png",
+	borderColor: "#fff",
+	borderWidht: 1,
+	borderRadius: 12.5
 }
 "#name": {
 	// borderWidth:1,
-	// textAlign:Ti.UI.TEXT_ALIGNMENT_LEFT,
-	top: 65,
-	right: 0,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	top: 105 ,
 	color: "#fff",
-	font: {
-		fontSize: 19,
-		fontWeight: "bold"
-	}
+	font : {
+		fontSize : 18,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	},
 }
 "#name[platform=ios]": {
 	shadowColor: '#aaa',
-	shadowOffset: {x:1, y:1}
+	shadowOffset: {x:0.5, y:0.5}
 }
