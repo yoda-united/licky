@@ -1,6 +1,5 @@
 var args = arguments[0] || {}, user = args.user;
 
-$.photoListC.getView().top = 300;
 
 if (user) {
 	Ti.API.info("[profile.js] another user");
@@ -12,9 +11,49 @@ if (user) {
 	}
 }
 
-$.loginBtn.addEventListener('click', function(e) {
-	AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
+// TODO: 스타일로 빼고 싶은데..
+$.photoListC.getView().top = 272.5;	// profileBanner + controlBar's height
+$.photoListC.getView().setBubbleParent(false);
 
+// 컨트롤바를 건드리면 리스트뷰가 꽉찬 화면이랑 프로필 베너가 다 보이는 화면이 전환되게 하는 로직 
+$.controlBar.addEventListener('touchstart', function(e){
+	var offset = $.mainContent.getContentOffset().y;
+	if( offset === 0 ){
+		$.mainContent.setContentOffset({y:212.5});
+		$.mainContent.setScrollingEnabled(false);
+	}else{
+		$.mainContent.setContentOffset({y:0});
+		$.mainContent.setScrollingEnabled(true);
+	}
+});
+// 리스트뷰가 꽉찬 화면이랑 프로필 베너가 다 보이는 화면이랑 둘 중 하나만 보이는 페이지 느낌이 나도록 하는 로직.
+$.mainContent.addEventListener('dragend', function(e){
+	var offset = $.mainContent.getContentOffset().y;
+	if( offset < 80 ){	// 80 is trigger offset
+		$.mainContent.setContentOffset({y:0});
+		$.mainContent.setScrollingEnabled(true);
+	}else{
+		$.mainContent.setContentOffset({y:212.5});
+		$.mainContent.setScrollingEnabled(false);
+	}
+});
+// 리스트뷰가 화면에 가득 찼을 때는 메인컨탠트뷰 스크롤을 금지 시킨다.
+// $.mainContent.addEventListener('scrollend', function(e){
+	// var offset = $.mainContent.getContentOffset().y;
+	// if( offset === 0 ){
+		// $.mainContent.setScrollingEnabled(true);
+	// }else{
+		// $.mainContent.setScrollingEnabled(false);
+	// }
+	// alert("se");
+// });
+
+
+$.settingDialog.addEventListener('click', function(e){
+	// alert(e);
+	if(e.index === 0){
+		AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
+	}
 });
 $.profileSettingBtn.addEventListener('click', function(e) {
 	$.settingDialog.show();
@@ -28,15 +67,17 @@ AG.loggedInUser.on('change', function(model) {
 
 });
 
+// $.loginBtn.addEventListener('click', function(e) {
+	// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
+// });
 function loginChangeHandler() {
 	// 최초에 이미 로그인 되어 있을 경우에 대한 처리
 	if (AG.isLogIn()) {
-		$.resetClass($.loginBtn, 'afterLogin');
+		// $.resetClass($.loginBtn, 'afterLogin');
 	} else {
-		$.resetClass($.loginBtn, 'beforeLogin');
+		// $.resetClass($.loginBtn, 'beforeLogin');
 	}
 }
-
 loginChangeHandler();
 
 function showCamera() {

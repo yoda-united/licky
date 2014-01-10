@@ -5,13 +5,18 @@
 		</RightNavButton>
 		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
 		
-		<View>
+		<ScrollView id="mainContent"  disableBounce="true" >
 			<ImageView id="profileBannerImage" />
 			<ImageView id="profileImage" />
 			<Label id="name" />
 			<ImageView id="wireForBtnImg" />
 			<Button id="profileSettingBtn" />
-		</View>
+			<View id="controlBar" />
+			
+			<!-- It's dummy gray view for ScrollView's contentHeight -->
+			<!-- <View backgroundColor="gray" bubbleParent="false" top="272.5" height="400" /> -->
+			<Require id="photoListC" src="photoListView" />
+		</ScrollView>
 
         <OptionDialog id="settingDialog" title="need more settings...">
             <!-- The Options tag sets the options property. -->
@@ -21,7 +26,7 @@
             </Options>
         </OptionDialog>
 
-		<Button id="loginBtn" class="beforeLogin afterLogin" zIndex="10" />
-		<Require id="photoListC" src="photoListView"></Require>
+		<!-- <Button id="loginBtn" class="beforeLogin afterLogin" zIndex="10" /> -->
+		
 	</Window>
 </Alloy>

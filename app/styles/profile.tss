@@ -19,7 +19,9 @@
 	color : 'white',
 	selectedColor : 'gray'
 }
-
+"#mainContent": {
+	contentHeight: 672.5	// profileBanner + controlBar + photoList's height
+}
 "#profileBannerImage": {
 	height: 212.5,
 	width: 320, //'100%',
@@ -69,4 +71,9 @@
 "#name[platform=ios]": {
 	shadowColor: '#aaa',
 	shadowOffset: {x:0.5, y:0.5}
+}
+"#controlBar": {
+	backgroundColor: "green",
+	top: 212.5,
+	height: 60
 }
