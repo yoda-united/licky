@@ -73,7 +73,15 @@
 	shadowOffset: {x:0.5, y:0.5}
 }
 "#controlBar": {
-	backgroundColor: "green",
+	backgroundColor: "#50FF0000",
+	top: 182.5,
+	height: 30
+}
+"#menuTable": {
 	top: 212.5,
-	height: 60
+	height: 50,
+	scrollable: false
+}
+"#foodRow": {
+	hasChild: true
 }

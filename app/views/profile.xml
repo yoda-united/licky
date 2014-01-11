@@ -12,11 +12,13 @@
 			<ImageView id="wireForBtnImg" />
 			<Button id="profileSettingBtn" />
 			<View id="controlBar" />
-			
-			<!-- It's dummy gray view for ScrollView's contentHeight -->
-			<!-- <View backgroundColor="gray" bubbleParent="false" top="272.5" height="400" /> -->
-			<Require id="photoListC" src="photoListView" />
 		</ScrollView>
+		
+        <TableView id="menuTable" >
+            <TableViewSection >
+                <TableViewRow id="foodRow" />
+            </TableViewSection>
+        </TableView>
 
         <OptionDialog id="settingDialog" title="need more settings...">
             <!-- The Options tag sets the options property. -->
@@ -27,6 +29,5 @@
         </OptionDialog>
 
 		<!-- <Button id="loginBtn" class="beforeLogin afterLogin" zIndex="10" /> -->
-		
 	</Window>
 </Alloy>
