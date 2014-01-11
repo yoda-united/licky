@@ -20,9 +20,12 @@
 	selectedColor : 'gray'
 }
 "#mainContent": {
-	contentHeight: 672.5	// profileBanner + controlBar + photoList's height
+	disableBounce: false,
+	verticalBounce: true
+	// contentHeight: 672.5	// profileBanner + controlBar + photoList's height
 }
 "#profileBannerImage": {
+	contentMode: 'aspectfill',
 	height: 212.5,
 	width: 320, //'100%',
 	left: 0,
@@ -45,7 +48,7 @@
 	height: 32,
 	top: 66,
 	left: 158,
-	// borderColor: "#red",
+	// borderColor: "red",
 	// borderWidth: 1,
 	image: "images/wireForButton.png"
 }
@@ -85,5 +88,6 @@
 	scrollable: false
 }
 "#foodRow": {
+	title: L('ate_foods'),
 	hasChild: true
 }

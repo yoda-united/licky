@@ -10,8 +10,12 @@ if (user) {
 	}
 }
 
-$.menuTable.setBubbleParent(false);
-$.foodRow.setTitle(L("ate_foods"));
+$.mainContent.addEventListener('scroll', function(e){
+	// Ti.API.info("y:"+e.y);
+	$.profileBannerImage.setTop(e.y);
+	$.profileBannerImage.setHeight( 212.5 - e.y);
+});
+
 $.foodRow.addEventListener('click', function(e) {
 	AG.utils.openController(AG.mainTabGroup.activeTab, "photoList", {
 		// photoModel : photoCol.get(e.itemId) //clicked Model
@@ -62,7 +66,7 @@ exports.setProperties = function() {
 	// alert(user);
 	var fb_id = user.get('external_accounts')[0].external_id;
 	$.name.text = user.get('first_name');
-	// $.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 140, 140);
+	$.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 140, 140);
 	AG.facebook.requestWithGraphPath(fb_id, {
 		fields : 'cover'
 	}, "GET", function(e) {
