@@ -62,8 +62,7 @@ exports.setProperties = function() {
 	// alert(user);
 	var fb_id = user.get('external_accounts')[0].external_id;
 	$.name.text = user.get('first_name');
-	$.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 140, 140);
-	// $.profileBannerImage.image = String.format("https://graph.facebook.com/%s?fields=cover", user.get('external_accounts')[0].external_id);
+	// $.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 140, 140);
 	AG.facebook.requestWithGraphPath(fb_id, {
 		fields : 'cover'
 	}, "GET", function(e) {
