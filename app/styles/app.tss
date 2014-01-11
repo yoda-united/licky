@@ -91,9 +91,14 @@
 	backgroundColor : '#9b59b6',
 	color : 'white',
 	selectedColor : '#bdc3c7',
-	title : L('takePhoto')
+	// title : L('takePhoto')
 }
 
 "#cameraBtn[platform=ios]" : {
-	title : L('takePhoto')
+	// borderWidth:1,
+	// borderColor:"black",
+	width: 60,
+	height: 85,
+	backgroundImage: "images/camera.png"
+	// title : L('takePhoto')
 }
