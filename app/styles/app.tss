@@ -37,7 +37,7 @@
 
 ".profileImage" : {
 	left : 10,
-	top : 5,
+	top : 8,
 	width : 40,
 	height : 40,
 	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
@@ -63,7 +63,7 @@
 }
 
 ".commentCount" : {
-	left: 10,
+	left: 14,
 	top : 50,
 	width : 40,
 	textAlign : 'left',
