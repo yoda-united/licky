@@ -12,8 +12,9 @@ if (user) {
 
 $.mainContent.addEventListener('scroll', function(e){
 	// Ti.API.info("y:"+e.y);
-	$.profileBannerImage.setTop(e.y);
-	$.profileBannerImage.setHeight( 212.5 - e.y);
+	// $.profileBannerImage.setTop(e.y);
+	// $.profileBannerImage.setHeight( 212.5 - e.y);
+	$.profileBannerImage.applyProperties({top:e.y, height:212.5-e.y});
 });
 
 $.foodRow.addEventListener('click', function(e) {

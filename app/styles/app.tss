@@ -2,6 +2,7 @@
 	backgroundColor : 'white'
 }
 
+
 ".photoTitle" : {
 	width : 300,
 	textAlign : 'right',
