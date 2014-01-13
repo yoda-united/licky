@@ -5,13 +5,13 @@
 		</RightNavButton>
 		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
 		
-		<ImageView id="profileBannerImage" top="0"/>
+		<ImageView id="profileBannerImage" />
+			<View id="controlBar" />
 		<ScrollView id="mainContent" backgroundColor="transparent" >
     		<ImageView id="profileImage" />
 			<Label id="name" />
 			<ImageView id="wireForBtnImg" />
 			<Button id="profileSettingBtn" />
-			<View id="controlBar" />
 			
 	        <TableView id="menuTable" >
 	            <TableViewSection >
