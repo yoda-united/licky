@@ -5,20 +5,21 @@
 		</RightNavButton>
 		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
 		
-		<ScrollView id="mainContent"  >
-			<ImageView id="profileBannerImage" />
-			<ImageView id="profileImage" />
+		<ImageView id="profileBannerImage" top="0"/>
+		<ScrollView id="mainContent" backgroundColor="transparent" >
+    		<ImageView id="profileImage" />
 			<Label id="name" />
 			<ImageView id="wireForBtnImg" />
 			<Button id="profileSettingBtn" />
 			<View id="controlBar" />
-		
+			
 	        <TableView id="menuTable" >
 	            <TableViewSection >
 	                <TableViewRow id="foodRow" />
 	            </TableViewSection>
 	        </TableView>
 		</ScrollView>
+
 
         <OptionDialog id="settingDialog" title="need more settings...">
             <!-- The Options tag sets the options property. -->

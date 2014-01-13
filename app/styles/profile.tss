@@ -33,8 +33,9 @@
 	backgroundColor: "#777"
 }
 "#profileImage": {
+	preventDefaultImage : false,
 	defaultImage: "images/defaultProfilePicture.png",
-	// image: "images/defaultProfilePicture.png",
+	image: "images/defaultProfilePicture.png",
 	height: 70,
 	width: 70,
 	top: 30,
