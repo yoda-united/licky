@@ -28,7 +28,8 @@ $.loadingActivity.show();
 		},
 		/**
 		  * 주의!!!!!!! CREATION-ONLY
-		  * 이 함수는 window가 열린다음엔 설정 되지 않는다.  
+		  * 이 함수는 window가 열린다음엔 설정 되지 않는다.
+		  * 한번만 세팅 가능  
 		  */
 		setTemplateControls : function(controls){
 			var itemTemplate = {};
@@ -76,6 +77,7 @@ var handlers = (function(){
 		
 		listView : {
 			'marker' : function(e) {
+				//fetch next page
 				$.getCollection().fetch({
 					data : _.extend({
 						per_page : $.getCollection().meta.per_page,
@@ -96,12 +98,9 @@ var handlers = (function(){
 			},
 			'itemclick' : function(e) {
 				if(e.itemId){
-					AG.utils.openController(AG.mainTabGroup.activeTab,
-						'photoDetail',
-						{
-							photoModel : $.getCollection().get(e.itemId) //clicked Model
-						}
-					);
+					$.trigger('itemclick',_.extend(e,{
+						model :  $.getCollection().get(e.itemId)
+					}));
 				}
 			},
 			'delete' : function(e) {
