@@ -1,0 +1,10 @@
+<Alloy>
+	<ListView id="listView">
+		<ListSection id="section"></ListSection>
+		<FooterView>
+            <View id="loadingFooterView">
+                <ActivityIndicator id="loadingActivity"></ActivityIndicator>
+            </View>
+        </FooterView>
+	</ListView>
+</Alloy>

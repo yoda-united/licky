@@ -1,0 +1,23 @@
+"#listView" : {
+	// separatorColor: 'white',
+	//defaultItemTemplate : 'selectedItemTemplate'
+	defaultItemTemplate : 'photoItemTemplate',
+	showVerticalScrollIndicator : false,
+	separatorInsets : {
+		left: 0,
+		right : 0
+	}
+}
+
+"#loadingActivity" : {
+	style : Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+}
+
+"#loadingFooterView" : {
+	height : 30
+}
+
+"ListView[platform=ios]":{
+	// separatorColor: '#99333333',
+	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle
+}
