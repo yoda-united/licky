@@ -1,5 +1,0 @@
-<Alloy>
-	<Window class="container">
-		<Button id="loginBtn" class="beforeLogin afterLogin"></Button>
-	</Window>
-</Alloy>

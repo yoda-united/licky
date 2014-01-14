@@ -1,0 +1,94 @@
+
+".container" : {
+ 
+}
+
+"#loginBtn" : {
+	width : '80%',
+}
+".afterLogin" : {
+	title : L('logout'),
+	backgroundColor : '#c0392b',
+	color : 'white',
+	selectedColor : 'gray'
+}
+
+".beforeLogin" : {
+	title : L('login'),
+	backgroundColor : '#2ecc71',
+	color : 'white',
+	selectedColor : 'gray'
+}
+"#mainContent": {
+	disableBounce: false,
+	verticalBounce: true
+	// contentHeight: 672.5	// profileBanner + controlBar + photoList's height
+}
+"#profileBannerImage": {
+	contentMode: 'aspectfill',
+	height: 212.5,
+	width: 320, //'100%',
+	left: 0,
+	top: 0,
+	backgroundColor: "#777"
+}
+"#profileImage": {
+	preventDefaultImage : false,
+	defaultImage: "images/defaultProfilePicture.png",
+	image: "images/defaultProfilePicture.png",
+	height: 70,
+	width: 70,
+	top: 30,
+	zIndex: 10,
+	borderColor: "#eee",
+	borderWidth: 1,
+	borderRadius: 35
+}
+"#wireForBtnImg": {
+	width: 72,
+	height: 32,
+	top: 66,
+	left: 158,
+	// borderColor: "red",
+	// borderWidth: 1,
+	image: "images/wireForButton.png"
+}
+"#profileSettingBtn": {
+	height: 25,
+	width: 25,
+	top: 84,
+	left: 220,
+	zIndex: 10,
+	backgroundImage: "images/profileSettingButton.png",
+	borderColor: "#fff",
+	borderWidht: 1,
+	borderRadius: 12.5
+}
+"#name": {
+	// borderWidth:1,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	top: 105 ,
+	color: "#fff",
+	font : {
+		fontSize : 18,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	},
+}
+"#name[platform=ios]": {
+	shadowColor: '#aaa',
+	shadowOffset: {x:0.5, y:0.5}
+}
+"#controlBar": {
+	backgroundColor: "#50FF0000",
+	top: 182.5,
+	height: 30
+}
+"#menuTable": {
+	top: 212.5,
+	height: 50,
+	scrollable: false
+}
+"#foodRow": {
+	title: L('ate_foods'),
+	hasChild: true
+}
