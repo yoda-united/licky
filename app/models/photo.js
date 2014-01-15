@@ -85,6 +85,12 @@ exports.definition = {
 				  // if (modelB.get('updated_at') > modelA.get('updated_at')) return 1; // after
 				  // return 0; // equal
 			// }
+			defaultFetchData : {},
+			fetch: function(options){
+				options = options || {};
+				options.data = _.extend(options.data || {}, this.defaultFetchData);
+				Backbone.Collection.prototype.fetch.call(this, options);
+			}
 		});
 
 		return Collection;

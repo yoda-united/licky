@@ -131,11 +131,12 @@ exports.showCamera = function(){
 			});
 			Ti.API.info(croppedImage.mimeType);
 			//$.captureLabel.text = $.contentFiled.value.substr(0,5);
-			
+
 			var blob = croppedImage;
 			photoCol.create({
 				title : $.contentFiled.value,
 				photo : blob,
+				user_id: AG.loggedInUser.get('id'),
 				"photo_sizes[medium_320]" : "320x180",
 				"photo_sizes[thumb_100]" : "100x100#",
 				'photo_sync_sizes[]' :'original',

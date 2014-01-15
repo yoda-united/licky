@@ -1,14 +1,3 @@
-"ListView[platform=ios]":{
-	// separatorColor: '#99333333',
-	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle
-}
-
-
-".container" : {
-  extendEdges : [Ti.UI.EXTEND_EDGE_TOP],
-  autoAdjustScrollViewInsets : true
-}
-
 "#listView" : {
 	// separatorColor: 'white',
 	//defaultItemTemplate : 'selectedItemTemplate'
@@ -20,20 +9,15 @@
 	}
 }
 
-
-// ".selectedItemTemplate" : {
-	// height : Alloy.Globals.cameraInfo.height
-	// //height : 108
-// }
-
-
-
-
-
 "#loadingActivity" : {
 	style : Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
 }
 
 "#loadingFooterView" : {
 	height : 30
+}
+
+"ListView[platform=ios]":{
+	// separatorColor: '#99333333',
+	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle
 }
