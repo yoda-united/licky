@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+	<string name="timeLine">TIMELINE</string>
+	<string name="timeLineTabTitle">Timeline</string>
 	<string name="allList">All</string>
 	<string name="friendList">Friend's</string>
 	<string name="nearList">Near</string>
 	<string name="me">Me</string>
+	<string name="all">All</string>
+	<string name="friendsOnly">Friend's</string>
 </resources>

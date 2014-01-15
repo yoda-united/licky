@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<string name="timeLine">타임라인</string>
+	<string name="timeLineTabTitle">타임라인</string>
 	<string name="allList">전체</string>
 	<string name="friendList">친구</string>
 	<string name="nearList">근처</string>

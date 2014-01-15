@@ -2,11 +2,10 @@
 /**
  * Models
  */
-var photoCol = Alloy.createCollection('photo');
-photoCol.defaultFetchData = {
-	order : "-created_at"
-};
 
+$.fetchWhereData = {}; // 상속할때 where에 추가하고 싶으면 여기에 지정
+
+var photoCol = Alloy.createCollection('photo');
 var friendPhotoCol = Alloy.createCollection('photo');
 
 
@@ -27,7 +26,7 @@ $.listViewC.on('itemclick',function(e){
 		);
 	}
 });
-photoCol.fetch();
+
 
 
 AG.settings.on('change:cloudSessionId',function(model, changedValue, options){
@@ -47,11 +46,25 @@ AG.settings.on('change:cloudSessionId',function(model, changedValue, options){
 //init UI
 
 //최초 실행시 tabbedBar가 안보이도록 함
+$.getView().addEventListener('focus', function(e) {
+	this.removeEventListener('focus',arguments.callee);
+	$.onFirstFocus();
+});
+
 $.listViewC.listView.visible=false;
-$.getView().addEventListener('open', function(e) {
+$.onFirstFocus = function(e){
 	$.listViewC.listView.contentTopOffset = -14;
 	$.listViewC.listView.visible=true;
-});
+	$.fetchFirstCollection();
+};
+
+$.fetchFirstCollection = function(){
+	photoCol.defaultFetchData = {
+		//order : "-created_at",
+		where : $.fetchWhereData
+	};
+	photoCol.fetch(); //최초 fetch
+};
 
 function searchFacebookFriends(){
 	if(AG.isLogIn()){
@@ -75,11 +88,12 @@ function searchFacebookFriends(){
 function fetchOnlyFriendsPhoto(userIds) {
 	if(userIds && userIds.length){
 		friendPhotoCol.defaultFetchData = {
-			where : {
+			where : _.extend(_.clone($.fetchWhereData),{
 				user_id: {'$in' : userIds}
-			},
-			order : "-created_at"
+			}),
+			//order : "-created_at"
 		};
+		Ti.API.info(friendPhotoCol.defaultFetchData);
 		friendPhotoCol.fetch({
 			error:function(){
 				alert('error');

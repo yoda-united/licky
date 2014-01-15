@@ -1,11 +1,11 @@
 exports.baseController = 'photoList';
 
-var photoCol = $.getCollection();
 
-$.afterWindowOpened = function(){
+$.onFirstFocus = function(){
+	$.listViewC.listView.contentTopOffset = -14;
+	$.listViewC.listView.visible=true;
 	fetchByCurrentPosition();
 };
-
 
 
 function fetchByCurrentPosition(){
@@ -17,17 +17,14 @@ function fetchByCurrentPosition(){
 			return;
 		}
 		
-		$.defaultFetchData = {
-			where : {
-				"coordinates":{
-					"$nearSphere": [e.coords.longitude, e.coords.latitude],
-					"$maxDistance" : 5/6371 // km/6371 or mile/3959 )
-				 }
-			}
+		$.fetchWhereData = {
+			"coordinates":{
+				"$nearSphere": [e.coords.longitude, e.coords.latitude],
+				"$maxDistance" : 5/6371 // km/6371 or mile/3959 )
+			 }
 		};
-		photoCol.fetch({
-			data : $.defaultFetchData
-		});
+		
+		$.fetchFirstCollection();
 	});
 }
 

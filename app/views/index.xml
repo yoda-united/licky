@@ -1,19 +1,11 @@
 <Alloy>
 	<TabGroup class="container" >
-		<Tab id="allTab" title="L('timeLine')" >
-			<!-- <Window class="container">
-				<Button onClick="showCamera">Write</Button>
-			</Window> -->
+		<Tab id="allTab" title="L('timeLineTabTitle')" >
 			<Require src="photoList"/>
-		</Tab>
-		<!--
-		<Tab id="friendTab" title="L('friendList')">
-			<Require src="friendsPhotoList"/>
 		</Tab>
 		<Tab id="nearTab" title="L('nearList')">
 			<Require src="nearPhotoList"/>
 		</Tab>
-		-->
 		<Tab id="meTab" title="L('me')">
 			<Require id="profile" src="profile" />
 		</Tab>
