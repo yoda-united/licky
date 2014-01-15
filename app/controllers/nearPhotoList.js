@@ -2,7 +2,6 @@ exports.baseController = 'photoList';
 
 var photoCol = $.getCollection();
 
-
 $.afterWindowOpened = function(){
 	fetchByCurrentPosition();
 };

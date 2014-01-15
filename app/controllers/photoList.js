@@ -4,6 +4,7 @@ $.defaultFetchData = {
 	order : "-created_at"
 };
 
+
 $.loadingActivity.show();
 
 function showCamera(){
