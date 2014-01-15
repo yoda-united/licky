@@ -1,5 +1,5 @@
 <Alloy>
-	<ListView id="listView" headerTitle="sss">
+	<ListView id="listView">
 		<ListSection id="topSection"></ListSection>
 		<ListSection id="section"></ListSection>
 		<FooterView>

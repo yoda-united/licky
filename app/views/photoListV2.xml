@@ -1,0 +1,9 @@
+<Alloy>
+	<Window class="container">
+		<Require src="baseListView" id="photoListViewC"></Require>
+		<RightNavButton platform="ios">
+			<!-- <Button id="cameraBtn" class="cameraBtn" onClick="showCamera"></Button> -->
+		</RightNavButton>
+		<Button id="cameraBtn" platform="android" ></Button>
+	</Window>
+</Alloy>

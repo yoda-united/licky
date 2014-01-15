@@ -26,6 +26,8 @@ var sectionId = 1;
 			//각종 event 걸기 
 			newCol.on('reset change',handlers.collection.reset);
 			newCol.on('add',handlers.collection.add);
+			
+			$.section.setItems([]);
 		},
 		/**
 		  * 주의!!!!!!! CREATION-ONLY
@@ -57,7 +59,6 @@ var handlers = (function(){
 				});
 				
 				$.section.setItems(items, {
-					animated : false,
 					animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
 				}); 
 				
@@ -153,7 +154,7 @@ function updateListMarker(col,itemIndex){
 
 if(OS_IOS){
 	var control = Ti.UI.createRefreshControl({
-	    tintColor:'red'
+	    tintColor: args.refreshControlTintColor || 'black'
 	});
 	$.listView.refreshControl=control;
 	control.addEventListener('refreshstart',function(e){

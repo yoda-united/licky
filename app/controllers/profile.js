@@ -6,7 +6,7 @@ if (user) {
 	Ti.API.info("[profile.js] loggedInUser");
 	user = AG.loggedInUser;
 	if (!AG.isLogIn()) {
-		alert("[profile.js] need login!");
+		//alert("[profile.js] need login!");
 	}
 }
 
