@@ -34,7 +34,7 @@ exports = {
 	duff: '#E1C56B',
 	
 	// for foreground 
-	darkGray: '#C4C4C4',	// deactivate
+	darkGray: '#929292',	// deactivate
 	lickyOrange: '#FD9400',	// main point
 	lickyRed: '#FD3D39'		// sub point
 };
