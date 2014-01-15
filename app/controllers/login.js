@@ -115,14 +115,19 @@ if(AG.settings.get('cloudSessionId')){
 	}); 
 }
 
-exports.requireLogin = function(callback){
+exports.requireLogin = function(args){
+	args = args || {};
+	var success = args.success,
+		cancel = args.cancel;
 	if(AG.settings.get('cloudSessionId')){
-		callback && callback();
+		success && success();
 	}else{
 		//window 닫힐때 로그인 성공했으면 callback 실행
 		currentWindow.addEventListener('close', function(e) {
 			if(AG.settings.get('cloudSessionId')){
-				callback && callback();
+				success && success();
+			}else{
+				cancel && cancel();
 			}
 			currentWindow.removeEventListener('close', arguments.callee);
 		});

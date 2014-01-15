@@ -1,19 +1,20 @@
 <Alloy>
 	<Window class="container">
-		<ListView id="listView">
-			<Templates>
-				<Require id="photoTemplate" src="photoItemTemplate"/>
-			</Templates>
-			<ListSection id="section"></ListSection>
-			<FooterView>
-                <View id="loadingFooterView">
-                    <ActivityIndicator id="loadingActivity"></ActivityIndicator>
-                </View>
-            </FooterView>
-		</ListView>
+		<Require src="baseListView" id="listViewC">
+		</Require>
 		<RightNavButton platform="ios">
 			<Button id="cameraBtn" class="cameraBtn" onClick="showCamera"></Button>
 		</RightNavButton>
-		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
+		
+		<Button platform="android" id="cameraBtn"  onClick="showCamera"></Button>
+		
+		<View id="listHeaderView" height="40">
+            <TabbedBar id="tBar" platform="ios">
+	            <Labels>
+	                <Label class="allLabel"></Label>
+	                <Label class="friendsLabel"></Label>
+	            </Labels>
+	        </TabbedBar>
+        </View>
 	</Window>
 </Alloy>
