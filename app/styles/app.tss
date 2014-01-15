@@ -1,7 +1,9 @@
 "Window":{
 	backgroundColor : 'white'
 }
-
+"Window[platform=ios]": {
+	statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT
+}
 
 ".photoTitle" : {
 	width : 300,

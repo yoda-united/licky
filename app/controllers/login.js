@@ -1,6 +1,7 @@
 var currentWindow = $.login;
 
 var fbHandler = function(e){
+	Ti.API.info("fb: "+ JSON.stringify(e));
 	if (e.success) {
         var token = this.accessToken;
         Ti.API.info('Logged in ' + token);
@@ -8,6 +9,7 @@ var fbHandler = function(e){
 		    type: 'facebook',
 		    token: token
 		}, function (e) {
+			Ti.API.info(e);
 		    if (e.success) {
 		        var user = e.users[0];
 		        AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
