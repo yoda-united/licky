@@ -19,5 +19,5 @@
 
 "ListView[platform=ios]":{
 	// separatorColor: '#99333333',
-	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle
+	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle.NONE
 }

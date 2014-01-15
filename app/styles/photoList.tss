@@ -1,40 +1,15 @@
-"ListView[platform=ios]":{
-	// separatorColor: '#99333333',
-	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle.NONE
-}
-
-
 ".container" : {
-	title: L('TIMELINE'),
+	title: L('timeLine'),
 	titleAttributes:{
-        // color:'#dfff',
-        color: Alloy.Globals.COLORS.orange,
-        // color:'black',
-        // font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
-        font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
-   },
-   
-  extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
-  autoAdjustScrollViewInsets : true
+	// color:'#dfff',
+	color: Alloy.Globals.COLORS.orange,
+	// color:'black',
+	// font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
+	font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
+	},
+	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
+	autoAdjustScrollViewInsets : true
 }
-
-"#listView" : {
-	// separatorColor: 'white',
-	//defaultItemTemplate : 'selectedItemTemplate'
-	defaultItemTemplate : 'photoItemTemplate',
-	showVerticalScrollIndicator : false,
-	separatorInsets : {
-		left: 0,
-		right : 0
-	}
-}
-
-
-// ".selectedItemTemplate" : {
-	// height : Alloy.Globals.cameraInfo.height
-	// //height : 108
-// }
-
 
 "#loadingActivity" : {
 	style : Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
@@ -42,4 +17,27 @@
 
 "#loadingFooterView" : {
 	height : 30
+}
+
+"#listViewC" : {
+	// refreshControlTintColor : Alloy.Globals.COLORS.orange
+	refreshControlTintColor : Alloy.Globals.COLORS.orange
+}
+
+"#listHeaderView" : {
+	backgroundColor :'white'
+}
+
+"#tBar" : {
+	backgroundColor : Alloy.Globals.COLORS.orange,
+	index : 0,
+	width : 160
+}
+
+".allLabel" : {
+	title : L('all')
+}
+
+".friendsLabel" : {
+	title : L('friendsOnly')
 }

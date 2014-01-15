@@ -1,16 +1,12 @@
 var args = arguments[0] || {}, user = args.user;
 
 if (user) {
-	// 다른 사람 프로필
 	Ti.API.info("[profile.js] another user");
 } else {
-	// "Me" 탭  
 	Ti.API.info("[profile.js] loggedInUser");
 	user = AG.loggedInUser;
-	
-	// 로그인 하지 않았을 때 
 	if (!AG.isLogIn()) {
-		// alert("[profile.js] need login!");
+		//alert("[profile.js] need login!");
 	}
 }
 
@@ -20,15 +16,16 @@ $.getView().addEventListener('focus', function(e) {
 
 $.mainContent.addEventListener('scroll', function(e){
 	// Ti.API.info("y:"+e.y);
+	// $.profileBannerImage.setTop(e.y);
 	
-	// $.profileBannerImage.setHeight( 212.5 - e.y);
-	$.profileBannerImage.animate({
-		duration: 5,
-		height: 212.5 - e.y});
-	// $.controlBar.setTop(182.5 - e.y);
-	$.controlBar.animate({
-		duration: 5,
-		top: 182.5 - e.y});
+	// $.profileBannerImage.applyProperties({top:e.y, height:212.5-e.y});
+	$.profileBannerImage.setHeight( 212.5 - e.y);
+	$.controlBar.setTop(182.5 - e.y);
+	// $.profileBannerImage.applyProperties({height:212.5-e.y});
+	// $.profileBannerImage.animate({
+		// duration: 50,
+		// // top:e.y, 
+		// height:212.5-e.y});
 });
 
 $.foodRow.addEventListener('click', function(e) {
@@ -62,14 +59,8 @@ function loginChangeHandler() {
 	// 최초에 이미 로그인 되어 있을 경우에 대한 처리
 	if (AG.isLogIn()) {
 		// $.resetClass($.loginBtn, 'afterLogin');
-		$.loginView.setVisible(false);
 	} else {
 		// $.resetClass($.loginBtn, 'beforeLogin');
-		$.profileBannerImage.setVisible(false);
-		$.controlBar.setVisible(false);
-		$.mainContent.setVisible(false);
-		
-		$.loginView.setVisible(true);
 	}
 }
 
@@ -84,11 +75,7 @@ function showCamera() {
 }
 
 exports.setProperties = function() {
-	// 로그인 하지 않았을 때 
-	if (!AG.isLogIn()) {
-		return;
-	}
-
+	// alert(user);
 	var fb_id = user.get('external_accounts')[0].external_id;
 	$.name.text = user.get('first_name');
 	$.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 140, 140);
@@ -101,5 +88,6 @@ exports.setProperties = function() {
 			$.profileBannerImage.image = JSON.parse(e.result).cover.source;
 		}
 	});
+	// 페이스북에서 정보가져와서 석세스 되면 셋팅하는 코드 쓸 차례 (커버 사진등 )
 };
 

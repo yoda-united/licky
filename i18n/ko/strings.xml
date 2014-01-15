@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+	<string name="timeLine">타임라인</string>
 	<string name="allList">전체</string>
 	<string name="friendList">친구</string>
 	<string name="nearList">근처</string>
 	<string name="me">나</string>
+	<string name="all">전체</string>
+	<string name="friendsOnly">친구 것만</string>
+	
 </resources>

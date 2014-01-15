@@ -35,6 +35,7 @@ AG.utils = require('utils');
 AG.Cloud = require('ti.cloud');
 if(ENV_DEV || ENV_TEST){
 	AG.Cloud.debug = true;
+	Ti.App.idleTimerDisabled = true;
 }
 
 // settings
