@@ -4,8 +4,8 @@
 	tintColor: Alloy.Globals.COLORS.orange, // "#FD9426",
 	// tabsTintColor : "#FD9426",
 	// shadowImage : "images/defaultImageView.png",
-	barColor: Alloy.Globals.COLORS.red,
-	// barColor: "#FD9426",
+	barColor: Alloy.Globals.COLORS.lickyOrange,
+	// barColor: "#FD9400",
 	tabsBackgroundColor : "#FFF"
 },
 "Label": {

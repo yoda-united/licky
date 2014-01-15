@@ -1,5 +1,7 @@
 exports = {
-	// ios7 colors
+	/*
+	 *  ios7 colors
+	 */
 	red : '#ff3b30',
 	orange : '#ff9500',
 	yellow : '#fc0',
@@ -23,6 +25,9 @@ exports = {
 		silver : [ { color: '#dbddde', offset: 0.0}, { color: '#898c90', offset: 1.0 } ],
 	},
 	
+	/*
+	 * for Licky
+	 */
 	// for background
 	whiteGray: '#FEFEFE',	// main background
 	lightGray: '#F5F5F5',	// sub background
@@ -30,6 +35,6 @@ exports = {
 	
 	// for foreground 
 	darkGray: '#C4C4C4',	// deactivate
-	lickyOrange: '#FD9426',	// main point
+	lickyOrange: '#FD9400',	// main point
 	lickyRed: '#FD3D39'		// sub point
 };
