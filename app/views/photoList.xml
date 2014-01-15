@@ -1,19 +1,29 @@
 <Alloy>
 	<Window class="container">
-		<ListView id="listView">
-			<Templates>
-				<Require id="photoTemplate" src="photoItemTemplate"/>
-			</Templates>
-			<ListSection id="section"></ListSection>
-			<FooterView>
-                <View id="loadingFooterView">
-                    <ActivityIndicator id="loadingActivity"></ActivityIndicator>
-                </View>
-            </FooterView>
-		</ListView>
+		<Require src="baseListView" id="listViewC">
+		</Require>
 		<RightNavButton platform="ios">
 			<Button id="cameraBtn" class="cameraBtn" onClick="showCamera"></Button>
 		</RightNavButton>
 		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
+		
+		<View id="listHeaderView" backgroundColor="#DDD" height="40">
+            <TabbedBar id="bb1" platform="ios" backgroundColor="#369" height="25" width="200">
+
+	            <!-- The Labels tag sets the TabbedBar.labels property. -->
+	            <Labels>
+	
+	                <!-- Specify text with node text or the title attribute. -->
+	                <!-- Can also specify the enabled, image and width attributes. -->
+	
+	                <Label>All</Label>
+	                <Label>Friend's</Label>
+	
+	            </Labels>
+	
+	            <!-- Place additional views for the TabbedBar here. -->
+	
+	        </TabbedBar>
+        </View>
 	</Window>
 </Alloy>

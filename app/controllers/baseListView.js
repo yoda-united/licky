@@ -3,6 +3,7 @@ var args = arguments[0] || {};
 //init UI defaults
 $.loadingActivity.show();
 
+var sectionId = 1;
 (function(){
 	//private properties : exports 함수에서만 사용하는 변수
 	var _collection;
@@ -67,7 +68,7 @@ var handlers = (function(){
 				if(options && options.addLater){
 					willAddItems.push(model.doDefaultTransform());
 				}else{
-					$.section.insertItemsAt(0,[model.doDefaultTransform()],{
+					$.section.insertItemsAt(sectionId,[model.doDefaultTransform()],{
 						
 					});
 				}
@@ -77,6 +78,7 @@ var handlers = (function(){
 		
 		listView : {
 			'marker' : function(e) {
+				Ti.API.info('marker fired');
 				//fetch next page
 				$.getCollection().fetch({
 					data : _.extend({
@@ -137,7 +139,7 @@ $.listView.addEventListener('delete', handlers.listView['delete']);
 function updateListMarker(col,itemIndex){
 	if(col.meta && col.meta.total_pages>col.meta.page){
 		$.listView.setMarker({
-			sectionIndex:0,
+			sectionIndex:sectionId,
 			itemIndex : $.section.items.length-1
 		});
 	}else{
