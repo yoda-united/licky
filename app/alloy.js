@@ -19,7 +19,7 @@ var AG = Alloy.Globals;
 Titanium.UI.createMaskedImage;
 
 // colors
-AG.COLORS = require('iOS7Colors');
+AG.COLORS = require('colors');
 
 //utils
 AG.utils = require('utils');

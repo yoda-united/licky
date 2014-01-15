@@ -69,7 +69,7 @@ var handlers = (function(){
 				if(options && options.addLater){
 					willAddItems.push(model.doDefaultTransform());
 				}else{
-					$.section.insertItemsAt(sectionId,[model.doDefaultTransform()],{
+					$.section.insertItemsAt(0,[model.doDefaultTransform()],{
 						
 					});
 				}

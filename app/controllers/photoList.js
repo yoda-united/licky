@@ -44,7 +44,14 @@ AG.settings.on('change:cloudSessionId',function(model, changedValue, options){
 	}
 });
 
-//init
+//init UI
+
+//최초 실행시 tabbedBar가 안보이도록 함
+$.listViewC.listView.visible=false;
+$.getView().addEventListener('open', function(e) {
+	$.listViewC.listView.contentTopOffset = -14;
+	$.listViewC.listView.visible=true;
+});
 
 function searchFacebookFriends(){
 	if(AG.isLogIn()){

@@ -25,7 +25,8 @@
 }
 
 "#listHeaderView" : {
-	backgroundColor :'white'
+	backgroundColor :'white',
+	height : 50
 }
 
 "#tBar" : {

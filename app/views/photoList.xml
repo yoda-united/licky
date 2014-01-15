@@ -8,7 +8,7 @@
 		
 		<Button platform="android" id="cameraBtn"  onClick="showCamera"></Button>
 		
-		<View id="listHeaderView" height="40">
+		<View id="listHeaderView">
             <TabbedBar id="tBar" platform="ios">
 	            <Labels>
 	                <Label class="allLabel"></Label>

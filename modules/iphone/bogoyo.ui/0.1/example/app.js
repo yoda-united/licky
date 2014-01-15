@@ -37,3 +37,7 @@ if (Ti.Platform.name == "android") {
 	win.add(proxy);
 }
 
+var list = Ti.UI.createListView();
+
+alert(typeof list.scrollToTop);
+
