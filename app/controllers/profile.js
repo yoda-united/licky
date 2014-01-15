@@ -40,7 +40,8 @@ $.foodRow.addEventListener('click', function(e) {
 $.settingDialog.addEventListener('click', function(e) {
 	// alert(e);
 	if (e.index === 0) {
-		AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
+		// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
+		AG.loginController.logout();
 	}
 });
 $.profileSettingBtn.addEventListener('click', function(e) {
@@ -55,13 +56,17 @@ AG.loggedInUser.on('change', function(model) {
 
 });
 
-// $.loginBtn.addEventListener('click', function(e) {
-// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
-// });
+$.loginBtn.addEventListener('click', function(e) {
+	AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
+});
 function loginChangeHandler() {
 	// 최초에 이미 로그인 되어 있을 경우에 대한 처리
 	if (AG.isLogIn()) {
 		// $.resetClass($.loginBtn, 'afterLogin');
+		$.profileBannerImage.setVisible(true);
+		$.controlBar.setVisible(true);
+		$.mainContent.setVisible(true);
+		
 		$.loginView.setVisible(false);
 	} else {
 		// $.resetClass($.loginBtn, 'beforeLogin');
@@ -84,7 +89,6 @@ function showCamera() {
 }
 
 exports.setProperties = function() {
-	// 로그인 하지 않았을 때 
 	if (!AG.isLogIn()) {
 		return;
 	}
