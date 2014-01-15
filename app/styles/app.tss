@@ -1,7 +1,10 @@
 "Window":{
 	backgroundColor : 'white'
 }
-
+"Window[platform=ios]": {
+	// statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT
+	statusBarStyle: Ti.UI.iPhone.StatusBar.GRAY
+}
 
 ".photoTitle" : {
 	width : 300,
@@ -97,7 +100,7 @@
 "#cameraBtn[platform=ios]" : {
 	// borderWidth:1,
 	// borderColor:"black",
-	width: 60,
+	width: 57,
 	height: 85,
 	backgroundImage: "images/camera.png"
 	// title : L('takePhoto')

@@ -4,9 +4,14 @@
 			<Button id="cameraBtn" class="cameraBtn" onClick="showCamera"></Button>
 		</RightNavButton>
 		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
+
+		<View id="loginView">
+			<Button id="loginBtn" />
+			<Label id="loginGuidance" />
+		</View>
 		
 		<ImageView id="profileBannerImage" />
-			<View id="controlBar" />
+		<View id="controlBar" />
 		<ScrollView id="mainContent" backgroundColor="transparent" >
     		<ImageView id="profileImage" />
 			<Label id="name" />

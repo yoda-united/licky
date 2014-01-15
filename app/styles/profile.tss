@@ -19,6 +19,30 @@
 	color : 'white',
 	selectedColor : 'gray'
 }
+
+"#loginView":{	// 로긴하지 않았을 때 프로필사진 대신 나올 뷰
+	visible: false,
+	top: 0
+}
+"#loginBtn": { 
+	backgroundImage: "images/loginButton.png",
+	height: 70,
+	width: 70,
+	top: 30
+	// borderColor: "#eee",
+	// borderWidth: 1,
+	// borderRadius: 35
+}
+"#loginGuidance": {
+	text: L("loginWithFacebook"),
+	top: 110,
+	color: Alloy.Globals.COLORS.darkGray,
+	font : {
+		fontSize : 16,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	}
+}
+
 "#mainContent": {
 	disableBounce: false,
 	verticalBounce: true
@@ -84,7 +108,7 @@
 	height: 30
 }
 "#menuTable": {
-	top: 212.5,
+	top: 207.5,	// 프로필 배너 확대될때 떨림을 조금 가리기 위해 5픽셀 위로. 
 	height: 50,
 	scrollable: false
 }

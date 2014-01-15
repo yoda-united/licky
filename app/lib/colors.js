@@ -1,4 +1,7 @@
 exports = {
+	/*
+	 *  ios7 colors
+	 */
 	red : '#ff3b30',
 	orange : '#ff9500',
 	yellow : '#fc0',
@@ -19,6 +22,19 @@ exports = {
 		violet : [ { color: '#c644fc', offset: 0.0}, { color: '#5856d6', offset: 1.0 } ],
 		magenta : [ { color: '#ef4db6', offset: 0.0}, { color: '#c643fc', offset: 1.0 } ],
 		black : [ { color: '#4a4a4a', offset: 0.0}, { color: '#2b2b2b', offset: 1.0 } ],
-		silver : [ { color: '#dbddde', offset: 0.0}, { color: '#898c90', offset: 1.0 } ],
-	}
+		silver : [ { color: '#dbddde', offset: 0.0}, { color: '#898c90', offset: 1.0 } ]
+	},
+	
+	/*
+	 * for Licky
+	 */
+	// for background
+	whiteGray: '#FEFEFE',	// main background
+	lightGray: '#F5F5F5',	// sub background
+	duff: '#E1C56B',
+	
+	// for foreground 
+	darkGray: '#929292',	// deactivate
+	lickyOrange: '#FD9400',	// main point
+	lickyRed: '#FD3D39'		// sub point
 };

@@ -1,11 +1,20 @@
 "ListView[platform=ios]":{
 	// separatorColor: '#99333333',
-	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle
+	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle.NONE
 }
 
 
 ".container" : {
-  extendEdges : [Ti.UI.EXTEND_EDGE_TOP],
+	title: L('TIMELINE'),
+	titleAttributes:{
+        // color:'#dfff',
+        color: Alloy.Globals.COLORS.orange,
+        // color:'black',
+        // font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
+        font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
+   },
+   
+  extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
   autoAdjustScrollViewInsets : true
 }
 
@@ -25,9 +34,6 @@
 	// height : Alloy.Globals.cameraInfo.height
 	// //height : 108
 // }
-
-
-
 
 
 "#loadingActivity" : {

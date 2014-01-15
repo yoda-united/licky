@@ -9,13 +9,17 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+var newrelic = require('ti.newrelic'); 
+newrelic.start("***REMOVED***");
 
-var newrelic = require('ti.newrelic'); newrelic.start("***REMOVED***");
 
 //alias
 var AG = Alloy.Globals;
 
 Titanium.UI.createMaskedImage;
+
+// colors
+AG.COLORS = require('iOS7Colors');
 
 //utils
 AG.utils = require('utils');
