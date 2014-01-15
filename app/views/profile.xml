@@ -6,8 +6,10 @@
 		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
 
 		<View id="loginView">
-			<Button id="loginBtn" />
+			<ImageView id="logo" />
 			<Label id="loginGuidance" />
+			<ImageView id="facebookImage" />
+			<Button id="loginBtn" />
 		</View>
 		
 		<ImageView id="profileBannerImage" />
@@ -28,7 +30,7 @@
 
         <OptionDialog id="settingDialog" title="need more settings...">
             <!-- The Options tag sets the options property. -->
-            <Options>
+            <Options> 
                 <Option>logout</Option>
                 <Option>cancel</Option>
             </Options>

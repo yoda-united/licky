@@ -24,24 +24,39 @@
 	visible: false,
 	top: 0
 }
-"#loginBtn": { 
-	backgroundImage: "images/loginButton.png",
+"#logo": { 
+	backgroundImage: "images/logoWithTitle.png",
 	height: 70,
 	width: 70,
-	top: 30
-	// borderColor: "#eee",
-	// borderWidth: 1,
-	// borderRadius: 35
+	top: 50
 }
 "#loginGuidance": {
-	text: L("loginWithFacebook"),
-	top: 110,
+	text: L("DoYouHaveSomeLickies?"),
+	top: 185,
 	color: Alloy.Globals.COLORS.darkGray,
 	font : {
-		fontSize : 16,
+		fontSize : 12,
 		fontFamily : 'AppleSDGothicNeo-Light'
 	}
 }
+"#facebookImage": {
+	top: 207,
+	left: 72,
+	height: 32,
+	width: 32,
+	image: 'images/facebookLogo.png'
+}
+"#loginBtn": {
+	top: 207,
+	left: 105,
+	height: 32,
+	width: 160,
+	title: L("signInWithFacebook"),
+	color: 'white',
+	// backgroundColor: Alloy.Globals.COLORS.facebookBlue
+	backgroundColor: 'blue'
+}
+
 
 "#mainContent": {
 	disableBounce: false,

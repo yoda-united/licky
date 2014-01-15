@@ -36,5 +36,8 @@ exports = {
 	// for foreground 
 	darkGray: '#929292',	// deactivate
 	lickyOrange: '#FD9400',	// main point
-	lickyRed: '#FD3D39'		// sub point
+	lickyRed: '#FD3D39',	// sub point
+	
+	// etcs
+	facebookBlue: '#4063A7'
 };
