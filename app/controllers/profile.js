@@ -10,6 +10,10 @@ if (user) {
 	}
 }
 
+$.getView().addEventListener('focus', function(e) {
+	$.setProperties();
+});
+
 $.mainContent.addEventListener('scroll', function(e){
 	// Ti.API.info("y:"+e.y);
 	// $.profileBannerImage.setTop(e.y);
