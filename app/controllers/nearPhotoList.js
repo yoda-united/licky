@@ -1,5 +1,5 @@
 exports.baseController = 'photoList';
-
+$.getView().title=L('nearList');
 
 $.onFirstFocus = function(){
 	$.listViewC.listView.contentTopOffset = -14;
