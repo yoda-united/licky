@@ -57,7 +57,7 @@ exports.definition = {
 						text : this.get('user').first_name
 					},
 					time : {
-						text : AG.moment(this.get('created_at')).fromNow()
+						text : AG.moment(this.get('created_at')).twitter()
 					},
 					profileImage : {
 						image : profileUrl

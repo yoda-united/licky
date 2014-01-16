@@ -43,17 +43,49 @@ Ti.Geolocation.purpose = '현재 위치 확인';
 AG.facebook = require('facebook');
 AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 //AG.facebook.permissions = [FACEBOOK_APP_PERMISSIONS];
+
+AG.currentLanguage = Ti.Locale.getCurrentLanguage();
+
+
 AG.moment = require('alloy/moment');
+require('momentTwitter');
 moment.lang('ko', {
 //    
-    // longDateFormat : {
-        // LT : "A h시 mm분",
-        // L : "YYYY.MM.DD",
-        // LL : "YYYY년 MMMM D일",
-        // LLL : "YYYY년 MMMM D일 LT",
-        // LLLL : "YYYY년 MMMM D일 dddd LT"
-    // },
+    longDateFormat : {
+        LT : "A h시 mm분",
+        L : "YYYY.MM.DD",
+        LL : "YYYY년 MMMM D일",
+        LLL : "YYYY년 MMMM D일 LT",
+        LLLL : "YYYY년 MMMM D일 dddd LT"
+    },
+    
     relativeTime : {
+        future : "in %s",
+        past : "%s",
+        s : "1초",
+        ss : "%d초",
+        m : "1분",
+        mm : "%d분",
+        h : "1시간",
+        hh : "%d시간",
+        d : "1일",
+        dd : "%d일",
+        M : "1달",
+        MM : "%d달",
+        y : "1년",
+        yy : "%1년"
+    }
+});
+
+moment.lang('en',{
+	longDateFormat : {
+        LT : "HH:mm",
+        L : "DD/MM/YYYY",
+        LL : "D MMMM YYYY",
+        LLL : "D MMMM YYYY LT",
+        LLLL : "dddd, D MMMM YYYY LT"
+   },
+       relativeTime : {
         future : "in %s",
         past : "%s",
         s : "1s",
@@ -64,12 +96,14 @@ moment.lang('ko', {
         hh : "%dh",
         d : "1d",
         dd : "%dd",
-        M : "L",
-        MM : "L",
-        y : "L",
-        yy : "L"
-    }
+        M : "1M",
+        MM : "%dM",
+        y : "1Y",
+        yy : "%dY"
+	}
 });
+
+moment.lang(AG.currentLanguage);
 
 AG.cameraInfo = {
 	top : 100,
@@ -80,7 +114,6 @@ AG.cameraInfo = {
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');
 AG.currentPosition = new Backbone.Model();
-AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 AG.settings.fetch();
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');
 AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동기 방식.
