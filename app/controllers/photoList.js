@@ -33,14 +33,17 @@ AG.settings.on('change:cloudSessionId',function(model, changedValue, options){
 	/**
 	 * facebook 친구
 	 */
+	$.listViewC.listView.scrollToItem(1,0);
 	if(changedValue){
 		searchFacebookFriends();
 	} else { //로그아웃시
 		if($.tBar.index==1){
 			$.tBar.setIndex(0);
+			$.tBar.fireEvent('click',{index:0});
 			$.listViewC.setCollection(photoCol);
 		}
 	}
+	photoCol.reset(photoCol.models); //새로 fetch하지 않음. 삭제 가능여부를 새로 판단해야하기에 때문에 다시 reset함.
 });
 
 //init UI
