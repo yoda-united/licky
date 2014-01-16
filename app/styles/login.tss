@@ -49,7 +49,7 @@
 }
 "#loginGuidance": {
 	text: L("DoYouHaveSomeLickies?"),
-	top: 302,
+	top: 300,
 	color: Alloy.Globals.COLORS.darkGray,
 	font : {
 		fontSize : 12,
@@ -70,6 +70,10 @@
 	width: 215,
 	title: L("signInWithFacebook"),
 	color: 'white',
-	// backgroundColor: Alloy.Globals.COLORS.facebookBlue
-	backgroundColor: '#4063A7'
+	font : {
+		fontSize : 20,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	},
+	backgroundColor: Alloy.Globals.COLORS.facebookBlue
+	// backgroundColor: '#4063A7'
 }

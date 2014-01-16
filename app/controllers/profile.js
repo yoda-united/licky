@@ -56,25 +56,31 @@ AG.loggedInUser.on('change', function(model) {
 
 });
 
-$.loginBtn.addEventListener('click', function(e) {
-	AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
-});
+// $.loginBtn.addEventListener('click', function(e) {
+	// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
+// });
 function loginChangeHandler() {
+	if(false){
+		// 다른 사용자의 프로필일 경우 
+		return;
+	}
+	
 	// 최초에 이미 로그인 되어 있을 경우에 대한 처리
 	if (AG.isLogIn()) {
 		// $.resetClass($.loginBtn, 'afterLogin');
-		$.profileBannerImage.setVisible(true);
-		$.controlBar.setVisible(true);
-		$.mainContent.setVisible(true);
-		
-		$.loginView.setVisible(false);
+		$.menuTable.setVisible(true);
+		$.name.setVisible(true);
+		$.wireForBtnImg.setVisible(true);
+		$.profileSettingBtn.setVisible(true);
 	} else {
 		// $.resetClass($.loginBtn, 'beforeLogin');
-		$.profileBannerImage.setVisible(false);
-		$.controlBar.setVisible(false);
-		$.mainContent.setVisible(false);
+		$.menuTable.setVisible(false);
+		$.name.setVisible(false);
+		$.wireForBtnImg.setVisible(false);
+		$.profileSettingBtn.setVisible(false);
 		
-		$.loginView.setVisible(true);
+		$.profileBannerImage.setImage(null);
+		$.profileImage.setImage( $.profileImage.getDefaultImage() );
 	}
 }
 

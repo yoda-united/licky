@@ -20,42 +20,6 @@
 	selectedColor : 'gray'
 }
 
-"#loginView":{	// 로긴하지 않았을 때 프로필사진 대신 나올 뷰
-	visible: false,
-	top: 0
-}
-"#logo": { 
-	backgroundImage: "images/logoWithTitle.png",
-	height: 70,
-	width: 70,
-	top: 50
-}
-"#loginGuidance": {
-	text: L("DoYouHaveSomeLickies?"),
-	top: 185,
-	color: Alloy.Globals.COLORS.darkGray,
-	font : {
-		fontSize : 12,
-		fontFamily : 'AppleSDGothicNeo-Light'
-	}
-}
-"#facebookImage": {
-	top: 207,
-	left: 72,
-	height: 32,
-	width: 32,
-	image: 'images/facebookLogo.png'
-}
-"#loginBtn": {
-	top: 207,
-	left: 105,
-	height: 32,
-	width: 160,
-	title: L("signInWithFacebook"),
-	color: 'white',
-	backgroundColor: Alloy.Globals.COLORS.facebookBlue
-	// backgroundColor: 'blue'
-}
 
 
 "#mainContent": {
@@ -69,7 +33,7 @@
 	width: 320, //'100%',
 	left: 0,
 	top: 0,
-	backgroundColor: "#777"
+	backgroundColor: Alloy.Globals.COLORS.lightGray
 }
 "#profileImage": {
 	preventDefaultImage : false,
@@ -118,6 +82,7 @@
 	shadowOffset: {x:0.5, y:0.5}
 }
 "#controlBar": {
+	visible: false,
 	backgroundColor: "#50FF0000",
 	top: 182.5,
 	height: 30

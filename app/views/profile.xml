@@ -5,13 +5,6 @@
 		</RightNavButton>
 		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
 
-		<View id="loginView">
-			<ImageView id="logo" />
-			<Label id="loginGuidance" />
-			<ImageView id="facebookImage" />
-			<Button id="loginBtn" />
-		</View>
-		
 		<ImageView id="profileBannerImage" />
 		<View id="controlBar" />
 		<ScrollView id="mainContent" backgroundColor="transparent" >
