@@ -146,8 +146,8 @@ function updateListMarker(col,itemIndex){
 	}else{
 		//끝까지 로딩 한경우
 		$.listView.footerView = Ti.UI.createLabel({
-			height : 30,
-			text : '-'
+			height : 0
+			// text : '-'
 		});
 	}
 }

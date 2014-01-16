@@ -1,3 +1,8 @@
+$.photoList.addEventListener('swipe', function(e){
+	alert(e.direction);
+});
+
+
 
 /**
  * Models

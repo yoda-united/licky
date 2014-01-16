@@ -1,12 +1,12 @@
 ".container" : {
 	title: L('timeLine'),
 	titleAttributes:{
-	// color:'#dfff',
-	// color: Alloy.Globals.COLORS.orange,
-	color: Alloy.Globals.COLORS.red,
-	// color:'black',
-	// font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
-	font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
+		// color:'#dfff',
+		// color: Alloy.Globals.COLORS.orange,
+		color: Alloy.Globals.COLORS.red,
+		// color:'black',
+		// font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
+		font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
 	},
 	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
 	autoAdjustScrollViewInsets : true
@@ -21,20 +21,25 @@
 }
 
 "#listViewC" : {
-	// refreshControlTintColor : Alloy.Globals.COLORS.orange
-	refreshControlTintColor : Alloy.Globals.COLORS.red
+	refreshControlTintColor : Alloy.Globals.COLORS.orange
+	// refreshControlTintColor : Alloy.Globals.COLORS.red
 }
 
 "#listHeaderView" : {
-	backgroundColor :'white',
-	height : 50
+	top:43,
+	// backgroundColor : Alloy.Globals.COLORS.lightGray,
+	backgroundColor : "transparent",
+	// backgroundColor : "white",
+	height : 45
 }
 
 "#tBar" : {
-	// backgroundColor : Alloy.Globals.COLORS.orange,
-	backgroundColor : Alloy.Globals.COLORS.red,
+	// backgroundColor : "transparent",
+	// top: -4,
+	left: 10,
 	index : 0,
-	width : 160
+	width : 125,
+	height: 30
 }
 
 ".allLabel" : {
