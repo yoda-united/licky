@@ -8,4 +8,6 @@
 	<string name="me">Me</string>
 	<string name="all">All</string>
 	<string name="friendsOnly">Friend's</string>
+	<string name="myLicks">My Lick Photos</string>
+	
 </resources>

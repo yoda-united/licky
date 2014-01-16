@@ -32,7 +32,8 @@ $.mainContent.addEventListener('scroll', function(e){
 });
 
 $.foodRow.addEventListener('click', function(e) {
-	AG.utils.openController(AG.mainTabGroup.activeTab, "photoList", {
+	AG.utils.openController(AG.mainTabGroup.activeTab, "someonePhotoList", {
+		userModel : user
 		// photoModel : photoCol.get(e.itemId) //clicked Model
 	});
 });

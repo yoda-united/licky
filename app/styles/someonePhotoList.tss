@@ -1,0 +1,9 @@
+
+".container" : {
+  
+}
+
+"#listViewC" : {
+	// refreshControlTintColor : Alloy.Globals.COLORS.orange
+	refreshControlTintColor : Alloy.Globals.COLORS.red
+}

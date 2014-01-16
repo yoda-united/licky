@@ -93,6 +93,6 @@
 	scrollable: false
 }
 "#foodRow": {
-	title: L('ateFoods'),
+	title: L('myLicks'),
 	hasChild: true
 }
