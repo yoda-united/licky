@@ -1,5 +1,15 @@
 var currentWindow = $.login;
 
+$.closeBtn.addEventListener('click', function(e) {
+	currentWindow.close();
+});
+currentWindow.addEventListener('swipe', function(e){
+	if( e.direction === 'down'){
+		currentWindow.close();
+	}
+});
+
+
 var fbHandler = function(e){
 	Ti.API.info("fb: "+ JSON.stringify(e));
 	if (e.success) {
@@ -30,10 +40,6 @@ var fbHandler = function(e){
 		});
     }
 };
-
-$.closeBtn.addEventListener('click', function(e) {
-	currentWindow.close();
-});
 
 $.fbLogin.addEventListener('click', function(e) {
 	$.fbLogin.title = L('facebookConnecting');
@@ -68,9 +74,9 @@ $.fbLogin.addEventListener('click', function(e) {
 	}
 });
 
-$.emailBtn.addEventListener('click', function(e) {
-	alert('아직 안되지롱~요..\nFacebook으로 해주세요.^^');
-});
+// $.emailBtn.addEventListener('click', function(e) {
+	// alert('아직 안되지롱~요..\nFacebook으로 해주세요.^^');
+// });
 
 currentWindow.addEventListener('open', function(e) {
 	AG.facebook.addEventListener('login', fbHandler);
@@ -101,6 +107,7 @@ function subscribePushChannel(callback){
 		callback && callback();
 	}
 }
+
 
 //최초 복구
 if(AG.settings.get('cloudSessionId')){
@@ -150,3 +157,6 @@ exports.logout = function(callback){
 		}
 	});
 };
+
+
+

@@ -1,10 +1,17 @@
 <Alloy>
 	<Window class="container">
-		<Button id="closeBtn">Close</Button>
-		<View class="wrap">
+		<Button id="closeBtn" />
+		<!-- <View class="wrap">
 			<Button id="fbLogin">Connect Facebook</Button>
 			<Label id="emailBtn" class="or"> or use email</Label>
-		</View>
+		</View> -->
 		<!-- <Require id="acsLogin" type="widget" src="com.appcelerator.acslogin"/> -->
+		
+		<View id="loginView">
+			<ImageView id="logo" />
+			<Label id="loginGuidance" />
+			<Button id="facebookImage" />
+			<Button id="fbLogin" />
+		</View>		
 	</Window>
 </Alloy>

@@ -53,8 +53,8 @@
 	width: 160,
 	title: L("signInWithFacebook"),
 	color: 'white',
-	// backgroundColor: Alloy.Globals.COLORS.facebookBlue
-	backgroundColor: 'blue'
+	backgroundColor: Alloy.Globals.COLORS.facebookBlue
+	// backgroundColor: 'blue'
 }
 
 
@@ -128,6 +128,6 @@
 	scrollable: false
 }
 "#foodRow": {
-	title: L('ate_foods'),
+	title: L('ateFoods'),
 	hasChild: true
 }

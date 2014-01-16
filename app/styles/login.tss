@@ -1,32 +1,75 @@
-".container" : {
-	navBarHidden : true,
-	backgroundColor : 'white'
+"Button": {
+	bubbleParent: false
 }
-
+".container" : {
+	navBarHidden : false,
+	backgroundColor : 'white',
+	modal: true
+}
 ".wrap" : {
 	layout : 'vertical',
 	height : Ti.UI.SIZE
 }
-
 "#closeBtn" : {
-	left : 10,
-	top : 10
-}
-
-"#fbLogin" : {
-	borderRadius: 4,
-	backgroundColor : '#2980b9',
-    backgroundImage: 'none',
-    selectedColor : 'gray',
-	color : 'white',
-	width : '80%',
+	left : 15,
+	top : 30,
+	// title: L('cancel'),
+	title: 'X',
+	color: Alloy.Globals.COLORS.darkGray,
 	font : {
-		fontSize: 20
+		fontSize : 29,
+		fontFamily : 'AppleSDGothicNeo-thin'
 	}
 }
-
+// "#fbLogin" : {
+	// borderRadius: 4,
+	// backgroundColor : '#2980b9',
+    // backgroundImage: 'none',
+    // selectedColor : 'gray',
+	// color : 'white',
+	// width : '80%',
+	// font : {
+		// fontSize: 20
+	// }
+// }
 ".or" : {
 	top : 20
 }
 
 
+"#loginView":{	// 로긴하지 않았을 때 프로필사진 대신 나올 뷰
+	// visible: false,
+	top: 60
+}
+"#logo": { 
+	backgroundImage: "images/logoWithTitle.png",
+	height: 70,
+	width: 70,
+	top: 50
+}
+"#loginGuidance": {
+	text: L("DoYouHaveSomeLickies?"),
+	top: 302,
+	color: Alloy.Globals.COLORS.darkGray,
+	font : {
+		fontSize : 12,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	}
+}
+"#facebookImage": {
+	top: 317,
+	left: 20,
+	height: 65,
+	width: 65,
+	backgroundImage: 'images/facebookLogo.png'
+}
+"#fbLogin": {
+	top: 317,
+	left: 86,
+	height: 65,
+	width: 215,
+	title: L("signInWithFacebook"),
+	color: 'white',
+	// backgroundColor: Alloy.Globals.COLORS.facebookBlue
+	backgroundColor: '#4063A7'
+}
