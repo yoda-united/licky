@@ -41,7 +41,8 @@ exports.definition = {
 					};
 				}
 				
-				var isMyPhoto = this.get('user').id == AG.loggedInUser.id; 
+				Ti.API.info(AG.loggedInUser.toJSON());
+				var isMyPhoto = this.get('user').id == AG.loggedInUser.get('id'); 
 				
 				return({
 					//template : 'itemTemplate',
