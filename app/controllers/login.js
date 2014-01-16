@@ -152,6 +152,8 @@ exports.logout = function(callback){
 			AG.loggedInUser.clear();
 			AG.loggedInUser.save();
 			AG.facebook.logout();
+			alert("로그아웃 했어영.. 안녕.. 또 올꺼지..?");
+			callback && callback();
 		} else {
 			alert("로그 아웃이 실패 했는데..\n다시 시도 해보실래요?;;");
 		}

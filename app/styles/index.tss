@@ -1,7 +1,7 @@
 ".container": {
 	backgroundColor:"white",
 	// activeTabIconTint : "red",
-	tintColor: Alloy.Globals.COLORS.orange, // "#FD9426",
+	tintColor: Alloy.Globals.COLORS.red, // "#FD9426",
 	// tabsTintColor : "#FD9426",
 	// shadowImage : "images/defaultImageView.png",
 	barColor: Alloy.Globals.COLORS.white,

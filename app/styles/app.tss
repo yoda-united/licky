@@ -100,7 +100,7 @@
 "#cameraBtn[platform=ios]" : {
 	// borderWidth:1,
 	// borderColor:"black",
-	width: 57,
+	width: 67,
 	height: 85,
 	backgroundImage: "images/camera.png"
 	// title : L('takePhoto')
