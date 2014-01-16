@@ -14,6 +14,9 @@ if (user) {
 	}
 }
 
+var isMe = user.get('id') == AG.loggedInUser.get('id');
+$.profile.title = isMe?L('me'):user.get('first_name');
+
 $.getView().addEventListener('focus', function(e) {
 	$.setProperties();
 });

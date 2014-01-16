@@ -1,9 +1,21 @@
 "Window":{
-	backgroundColor : 'white'
+	backgroundColor : 'white',
+	titleAttributes:{
+		// color:'#dfff',
+		// color: Alloy.Globals.COLORS.orange,
+		color: Alloy.Globals.COLORS.red,
+		// color:'black',
+		// font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
+		font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23},
+		left : 0,
+		right : 0
+	}
 }
 "Window[platform=ios]": {
 	// statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT
-	statusBarStyle: Ti.UI.iPhone.StatusBar.GRAY
+	statusBarStyle: Ti.UI.iPhone.StatusBar.GRAY,
+	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
+	autoAdjustScrollViewInsets : true
 }
 
 ".photoTitle" : {
