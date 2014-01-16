@@ -28,7 +28,6 @@ $.listViewC.on('itemclick',function(e){
 });
 
 
-
 AG.settings.on('change:cloudSessionId',function(model, changedValue, options){
 	/**
 	 * facebook 친구
@@ -68,6 +67,7 @@ $.fetchFirstCollection = function(){
 	};
 	photoCol.fetch(); //최초 fetch
 };
+
 
 function searchFacebookFriends(){
 	if(AG.isLogIn()){
