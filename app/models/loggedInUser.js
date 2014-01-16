@@ -17,26 +17,11 @@ exports.definition = {
 			defaults :{
 				bogoyoLoggedInUser : 'staticId'
 			},
-			updateFbUserData: function(){
-				//http call
-				
-				
-				// Create an HTTPClient.
-				var anXhr = Ti.Network.createHTTPClient();
-				anXhr.setTimeout(10000);
-				
-				// Define the callback.
-				anXhr.onload = function() {
-					// Handle the XML data.
-					var result = this.responseText;
-					//result parse  해서 this.save('fbUserData',parseResult);
-				};				
-				// Send the request data.
-				anXhr.open('GET','http://twitter.com/statuses/show/123.xml');
-				anXhr.send();
-				
-					
-			}
+			clearWithoutId : function(options) {
+		      this.clear();
+		      return this.set('bogoyoLoggedInUser','staticId');
+		    }
+			
 			// extended functions and properties go here
 		});
 
