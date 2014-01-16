@@ -21,7 +21,7 @@ exports.definition = {
 								this.get('user').external_accounts[0].external_id,
 								80,
 								80);
-				var isMine = this.get('user').id == AG.loggedInUser.id;
+				var isMine = this.get('user').id == AG.loggedInUser.get('id');
 				return({
 					//template : 'itemTemplate',
 					content :{
