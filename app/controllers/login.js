@@ -149,8 +149,9 @@ exports.logout = function(callback){
 		if (e.success) {
 			// AG.settings.unset('cloudSessionId',{silent:false});
 			AG.settings.save('cloudSessionId',null);
-			AG.loggedInUser.clear();
+			AG.loggedInUser.clearWithoutId();
 			AG.loggedInUser.save();
+			Ti.API.info(AG.loggedInUser.toJSON());
 			AG.facebook.logout();
 		} else {
 			alert("로그 아웃이 실패 했는데..\n다시 시도 해보실래요?;;");
