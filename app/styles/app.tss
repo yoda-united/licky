@@ -6,7 +6,7 @@
 		color: Alloy.Globals.COLORS.red,
 		// color:'black',
 		// font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
-		font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23},
+		font: {fontFamily:'AppleSDGothicNeo', fontSize:17},
 		left : 0,
 		right : 0
 	}
