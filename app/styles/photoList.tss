@@ -1,15 +1,5 @@
 ".container" : {
 	title: L('timeLine'),
-	titleAttributes:{
-		// color:'#dfff',
-		// color: Alloy.Globals.COLORS.orange,
-		color: Alloy.Globals.COLORS.red,
-		// color:'black',
-		// font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
-		font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
-	},
-	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
-	autoAdjustScrollViewInsets : true
 }
 
 "#loadingActivity" : {
@@ -21,25 +11,20 @@
 }
 
 "#listViewC" : {
-	refreshControlTintColor : Alloy.Globals.COLORS.orange
-	// refreshControlTintColor : Alloy.Globals.COLORS.red
+	// refreshControlTintColor : Alloy.Globals.COLORS.orange
+	refreshControlTintColor : Alloy.Globals.COLORS.red
 }
 
 "#listHeaderView" : {
-	top:43,
-	// backgroundColor : Alloy.Globals.COLORS.lightGray,
-	backgroundColor : "transparent",
-	// backgroundColor : "white",
-	height : 45
+	backgroundColor :'white',
+	height : 50
 }
 
 "#tBar" : {
-	// backgroundColor : "transparent",
-	// top: -4,
-	left: 10,
+	// backgroundColor : Alloy.Globals.COLORS.orange,
+	backgroundColor : Alloy.Globals.COLORS.red,
 	index : 0,
-	width : 125,
-	height: 30
+	width : 160
 }
 
 ".allLabel" : {

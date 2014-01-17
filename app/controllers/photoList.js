@@ -21,16 +21,22 @@ $.listViewC.setTemplateControls([
 	'photoItemTemplate'
 ]);
 
-$.listViewC.on('itemclick',function(e){
-	if(e.model){
-		AG.utils.openController(AG.mainTabGroup.activeTab,
-			'photoDetail',
-			{
+
+$.listViewC.on('itemclick', function(e) {
+	if (e.model) {
+		if (e.bindId == "profileImage") {
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
+				//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
+				userModel : Alloy.createModel('user',e.model.get('user'))
+			});
+		} else {
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'photoDetail', {
 				photoModel : e.model //clicked Model
-			}
-		);
+			});
+		}
 	}
-});
+}); 
+
 
 
 AG.settings.on('change:cloudSessionId',function(model, changedValue, options){

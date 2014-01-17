@@ -47,8 +47,8 @@ AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 
 
-AG.moment = require('alloy/moment');
-require('momentExtend');
+// AG.moment = require('alloy/moment');
+AG.moment = require('momentExtend');
 moment.lang(AG.currentLanguage);
 
 AG.cameraInfo = {

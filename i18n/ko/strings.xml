@@ -8,5 +8,6 @@
 	<string name="me">나</string>
 	<string name="all">전체</string>
 	<string name="friendsOnly">친구 것만</string>
-	
+	<string name="myLicks">내 Lick 사진</string>
+	<string name="someoneLicks">%s의 Lick 사진</string>
 </resources>
