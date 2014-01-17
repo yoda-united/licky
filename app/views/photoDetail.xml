@@ -13,9 +13,14 @@
 					</ItemTemplate>
 				</Templates>
 				<ListSection id="contentSection"></ListSection>
+				<ListSection id="controlPanelSection">
+				</ListSection>
 				<ListSection id="mapSection"></ListSection>
 				<ListSection id="commentSection"></ListSection>
 			</ListView>
+			
+			<Button id="reportButton" backgroundColor="white" borderColor="red" borderWidth="2">report</Button>
+			
 			<View class="commentFormWrap">
 				<TextArea id="commentField"></TextArea>
 				<Button id="sendBtn"></Button>

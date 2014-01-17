@@ -92,6 +92,25 @@ function fetchComments(){
 }
 fetchComments();
 
+$.reportButton.addEventListener('click', function(e){
+	alert(photoModel.id);
+	
+	var reportModel = Alloy.createModel('report');
+	reportModel.save({
+		class_name : "reports",
+		fields : {
+			"target_photo_id": photoModel.id
+		}
+	},{
+		success: function(){
+			alert('s');
+		},
+		error: function(){
+			alert('e');
+		}
+	});
+	
+});
 
 $.commentField.addEventListener('focus', function(e) {
 	if(OS_IOS){
