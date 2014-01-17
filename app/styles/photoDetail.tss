@@ -9,6 +9,9 @@
 	willScrollOnStatusTap : true
 }
 
+"#reportButton": {
+	title: "..."
+}
 
 
 ".commentTemplate" : {

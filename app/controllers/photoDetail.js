@@ -92,25 +92,63 @@ function fetchComments(){
 }
 fetchComments();
 
+
+/**
+ * 신고 기능 
+ */
+// var reportModel = Alloy.createModel('report');
+var reportCol = Alloy.createCollection('report');
+$.reportDialog.addEventListener('click', function(e) {
+	if (e.index === 0) {
+		Alloy.createModel('report').save({
+				class_name : "reports",
+				fields : {
+					"target_photo_id": photoModel.get('id')
+				}
+			},{
+				success: function(e){
+					alert(L("successReportedInappropriate"));
+				},
+				error: function(e){
+					alert(L("failToReport"));
+				}		
+		});	
+	}
+});
+$.unReportDialog.addEventListener('click', function(e) {
+	if (e.index === 0) {
+		reportCol.at(0).destroy({
+			success: function(e){
+				alert("successUnReport");
+			},
+			error: function(e){
+				alert("failUnReport");
+			}
+		});
+	}
+});
 $.reportButton.addEventListener('click', function(e){
-	alert(photoModel.id);
-	
-	var reportModel = Alloy.createModel('report');
-	reportModel.save({
-		class_name : "reports",
-		fields : {
-			"target_photo_id": photoModel.id
-		}
-	},{
-		success: function(){
-			alert('s');
+	reportCol.fetch({
+		data:{
+			class_name: "reports",
+			response_json_depth: 1,
+			where: {
+				user_id: AG.loggedInUser.get('id'),
+				fields: {target_photo_id: photoModel.get('id')}
+			},
+			limit: 1
 		},
-		error: function(){
-			alert('e');
+		success: function(e){
+			(reportCol.length > 0)? $.unReportDialog.show() : $.reportDialog.show();
+		},
+		error: function(e){
+			alert("networkFailure");
 		}
 	});
-	
 });
+
+
+
 
 $.commentField.addEventListener('focus', function(e) {
 	if(OS_IOS){

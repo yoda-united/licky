@@ -142,6 +142,10 @@ function getObjects(_model, _opts) {
                 _opts.success && _opts.success(retArray), _model.trigger("fetch");
                 return;
             }
+            // 신고 기능에 필요해서 추가. 성공했으나 결과가 없는 상황에서 빈 배열을 넘김 
+            else if(e[object_name].length === 0){
+            	_opts.success && _opts.success([]);
+            }
         } else {
             Ti.API.error(e);
             _opts.error && _opts.error(e.error && e.message || e);
