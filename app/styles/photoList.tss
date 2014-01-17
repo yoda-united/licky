@@ -1,12 +1,9 @@
 ".container" : {
 	title: L('timeLine'),
 	titleAttributes:{
-		// color:'#dfff',
-		// color: Alloy.Globals.COLORS.orange,
 		color: Alloy.Globals.COLORS.red,
-		// color:'black',
+		font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize: 17}
 		// font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
-		font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
 	},
 	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
 	autoAdjustScrollViewInsets : true

@@ -1,6 +1,6 @@
 
 ".container" : {
- 
+	backgroundColor: Alloy.Globals.COLORS.whiteGray
 }
 
 "#loginBtn" : {
@@ -33,7 +33,7 @@
 	width: 320, //'100%',
 	left: 0,
 	top: 0,
-	backgroundColor: Alloy.Globals.COLORS.lightGray
+	backgroundColor: Alloy.Globals.COLORS.lightWarmGray
 }
 "#profileImage": {
 	preventDefaultImage : false,
