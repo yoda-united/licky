@@ -107,7 +107,7 @@ $.reportDialog.addEventListener('click', function(e) {
 				}
 			},{
 				success: function(e){
-					alert(L("reportedInappropriate"));
+					alert(L("successReportedInappropriate"));
 				},
 				error: function(e){
 					alert(L("failToReport"));
