@@ -1,5 +1,9 @@
 <Alloy>
 	<Window class="container">
+		<RightNavButton platform="ios">
+			<Button id="reportButton" />
+		</RightNavButton>
+		
 		<View id="mainWrap">
 			<ListView id="listView">
 				<Templates>
@@ -19,13 +23,27 @@
 				<ListSection id="commentSection"></ListSection>
 			</ListView>
 			
-			<Button id="reportButton" backgroundColor="white" borderColor="red" borderWidth="2">report</Button>
 			
 			<View class="commentFormWrap">
 				<TextArea id="commentField"></TextArea>
 				<Button id="sendBtn"></Button>
 			</View>
 		</View>
-		
+
+        <OptionDialog id="reportDialog" title="report inappropriate" destructive="0">
+            <!-- The Options tag sets the options property. -->
+            <Options> 
+                <Option>report</Option>
+                <Option>cancel</Option>
+            </Options>
+        </OptionDialog>
+        <OptionDialog id="unReportDialog" title="aleady reported" >
+            <!-- The Options tag sets the options property. -->
+            <Options> 
+                <Option>unReport</Option>
+                <Option>cancel</Option>
+            </Options>
+        </OptionDialog>
+
 	</Window>
 </Alloy>
