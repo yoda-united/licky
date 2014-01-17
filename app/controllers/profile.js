@@ -1,21 +1,22 @@
-var args = arguments[0] || {}, user = args.user;
+var args = arguments[0] || {}, userModel = args.userModel;
 
-if (user) {
+if (userModel) {
 	// 다른 사람 프로필
 	Ti.API.info("[profile.js] another user");
-} else {
-	// "Me" 탭  
+} else if(AG.isLogIn()){
 	Ti.API.info("[profile.js] loggedInUser");
-	user = AG.loggedInUser;
-	
-	// 로그인 하지 않았을 때 
-	if (!AG.isLogIn()) {
-		// alert("[profile.js] need login!");
-	}
+	userModel = AG.loggedInUser;
+} else{
+	//에러 방지 차원에서 빈모델 생성
+	userModel = Alloy.createModel('user');
 }
 
-var isMe = user.get('id') == AG.loggedInUser.get('id');
-$.profile.title = isMe?L('me'):user.get('first_name');
+
+// title & label 변경
+var isMe = userModel.get('id') == AG.loggedInUser.get('id');
+$.profile.title = isMe?L('me'):userModel.get('first_name');
+$.foodRow.title = isMe?L('myLicks'):String.format(L('someoneLicks'),userModel.get('first_name'));
+
 
 $.getView().addEventListener('focus', function(e) {
 	$.setProperties();
@@ -36,7 +37,7 @@ $.mainContent.addEventListener('scroll', function(e){
 
 $.foodRow.addEventListener('click', function(e) {
 	AG.utils.openController(AG.mainTabGroup.activeTab, "someonePhotoList", {
-		userModel : user
+		userModel : userModel
 		// photoModel : photoCol.get(e.itemId) //clicked Model
 	});
 });
@@ -65,14 +66,13 @@ AG.loggedInUser.on('change', function(model) {
 // $.loginBtn.addEventListener('click', function(e) {
 	// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
 // });
-function loginChangeHandler() {
-	if(false){
-		// 다른 사용자의 프로필일 경우 
-		return;
+function loginChangeHandler(changedValue) {
+	if(changedValue && !userModel.get('id')){
+		userModel = AG.loggedInUser;
 	}
 	
 	// 최초에 이미 로그인 되어 있을 경우에 대한 처리
-	if (AG.isLogIn()) {
+	if (AG.isLogIn() || userModel.get('id')) {
 		// $.resetClass($.loginBtn, 'afterLogin');
 		$.menuTable.setVisible(true);
 		$.name.setVisible(true);
@@ -89,7 +89,6 @@ function loginChangeHandler() {
 		$.profileImage.setImage( $.profileImage.getDefaultImage() );
 	}
 }
-
 loginChangeHandler();
 
 function showCamera() {
@@ -101,12 +100,12 @@ function showCamera() {
 }
 
 exports.setProperties = function() {
-	if (!AG.isLogIn()) {
+	if (!userModel.get('id')) {
 		return;
 	}
 
-	var fb_id = user.get('external_accounts')[0].external_id;
-	$.name.text = user.get('first_name');
+	var fb_id = userModel.get('external_accounts')[0].external_id;
+	$.name.text = userModel.get('first_name');
 	$.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 140, 140);
 	AG.facebook.requestWithGraphPath(fb_id, {
 		fields : 'cover'
