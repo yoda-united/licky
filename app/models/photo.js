@@ -44,6 +44,11 @@ exports.definition = {
 				Ti.API.info(AG.loggedInUser.toJSON());
 				var isMyPhoto = this.get('user').id == AG.loggedInUser.get('id'); 
 				
+				var commentCountText = "";
+				if( this.get('reviews_count') ){
+					commentCountText = String.format(' %d', this.get('reviews_count') || 0);
+				}
+				
 				return({
 					//template : 'itemTemplate',
 					photo : {
@@ -66,7 +71,7 @@ exports.definition = {
 						image : profileUrl
 					},
 					commentCount : {
-						text : String.format('댓글 %d',this.get('reviews_count') || 0)
+						text : commentCountText
 					},
 					distance : distance,
 					properties :{

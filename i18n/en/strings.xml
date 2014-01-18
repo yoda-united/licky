@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<string name="timeLine">TIMELINE</string>
+	<string name="timeLine">Timeline</string>
 	<string name="timeLineTabTitle">Timeline</string>
 	<string name="allList">All</string>
 	<string name="friendList">Friend's</string>
