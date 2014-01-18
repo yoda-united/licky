@@ -27,16 +27,26 @@
 }
 
 ".commentFormWrap" : {
-	height : Ti.UI.SIZE,
+	// height : Ti.UI.SIZE,
+	// borderColor: Alloy.Globals.COLORS.red,
+	height: 42,
 	bottom: 0,
-	backgroundColor :'gray'
+	// backgroundColor :'#DCDEE2'
+	backgroundColor: Alloy.Globals.COLORS.whiteGray
 }
 
+"#textFieldLine": {
+	top: 0,
+	height: 1,
+	backgroundColor: Alloy.Globals.COLORS.red
+}
 "#commentField" : {
+	borderColor: Alloy.Globals.COLORS.gray,
+	borderRadius: 15,
 	left: 10,
-	right : 55,
-	top : 5,
-	backgroundColor :'white',
+	right : 58,
+	top : 6,
+	backgroundColor :Alloy.Globals.COLORS.lightWarmGray,
 	suppressReturn : false,
 	height : Ti.UI.SIZE,
 	font : {
@@ -50,9 +60,9 @@
 	right : 5,
 	width : 50,
 	height : 40,
-	bottom : 4,
+	// bottom : 4,
 	title : L('send','Send'),
-	color : 'white'
+	color : Alloy.Globals.COLORS.red
 }
 
 ".commentContent" : {
