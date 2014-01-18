@@ -43,13 +43,13 @@
 }
 "#logo": { 
 	backgroundImage: "images/logoWithTitle.png",
-	height: 70,
-	width: 70,
-	top: 50
+	width: 77,
+	height: 91,
+	top: 40
 }
 "#loginGuidance": {
 	text: L("DoYouHaveSomeLickies?"),
-	top: 305,
+	top: 315,
 	color: Alloy.Globals.COLORS.darkGray,
 	font : {
 		fontSize : 12,
@@ -57,14 +57,14 @@
 	}
 }
 "#facebookImage": {
-	top: 327,
+	top: 332,
 	left: 20,
 	height: 55,
 	width: 55,
 	backgroundImage: 'images/facebookLogo.png'
 }
 "#fbLogin": {
-	top: 327,
+	top: 332,
 	left: 76,
 	height: 55,
 	width: 225,
