@@ -49,7 +49,7 @@
 }
 "#loginGuidance": {
 	text: L("DoYouHaveSomeLickies?"),
-	top: 300,
+	top: 305,
 	color: Alloy.Globals.COLORS.darkGray,
 	font : {
 		fontSize : 12,
@@ -57,17 +57,17 @@
 	}
 }
 "#facebookImage": {
-	top: 317,
+	top: 327,
 	left: 20,
-	height: 65,
-	width: 65,
+	height: 55,
+	width: 55,
 	backgroundImage: 'images/facebookLogo.png'
 }
 "#fbLogin": {
-	top: 317,
-	left: 86,
-	height: 65,
-	width: 215,
+	top: 327,
+	left: 76,
+	height: 55,
+	width: 225,
 	title: L("signInWithFacebook"),
 	color: 'white',
 	font : {
