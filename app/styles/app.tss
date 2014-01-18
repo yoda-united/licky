@@ -27,8 +27,8 @@
 	backgroundColor : 'transparent',
 	color : 'white',
 	font : {
-		fontSize : 60,
-		fontFamily : 'AppleSDGothicNeo-UltraLight'
+		fontSize : 48,
+		fontFamily : 'AppleSDGothicNeo-Thin'
 	},
 	minimumFontSize : 4,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
@@ -42,16 +42,17 @@
 }
 
 ".userName" : {
-	color : 'white',
-	top : 5,
-	left: 60,
+	color : Alloy.Globals.COLORS.whiteGray,
+	top : 8,
+	left: 53,
 	font : {
+		fontFamily : 'AppleSDGothicNeo-SemiBold',
 		fontSize : 16
 	}
 }
 
 ".profileImage" : {
-	left : 10,
+	left : 8,
 	top : 8,
 	width : 40,
 	height : 40,
@@ -60,10 +61,11 @@
 }
 
 ".time" : {
-	color : 'white',
-	right : 10,
-	top : 7,
+	color : '#cedc',
+	right : 7,
+	top : 11,
 	font : {
+		fontFamily : 'AppleSDGothicNeo-Regular',
 		fontSize : 13
 	}
 }
@@ -83,20 +85,24 @@
 	width : 40,
 	textAlign : 'left',
 	font : {
+		fontFamily : 'FontAwesome',
 		fontSize : 12
 	},
-	color : 'white'
+	color : '#eedc'
 }
 
 ".distance" : {
-	left: 60,
+	left: 56,
 	top : 26,
 	// width : 60,
+	height: 15,	// 두줄 방지 차원에서 셋팅 
 	textAlign : 'left',
 	font : {
-		fontSize : 12
+		fontFamily : 'AppleSDGothicNeo-Regular',
+		fontSize : 13
 	},
-	color : 'white'
+	// color : "#dddc"
+	color : "#bfff"
 }
 
 "#cameraBtn[platform=android]" : {

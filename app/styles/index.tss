@@ -16,8 +16,8 @@
 	color: "#000"
 },
 "#allTab": {
-	activeIcon: "images/tabIcon_all_active.png",
-	icon: "images/tabIcon_all_inactive.png"
+	activeIcon: "images/tabIcon_time_active.png",
+	icon: "images/tabIcon_time_inactive.png"
 },
 "#friendTab": {
 	activeIcon: "images/tabIcon_friends_active.png",
