@@ -37,7 +37,9 @@
 ".photo": {
 	width : Alloy.Globals.cameraInfo.width,
 	height : 180,
-	preventDefaultImage : true,
+	defaultImage: "images/defaultFoodPhoto.png",
+	image: "images/defaultFoodPhoto.png",
+	// preventDefaultImage : true,
 	bottom : 0
 }
 

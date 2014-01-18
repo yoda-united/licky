@@ -23,7 +23,7 @@ exports = {
 		magenta : [ { color: '#ef4db6', offset: 0.0}, { color: '#c643fc', offset: 1.0 } ],
 		black : [ { color: '#4a4a4a', offset: 0.0}, { color: '#2b2b2b', offset: 1.0 } ],
 		silver : [ { color: '#dbddde', offset: 0.0}, { color: '#898c90', offset: 1.0 } ],
-		white : [ { color: '#000', offset: 0.0}, { color: '#FEFEFE', offset: 1.0 } ]
+		white : [ { color: '#FcFEFE', offset: 0.0}, { color: '#FEFEFE', offset: 1.0 } ]
 	},
 	
 	/*
