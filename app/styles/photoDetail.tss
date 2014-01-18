@@ -10,7 +10,7 @@
 }
 
 "#reportButton": {
-	title: "..."
+	title: "\u2026"
 }
 
 

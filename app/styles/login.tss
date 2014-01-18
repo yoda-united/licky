@@ -61,13 +61,15 @@
 	left: 20,
 	height: 55,
 	width: 55,
-	backgroundImage: 'images/facebookLogo.png'
+	backgroundImage: 'images/facebookLogo.png',
+	zIndex:10
 }
 "#fbLogin": {
+	borderRadius: 5,
 	top: 332,
-	left: 76,
+	left: 65,
 	height: 55,
-	width: 225,
+	width: 232,
 	title: L("signInWithFacebook"),
 	color: 'white',
 	font : {
