@@ -17,16 +17,23 @@
 
 "#listHeaderView" : {
 	backgroundColor :'transparent',
-	height : 45
+	// borderColor: Alloy.Globals.COLORS.red,
+	// borderWidth: 1,
+	// backgroundColor : Alloy.Globals.COLORS.midGray,
+	// backgroundGradient : {
+		// type: 'linear',
+		// colors: Alloy.Globals.COLORS.gradient.red
+	// },
+	height : 38
 }
 
 "#tBar" : {
+	bottom: -3,
 	left: 10,
-	// backgroundColor : Alloy.Globals.COLORS.orange,
 	backgroundColor : Alloy.Globals.COLORS.red,
 	index : 0,
 	width : 125,
-	height: 30
+	height: 32
 }
 
 ".allLabel" : {

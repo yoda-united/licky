@@ -13,7 +13,6 @@
 		right : 0
 	},
 	backgroundColor: Alloy.Globals.COLORS.lightWarmGray
-	// backgroundColor: "#F5F3EB"
 }
 
 "#loadingActivity" : {
