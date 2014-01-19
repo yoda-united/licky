@@ -16,7 +16,7 @@ var sectionId = 1;
 		setCollection : function(newCol){
 			//기존에 걸려있던 이벤트 삭제
 			if(_collection){
-				_collection.off('reset change',handlers.reset);
+				_collection.off('reset change',handlers.collection.reset);
 				_collection.off('add',handlers.collection.add);
 			}
 			
