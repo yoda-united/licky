@@ -133,7 +133,9 @@ function getObjects(_model, _opts) {
     Ti.API.info(" querying for all objects of type " + _model.config.settings.object_name + " " + (_opts.data && _opts.data.q));
     object_method.query((_opts.data || {}), function(e) {
         if (e.success) {
-            if (e[object_name].length !== 0) {
+            // if (e[object_name].length !== 0) {
+            // 결과가 없어도 success() 호출 하도록 변경 
+            if (e[object_name].length >= 0) {
                 var retArray = [];
                 for (var i in e[object_name]) {
                     retArray.push(e[object_name][i]);
@@ -141,10 +143,6 @@ function getObjects(_model, _opts) {
                 _model.meta = e.meta;
                 _opts.success && _opts.success(retArray), _model.trigger("fetch");
                 return;
-            }
-            // 신고 기능에 필요해서 추가. 성공했으나 결과가 없는 상황에서 빈 배열을 넘김 
-            else if(e[object_name].length === 0){
-            	_opts.success && _opts.success([]);
             }
         } else {
             Ti.API.error(e);
@@ -162,7 +160,9 @@ function searchObjects(_model, _opts) {
     Ti.API.info(" searching for all objects of type " + _model.config.settings.object_name + " " + _opts.data.q);
     object_method.search(_opts.data, function(e) {
         if (e.success) {
-            if (e[object_name].length !== 0) {
+            // if (e[object_name].length !== 0) {
+            // 결과가 없어도 success() 호출 하도록 변경  
+            if (e[object_name].length >= 0) {
                 var retArray = [];
                 for (var i in e[object_name]) {
                     retArray.push(e[object_name][i]);

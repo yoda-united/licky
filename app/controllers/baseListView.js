@@ -76,13 +76,17 @@ var handlers = (function(){
 				}
 			},
 			'destroy': function(model,col,options){
-				if(model.get('indexInSection')){
-					$.section.deleteItemsAt(model.get('indexInSection'), 1);
+				var len = $.section.getItems().length;
+				for(var i=0; i < len; i++){
+					if($.section.getItemAt(i).properties.itemId === model.get('id')){
+						$.section.deleteItemsAt(i, 1);
+						return;
+					}
 				}
-				// $.section.getItemsAt
-				// _.find($.section.getItems(), function(listDataItem){
-					// return listDataItem.properties.itemId === true;
+				// var destItem = _.find($.section.getItems(), function(listDataItem){
+					// return listDataItem.properties.itemId === model.get('id');
 				// });
+				// alert(JSON.stringify(destItem));
 			}
 		},
 		
