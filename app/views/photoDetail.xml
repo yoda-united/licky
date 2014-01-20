@@ -31,14 +31,14 @@
 			</View>
 		</View>
 
-        <OptionDialog id="reportDialog" title="report inappropriate" destructive="0">
+        <OptionDialog id="reportDialog" title="report inappropriate" destructive="0" cancel="1">
             <!-- The Options tag sets the options property. -->
             <Options> 
                 <Option>report</Option>
                 <Option>cancel</Option>
             </Options>
         </OptionDialog>
-        <OptionDialog id="unReportDialog" title="aleady reported" >
+        <OptionDialog id="unReportDialog" title="aleady reported" cancel="1">
             <!-- The Options tag sets the options property. -->
             <Options> 
                 <Option>unReport</Option>
