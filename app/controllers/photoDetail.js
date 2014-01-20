@@ -1,7 +1,6 @@
 var args = arguments[0] || {},
 	photoModel = args.photoModel;
 
-
 /**
  * Google Map
  */
@@ -94,59 +93,76 @@ fetchComments();
 
 
 /**
- * 신고 기능 
+ * 신고 or 삭제 기능 (자신의 사진이면 삭제, 타인의 사진이면 신고 기능)
  */
-// var reportModel = Alloy.createModel('report');
-var reportCol = Alloy.createCollection('report');
-$.reportDialog.addEventListener('click', function(e) {
-	if (e.index === 0) {
-		Alloy.createModel('report').save({
-				class_name : "reports",
-				fields : {
-					"target_photo_id": photoModel.get('id')
-				}
-			},{
-				success: function(e){
-					alert(L("successReportedInappropriate"));
+// alert(JSON.stringify(photoModel.get('user').id)+ "\n "+ AG.loggedInUser.get('id'));
+if(photoModel.get('user').id === AG.loggedInUser.get('id')){
+	$.deleteDialog.addEventListener('click', function(e) {
+		if (e.index === 0) {
+			photoModel.destroy({
+				success:function(e){
+					$.photoDetail.close();
 				},
-				error: function(e){
-					alert(L("failToReport"));
-				}		
-		});	
-	}
-});
-$.unReportDialog.addEventListener('click', function(e) {
-	if (e.index === 0) {
-		reportCol.at(0).destroy({
-			success: function(e){
-				alert("successUnReport");
-			},
-			error: function(e){
-				alert("failUnReport");
-			}
-		});
-	}
-});
-$.reportButton.addEventListener('click', function(e){
-	reportCol.fetch({
-		data:{
-			class_name: "reports",
-			response_json_depth: 1,
-			where: {
-				user_id: AG.loggedInUser.get('id'),
-				fields: {target_photo_id: photoModel.get('id')}
-			},
-			limit: 1
-		},
-		success: function(e){
-			(reportCol.length > 0)? $.unReportDialog.show() : $.reportDialog.show();
-		},
-		error: function(e){
-			alert("networkFailure");
+				error:function(e){
+					alert(L("failToDelete"));
+				}
+			});
 		}
 	});
-});
-
+	$.moreButton.addEventListener('click', function(e){
+		$.deleteDialog.show();
+	});
+}else{
+	var reportCol = Alloy.createCollection('report');
+	$.reportDialog.addEventListener('click', function(e) {
+		if (e.index === 0) {
+			Alloy.createModel('report').save({
+					class_name : "reports",
+					fields : {
+						"target_photo_id": photoModel.get('id')
+					}
+				},{
+					success: function(e){
+						alert(L("successReportedInappropriate"));
+					},
+					error: function(e){
+						alert(L("failToReport"));
+					}		
+			});	
+		}
+	});
+	$.unReportDialog.addEventListener('click', function(e) {
+		if (e.index === 0) {
+			reportCol.at(0).destroy({
+				success: function(e){
+					alert("successUnReport");
+				},
+				error: function(e){
+					alert("failUnReport");
+				}
+			});
+		}
+	});
+	$.moreButton.addEventListener('click', function(e){
+		reportCol.fetch({
+			data:{
+				class_name: "reports",
+				response_json_depth: 1,
+				where: {
+					user_id: AG.loggedInUser.get('id'),
+					fields: {target_photo_id: photoModel.get('id')}
+				},
+				limit: 1
+			},
+			success: function(e){
+				(reportCol.length > 0)? $.unReportDialog.show() : $.reportDialog.show();
+			},
+			error: function(e){
+				alert("networkFailure");
+			}
+		});
+	});
+}
 
 
 

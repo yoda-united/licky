@@ -9,7 +9,7 @@
 	willScrollOnStatusTap : true
 }
 
-"#reportButton": {
+"#moreButton": {
 	title: "\u2026"
 }
 

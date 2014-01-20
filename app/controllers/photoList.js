@@ -25,6 +25,7 @@ $.listViewC.on('itemclick', function(e) {
 				userModel : Alloy.createModel('user',e.model.get('user'))
 			});
 		} else {
+			e.model.set('indexInSection', e.itemIndex);	// dahinir: 포토 디테일에서 삭제 될때를 위해 셋팅 
 			AG.utils.openController(AG.mainTabGroup.activeTab, 'photoDetail', {
 				photoModel : e.model //clicked Model
 			});
