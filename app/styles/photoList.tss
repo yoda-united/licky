@@ -27,16 +27,16 @@
 			// { color: '#EFEFEE', offset: 0.02}, 
 			// { color: '#fff', offset: 1.0 } ]
 	// },
-	height : 38
+	height : 45
 }
 
 "#tBar" : {
-	bottom: -3,
+	// bottom: -3,
 	left: 10,
 	backgroundColor : Alloy.Globals.COLORS.red,
 	index : 0,
 	width : 125,
-	height: 32
+	height: 30
 }
 
 ".allLabel" : {

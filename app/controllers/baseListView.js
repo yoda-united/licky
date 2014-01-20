@@ -18,6 +18,7 @@ var sectionId = 1;
 			if(_collection){
 				_collection.off('reset change',handlers.collection.reset);
 				_collection.off('add',handlers.collection.add);
+				_collection.off('destroy',handlers.collection.destroy);
 			}
 			
 			// SET!
@@ -26,6 +27,7 @@ var sectionId = 1;
 			//각종 event 걸기 
 			newCol.on('reset change',handlers.collection.reset);
 			newCol.on('add',handlers.collection.add);
+			newCol.on('destroy',handlers.collection.destroy);
 			
 			$.section.setItems([]);
 		},
@@ -45,7 +47,6 @@ var sectionId = 1;
 		}
 	});
 })();
-
 
 var handlers = (function(){
 	var willAddItems = [];
@@ -73,6 +74,15 @@ var handlers = (function(){
 						
 					});
 				}
+			},
+			'destroy': function(model,col,options){
+				if(model.get('indexInSection')){
+					$.section.deleteItemsAt(model.get('indexInSection'), 1);
+				}
+				// $.section.getItemsAt
+				// _.find($.section.getItems(), function(listDataItem){
+					// return listDataItem.properties.itemId === true;
+				// });
 			}
 		},
 		

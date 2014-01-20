@@ -1,7 +1,7 @@
 <Alloy>
 	<Window class="container">
 		<RightNavButton platform="ios">
-			<Button id="reportButton" />
+			<Button id="moreButton" />
 		</RightNavButton>
 		
 		<View id="mainWrap">
@@ -31,14 +31,21 @@
 			</View>
 		</View>
 
-        <OptionDialog id="reportDialog" title="report inappropriate" destructive="0">
+        <OptionDialog id="deleteDialog" title="delete" destructive="0" cancel="1">
+            <!-- The Options tag sets the options property. -->
+            <Options> 
+                <Option>delete</Option>
+                <Option>cancel</Option>
+            </Options>
+        </OptionDialog>
+        <OptionDialog id="reportDialog" title="report inappropriate" destructive="0" cancel="1">
             <!-- The Options tag sets the options property. -->
             <Options> 
                 <Option>report</Option>
                 <Option>cancel</Option>
             </Options>
         </OptionDialog>
-        <OptionDialog id="unReportDialog" title="aleady reported" >
+        <OptionDialog id="unReportDialog" title="aleady reported" cancel="1">
             <!-- The Options tag sets the options property. -->
             <Options> 
                 <Option>unReport</Option>
