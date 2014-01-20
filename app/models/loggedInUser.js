@@ -20,8 +20,13 @@ exports.definition = {
 			clearWithoutId : function(options) {
 		      this.clear();
 		      return this.set('bogoyoLoggedInUser','staticId');
-		    }
-			
+		    },
+			getProfileImageUrl : function(){
+				return String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d",
+							this.get('external_accounts')[0].external_id,
+							80,
+							80);
+			}
 			// extended functions and properties go here
 		});
 

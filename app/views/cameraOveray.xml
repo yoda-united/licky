@@ -6,12 +6,19 @@
 		</View>
 		<View class="fieldWrap">
 			<View class="filedBgView"></View>
-			<View class="filedBorder">
-			</View>
+			<View class="filedBorder"></View>
 			<TextField id="contentFiled" class="photoTitle"></TextField>
+			<Label class="userName" id="userName"></Label>
+			<!-- <Label class="commentCount" bindId="commentCount"></Label> -->
+			<MaskedImage id="profileImage" class="profileImage" bindId="profileImage"></MaskedImage>
+			<Label class="distance" id="distance"></Label>
+			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
 		</View>
-		<View class="infoWrap">
+		<View id="mapWrap">
+			
+		</View>
+		<!-- <View class="infoWrap">
 			<Label id="geoLabel" >위치 확인 중..</Label>
-		</View>
+		</View> -->
 	</View>
 </Alloy>

@@ -22,6 +22,14 @@ $.contentFiled.addEventListener('change', function(e) {
 });
 
 
+// 현재 사용자 정보를 보여줌
+$.hiddenProfile.image = AG.loggedInUser.getProfileImageUrl();
+$.userName.text = AG.loggedInUser.get('first_name');
+
+
+
+
+
 function getCurrentPosition(){
 	// reverse geo
 	Titanium.Geolocation.getCurrentPosition(function(e)
@@ -41,10 +49,29 @@ function getCurrentPosition(){
 		currentPosition.latitude = latitude;
 		
 		
+		var GoogleMapsClass = require('GoogleMaps');
+		var GoogleMaps = new GoogleMapsClass({
+			iOSKey: "***REMOVED***"
+		});
+		var mapView = GoogleMaps.initMap({
+			latitude:latitude,
+			longitude:longitude,
+			zoom: 13, //15, 16이 적당해 보임
+			width : Ti.UI.FILL,
+			height : 108,
+		});
+		$.mapWrap.add(mapView);
+		
+		//alert(currentPosition);
+		//mapView.setLocation(currentPosition);
 		
 		AG.utils.googleReverseGeo(_.extend({
 			success: function(add){
 				currentAddress.ko = add;
+				
+				if( AG.currentLanguage == 'ko'){
+					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
+				}
 			},
 			error: function(){
 				
@@ -52,41 +79,21 @@ function getCurrentPosition(){
 			locale : 'ko'
 		},currentPosition));
 		
+		
+		
 		AG.utils.googleReverseGeo(_.extend({
 			success: function(add){
 				currentAddress.en = add;
+				
+				if( AG.currentLanguage == 'en'){
+					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
+				}
 			},
 			error: function(){
 				
 			},
 			locale: 'en-US'
 		},currentPosition));
-		
-		
-		// Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt)
-		// {
-			// if (evt.success) {
-				// var places = evt.places;
-				// Ti.API.info(evt);
-				// if (places && places.length) {
-					// currentAddress = places[0];
-// 					
-					// //Ti.API.info(AG.utils.getShortAddress(currentAddress));
-					// $.geoLabel.text = AG.utils.getShortAddress(currentAddress);
-				// } else {
-					// $.geoLabel.text = "No address found";
-					// currentAddress = [];
-				// }
-				// Ti.API.debug("reverse geolocation result = "+JSON.stringify(evt));
-			// }
-			// else {
-				// Ti.UI.createAlertDialog({
-					// title:'Reverse geo error',
-					// message:evt.error
-				// }).show();
-				// Ti.API.info("Code translation: "+translateErrorCode(e.code));
-			// }
-		// });	
 	});	
 }
 
@@ -176,10 +183,18 @@ exports.showCamera = function(){
 		saveToPhotoGallery : false,
 		allowEditing : false,
 		showControls : false,
-		animated : false,
+		animated : true,
 		autohide : false,
 		transform : Ti.UI.create2DMatrix().scale(1),
 		mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO]
 	});
 	getCurrentPosition();
 };
+
+function hiddenProfileOnLoad(){
+	// _.find(this.parent.children,function(proxy){
+		// return proxy.bindId === 'profileImage';
+	// }).image = this.image;
+	$.profileImage.image = this.image;
+	//TODO : proxy찾는 하드코딩된 부분을 제거
+}

@@ -59,7 +59,8 @@
 	width : 40,
 	height : 40,
 	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
-	mask : 'images/profileMask.png' 
+	mask : 'images/profileMask.png',
+	image : 'images/defaultProfilePicture.png'
 }
 
 ".time" : {

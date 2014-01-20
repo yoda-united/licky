@@ -52,7 +52,7 @@ AG.moment = require('momentExtend');
 moment.lang(AG.currentLanguage);
 
 AG.cameraInfo = {
-	top : 100,
+	top : 64,
 	width : 320,
 	height : 180
 };
