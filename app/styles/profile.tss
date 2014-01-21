@@ -57,10 +57,10 @@
 	image: "images/wireForButton.png"
 }
 "#profileSettingBtn": {
-	height: 28,
-	width: 28,
-	top: 84,
-	left: 220,
+	height: 50,
+	width: 50,
+	top: 78,
+	left: 214,
 	zIndex: 10,
 	backgroundImage: "images/profileSettingButton.png"
 	// borderColor: "#fff",
