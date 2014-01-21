@@ -22,18 +22,15 @@ $.getView().addEventListener('focus', function(e) {
 	$.setProperties();
 });
 
-$.mainContent.addEventListener('scroll', function(e){
-	// Ti.API.info("y:"+e.y);
-	
+$.mainContent.addEventListener('scroll', _.throttle(function(e){
 	// $.profileBannerImage.setHeight( 212.5 - e.y);
 	$.profileBannerImage.animate({
 		duration: 5,
 		height: 212.5 - e.y});
-	// $.controlBar.setTop(182.5 - e.y);
 	$.controlBar.animate({
 		duration: 5,
 		top: 182.5 - e.y});
-});
+}, 5));
 
 $.foodRow.addEventListener('click', function(e) {
 	AG.utils.openController(AG.mainTabGroup.activeTab, "someonePhotoList", {
