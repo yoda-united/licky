@@ -18,6 +18,10 @@
 	height : Ti.UI.SIZE
 }
 
+".commentTemplate[platform=ios]" : {
+	selectionStyle : Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE
+}
+
 ".userName" : {
 	color : 'black'
 }
@@ -27,9 +31,9 @@
 }
 
 ".commentFormWrap" : {
-	// height : Ti.UI.SIZE,
+	height : Ti.UI.SIZE,
 	// borderColor: Alloy.Globals.COLORS.red,
-	height: 42,
+	// height: 42,
 	bottom: 0,
 	// backgroundColor :'#DCDEE2'
 	backgroundColor: Alloy.Globals.COLORS.whiteGray
