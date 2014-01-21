@@ -24,6 +24,15 @@ var mapWrap = Ti.UI.createView({
 mapWrap.add(mapView);
 $.mapSection.footerView = mapWrap;
 
+$.listView.addEventListener('itemclick', function(e) {
+	if (e.bindId == "profileImage") {
+		AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
+			//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
+			userModel : Alloy.createModel('user', photoModel.get('user'))
+		});
+	}
+});
+
 function resetPhotoContent(){
 	var contentItem = photoModel.doDefaultTransform();
 	contentItem.template = 'photoItemTemplate';
