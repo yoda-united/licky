@@ -22,17 +22,17 @@ $.getView().addEventListener('focus', function(e) {
 	$.setProperties();
 });
 
-$.mainContent.addEventListener('scroll', function(e){
-	// Ti.API.info("y:"+e.y);
-	
-	// $.profileBannerImage.setHeight( 212.5 - e.y);
+var _throttledAnimation = _.throttle(function(e){
 	$.profileBannerImage.animate({
 		duration: 5,
 		height: 212.5 - e.y});
-	// $.controlBar.setTop(182.5 - e.y);
 	$.controlBar.animate({
 		duration: 5,
 		top: 182.5 - e.y});
+}, 5);
+$.mainContent.addEventListener('scroll', function(e){
+	// $.profileBannerImage.setHeight( 212.5 - e.y);
+	_throttledAnimation(e);
 });
 
 $.foodRow.addEventListener('click', function(e) {
