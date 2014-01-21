@@ -4,10 +4,14 @@ var currentPosition = {},
 var args = arguments[0],
 	photoCol = args.collection;
 
-$.sendBtn.addEventListener('click', function(e) {
+
+function send(e) {
 	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
 	Ti.Media.takePicture();
-});
+}
+$.sendBtn.addEventListener('click', send);
+$.contentField.addEventListener('return', send);
+
 
 $.closeBtn.addEventListener('click', function(e) {
 	if(OS_IOS){
@@ -18,7 +22,7 @@ $.closeBtn.addEventListener('click', function(e) {
 	}
 });
 
-$.contentFiled.addEventListener('change', function(e) {
+$.contentField.addEventListener('change', function(e) {
 });
 
 
@@ -97,9 +101,9 @@ function getCurrentPosition(){
 	});	
 }
 
-$.contentFiled.addEventListener('postlayout', function(e) {
-	$.contentFiled.removeEventListener('postlayout',arguments.callee);
-	$.contentFiled.focus();
+$.contentField.addEventListener('postlayout', function(e) {
+	$.contentField.removeEventListener('postlayout',arguments.callee);
+	$.contentField.focus();
 });
 
 
@@ -117,6 +121,9 @@ exports.showCamera = function(){
 	
 	Ti.Media.showCamera({
 		success : function(event) {
+			if(OS_IOS){
+				Ti.Media.hideCamera();
+			}
 			Ti.API.info(event.media.width);
 			Ti.API.info(event.media.height);
 			var height = parseInt(catureSize.width*event.media.height/event.media.width);
@@ -137,11 +144,11 @@ exports.showCamera = function(){
 				height : catureSize.height
 			});
 			Ti.API.info(croppedImage.mimeType);
-			//$.captureLabel.text = $.contentFiled.value.substr(0,5);
+			//$.captureLabel.text = $.contentField.value.substr(0,5);
 
 			var blob = croppedImage;
 			photoCol.create({
-				title : $.contentFiled.value,
+				title : $.contentField.value,
 				photo : blob,
 				user_id: AG.loggedInUser.get('id'),
 				"photo_sizes[medium_320]" : "320x180",
@@ -158,11 +165,6 @@ exports.showCamera = function(){
 					Ti.API.info(nextModel.attributes);
 				}
 			});
-			
-			
-			if(OS_IOS){
-				Ti.Media.hideCamera();
-			}
 		},
 		cancel : function() {
 		},

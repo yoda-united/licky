@@ -6,22 +6,25 @@
 
 "#closeBtn" : {
 	height : Ti.UI.FILL,
-	width : '50%',
-	title : L('close')
+	width :  Ti.UI.SIZE,
+	title : L('close'),
+	left : 10
 }
 
 "#sendBtn" : {
 	height : Ti.UI.FILL,
 	width : '50%',
-	title : 'Send'
+	title : 'Send',
+	visible : false
 }
 
-"#contentFiled" : {
+"#contentField" : {
 	maxLength : 22,
-	tintColor : 'red'
+	tintColor : 'red',
+	returnKeyType : Ti.UI.RETURNKEY_SEND	
 }
 
-"#contentFiled[platform=android]" : {
+"#contentField[platform=android]" : {
 	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }
@@ -29,7 +32,7 @@
 ".buttonWrap" : {
 	backgroundColor : 'white',
 	height : Alloy.Globals.cameraInfo.top,
-	layout : 'horizontal'
+	opacity : 0.9
 }
 
 ".fieldWrap" : {
@@ -58,5 +61,10 @@
 
 "#mapWrap" : {
 	backgroundColor : 'white',
-	height : 108
+	height : 108,
+	touchEnabled : false
+}
+
+"#behindKeyboard" : {
+	backgroundColor : 'white'
 }

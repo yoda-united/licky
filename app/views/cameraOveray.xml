@@ -7,7 +7,7 @@
 		<View class="fieldWrap">
 			<View class="filedBgView"></View>
 			<View class="filedBorder"></View>
-			<TextField id="contentFiled" class="photoTitle"></TextField>
+			<TextField id="contentField" class="photoTitle"></TextField>
 			<Label class="userName" id="userName"></Label>
 			<!-- <Label class="commentCount" bindId="commentCount"></Label> -->
 			<MaskedImage id="profileImage" class="profileImage" bindId="profileImage"></MaskedImage>
@@ -15,6 +15,9 @@
 			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
 		</View>
 		<View id="mapWrap">
+			
+		</View>
+		<View id="behindKeyboard">
 			
 		</View>
 		<!-- <View class="infoWrap">
