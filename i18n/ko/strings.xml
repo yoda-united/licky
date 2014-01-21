@@ -10,4 +10,5 @@
 	<string name="friendsOnly">친구 것만</string>
 	<string name="myLicks">내 Lick 사진</string>
 	<string name="someoneLicks">%s의 Lick 사진</string>
+	<string name="cancel">취소</string>
 </resources>

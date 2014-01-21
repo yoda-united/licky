@@ -41,7 +41,6 @@ exports.definition = {
 					};
 				}
 				
-				Ti.API.info(AG.loggedInUser.toJSON());
 				var isMyPhoto = this.get('user').id == AG.loggedInUser.get('id'); 
 				
 				var commentCountText = "";
