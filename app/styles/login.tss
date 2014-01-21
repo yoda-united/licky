@@ -48,7 +48,7 @@
 	top: 40
 }
 "#loginGuidance": {
-	text: L("DoYouHaveSomeLickies?"),
+	text: L("defaultLoginMessage"),
 	top: 315,
 	color: Alloy.Globals.COLORS.darkGray,
 	font : {
@@ -73,9 +73,10 @@
 	title: L("signInWithFacebook"),
 	color: 'white',
 	font : {
-		fontSize : 20,
+		fontSize : 17,
 		fontFamily : 'AppleSDGothicNeo-Light'
 	},
-	backgroundColor: Alloy.Globals.COLORS.facebookBlue
+	backgroundColor: Alloy.Globals.COLORS.facebookBlue,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 	// backgroundColor: '#4063A7'
 }

@@ -21,12 +21,7 @@
 		</ScrollView>
 
 
-        <OptionDialog id="settingDialog" title="need more settings...">
-            <!-- The Options tag sets the options property. -->
-            <Options> 
-                <Option>logout</Option>
-                <Option>cancel</Option>
-            </Options>
+        <OptionDialog id="settingDialog">
         </OptionDialog>
 
 		<!-- <Button id="loginBtn" class="beforeLogin afterLogin" zIndex="10" /> -->

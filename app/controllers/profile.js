@@ -39,6 +39,7 @@ $.foodRow.addEventListener('click', function(e) {
 	});
 });
 
+
 $.settingDialog.addEventListener('click', function(e) {
 	// alert(e);
 	if (e.index === 0) {

@@ -96,3 +96,9 @@
 	title: L('myLicks'),
 	hasChild: true
 }
+
+"#settingDialog" : {
+	title : L('setting'),
+	cancel : 1,
+	options : [L('logout'),L('cancel')]
+}

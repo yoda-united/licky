@@ -14,5 +14,11 @@
 	<string name="close">Close</string>
 	<string name="back">Back</string>
 	<string name="loading">Loading</string>
+	<string name="signInWithFacebook">Connect with Facebook</string>
+	<string name="logoutMessage">Sign out Success</string>
+	<string name="facebookConnecting">Connecting..</string>
+	<string name="defaultLoginMessage">Licking your chops. Licky!</string>
+	<string name="logout">Sign out</string>
+	<string name="setting">Settings</string>
 	
 </resources>

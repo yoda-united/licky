@@ -153,7 +153,7 @@ exports.logout = function(callback){
 			AG.loggedInUser.save();
 			Ti.API.info(AG.loggedInUser.toJSON());
 			AG.facebook.logout();
-			alert("로그아웃 했어영.. 안녕.. 또 올꺼지..?");
+			alert(L('logoutMessage'));
 			callback && callback();
 		} else {
 			alert("로그 아웃이 실패 했는데..\n다시 시도 해보실래요?;;");

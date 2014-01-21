@@ -14,6 +14,11 @@
 	<string name="close">닫기</string>
 	<string name="back">뒤로</string>
 	<string name="loading">불러오는 중</string>
-	
+	<string name="signInWithFacebook">Facebook으로 로그인하기</string>
+	<string name="logoutMessage">로그아웃 성공</string>
+	<string name="facebookConnecting">연결중..</string>
+	<string name="defaultLoginMessage">맛있을 땐 리키! 흐릅~</string>
+	<string name="logout">로그 아웃</string>
+	<string name="setting">환경설정</string>
 	
 </resources>
