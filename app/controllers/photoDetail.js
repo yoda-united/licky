@@ -227,6 +227,9 @@ $.listView.addEventListener('delete', function(e) {
 });
 
 $.sendBtn.addEventListener('click', function(e) {
+	if(!_.str.trim($.commentField.value)){
+		return;
+	}
 	//alert($.commentField.value);
 	$.sendBtn.enabled = false;
 	commentCol.create({

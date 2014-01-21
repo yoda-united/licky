@@ -16,6 +16,7 @@ newrelic.start("***REMOVED***");
 //alias
 var AG = Alloy.Globals;
 
+_.str = require('underscore.string');
 Titanium.UI.createMaskedImage;
 
 // colors
