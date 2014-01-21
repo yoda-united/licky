@@ -2,7 +2,7 @@ exports.baseController = 'photoList';
 $.getView().title=L('nearList');
 
 $.onFirstFocus = function(){
-	$.listViewC.listView.contentTopOffset = -14;
+	$.listViewC.listView.contentTopOffset = -19;
 	$.listViewC.listView.visible=true;
 	fetchByCurrentPosition();
 };
