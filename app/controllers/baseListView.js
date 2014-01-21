@@ -80,6 +80,7 @@ var handlers = (function(){
 				for(var i=0; i < len; i++){
 					if($.section.getItemAt(i).properties.itemId === model.get('id')){
 						$.section.deleteItemsAt(i, 1);
+						updateListMarker($.getCollection());
 						return;
 					}
 				}
@@ -124,7 +125,7 @@ var handlers = (function(){
 				var item = $.getCollection().get(e.itemId);
 				item.destroy({
 					success: function(){
-						
+						updateListMarker($.getCollection());
 					},
 					error : function(){
 						alert('정상적으로 삭제하지 못했습니다. 새로고침 후 다시 시도해주세요.');
