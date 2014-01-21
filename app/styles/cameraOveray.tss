@@ -4,13 +4,21 @@
   layout : 'vertical'
 }
 
+".buttonWrap" : {
+	backgroundColor : Alloy.Globals.COLORS.whiteGray,
+	height : Alloy.Globals.cameraInfo.top,
+	opacity : 0.9
+}
 "#closeBtn" : {
 	height : Ti.UI.FILL,
 	width :  Ti.UI.SIZE,
 	title : L('close'),
+	// backgroundLeftCap: 
+	image: "images/closeDown.png",
+	tintColor: Alloy.Globals.COLORS.red,	// image color
+	color: Alloy.Globals.COLORS.red,	// text color
 	left : 10
 }
-
 "#sendBtn" : {
 	height : Ti.UI.FILL,
 	width : '50%',
@@ -18,53 +26,56 @@
 	visible : false
 }
 
-"#contentField" : {
-	maxLength : 22,
-	tintColor : 'red',
-	returnKeyType : Ti.UI.RETURNKEY_SEND	
-}
-
-"#contentField[platform=android]" : {
-	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
-	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
-}
-
-".buttonWrap" : {
-	backgroundColor : 'white',
-	height : Alloy.Globals.cameraInfo.top,
-	opacity : 0.9
-}
 
 ".fieldWrap" : {
 	height : 180,
 	backgroundColor : 'transparent',
 	touchEnabled : false
 }
-
+"#contentField" : {
+	bottom: 11,
+	maxLength : 22,
+	tintColor : 'red',
+	returnKeyType : Ti.UI.RETURNKEY_SEND	
+}
+"#contentField[platform=android]" : {
+	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
+}
 ".filedBorder" : {
-	left: -1,
-	right : -1,
-	height : 1,
-	borderColor : 'white',
-	backgroundColor : 'white',
-	borderWidth : '1px',
+	// left: -1,
+	// right : -1,
+	// height : 1,
+	top:0,
+	height : 90,
+	// borderColor : 'white',
+	backgroundColor : 'black',
+	// borderWidth : '1px',
 	opacity : 0.2
 }
 
 ".infoWrap" : {
 	backgroundColor : 'white',
 }
-
 "#geoLabel" : {
 	top : 0
 }
 
 "#mapWrap" : {
 	backgroundColor : 'white',
-	height : 108,
+	height : 88,
 	touchEnabled : false
 }
 
+"#controlBar" : {
+	height: 40,
+	backgroundColor: Alloy.Globals.COLORS.whiteGray
+}
 "#behindKeyboard" : {
-	backgroundColor : 'white'
+	height: 216,	// softKeyboard's height
+	// width: Ti.UI.SIZE,
+	// backgroundColor : 'red',
+	// borderColor : 'orange',
+	// borderWidth : '1px',
+	backgroundImage: "images/behindKeyboard.png"
 }

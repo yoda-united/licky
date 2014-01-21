@@ -1,8 +1,9 @@
 <Alloy>
 	<View class="container">
 		<View class="buttonWrap">
-			<Button id="closeBtn"></Button>
-			<Button id="sendBtn"></Button>
+			<Button id="closeBtn" />
+			<Button id="sendBtn" />
+			<View class="trailingEdge" />
 		</View>
 		<View class="fieldWrap">
 			<View class="filedBgView"></View>
@@ -14,12 +15,12 @@
 			<Label class="distance" id="distance"></Label>
 			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
 		</View>
-		<View id="mapWrap">
-			
+		<View id="mapWrap" />
+		
+		<View id="controlBar" >
+			<View class="leadingEdge" />
 		</View>
-		<View id="behindKeyboard">
-			
-		</View>
+		<View id="behindKeyboard" />
 		<!-- <View class="infoWrap">
 			<Label id="geoLabel" >위치 확인 중..</Label>
 		</View> -->
