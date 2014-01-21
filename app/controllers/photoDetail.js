@@ -182,6 +182,7 @@ $.commentField.addEventListener('focus', function(e) {
 			duration : 200
 		});
 	}
+	$.listView.scrollToItem(2,$.commentSection.items.length-1);	
 });
 $.commentField.addEventListener('blur', function(e) {
 	if(OS_IOS){

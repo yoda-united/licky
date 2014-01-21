@@ -78,8 +78,6 @@ function loginChangeHandler(changedValue) {
 		// $.resetClass($.loginBtn, 'beforeLogin');
 		$.menuTable.setVisible(false);
 		$.name.setVisible(false);
-		$.wireForBtnImg.setVisible(false);
-		$.profileSettingBtn.setVisible(false);
 		
 		$.profileBannerImage.setImage(null);
 		$.profileImage.setImage( $.profileImage.getDefaultImage() );
