@@ -25,7 +25,7 @@
 			
 			
 			<View class="commentFormWrap">
-				<View id="textFieldLine" />
+				<View class="leadingEdge" />
 				<TextArea id="commentField"></TextArea>
 				<Button id="sendBtn"></Button>
 			</View>

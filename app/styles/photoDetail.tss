@@ -35,11 +35,6 @@
 	backgroundColor: Alloy.Globals.COLORS.whiteGray
 }
 
-"#textFieldLine": {
-	top: 0,
-	height: 1,
-	backgroundColor: Alloy.Globals.COLORS.red
-}
 "#commentField" : {
 	borderColor: Alloy.Globals.COLORS.gray,
 	borderRadius: 15,

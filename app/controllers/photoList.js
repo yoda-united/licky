@@ -61,7 +61,7 @@ $.getView().addEventListener('focus', function(e) {
 
 $.listViewC.listView.visible=false;
 $.onFirstFocus = function(e){
-	$.listViewC.listView.contentTopOffset = -14;
+	$.listViewC.listView.contentTopOffset = -19;
 	$.listViewC.listView.visible=true;
 	$.fetchFirstCollection();
 };
