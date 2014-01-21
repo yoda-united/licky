@@ -6,6 +6,13 @@ var someoneId = userModel.get('id'); //loggedInUser일 경우때문에 get('id')
 
 var photoCol = Alloy.createCollection('photo');
 
+
+//init ui
+var isMe = userModel.get('id') == AG.loggedInUser.get('id');
+$.getView().title = isMe?L('myLicks'):String.format(L('someoneLicks'),userModel.get('first_name'));
+$.getView().backButtonTitle = L('back');
+
+
 photoCol.defaultFetchData = {
 	//order : "-created_at",
 	where :{
@@ -20,3 +27,17 @@ $.listViewC.setTemplateControls([
 
 photoCol.fetch();
 
+$.listViewC.on('itemclick', function(e) {
+	if (e.model) {
+		if (e.bindId == "profileImage") {
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
+				//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
+				userModel : Alloy.createModel('user',e.model.get('user'))
+			});
+		} else {
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'photoDetail', {
+				photoModel : e.model //clicked Model
+			});
+		}
+	}
+}); 
