@@ -6,7 +6,7 @@
 		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
 
 		<ImageView id="profileBannerImage" />
-		<View id="controlBar" />
+		<!-- <View id="controlBar" /> -->
 		<ScrollView id="mainContent" backgroundColor="transparent" >
     		<ImageView id="profileImage" />
 			<Label id="name" />

@@ -24,12 +24,12 @@ $.getView().addEventListener('focus', function(e) {
 $.mainContent.addEventListener('scroll', _.throttle(function(e){
 	// $.profileBannerImage.setHeight( 212.5 - e.y);
 	$.profileBannerImage.animate({
-		duration: 5,
+		duration: 15,
 		height: 212.5 - e.y});
-	$.controlBar.animate({
-		duration: 5,
-		top: 182.5 - e.y});
-}, 5));
+	// $.controlBar.animate({
+		// duration: 10,
+		// top: 182.5 - e.y});
+}, 10));
 
 $.foodRow.addEventListener('click', function(e) {
 	AG.utils.openController(AG.mainTabGroup.activeTab, "someonePhotoList", {
@@ -39,7 +39,7 @@ $.foodRow.addEventListener('click', function(e) {
 });
 
 
-$.settingDialog.addEventListener('click', function(e) {
+$.settingDialog.addEventListener('click', _.throttle(function(e) {
 	// alert(e);
 	if (e.index === 0) {
 		// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
@@ -47,7 +47,7 @@ $.settingDialog.addEventListener('click', function(e) {
 			AG.mainTabGroup.setActiveTab(0);
 		});
 	}
-});
+},1000));
 $.profileSettingBtn.addEventListener('click', function(e) {
 	$.settingDialog.show();
 });

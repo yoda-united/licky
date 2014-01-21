@@ -94,7 +94,8 @@
 }
 "#foodRow": {
 	title: L('myLicks'),
-	hasChild: true
+	hasChild: true,
+	selectionStyle : Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY
 }
 
 "#settingDialog" : {
