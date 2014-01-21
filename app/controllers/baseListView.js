@@ -76,6 +76,9 @@ var handlers = (function(){
 				}
 			},
 			'destroy': function(model,col,options){
+				if( options && options.listItemDeletedAlready ){
+					return;
+				}
 				var len = $.section.getItems().length;
 				for(var i=0; i < len; i++){
 					if($.section.getItemAt(i).properties.itemId === model.get('id')){
@@ -124,6 +127,7 @@ var handlers = (function(){
 			'delete' : function(e) {
 				var item = $.getCollection().get(e.itemId);
 				item.destroy({
+					listItemDeletedAlready: true,
 					success: function(){
 						updateListMarker($.getCollection());
 					},
