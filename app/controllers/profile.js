@@ -17,7 +17,6 @@ var isMe = userModel.get('id') == AG.loggedInUser.get('id');
 $.profile.title = isMe?L('me'):userModel.get('first_name');
 $.foodRow.title = isMe?L('myLicks'):String.format(L('someoneLicks'),userModel.get('first_name'));
 
-
 $.getView().addEventListener('focus', function(e) {
 	$.setProperties();
 });
@@ -74,8 +73,7 @@ function loginChangeHandler(changedValue) {
 		// $.resetClass($.loginBtn, 'afterLogin');
 		$.menuTable.setVisible(true);
 		$.name.setVisible(true);
-		$.wireForBtnImg.setVisible(true);
-		$.profileSettingBtn.setVisible(true);
+		
 	} else {
 		// $.resetClass($.loginBtn, 'beforeLogin');
 		$.menuTable.setVisible(false);
@@ -86,6 +84,10 @@ function loginChangeHandler(changedValue) {
 		$.profileBannerImage.setImage(null);
 		$.profileImage.setImage( $.profileImage.getDefaultImage() );
 	}
+	
+	isMe = userModel.get('id') == AG.loggedInUser.get('id');
+	$.wireForBtnImg.visible = isMe;
+	$.profileSettingBtn.visible = isMe;
 }
 loginChangeHandler();
 
