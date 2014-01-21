@@ -16,8 +16,13 @@
 }
 
 "#loadingActivity" : {
-	left: 119,
-	style : Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+	// left: 119,
+	style : Titanium.UI.iPhone.ActivityIndicatorStyle.DARK,
+	message : L('loading'),
+	font : {
+		fontSize : 15,
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	}
 }
 
 "#loadingFooterView" : {
@@ -25,13 +30,10 @@
 	backgroundColor: "transparent",
 	height : 30
 }
-"#loadingLabel" : {
-	left: 147,
-	text : L('loading'),
-	color: Alloy.Globals.COLORS.darkGray,
-	font : {
-		fontSize : 15,
-		fontFamily : 'AppleSDGothicNeo-UltraLight'
-	}
-}
+// "#loadingLabel" : {
+	// // left: 147,
+	// text : ,
+	// color: Alloy.Globals.COLORS.darkGray,
+// 	
+// }
 

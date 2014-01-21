@@ -11,7 +11,6 @@
 		<FooterView>
 			<View id="loadingFooterView">
 				<ActivityIndicator id="loadingActivity" />
-				<Label id="loadingLabel" />
 			</View>
 		</FooterView>
 	</ListView>

@@ -13,5 +13,6 @@
 	<string name="cancel">Cancel</string>	
 	<string name="close">Close</string>
 	<string name="back">Back</string>
+	<string name="loading">Loading</string>
 	
 </resources>
