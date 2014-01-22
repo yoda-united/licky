@@ -117,7 +117,8 @@
 		fontSize : 13
 	},
 	// color : "#dddc"
-	color : "#bfff"
+	color : "#bfff",
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
 }
 
 "#cameraBtn[platform=android]" : {

@@ -39,6 +39,7 @@ function resetPhotoContent(){
 	if(OS_IOS){
 		contentItem.properties.selectionStyle = Ti.UI.iPhone.ListViewCellSelectionStyle.NONE;
 	}
+	contentItem.distance.height = 35; // 주소가 두줄 나오게 BOG-113
 	contentItem.properties.height = 180;
 	$.contentSection.setItems([
 		contentItem
