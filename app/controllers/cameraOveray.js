@@ -1,3 +1,5 @@
+var ImageFactory = require('ti.imagefactory');
+
 var currentPosition = {},
 	currentAddress = {};
 
@@ -197,7 +199,7 @@ exports.showCamera = function(){
 			Ti.API.info(croppedImage.mimeType);
 			//$.captureLabel.text = $.contentField.value.substr(0,5);
 
-			var blob = croppedImage;
+			var blob = ImageFactory.compress(croppedImage, 0.75);
 			photoCol.create({
 				title : $.contentField.value,
 				photo : blob,
