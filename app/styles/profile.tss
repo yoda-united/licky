@@ -103,3 +103,6 @@
 	cancel : 1,
 	options : [L('logout'),L('cancel')]
 }
+"#cameraBtn" : {
+	visible : false
+}

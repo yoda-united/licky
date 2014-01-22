@@ -20,7 +20,7 @@ function fetchByCurrentPosition(){
 		$.fetchWhereData = {
 			"coordinates":{
 				"$nearSphere": [e.coords.longitude, e.coords.latitude],
-				"$maxDistance" : 5/6371 // km/6371 or mile/3959 )
+				//"$maxDistance" : 1000/6371 // km/6371 or mile/3959 )
 			 }
 		};
 		
