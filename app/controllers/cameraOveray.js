@@ -9,8 +9,8 @@ function send(e) {
 	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
 	Ti.Media.takePicture();
 }
-$.sendBtn.addEventListener('click', send);
-$.contentField.addEventListener('return', send);
+// $.sendBtn.addEventListener('click', send);
+$.contentField.addEventListener('return', _.throttle(send,1000));
 
 
 $.closeBtn.addEventListener('click', function(e) {

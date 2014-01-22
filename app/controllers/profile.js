@@ -34,13 +34,11 @@ $.mainContent.addEventListener('scroll', _.throttle(function(e){
 $.foodRow.addEventListener('click', function(e) {
 	AG.utils.openController(AG.mainTabGroup.activeTab, "someonePhotoList", {
 		userModel : userModel
-		// photoModel : photoCol.get(e.itemId) //clicked Model
 	});
 });
 
 
 $.settingDialog.addEventListener('click', _.throttle(function(e) {
-	// alert(e);
 	if (e.index === 0) {
 		// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
 		AG.loginController.logout(function(e){
