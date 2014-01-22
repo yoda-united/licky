@@ -36,7 +36,8 @@ exports = {
 	
 	// for foreground 
 	darkGray: '#525252',	// deactivate
-	lickyOrange: '#FD9400',	// main point
+	// lickyOrange: '#EB7436',	// main point
+	lickyOrange: '#FD4526',	// main point
 	lickyRed: '#FD3D39',	// sub point
 	
 	// etcs

@@ -12,12 +12,18 @@
 						<Label class="time" bindId="time"></Label>
 						<Label class="userName" bindId="userName"></Label>
 						<MaskedImage class="maskedProfile" bindId="profileImage"></MaskedImage>
-						<Label class="commentContent" bindId="content"></Label>
+						<View class="speechBubble">
+							<Label class="commentContent" bindId="content"></Label>
+						</View>
 						<ImageView onLoad="hiddenProfileOnLoad" class="hiddenProfile" bindId="hiddenProfile"></ImageView>
+						<ImageView class="profileRing" />
 					</ItemTemplate>
 				</Templates>
 				<ListSection id="contentSection"></ListSection>
 				<ListSection id="mapSection"></ListSection>
+				<ListSection >
+					<ListItem height="18" />
+				</ListSection>
 				<ListSection id="commentSection"></ListSection>
 			</ListView>
 			

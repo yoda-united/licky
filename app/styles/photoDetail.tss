@@ -17,19 +17,36 @@
 ".commentTemplate" : {
 	height : Ti.UI.SIZE
 }
-
 ".commentTemplate[platform=ios]" : {
 	selectionStyle : Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE
 }
-
+".profileRing" :{
+	zIndex: 11,
+	width : 41,
+	height : 41,
+	left: 13.5,
+	top : 4.5,
+	image: "images/profileRing.png"
+}
 ".userName" : {
-	color : 'black'
+	zIndex: 9,
+	top: 0,
+	left : 51,
+	color : Alloy.Globals.COLORS.lickyOrange,
+	font : {
+		fontSize : 16,
+		fontFamily : 'AppleSDGothicNeo-Regular'
+	}
 }
-
 ".time" : {
-	color : 'black'
+	color: Alloy.Globals.COLORS.gray,
+	top: 5,
+	right: 12,
+	font : {
+		fontSize : 12,
+		fontFamily : 'AppleSDGothicNeo-SemiBold'
+	}
 }
-
 ".commentFormWrap" : {
 	height : Ti.UI.SIZE,
 	// borderColor: Alloy.Globals.COLORS.red,
@@ -37,6 +54,35 @@
 	bottom: 0,
 	// backgroundColor :'#DCDEE2'
 	backgroundColor: Alloy.Globals.COLORS.whiteGray
+}
+".speechBubble" : {
+	// backgroundColor: Alloy.Globals.COLORS.lightWarmGray
+	top : 18,
+	left : 39,
+	right: 22,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	// backgroundColor: "red",
+	backgroundColor : "transparent",
+	backgroundLeftCap : 10,
+	backgroundTopCap: 10,
+	backgroundImage: "images/speechBubble.png"
+}
+".commentContent" : {
+	// left : 60,
+	// right : 40,
+	// top : 23,
+	color: Alloy.Globals.COLORS.darkGray,
+	font : {
+		fontSize : 15,
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	},
+	top:7,
+	bottom:8,
+	left:16,
+	right:15,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE
 }
 
 "#commentField" : {
@@ -54,7 +100,6 @@
 	bottom : 5,
 	scrollsToTop : false
 }
-
 "#sendBtn" : {
 	right : 5,
 	width : 50,
@@ -64,23 +109,18 @@
 	color : Alloy.Globals.COLORS.red
 }
 
-".commentContent" : {
-	left : 60,
-	right : 40,
-	top : 23,
-	height: Ti.UI.SIZE
-}
+
 
 ".maskedProfile" : {
+	zIndex: 10,
 	width : 40,
 	height : 40,
-	left: 10,
+	left: 13,
 	top : 5,
 	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
 	mask : 'images/profileMask.png',
 	// image : 'images/profileMask.png'
 }
-
 ".hiddenProfile" : {
 	width : 10,
 	height : 10,

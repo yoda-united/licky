@@ -54,7 +54,12 @@ photoModel.on('change',resetPhotoContent);
 
 var commentCol = Alloy.createCollection('review');
 
-var testLabel = Ti.UI.createLabel();
+// TODO:다이나믹 스타일 적용 
+var testLabel = Ti.UI.createLabel({
+	font : {
+		fontSize : 15,
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	}});
 var resetCommentItems = function(){
 	var items = [];
 	commentCol.each(function(comment){
@@ -63,12 +68,16 @@ var resetCommentItems = function(){
 		if(!comment.get('_itemHeight')){
 			testLabel.text = comment.get('content');
 			comment.set({
-				'_itemHeight' : testLabel.heightFromWidth(220)	
+				// '_itemHeight' : testLabel.heightFromWidth(220+16)	
+				// '_itemHeight' : testLabel.heightFromWidth(320-84) 
+				'_itemHeight' : testLabel.heightFromWidth(228)	// 320-39-22-16-15
 			},{
 				silent : true
 			});
 		}
-		item.properties.height = comment.get('_itemHeight')+23;
+		// item.properties.height = comment.get('_itemHeight') + 23;
+		item.properties.height = comment.get('_itemHeight') + 48;
+		
 		items.push(item);
 	});
 	$.commentSection.setItems(items);
