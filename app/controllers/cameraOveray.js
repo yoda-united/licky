@@ -13,6 +13,56 @@ $.sendBtn.addEventListener('click', send);
 $.contentField.addEventListener('return', send);
 
 
+// facebook share toggle 
+var toggleBtn = function(toggle){
+	var flag, originTop;
+	if( AG.settings.has("postWithFacebook") ){
+		if(toggle){
+			flag = !AG.settings.get('postWithFacebook');
+		}else{
+			flag = AG.settings.get('postWithFacebook');
+		}
+	}else{
+		AG.settings.set('postWithFacebook', true);
+	}
+	
+	if( timeoutId ){
+		clearTimeout(timeoutId);
+	}
+	if(flag){
+		$.fbDontShareGuidance.setOpacity(0);
+		$.fbShareBtn.setBackgroundImage('images/fbShareActive.png');
+		$.fbShareGuidance.setOpacity(1);
+		timeoutId = setTimeout(function(){
+			// $.fbShareGuidance.setVisible(false);
+			$.fbShareGuidance.animate({
+				duration: 1000,
+				// top: 100,
+				opacity : 0
+			});
+		}, 500 );
+	}else{
+		$.fbShareGuidance.setOpacity(0);
+		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
+		$.fbDontShareGuidance.setOpacity(1);
+		timeoutId = setTimeout(function(){
+			// $.fbDontShareGuidance.setVisible(false);
+			$.fbDontShareGuidance.animate({
+				duration: 1000,
+				// top:100,
+				opacity : 0
+			});
+		}, 500 );
+	}
+	AG.settings.set('postWithFacebook', flag);
+	AG.settings.save();
+};
+var timeoutId;
+$.fbShareBtn.addEventListener('click', function(){
+	toggleBtn(true);
+});
+
+
 $.closeBtn.addEventListener('click', function(e) {
 	if(OS_IOS){
 		Ti.Media.hideCamera();
@@ -104,6 +154,7 @@ function getCurrentPosition(){
 $.contentField.addEventListener('postlayout', function(e) {
 	$.contentField.removeEventListener('postlayout',arguments.callee);
 	$.contentField.focus();
+	toggleBtn(false);
 });
 
 

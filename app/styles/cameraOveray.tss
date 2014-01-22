@@ -71,6 +71,49 @@
 	height: 40,
 	backgroundColor: Alloy.Globals.COLORS.whiteGray
 }
+// "#fbSwitch" :{
+	// // backgroundDisabledColor : "yellow",
+	// // backgroundSelectedColor : "pink",
+	// backgroundFocusedColor : "blue",
+	// title:"will share with Facebook",
+	// left:12,
+	// tintColor: "pink",
+	// color: "gray",
+	// height: 5
+// }
+"#fbShareBtn": {
+	left: 14,
+	height: 40,
+	width: 40,
+	zIndex: 2,
+	backgroundImage: "images/fbShareActive.png"
+}
+".fbGuidance":{
+	top: 9,
+	left: 57,
+	height: 28,
+	width: 240,
+	color: Alloy.Globals.COLORS.blue,
+	// textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font : {
+		fontSize : 18,
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	},
+	// borderWidth: 0.5,
+	// borderRadius: 14,
+	// borderColor: Alloy.Globals.COLORS.blue,
+	zIndex: 1
+}
+"#fbShareGuidance": {
+	text: L('willBePostedToFacebook')
+}
+"#fbDontShareGuidance": {
+	// visible: false,
+	opacity: 0,
+	color: Alloy.Globals.COLORS.midGray,
+	text: L('willNotShareWithFacebook')	
+	// borderColor: Alloy.Globals.COLORS.darkGray
+}
 "#behindKeyboard" : {
 	height: 216,	// softKeyboard's height
 	// width: Ti.UI.SIZE,
