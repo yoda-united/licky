@@ -17,6 +17,11 @@
 	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
 	autoAdjustScrollViewInsets : true
 }
+"Label[platform=ios]": {
+	font : {
+		fontFamily : 'AppleSDGothicNeo-Light'
+	}
+}
 
 ".leadingEdge": {
 	top: 0,
@@ -113,9 +118,13 @@
 	height: 15,	// 두줄 방지 차원에서 셋팅 
 	textAlign : 'left',
 	font : {
-		fontFamily : 'AppleSDGothicNeo-Light',
+		fontFamily : 'FontAwesome',
 		fontSize : 13
 	},
+	// font : {
+		// fontFamily : 'AppleSDGothicNeo-Light',
+		// fontSize : 13
+	// },
 	// color : "#dddc"
 	color : "#bfff",
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP

@@ -29,7 +29,7 @@ exports.definition = {
 				var distance;
 				if(coordi) {
 					distance = {
-						text : String.format("%.1fkm, %s",
+						text : "\uf041 "+ String.format("%.1fkm, %s",
 							AG.utils.calculateDistance([
 								coordi[0],
 								AG.currentPosition.attributes
@@ -47,7 +47,7 @@ exports.definition = {
 				if( this.get('reviews_count') ){
 					commentCountText = String.format(' %d', this.get('reviews_count') || 0);
 				}
-				
+
 				return({
 					//template : 'itemTemplate',
 					photo : {
