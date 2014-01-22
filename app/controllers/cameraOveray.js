@@ -6,6 +6,9 @@ var currentPosition = {},
 var args = arguments[0],
 	photoCol = args.collection;
 
+if(AG.settings.get("platformHeight") < 568){
+	$.cameraOveray.remove($.mapWrap);
+}
 
 function send(e) {
 	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
@@ -16,8 +19,9 @@ $.contentField.addEventListener('return', _.throttle(send,1000));
 
 
 // facebook share toggle 
+var timeoutId;
 var toggleBtn = function(toggle){
-	var flag, originTop;
+	var flag;
 	if( AG.settings.has("postWithFacebook") ){
 		if(toggle){
 			flag = !AG.settings.get('postWithFacebook');
@@ -25,14 +29,15 @@ var toggleBtn = function(toggle){
 			flag = AG.settings.get('postWithFacebook');
 		}
 	}else{
-		AG.settings.set('postWithFacebook', true);
+		flag = true;
 	}
 	
 	if( timeoutId ){
 		clearTimeout(timeoutId);
 	}
-	if(flag){
-		$.fbDontShareGuidance.setOpacity(0);
+	$.fbShareGuidance.setOpacity(0);
+	$.fbDontShareGuidance.setOpacity(0);
+	if(flag){	// on
 		$.fbShareBtn.setBackgroundImage('images/fbShareActive.png');
 		$.fbShareGuidance.setOpacity(1);
 		timeoutId = setTimeout(function(){
@@ -44,7 +49,6 @@ var toggleBtn = function(toggle){
 			});
 		}, 500 );
 	}else{
-		$.fbShareGuidance.setOpacity(0);
 		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
 		$.fbDontShareGuidance.setOpacity(1);
 		timeoutId = setTimeout(function(){
@@ -56,10 +60,9 @@ var toggleBtn = function(toggle){
 			});
 		}, 500 );
 	}
-	AG.settings.set('postWithFacebook', flag);
-	AG.settings.save();
+	AG.settings.save('postWithFacebook', flag);
+	// alert(flag);
 };
-var timeoutId;
 $.fbShareBtn.addEventListener('click', function(){
 	toggleBtn(true);
 });
@@ -104,19 +107,20 @@ function getCurrentPosition(){
 		currentPosition.longitude = longitude;
 		currentPosition.latitude = latitude;
 		
-		
-		var GoogleMapsClass = require('GoogleMaps');
-		var GoogleMaps = new GoogleMapsClass({
-			iOSKey: "***REMOVED***"
-		});
-		var mapView = GoogleMaps.initMap({
-			latitude:latitude,
-			longitude:longitude,
-			zoom: 13, //15, 16이 적당해 보임
-			width : Ti.UI.FILL,
-			height : 108,
-		});
-		$.mapWrap.add(mapView);
+		if(AG.settings.get("platformHeight") >= 568){
+			var GoogleMapsClass = require('GoogleMaps');
+			var GoogleMaps = new GoogleMapsClass({
+				iOSKey: "***REMOVED***"
+			});
+			var mapView = GoogleMaps.initMap({
+				latitude:latitude,
+				longitude:longitude,
+				zoom: 13, //15, 16이 적당해 보임
+				width : Ti.UI.FILL,
+				height : 108,
+			});
+			$.mapWrap.add(mapView);
+		}
 		
 		//alert(currentPosition);
 		//mapView.setLocation(currentPosition);
