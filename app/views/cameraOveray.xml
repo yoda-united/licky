@@ -19,6 +19,10 @@
 		
 		<View id="controlBar" >
 			<View class="leadingEdge" />
+			<!-- <Switch id="fbSwitch" value="true" /> -->
+			<Button id="fbShareBtn" />
+			<Label id="fbShareGuidance" class="fbGuidance"/>
+			<Label id="fbDontShareGuidance" class="fbGuidance" />
 		</View>
 		<View id="behindKeyboard" />
 		<!-- <View class="infoWrap">
