@@ -36,7 +36,13 @@ AG.cameraInfo = {
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');
 AG.currentPosition = new Backbone.Model();
-AG.settings.fetch();
+AG.settings.fetch({
+	success: function(){
+		if( !AG.settings.has("platformHeight") ){
+			AG.settings.save("platformHeight", Ti.Platform.displayCaps.platformHeight);
+		}	
+	}
+});
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');
 AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동기 방식.
 AG.isLogIn = function(){
