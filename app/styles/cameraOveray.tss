@@ -27,7 +27,7 @@
 }
 
 
-".fieldWrap" : {
+"#fieldWrap" : {
 	height : 180,
 	backgroundColor : 'transparent',
 	touchEnabled : false
@@ -38,25 +38,26 @@
 	tintColor : 'red',
 	returnKeyType : Ti.UI.RETURNKEY_SEND	
 }
+
+"#contentLabel" : {
+}
+
 "#contentField[platform=android]" : {
 	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }
-".filedBorder" : {
-	// left: -1,
-	// right : -1,
-	// height : 1,
+"#fieldOpacityBG" : {
 	top:0,
 	height : 90,
-	// borderColor : 'white',
 	backgroundColor : 'black',
-	// borderWidth : '1px',
 	opacity : 0.2
 }
+
 
 ".infoWrap" : {
 	backgroundColor : 'white',
 }
+
 "#geoLabel" : {
 	top : 0
 }

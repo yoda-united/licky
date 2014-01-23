@@ -130,7 +130,7 @@ function getCurrentPosition(){
 				currentAddress.ko = add;
 				
 				if( AG.currentLanguage == 'ko'){
-					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
+					$.distance.text = '\uf041 ' + AG.utils.getGoogleShortAddress(add.results[0]);
 				}
 			},
 			error: function(){
@@ -179,30 +179,37 @@ exports.showCamera = function(){
 	Ti.Media.showCamera({
 		success : function(event) {
 			if(OS_IOS){
-				Ti.Media.hideCamera();
+				_.defer(function(){
+					Ti.Media.hideCamera();
+				});
 			}
+			
 			Ti.API.info(event.media.width);
 			Ti.API.info(event.media.height);
-			var height = parseInt(catureSize.width*event.media.height/event.media.width);
-			// event.media.imageAsCropped({
-				// x: 0,
-				// y: top,
-				// width: 640,
-				// height : height
-			// })
 			Ti.API.info(event.media.mimeType);
+
+			var height = parseInt(catureSize.width*event.media.height/event.media.width);
 			var resizedImage = event.media.imageAsResized(catureSize.width,height);
-			//Ti.API.info(resizedImage.width +',' + resizedImage.height);
-			Ti.API.info(resizedImage.mimeType);
 			var croppedImage = resizedImage.imageAsCropped({
 				x: 0,
 				y: catureSize.top,
 				width: catureSize.width,
 				height : catureSize.height
 			});
-			Ti.API.info(croppedImage.mimeType);
-			//$.captureLabel.text = $.contentField.value.substr(0,5);
 
+			var fbPreviewFile;
+			if(AG.settings.get('postWithFacebook')){
+				$.fieldWrap.width = 320;
+				$.fieldWrap.height = 180;
+				$.fieldOpacityBG.visible = false;
+				// $.fieldOpacityBG2.visible = true;
+				$.fieldWrap.backgroundImage = croppedImage;
+				$.contentField.visible = false;
+				$.contentLabel.visible = true;
+				$.contentLabel.text = $.contentField.value;
+				fbPreviewFile = $.fieldWrap.toImage(null, true); 
+			}
+			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
 			photoCol.create({
 				title : $.contentField.value,
@@ -218,10 +225,30 @@ exports.showCamera = function(){
 				}
 			},{
 				wait:true,
-				success : function(nextModel){
-					Ti.API.info(nextModel.attributes);
+				success : function(nextPhoto){
+					Ti.API.info(nextPhoto.attributes);
+					
+					if(AG.settings.get('postWithFacebook')){
+						var sharePhoto = Alloy.createModel('file');
+						sharePhoto.save({
+							name: nextPhoto.id+'.jpg',
+		    				file: ImageFactory.compress(fbPreviewFile, 0.75),
+		    				custom_fields : {
+								"[ACS_Photo]parent_id": nextPhoto.id
+							}
+						},{
+							success : function(nextFile){
+							},
+							error : function(e){
+							},
+							silent: true
+						});
+					}
 				}
 			});
+			
+			
+			
 		},
 		cancel : function() {
 		},
