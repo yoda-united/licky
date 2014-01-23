@@ -13,16 +13,18 @@ var mapView = GoogleMaps.initMap({
 	latitude:coord[0][1],
 	longitude:coord[0][0],
 	zoom: 16, //15, 16이 적당해 보임
-	width : Ti.UI.FILL,
-	height : 90,
+	width : 304,
+	height : 119,
+	top:0
 });
-var mapWrap = Ti.UI.createView({
-	width : Ti.UI.FILL,
-	height : 90,
-	// touchEnabled : false
-});
-mapWrap.add(mapView);
-$.mapSection.footerView = mapWrap;
+$.mapWrap.add(mapView);
+// var mapWrap = Ti.UI.createView({
+	// width : Ti.UI.FILL,
+	// height : 90,
+	// // touchEnabled : false
+// });
+// mapWrap.add(mapView);
+// $.mapSection.headerView = mapWrap;
 
 $.listView.addEventListener('itemclick', function(e) {
 	if (e.bindId == "profileImage") {
@@ -183,7 +185,15 @@ if(photoModel.get('user').id === AG.loggedInUser.get('id')){
 	});
 }
 
-
+/* TODO: pullView가 alloy에서 먹지를 않는데 언젠간 되겠지 뭐..
+if(OS_IOS){
+	$.listView.pullView = Ti.UI.createView({
+		// backgroundColor:'white',
+		backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
+		height:400,
+		width:320
+	});
+}*/
 
 $.commentField.addEventListener('focus', function(e) {
 	if(OS_IOS){

@@ -3,11 +3,11 @@ var currentWindow = $.login;
 $.closeBtn.addEventListener('click', function(e) {
 	currentWindow.close();
 });
-currentWindow.addEventListener('swipe', function(e){
-	if( e.direction === 'down'){
-		currentWindow.close();
-	}
-});
+// currentWindow.addEventListener('swipe', function(e){
+	// if( e.direction === 'down'){
+		// currentWindow.close();
+	// }
+// });
 
 
 var fbHandler = function(e){

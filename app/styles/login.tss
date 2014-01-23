@@ -15,10 +15,11 @@
 	top : 30,
 	// title: L('cancel'),
 	title: 'X',
-	color: Alloy.Globals.COLORS.darkGray,
+	color: Alloy.Globals.COLORS.midGray,
 	font : {
 		fontSize : 29,
-		fontFamily : 'AppleSDGothicNeo-thin'
+		// fontFamily: 'FontAwesome'
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
 	}
 }
 // "#fbLogin" : {
@@ -49,7 +50,7 @@
 }
 "#loginGuidance": {
 	text: L("defaultLoginMessage"),
-	top: 315,
+	top: 317,
 	color: Alloy.Globals.COLORS.darkGray,
 	font : {
 		fontSize : 12,
@@ -57,8 +58,8 @@
 	}
 }
 "#facebookImage": {
-	top: 332,
-	left: 20,
+	top: 334,
+	left: 22,
 	height: 55,
 	width: 55,
 	backgroundImage: 'images/facebookLogo.png',
@@ -66,7 +67,7 @@
 }
 "#fbLogin": {
 	borderRadius: 5,
-	top: 332,
+	top: 334,
 	left: 65,
 	height: 55,
 	width: 232,

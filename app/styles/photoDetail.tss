@@ -1,12 +1,23 @@
 ".container" : {
+	// backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
 	tabBarHidden : true,
 	fullscreen : false
 }
 
 "#listView" : {
+		// height: Ti.UI.SIZE,
+		// backgroundColor: Alloy.Globals.COLORS.darkGray,
+		// backgroundColor: "#929292",
+		backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
+		// style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
+		showVerticalScrollIndicator :false,
+		
 	separatorColor: 'white',
 	bottom : 44,
 	willScrollOnStatusTap : true
+}
+"#listView[platform=ios]": {
+	separatorStyle :Titanium.UI.iPhone.ListViewSeparatorStyle.NONE
 }
 
 "#moreButton": {
@@ -15,6 +26,7 @@
 
 
 ".commentTemplate" : {
+	// backgroundColor: 'white',
 	height : Ti.UI.SIZE
 }
 ".commentTemplate[platform=ios]" : {
@@ -27,6 +39,16 @@
 	left: 13.5,
 	top : 4.5,
 	image: "images/profileRing.png"
+}
+".maskedProfile" : {
+	zIndex: 10,
+	width : 40,
+	height : 40,
+	left: 14,
+	top : 5,
+	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
+	mask : 'images/profileMask.png',
+	// image : 'images/profileMask.png'
 }
 ".userName" : {
 	zIndex: 9,
@@ -49,7 +71,6 @@
 }
 ".commentFormWrap" : {
 	height : Ti.UI.SIZE,
-	// borderColor: Alloy.Globals.COLORS.red,
 	// height: 42,
 	bottom: 0,
 	// backgroundColor :'#DCDEE2'
@@ -62,7 +83,6 @@
 	right: 22,
 	height: Ti.UI.SIZE,
 	width: Ti.UI.SIZE,
-	// backgroundColor: "red",
 	backgroundColor : "transparent",
 	backgroundLeftCap : 10,
 	backgroundTopCap: 10,
@@ -85,15 +105,24 @@
 	width: Ti.UI.SIZE
 }
 
-"#commentField" : {
+
+"#mapSection": {
+	// height:2200
+}
+"#mapWrap": {
+	height: 119,
+	backgroundColor: "white"
+}
+"#commentField": {
 	borderColor: Alloy.Globals.COLORS.gray,
 	borderRadius: 15,
 	left: 10,
 	right : 58,
 	top : 6,
-	backgroundColor :Alloy.Globals.COLORS.lightWarmGray,
+	backgroundColor :Alloy.Globals.COLORS.lightGray,
 	suppressReturn : false,
 	height : Ti.UI.SIZE,
+	hintText: L("hey"),
 	font : {
 		fontSize :15
 	},
@@ -111,16 +140,7 @@
 
 
 
-".maskedProfile" : {
-	zIndex: 10,
-	width : 40,
-	height : 40,
-	left: 13,
-	top : 5,
-	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
-	mask : 'images/profileMask.png',
-	// image : 'images/profileMask.png'
-}
+
 ".hiddenProfile" : {
 	width : 10,
 	height : 10,

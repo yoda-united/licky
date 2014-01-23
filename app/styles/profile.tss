@@ -1,5 +1,6 @@
 
 ".container" : {
+	backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
  	extendEdges : []
 }
 
@@ -28,12 +29,12 @@
 	// contentHeight: 672.5	// profileBanner + controlBar + photoList's height
 }
 "#profileBannerImage": {
+	backgroundColor: Alloy.Globals.COLORS.lightGray,
 	contentMode: 'aspectfill',
 	height: 212.5,
 	width: 320, //'100%',
 	left: 0,
-	top: 0,
-	backgroundColor: Alloy.Globals.COLORS.lightGray
+	top: 0
 }
 "#profileImage": {
 	preventDefaultImage : false,
@@ -89,7 +90,7 @@
 }
 "#menuTable": {
 	top: 207.5,	// 프로필 배너 확대될때 떨림을 조금 가리기 위해 5픽셀 위로. 
-	height: 50,
+	height: 44,
 	scrollable: false
 }
 "#foodRow": {

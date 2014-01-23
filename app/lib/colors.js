@@ -31,6 +31,7 @@ exports = {
 	 */
 	// for background
 	whiteGray: '#FEFEFE',	// main background
+	lightGray: '#f7f7f7',
 	lightWarmGray: '#EFEFEE',	// sub background
 	duff: '#E1C56B',
 	
