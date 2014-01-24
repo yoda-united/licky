@@ -202,7 +202,9 @@ $.commentField.addEventListener('focus', function(e) {
 			duration : 200
 		});
 	}
-	$.listView.scrollToItem(2,$.commentSection.items.length-1);	
+	if($.commentSection.items.length){
+		$.listView.scrollToItem(2,$.commentSection.items.length-1);	
+	}
 });
 $.commentField.addEventListener('blur', function(e) {
 	if(OS_IOS){
@@ -239,7 +241,6 @@ $.listView.addEventListener('delete', function(e) {
 				}
 			},
 			error : function(e){
-				alert(e);
 				alert('댓글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.');
 			}
 		});

@@ -4,7 +4,7 @@ var currentPosition = {},
 	currentAddress = {};
 
 var args = arguments[0],
-	photoCol = args.collection;
+	postCol = args.collection;
 
 if(AG.settings.get("platformHeight") < 568){
 	$.cameraOveray.remove($.mapWrap);
@@ -211,10 +211,10 @@ exports.showCamera = function(){
 			}
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
-			photoCol.create({
-				title : $.contentField.value,
+			postCol.create({
+				content : $.contentField.value,
 				photo : blob,
-				user_id: AG.loggedInUser.get('id'),
+				//user_id: AG.loggedInUser.get('id'),
 				"photo_sizes[medium_320]" : "320x180",
 				"photo_sizes[thumb_100]" : "100x100#",
 				'photo_sync_sizes[]' :'original',
@@ -229,20 +229,44 @@ exports.showCamera = function(){
 					Ti.API.info(nextPhoto.attributes);
 					
 					if(AG.settings.get('postWithFacebook')){
-						var sharePhoto = Alloy.createModel('file');
-						sharePhoto.save({
-							name: nextPhoto.id+'.jpg',
-		    				file: ImageFactory.compress(fbPreviewFile, 0.75),
-		    				custom_fields : {
-								"[ACS_Photo]parent_id": nextPhoto.id
-							}
-						},{
-							success : function(nextFile){
-							},
-							error : function(e){
-							},
-							silent: true
-						});
+						// var sharePhoto = Alloy.createModel('photo');
+						// sharePhoto.save({
+							// // name: nextPhoto.id+'.jpg',
+							// "collection_name" : "facebook_preview",
+							// "photo_sizes[medium_320]" : "320x180",
+							// 'photo_sync_sizes[]' :'original',
+		    				// photo: ImageFactory.compress(fbPreviewFile, 0.75),
+		    				// custom_fields : {
+								// "[ACS_Photo]parent_id": nextPhoto.id
+							// }
+						// },{
+// 							
+// 							
+							// success : function(nextFile) {
+								// alert(nextFile.get('urls').original);
+								// Ti.API.info(nextFile.get('urls').original);
+								// // AG.facebook.requestWithGraphPath('me/feed', {
+									// // message : "Trying out FB Graph API and it's fun!",
+									// // caption : '링크 캡션',
+									// // description : '링크 디스크립션',
+									// // link : 'http://tidev.kr',
+									// // picture : nextFile.get('url')
+								// // }, "POST", function(e) {
+									// // if (e.success) {
+										// // alert("Success!  From FB: " + e.result);
+									// // } else {
+										// // if (e.error) {
+											// // alert(e.error);
+										// // } else {
+											// // alert("Unkown result");
+										// // }
+									// // }
+								// // });
+// 
+							// }, error : function(e){
+							// }, silent:true
+// 
+						// });
 					}
 				}
 			});

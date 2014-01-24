@@ -1,4 +1,4 @@
-exports.baseController = 'photoList';
+exports.baseController = 'postList';
 $.getView().title=L('nearList');
 
 $.onFirstFocus = function(){

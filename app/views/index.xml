@@ -1,10 +1,10 @@
 <Alloy>
 	<TabGroup class="container" >
 		<Tab id="allTab" title="L('timeLineTabTitle')" >
-			<Require src="photoList"/>
+			<Require src="postList"/>
 		</Tab>
 		<Tab id="nearTab" title="L('nearList')">
-			<Require src="nearPhotoList"/>
+			<Require src="nearPostList"/>
 		</Tab>
 		<Tab id="meTab" title="L('me')">
 			<Require id="profile" src="profile" />
