@@ -5,15 +5,15 @@
 
 $.fetchWhereData = {}; // 상속할때 where에 추가하고 싶으면 여기에 지정
 
-var photoCol = Alloy.createCollection('photo');
-var friendPhotoCol = Alloy.createCollection('photo');
+var postCol = Alloy.createCollection('post');
+var friendPostCol = Alloy.createCollection('post');
 
 
-$.listViewC.setCollection(photoCol);
+$.listViewC.setCollection(postCol);
 
 
 $.listViewC.setTemplateControls([
-	'photoItemTemplate'
+	'postItemTemplate'
 ]);
 
 
@@ -25,8 +25,8 @@ $.listViewC.on('itemclick', function(e) {
 				userModel : Alloy.createModel('user',e.model.get('user'))
 			});
 		} else {
-			AG.utils.openController(AG.mainTabGroup.activeTab, 'photoDetail', {
-				photoModel : e.model //clicked Model
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
+				postModel : e.model //clicked Model
 			});
 		}
 	}
@@ -45,10 +45,10 @@ AG.settings.on('change:cloudSessionId',function(model, changedValue, options){
 		if($.tBar.index==1){
 			$.tBar.setIndex(0);
 			$.tBar.fireEvent('click',{index:0});
-			$.listViewC.setCollection(photoCol);
+			$.listViewC.setCollection(postCol);
 		}
 	}
-	photoCol.reset(photoCol.models); //새로 fetch하지 않음. 삭제 가능여부를 새로 판단해야하기에 때문에 다시 reset함.
+	postCol.reset(postCol.models); //새로 fetch하지 않음. 삭제 가능여부를 새로 판단해야하기에 때문에 다시 reset함.
 });
 
 //init UI
@@ -67,11 +67,11 @@ $.onFirstFocus = function(e){
 };
 
 $.fetchFirstCollection = function(){
-	photoCol.defaultFetchData = {
+	postCol.defaultFetchData = {
 		//order : "-created_at",
 		where : $.fetchWhereData
 	};
-	photoCol.fetch(); //최초 fetch
+	postCol.fetch(); //최초 fetch
 };
 
 
@@ -84,7 +84,7 @@ function searchFacebookFriends(){
 		        _.each(e.users,function(user){
 		        	friendIds.push(user.id);
 		        });
-		        fetchOnlyFriendsPhoto(friendIds);
+		        fetchOnlyFriendsPost(friendIds);
 		    } else {
 		        // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
 		    }
@@ -94,16 +94,16 @@ function searchFacebookFriends(){
 	}
 }
 
-function fetchOnlyFriendsPhoto(userIds) {
+function fetchOnlyFriendsPost(userIds) {
 	if(userIds && userIds.length){
-		friendPhotoCol.defaultFetchData = {
+		friendPostCol.defaultFetchData = {
 			where : _.extend(_.clone($.fetchWhereData),{
 				user_id: {'$in' : userIds}
 			}),
 			//order : "-created_at"
 		};
-		Ti.API.info(friendPhotoCol.defaultFetchData);
-		friendPhotoCol.fetch({
+		Ti.API.info(friendPostCol.defaultFetchData);
+		friendPostCol.fetch({
 			error:function(){
 				alert('error');
 			}
@@ -124,22 +124,22 @@ $.listViewC.topSection.headerView = $.listHeaderView;
 $.tBar.addEventListener('click', function(e) {
 	switch(e.index){
 		case 0:
-			$.listViewC.setCollection(photoCol);
-			photoCol.trigger('reset',photoCol);
+			$.listViewC.setCollection(postCol);
+			postCol.trigger('reset',postCol);
 		break;
 		case 1:
 			AG.loginController.requireLogin({
 				success : function(){
-					$.listViewC.setCollection(friendPhotoCol);
-					if(friendPhotoCol.length){
-						friendPhotoCol.trigger('reset',friendPhotoCol);
+					$.listViewC.setCollection(friendPostCol);
+					if(postCol.length){
+						friendPostCol.trigger('reset',friendPostCol);
 					}
 					searchFacebookFriends();
 				},
 				cancel : function(){
 					$.tBar.setIndex(0);
 				},
-				message : L('friendsPhotoNeedsLogin')
+				message : L('friendsPostNeedsLogin')
 			});
 			
 		break;
@@ -155,7 +155,7 @@ function showCamera(){
 	AG.loginController.requireLogin({
 		success : function(){
 			Alloy.createController('cameraOveray',{
-				collection : photoCol
+				collection : postCol
 			}).showCamera();
 		},
 		message : L('cameraNeedsLogin')
@@ -171,5 +171,5 @@ Titanium.Geolocation.getCurrentPosition(function(e){
 		return;
 	}
 	AG.currentPosition.set(e.coords);	
-	//photoCol.trigger('reset',photoCol);
+	//postCol.trigger('reset',postCol);
 });

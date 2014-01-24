@@ -15,7 +15,7 @@ exports.definition = {
 			/*
 			isReported: function( options ){
 				var options = options || {}
-					,photo_id = options.photo_id;
+					,post_id = options.post_id;
 				
 				this.fetch({
 					data:{
@@ -23,7 +23,7 @@ exports.definition = {
 						response_json_depth : 1,
 						where: {
 							user_id: AG.loggedInUser.get('id'),
-							fields:{target_photo_id: photo_id}
+							fields:{target_post_id: post_id}
 						},
 						limit:1
 					},

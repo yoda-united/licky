@@ -32,7 +32,7 @@ $.mainContent.addEventListener('scroll', _.throttle(function(e){
 }, 10));
 
 $.foodRow.addEventListener('click', function(e) {
-	AG.utils.openController(AG.mainTabGroup.activeTab, "someonePhotoList", {
+	AG.utils.openController(AG.mainTabGroup.activeTab, "someonePostList", {
 		userModel : userModel
 	});
 });
@@ -86,14 +86,6 @@ function loginChangeHandler(changedValue) {
 	$.profileSettingBtn.visible = isMe;
 }
 loginChangeHandler();
-
-function showCamera() {
-	AG.loginController.requireLogin(function() {
-		Alloy.createController('cameraOveray', {
-			collection : photoCol
-		}).showCamera();
-	});
-}
 
 exports.setProperties = function() {
 	if (!userModel.get('id')) {

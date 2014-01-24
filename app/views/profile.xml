@@ -1,8 +1,5 @@
 <Alloy>
 	<Window class="container">
-		<RightNavButton platform="ios">
-			<Button id="cameraBtn" class="cameraBtn" onClick="showCamera"></Button>
-		</RightNavButton>
 		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
 
 		<ImageView id="profileBannerImage" />

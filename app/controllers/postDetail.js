@@ -1,5 +1,5 @@
 var args = arguments[0] || {},
-	photoModel = args.photoModel;
+	postModel = args.postModel;
 
 /**
  * Google Map
@@ -8,7 +8,7 @@ var GoogleMapsClass = require('GoogleMaps');
 var GoogleMaps = new GoogleMapsClass({
 	iOSKey: "***REMOVED***"
 });
-var coord = photoModel.get("custom_fields").coordinates;
+var coord = postModel.get("custom_fields").coordinates;
 var mapView = GoogleMaps.initMap({
 	latitude:coord[0][1],
 	longitude:coord[0][0],
@@ -30,14 +30,14 @@ $.listView.addEventListener('itemclick', function(e) {
 	if (e.bindId == "profileImage") {
 		AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
 			//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
-			userModel : Alloy.createModel('user', photoModel.get('user'))
+			userModel : Alloy.createModel('user', postModel.get('user'))
 		});
 	}
 });
 
-function resetPhotoContent(){
-	var contentItem = photoModel.doDefaultTransform();
-	contentItem.template = 'photoItemTemplate';
+function resetPostContent(){
+	var contentItem = postModel.doDefaultTransform();
+	contentItem.template = 'postItemTemplate';
 	if(OS_IOS){
 		contentItem.properties.selectionStyle = Ti.UI.iPhone.ListViewCellSelectionStyle.NONE;
 	}
@@ -47,9 +47,9 @@ function resetPhotoContent(){
 		contentItem
 	]);
 }
-resetPhotoContent();
+resetPostContent();
 
-photoModel.on('change',resetPhotoContent);
+postModel.on('change',resetPostContent);
 
 
 
@@ -105,7 +105,7 @@ commentCol.on('add',function(model,col,options){
 function fetchComments(){
 	commentCol.fetch({
 		data : {
-			photo_id : photoModel.id,
+			post_id : postModel.id,
 			per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
 		}
 	});
@@ -116,13 +116,13 @@ fetchComments();
 /**
  * 신고 or 삭제 기능 (자신의 사진이면 삭제, 타인의 사진이면 신고 기능)
  */
-// alert(JSON.stringify(photoModel.get('user').id)+ "\n "+ AG.loggedInUser.get('id'));
-if(photoModel.get('user').id === AG.loggedInUser.get('id')){
+// alert(JSON.stringify(postModel.get('user').id)+ "\n "+ AG.loggedInUser.get('id'));
+if(postModel.get('user').id === AG.loggedInUser.get('id')){
 	$.deleteDialog.addEventListener('click', function(e) {
 		if (e.index === 0) {
-			photoModel.destroy({
+			postModel.destroy({
 				success:function(e){
-					$.photoDetail.close();
+					$.postDetail.close();
 				},
 				error:function(e){
 					alert(L("failToDelete"));
@@ -140,7 +140,7 @@ if(photoModel.get('user').id === AG.loggedInUser.get('id')){
 			Alloy.createModel('report').save({
 					class_name : "reports",
 					fields : {
-						"target_photo_id": photoModel.get('id')
+						"target_post_id": postModel.get('id')
 					}
 				},{
 					success: function(e){
@@ -171,7 +171,7 @@ if(photoModel.get('user').id === AG.loggedInUser.get('id')){
 				response_json_depth: 1,
 				where: {
 					user_id: AG.loggedInUser.get('id'),
-					fields: {target_photo_id: photoModel.get('id')}
+					fields: {target_post_id: postModel.get('id')}
 				},
 				limit: 1
 			},
@@ -202,7 +202,9 @@ $.commentField.addEventListener('focus', function(e) {
 			duration : 200
 		});
 	}
-	$.listView.scrollToItem(2,$.commentSection.items.length-1);	
+	if($.commentSection.items.length){
+		$.listView.scrollToItem(2,$.commentSection.items.length-1);	
+	}
 });
 $.commentField.addEventListener('blur', function(e) {
 	if(OS_IOS){
@@ -233,13 +235,12 @@ $.listView.addEventListener('delete', function(e) {
 		var comment = commentCol.get(e.itemId);
 		comment.destroy({
 			success: function(){
-				var current = photoModel.get('reviews_count')-1;
+				var current = postModel.get('reviews_count')-1;
 				if(current>=0){
-					photoModel.set('reviews_count',current);
+					postModel.set('reviews_count',current);
 				}
 			},
 			error : function(e){
-				alert(e);
 				alert('댓글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.');
 			}
 		});
@@ -253,7 +254,7 @@ $.sendBtn.addEventListener('click', function(e) {
 	//alert($.commentField.value);
 	$.sendBtn.enabled = false;
 	commentCol.create({
-		photo_id: photoModel.id,
+		post_id: postModel.id,
 	    content: $.commentField.value,
 	    allow_duplicate : true
 	},{
@@ -264,10 +265,10 @@ $.sendBtn.addEventListener('click', function(e) {
 			$.sendBtn.enabled = true;
 			
 			//댓글 개수가 2개 이상 차이가 나면 댓글을 다시 불러옴.. 아니면 말구
-			if(nextModel.attributes.photo.reviews_count - photoModel.get('reviews_count')>1){
-				fetchComments();
-			}
-			photoModel.set(nextModel.attributes.photo);
+			// if(nextModel.attributes.post.reviews_count - postModel.get('reviews_count')>1){
+				// fetchComments();
+			// }
+			postModel.set('reviews_count',postModel.get('reviews_count')+1);
 		},
 		error : function(){
 			$.sendBtn.enabled = true;

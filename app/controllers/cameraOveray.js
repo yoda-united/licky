@@ -4,7 +4,7 @@ var currentPosition = {},
 	currentAddress = {};
 
 var args = arguments[0],
-	photoCol = args.collection;
+	postCol = args.collection;
 
 if(AG.settings.get("platformHeight") < 568){
 	$.cameraOveray.remove($.mapWrap);
@@ -211,10 +211,11 @@ exports.showCamera = function(){
 			}
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
-			photoCol.create({
+			postCol.create({
 				title : $.contentField.value,
+				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
 				photo : blob,
-				user_id: AG.loggedInUser.get('id'),
+				//user_id: AG.loggedInUser.get('id'),
 				"photo_sizes[medium_320]" : "320x180",
 				"photo_sizes[thumb_100]" : "100x100#",
 				'photo_sync_sizes[]' :'original',
@@ -225,23 +226,19 @@ exports.showCamera = function(){
 				}
 			},{
 				wait:true,
-				success : function(nextPhoto){
-					Ti.API.info(nextPhoto.attributes);
+				success : function(nextPost){
+					Ti.API.info(nextPost.attributes);
 					
 					if(AG.settings.get('postWithFacebook')){
-						var sharePhoto = Alloy.createModel('file');
+						var sharePhoto = Alloy.createModel('photo');
 						sharePhoto.save({
-							name: nextPhoto.id+'.jpg',
-		    				file: ImageFactory.compress(fbPreviewFile, 0.75),
+							"collection_name" : "facebook_preview",
+							"photo_sizes[medium_320]" : "320x180",
+							'photo_sync_sizes[]' :'original',
+		    				photo: ImageFactory.compress(fbPreviewFile, 0.75),
 		    				custom_fields : {
-								"[ACS_Photo]parent_id": nextPhoto.id
+								"[ACS_Post]parent_id": nextPost.id
 							}
-						},{
-							success : function(nextFile){
-							},
-							error : function(e){
-							},
-							silent: true
 						});
 					}
 				}
