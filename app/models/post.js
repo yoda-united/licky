@@ -38,7 +38,7 @@ exports.definition = {
 					};
 				}
 				
-				var isMyPhoto = this.get('user').id == AG.loggedInUser.get('id'); 
+				var isMine = this.get('user').id == AG.loggedInUser.get('id'); 
 				
 				var commentCountText = "";
 				if( this.get('reviews_count') ){
@@ -72,7 +72,7 @@ exports.definition = {
 					distance : distance,
 					properties :{
 						itemId : this.id,
-						canEdit : isMyPhoto
+						canEdit : isMine
 					},
 				});
 			}
