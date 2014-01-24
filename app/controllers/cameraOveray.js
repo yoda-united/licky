@@ -212,7 +212,8 @@ exports.showCamera = function(){
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
 			postCol.create({
-				content : $.contentField.value,
+				title : $.contentField.value,
+				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
 				photo : blob,
 				//user_id: AG.loggedInUser.get('id'),
 				"photo_sizes[medium_320]" : "320x180",

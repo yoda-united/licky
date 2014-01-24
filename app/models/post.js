@@ -51,8 +51,8 @@ exports.definition = {
 						image : urls.original 
 					},
 					title :{
-						text : this.get('content'),
-						value : this.get('content')
+						text : this.get('title'),
+						value : this.get('title')
 					},
 					userName:{
 						text : this.get('user').first_name
