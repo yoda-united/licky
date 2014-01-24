@@ -230,44 +230,16 @@ exports.showCamera = function(){
 					Ti.API.info(nextPost.attributes);
 					
 					if(AG.settings.get('postWithFacebook')){
-						// var sharePhoto = Alloy.createModel('photo');
-						// sharePhoto.save({
-							// // name: nextPost.id+'.jpg',
-							// "collection_name" : "facebook_preview",
-							// "photo_sizes[medium_320]" : "320x180",
-							// 'photo_sync_sizes[]' :'original',
-		    				// photo: ImageFactory.compress(fbPreviewFile, 0.75),
-		    				// custom_fields : {
-								// "[ACS_Photo]parent_id": nextPost.id
-							// }
-						// },{
-// 							
-// 							
-							// success : function(nextFile) {
-								// alert(nextFile.get('urls').original);
-								// Ti.API.info(nextFile.get('urls').original);
-								// // AG.facebook.requestWithGraphPath('me/feed', {
-									// // message : "Trying out FB Graph API and it's fun!",
-									// // caption : '링크 캡션',
-									// // description : '링크 디스크립션',
-									// // link : 'http://tidev.kr',
-									// // picture : nextFile.get('url')
-								// // }, "POST", function(e) {
-									// // if (e.success) {
-										// // alert("Success!  From FB: " + e.result);
-									// // } else {
-										// // if (e.error) {
-											// // alert(e.error);
-										// // } else {
-											// // alert("Unkown result");
-										// // }
-									// // }
-								// // });
-// 
-							// }, error : function(e){
-							// }, silent:true
-// 
-						// });
+						var sharePhoto = Alloy.createModel('photo');
+						sharePhoto.save({
+							"collection_name" : "facebook_preview",
+							"photo_sizes[medium_320]" : "320x180",
+							'photo_sync_sizes[]' :'original',
+		    				photo: ImageFactory.compress(fbPreviewFile, 0.75),
+		    				custom_fields : {
+								"[ACS_Post]parent_id": nextPost.id
+							}
+						});
 					}
 				}
 			});
