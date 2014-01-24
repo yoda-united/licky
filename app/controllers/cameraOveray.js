@@ -226,19 +226,19 @@ exports.showCamera = function(){
 				}
 			},{
 				wait:true,
-				success : function(nextPhoto){
-					Ti.API.info(nextPhoto.attributes);
+				success : function(nextPost){
+					Ti.API.info(nextPost.attributes);
 					
 					if(AG.settings.get('postWithFacebook')){
 						// var sharePhoto = Alloy.createModel('photo');
 						// sharePhoto.save({
-							// // name: nextPhoto.id+'.jpg',
+							// // name: nextPost.id+'.jpg',
 							// "collection_name" : "facebook_preview",
 							// "photo_sizes[medium_320]" : "320x180",
 							// 'photo_sync_sizes[]' :'original',
 		    				// photo: ImageFactory.compress(fbPreviewFile, 0.75),
 		    				// custom_fields : {
-								// "[ACS_Photo]parent_id": nextPhoto.id
+								// "[ACS_Photo]parent_id": nextPost.id
 							// }
 						// },{
 // 							

@@ -13,7 +13,7 @@ $.listViewC.setCollection(postCol);
 
 
 $.listViewC.setTemplateControls([
-	'photoItemTemplate'
+	'postItemTemplate'
 ]);
 
 
@@ -25,8 +25,8 @@ $.listViewC.on('itemclick', function(e) {
 				userModel : Alloy.createModel('user',e.model.get('user'))
 			});
 		} else {
-			AG.utils.openController(AG.mainTabGroup.activeTab, 'photoDetail', {
-				photoModel : e.model //clicked Model
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
+				postModel : e.model //clicked Model
 			});
 		}
 	}
@@ -84,7 +84,7 @@ function searchFacebookFriends(){
 		        _.each(e.users,function(user){
 		        	friendIds.push(user.id);
 		        });
-		        fetchOnlyFriendsPhoto(friendIds);
+		        fetchOnlyFriendsPost(friendIds);
 		    } else {
 		        // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
 		    }
@@ -94,7 +94,7 @@ function searchFacebookFriends(){
 	}
 }
 
-function fetchOnlyFriendsPhoto(userIds) {
+function fetchOnlyFriendsPost(userIds) {
 	if(userIds && userIds.length){
 		friendPostCol.defaultFetchData = {
 			where : _.extend(_.clone($.fetchWhereData),{
@@ -139,7 +139,7 @@ $.tBar.addEventListener('click', function(e) {
 				cancel : function(){
 					$.tBar.setIndex(0);
 				},
-				message : L('friendsPhotoNeedsLogin')
+				message : L('friendsPostNeedsLogin')
 			});
 			
 		break;

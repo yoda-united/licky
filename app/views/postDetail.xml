@@ -7,7 +7,7 @@
 		<View id="mainWrap">
 			<ListView id="listView">
 				<Templates>
-					<Require id="photoTemplate" src="photoItemTemplate"/>
+					<Require id="photoTemplate" src="postItemTemplate"/>
 					<ItemTemplate class="commentTemplate" name="commentTemplate">
 						<Label class="time" bindId="time"></Label>
 						<Label class="userName" bindId="userName"></Label>

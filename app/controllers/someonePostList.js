@@ -4,7 +4,7 @@ var userModel = args.userModel || AG.loggedInUser;
 
 var someoneId = userModel.get('id'); //loggedInUser일 경우때문에 get('id')사용
 
-var photoCol = Alloy.createCollection('photo');
+var postCol = Alloy.createCollection('post');
 
 
 //init ui
@@ -13,19 +13,19 @@ $.getView().title = isMe?L('myLicks'):String.format(L('someoneLicks'),userModel.
 $.getView().backButtonTitle = L('back');
 
 
-photoCol.defaultFetchData = {
+postCol.defaultFetchData = {
 	//order : "-created_at",
 	where :{
 		user_id: {'$in' : [someoneId]}
 	}
 };
 
-$.listViewC.setCollection(photoCol);
+$.listViewC.setCollection(postCol);
 $.listViewC.setTemplateControls([
-	'photoItemTemplate'
+	'postItemTemplate'
 ]);
 
-photoCol.fetch();
+postCol.fetch();
 
 $.listViewC.on('itemclick', function(e) {
 	if (e.model) {
@@ -35,8 +35,8 @@ $.listViewC.on('itemclick', function(e) {
 				userModel : Alloy.createModel('user',e.model.get('user'))
 			});
 		} else {
-			AG.utils.openController(AG.mainTabGroup.activeTab, 'photoDetail', {
-				photoModel : e.model //clicked Model
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
+				postModel : e.model //clicked Model
 			});
 		}
 	}
