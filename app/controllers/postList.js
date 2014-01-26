@@ -8,6 +8,10 @@ $.fetchWhereData = {}; // 상속할때 where에 추가하고 싶으면 여기에
 var postCol = Alloy.createCollection('post');
 var friendPostCol = Alloy.createCollection('post');
 
+postCol.on('remove',function(model){
+	// TODO : 1. 사진 지우고 2. facebook용 이미지 지우고
+	
+});
 
 $.listViewC.setCollection(postCol);
 

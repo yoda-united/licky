@@ -239,6 +239,26 @@ exports.showCamera = function(){
 		    				custom_fields : {
 								"[ACS_Post]parent_id": nextPost.id
 							}
+						},
+						{
+							success : function(nextPreviewPhoto){
+								//alert(nextPreviewPhoto.get('urls').original);
+								AG.facebook.requestWithGraphPath('me/links', {
+									// message : "",
+									link : 'http://go.licky.co/pic/'+nextPost.id,
+								}, "POST", function(e) {
+									if (e.success) {
+										//alert("Success!  From FB: " + e.result);
+									} else {
+										if (e.error) {
+											//alert(e.error);
+										} else {
+											//alert("Unkown result");
+										}
+									}
+								});
+
+							}
 						});
 					}
 				}
