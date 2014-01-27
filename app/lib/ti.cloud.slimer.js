@@ -22,6 +22,8 @@ function InvokeService(path, method, data, cb) {
    } else {
        xhr.open(method, exports.URL + path);
    }
+   alert(AG.Cloud.sessionId);
+   xhr.setRequestHeader( "Set-Cookie", "_session_id="+AG.Cloud.sessionId );
    xhr.send(data);
 };
 
@@ -33,26 +35,34 @@ if(url && url.replace(/^\s+|\s+$/g, "")) {
    exports.URL = "http://localhost:8080";
 }
 
-exports.application_index = function (data, cb) {
-   InvokeService("/index", "GET", data, cb);
+exports.application_index = function(data, cb) {
+   var path = [];
+   path.push('/');
+   InvokeService(path.join(''), "GET", data, cb);
 };
 
-exports.application_chatroom = function (data, cb) {
-   InvokeService("/", "GET", data, cb);
+exports.pic_showPic = function(data, id, cb) {
+   if(!id) throw 'id is required!';
+   var path = [];
+   path.push('/pic');
+   if(id) {
+      path.push('/' + id);
+   }
+   InvokeService(path.join(''), "GET", data, cb);
 };
 
-exports.application_loginUser = function (data, cb) {
-   InvokeService("/testLogin", "GET", data, cb);
+exports.pic_ogImage = function(data, id, cb) {
+   if(!id) throw 'id is required!';
+   var path = [];
+   path.push('/og_image');
+   if(id) {
+      path.push('/' + id);
+   }
+   InvokeService(path.join(''), "GET", data, cb);
 };
 
-exports.application_test = function (data, cb) {
-   InvokeService("/test", "GET", data, cb);
-};
-
-exports.application_userList = function (data, cb) {
-   InvokeService("userList", "GET", data, cb);
-};
-
-exports.application_haha = function (data, cb) {
-   InvokeService("haha", "GET", data, cb);
+exports.application_showMe = function(data, cb) {
+   var path = [];
+   path.push('/show_me');
+   InvokeService(path.join(''), "GET", data, cb);
 };
