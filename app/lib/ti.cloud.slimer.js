@@ -23,7 +23,7 @@ function InvokeService(path, method, data, cb) {
        xhr.open(method, exports.URL + path);
    }
    alert(AG.Cloud.sessionId);
-   xhr.setRequestHeader( "Set-Cookie", "_session_id="+AG.Cloud.sessionId );
+   xhr.setRequestHeader( "Cookie", "_session_id="+AG.Cloud.sessionId );
    xhr.send(data);
 };
 
