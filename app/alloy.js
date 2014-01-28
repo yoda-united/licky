@@ -1,13 +1,17 @@
 var newrelic = require('ti.newrelic'); 
 newrelic.start("***REMOVED***");
 
+
+
+
 //alias
 var AG = Alloy.Globals;
+AG.slimer = require("ti.cloud.slimer");
 
 //extend library
-_.str = require('underscore.string');
 AG.moment = require('momentExtend');
 moment.lang(AG.currentLanguage);
+_.str = require('underscore.string');
 Titanium.UI.createMaskedImage;
 
 AG.COLORS = require('colors');
@@ -20,7 +24,7 @@ if(ENV_DEV || ENV_TEST){
 }
 
 // settings
-Ti.Geolocation.purpose = '현재 위치 확인';
+Ti.Geolocation.purpose = L('geoPurpose');//'위치 기반 검색 제공 및 ';
 AG.facebook = require('facebook');
 AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 //AG.facebook.permissions = [FACEBOOK_APP_PERMISSIONS];
@@ -60,5 +64,3 @@ setTimeout(function(){
 		}
 	});
 },10000);
-
-
