@@ -20,5 +20,6 @@
 	<string name="defaultLoginMessage">Licking your chops. Licky!</string>
 	<string name="logout">Sign out</string>
 	<string name="setting">Settings</string>
+	<string name="geoPurpose">For search post and log to post</string>
 	
 </resources>
