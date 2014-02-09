@@ -1,0 +1,32 @@
+<Alloy>
+	<View class="container">
+		<View class="buttonWrap">
+			<Button id="closeBtn" />
+			<Button id="sendBtn" />
+			<View class="trailingEdge" />
+		</View>
+		<View id="fieldWrap">
+			<View id="fieldOpacityBG"></View>
+			<TextField id="contentField" class="photoTitle"></TextField>
+			<Label id="contentLabel" class="photoTitle"></Label>
+			<Label class="userName" id="userName"></Label>
+			<!-- <Label class="commentCount" bindId="commentCount"></Label> -->
+			<MaskedImage id="profileImage" class="profileImage" bindId="profileImage"></MaskedImage>
+			<Label class="distance" id="distance"></Label>
+			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
+		</View>
+		<View id="mapWrap" />
+		
+		<View id="controlBar" >
+			<View class="leadingEdge" />
+			<!-- <Switch id="fbSwitch" value="true" /> -->
+			<Button id="fbShareBtn" />
+			<Label id="fbShareGuidance" class="fbGuidance"/>
+			<Label id="fbDontShareGuidance" class="fbGuidance" />
+		</View>
+		<View id="behindKeyboard" />
+		<!-- <View class="infoWrap">
+			<Label id="geoLabel" >위치 확인 중..</Label>
+		</View> -->
+	</View>
+</Alloy>

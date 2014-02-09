@@ -1,0 +1,151 @@
+".container" : {
+	// backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
+	tabBarHidden : true,
+	fullscreen : false
+}
+
+"#listView" : {
+		// height: Ti.UI.SIZE,
+		// backgroundColor: Alloy.Globals.COLORS.darkGray,
+		// backgroundColor: "#929292",
+		backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
+		// style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
+		showVerticalScrollIndicator :false,
+		
+	separatorColor: 'white',
+	bottom : 44,
+	willScrollOnStatusTap : true
+}
+"#listView[platform=ios]": {
+	separatorStyle :Titanium.UI.iPhone.ListViewSeparatorStyle.NONE
+}
+
+"#moreButton": {
+	title: "\u2026"
+}
+
+
+".commentTemplate" : {
+	// backgroundColor: 'white',
+	height : Ti.UI.SIZE
+}
+".commentTemplate[platform=ios]" : {
+	selectionStyle : Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE
+}
+".profileRing" :{
+	zIndex: 11,
+	width : 41,
+	height : 41,
+	left: 13.5,
+	top : 4.5,
+	image: "images/profileRing.png"
+}
+".maskedProfile" : {
+	zIndex: 10,
+	width : 40,
+	height : 40,
+	left: 14,
+	top : 5,
+	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
+	mask : 'images/profileMask.png',
+	// image : 'images/profileMask.png'
+}
+".userName" : {
+	zIndex: 9,
+	top: 0,
+	left : 51,
+	color : Alloy.Globals.COLORS.lickyOrange,
+	font : {
+		fontSize : 16,
+		fontFamily : 'AppleSDGothicNeo-Regular'
+	}
+}
+".time" : {
+	color: Alloy.Globals.COLORS.gray,
+	top: 5,
+	right: 12,
+	font : {
+		fontSize : 12,
+		fontFamily : 'AppleSDGothicNeo-SemiBold'
+	}
+}
+".commentFormWrap" : {
+	height : Ti.UI.SIZE,
+	// height: 42,
+	bottom: 0,
+	// backgroundColor :'#DCDEE2'
+	backgroundColor: Alloy.Globals.COLORS.whiteGray
+}
+".speechBubble" : {
+	// backgroundColor: Alloy.Globals.COLORS.lightWarmGray
+	top : 18,
+	left : 39,
+	right: 22,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	backgroundColor : "transparent",
+	backgroundLeftCap : 10,
+	backgroundTopCap: 10,
+	backgroundImage: "images/speechBubble.png"
+}
+".commentContent" : {
+	// left : 60,
+	// right : 40,
+	// top : 23,
+	color: Alloy.Globals.COLORS.darkGray,
+	font : {
+		fontSize : 15,
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	},
+	top:7,
+	bottom:8,
+	left:16,
+	right:15,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE
+}
+
+
+"#mapSection": {
+	// height:2200
+}
+"#mapWrap": {
+	height: 119,
+	backgroundColor: "white"
+}
+"#commentField": {
+	borderColor: Alloy.Globals.COLORS.gray,
+	borderRadius: 15,
+	left: 10,
+	right : 58,
+	top : 6,
+	backgroundColor :Alloy.Globals.COLORS.lightGray,
+	suppressReturn : false,
+	height : Ti.UI.SIZE,
+	hintText: L("hey"),
+	font : {
+		fontSize :15
+	},
+	bottom : 5,
+	scrollsToTop : false
+}
+"#sendBtn" : {
+	right : 5,
+	width : 50,
+	height : 40,
+	// bottom : 4,
+	title : L('send','Send'),
+	color : Alloy.Globals.COLORS.red
+}
+
+
+
+
+".hiddenProfile" : {
+	width : 10,
+	height : 10,
+	left: -10,
+	top : 0,
+	image : 'images/profileMask.png',
+	visible : 'false'
+}

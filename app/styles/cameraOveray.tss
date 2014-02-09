@@ -1,0 +1,125 @@
+
+".container" : {
+  //backgroundColor : 'white'
+  layout : 'vertical'
+}
+
+".buttonWrap" : {
+	backgroundColor : Alloy.Globals.COLORS.whiteGray,
+	height : Alloy.Globals.cameraInfo.top,
+	opacity : 0.9
+}
+"#closeBtn" : {
+	height : Ti.UI.FILL,
+	width :  Ti.UI.SIZE,
+	title : L('close'),
+	// backgroundLeftCap: 
+	image: "images/closeDown.png",
+	tintColor: Alloy.Globals.COLORS.red,	// image color
+	color: Alloy.Globals.COLORS.red,	// text color
+	left : 10
+}
+"#sendBtn" : {
+	height : Ti.UI.FILL,
+	width : '50%',
+	title : 'Send',
+	visible : false
+}
+
+
+"#fieldWrap" : {
+	height : 180,
+	backgroundColor : 'transparent',
+	touchEnabled : false
+}
+"#contentField" : {
+	bottom: 11,
+	maxLength : 22,
+	tintColor : 'red',
+	returnKeyType : Ti.UI.RETURNKEY_SEND	
+}
+
+"#contentLabel" : {
+}
+
+"#contentField[platform=android]" : {
+	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
+}
+"#fieldOpacityBG" : {
+	top:0,
+	height : 90,
+	backgroundColor : 'black',
+	opacity : 0.2
+}
+
+
+".infoWrap" : {
+	backgroundColor : 'white',
+}
+
+"#geoLabel" : {
+	top : 0
+}
+
+"#mapWrap" : {
+	backgroundColor : 'white',
+	height : 88,
+	touchEnabled : false
+}
+
+"#controlBar" : {
+	height: 40,
+	backgroundColor: Alloy.Globals.COLORS.whiteGray
+}
+// "#fbSwitch" :{
+	// // backgroundDisabledColor : "yellow",
+	// // backgroundSelectedColor : "pink",
+	// backgroundFocusedColor : "blue",
+	// title:"will share with Facebook",
+	// left:12,
+	// tintColor: "pink",
+	// color: "gray",
+	// height: 5
+// }
+"#fbShareBtn": {
+	left: 14,
+	height: 40,
+	width: 40,
+	zIndex: 2,
+	backgroundImage: "images/fbShareActive.png"
+}
+".fbGuidance":{
+	top: 9,
+	left: 57,
+	height: 28,
+	width: 240,
+	color: Alloy.Globals.COLORS.blue,
+	// textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font : {
+		fontSize : 18,
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	},
+	// borderWidth: 0.5,
+	// borderRadius: 14,
+	// borderColor: Alloy.Globals.COLORS.blue,
+	zIndex: 1
+}
+"#fbShareGuidance": {
+	text: L('willBePostedToFacebook')
+}
+"#fbDontShareGuidance": {
+	// visible: false,
+	opacity: 0,
+	color: Alloy.Globals.COLORS.midGray,
+	text: L('willNotShareWithFacebook')	
+	// borderColor: Alloy.Globals.COLORS.darkGray
+}
+"#behindKeyboard" : {
+	height: 216,	// softKeyboard's height
+	// width: Ti.UI.SIZE,
+	// backgroundColor : 'red',
+	// borderColor : 'orange',
+	// borderWidth : '1px',
+	backgroundImage: "images/behindKeyboard.png"
+}

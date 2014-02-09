@@ -1,0 +1,26 @@
+<Alloy>
+	<Window class="container">
+		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
+
+		<ImageView id="profileBannerImage" />
+		<!-- <View id="controlBar" /> -->
+		<ScrollView id="mainContent" backgroundColor="transparent" >
+    		<ImageView id="profileImage" />
+			<Label id="name" />
+			<ImageView id="wireForBtnImg" />
+			<Button id="profileSettingBtn" />
+			
+	        <TableView id="menuTable" >
+	            <TableViewSection >
+	                <TableViewRow id="foodRow" />
+	            </TableViewSection>
+	        </TableView>
+		</ScrollView>
+
+
+        <OptionDialog id="settingDialog">
+        </OptionDialog>
+
+		<!-- <Button id="loginBtn" class="beforeLogin afterLogin" zIndex="10" /> -->
+	</Window>
+</Alloy>

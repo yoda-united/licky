@@ -1,0 +1,17 @@
+<Alloy>
+	<ListView id="listView" >
+		<ListSection id="topSection">
+			<!-- <HeaderView>
+				<View backgroundColor="transparent" height="30">
+					<Label>haha</Label>
+				</View>
+			</HeaderView> -->
+		</ListSection>
+		<ListSection id="section"></ListSection>
+		<FooterView>
+			<View id="loadingFooterView">
+				<ActivityIndicator id="loadingActivity" />
+			</View>
+		</FooterView>
+	</ListView>
+</Alloy>

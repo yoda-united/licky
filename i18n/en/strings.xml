@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="timeLine">Timeline</string>
+	<string name="timeLineTabTitle">Timeline</string>
+	<string name="allList">All</string>
+	<string name="friendList">Friend's</string>
+	<string name="nearList">Near</string>
+	<string name="me">Me</string>
+	<string name="all">All</string>
+	<string name="friendsOnly">Friend's</string>
+	<string name="myLicks">My Lick Photos</string>
+	<string name="someoneLicks">%s's Lick Photos</string>
+	<string name="cancel">Cancel</string>	
+	<string name="close">Close</string>
+	<string name="back">Back</string>
+	<string name="loading">Loading</string>
+	<string name="signInWithFacebook">Connect with Facebook</string>
+	<string name="logoutMessage">Sign out Success</string>
+	<string name="facebookConnecting">Connecting..</string>
+	<string name="defaultLoginMessage">Licking your chops. Licky!</string>
+	<string name="logout">Sign out</string>
+	<string name="setting">Settings</string>
+	<string name="geoPurpose">For search post and log to post</string>
+	
+</resources>

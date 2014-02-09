@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 3.0
+apiversion: 2
+description: New Relic, Inc.
+author: New Relic, Inc.
+license: New Relic, Inc.
+copyright: New Relic, Inc.
+
+
+# these should not be edited
+name: ti_newrelic
+moduleid: ti.newrelic
+guid: a16d377b-a226-4ca0-a38a-1680be55d8ec
+platform: android
+minsdk: 3.1.2.GA

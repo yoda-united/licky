@@ -1,0 +1,48 @@
+".container" : {
+	title: L('timeLine'),
+}
+
+"#loadingActivity" : {
+	style : Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+}
+
+"#loadingFooterView" : {
+	height : 30
+}
+
+"#listViewC" : {
+	// refreshControlTintColor : Alloy.Globals.COLORS.orange
+	refreshControlTintColor : Alloy.Globals.COLORS.red
+}
+
+"#listHeaderView" : {
+	backgroundColor :'transparent',
+	// backgroundColor: Alloy.Globals.COLORS.whiteGray,
+	// borderWidth: 1,
+	// backgroundColor : Alloy.Globals.COLORS.midGray,
+	// backgroundGradient : {
+		// type: 'linear',
+		// colors: [ 
+			// { color: '#ff3b30', offset: 0.0}, 
+			// { color: '#EFEFEE', offset: 0.02}, 
+			// { color: '#fff', offset: 1.0 } ]
+	// },
+	height : 45
+}
+
+"#tBar" : {
+	// bottom: -3,
+	left: 10,
+	backgroundColor : Alloy.Globals.COLORS.red,
+	index : 0,
+	width : 125,
+	height: 30
+}
+
+".allLabel" : {
+	title : L('all')
+}
+
+".friendsLabel" : {
+	title : L('friendsOnly')
+}

@@ -1,0 +1,150 @@
+"Window":{
+	backgroundColor : 'white',
+	titleAttributes:{
+		// color:'#dfff',
+		// color: Alloy.Globals.COLORS.orange,
+		color: Alloy.Globals.COLORS.red,
+		// color:'black',
+		// font: {fontFamily:'AppleSDGothicNeo-UltraLight', fontSize:23}
+		font: {fontFamily:'AppleSDGothicNeo', fontSize:17},
+		left : 0,
+		right : 0
+	}
+}
+"Window[platform=ios]": {
+	// statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT
+	statusBarStyle: Ti.UI.iPhone.StatusBar.GRAY,
+	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
+	autoAdjustScrollViewInsets : true
+}
+"Label[platform=ios]": {
+	font : {
+		fontFamily : 'AppleSDGothicNeo-Light'
+	}
+}
+
+".leadingEdge": {
+	top: 0,
+	height: 0.5,
+	backgroundColor: Alloy.Globals.COLORS.red
+}
+".trailingEdge": {
+	bottom: 0,
+	height: 0.5,
+	backgroundColor: Alloy.Globals.COLORS.red
+}
+
+".photoTitle" : {
+	width : 300,
+	textAlign : 'right',
+	right : 10,
+	bottom : 0,
+	height : 80,
+	backgroundColor : 'transparent',
+	color : 'white',
+	font : {
+		fontSize : 48,
+		fontFamily : 'AppleSDGothicNeo-Thin'
+	},
+	minimumFontSize : 4,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
+}
+
+".photo": {
+	width : Alloy.Globals.cameraInfo.width,
+	height : 180,
+	defaultImage: "images/defaultFoodPhoto.png",
+	image: "images/defaultFoodPhoto.png",
+	// preventDefaultImage : true,
+	bottom : 0
+}
+
+".userName" : {
+	color : Alloy.Globals.COLORS.whiteGray,
+	top : 8,
+	left: 53,
+	font : {
+		fontFamily : 'AppleSDGothicNeo-SemiBold',
+		fontSize : 16
+	}
+}
+
+".profileImage" : {
+	left : 8,
+	top : 8,
+	width : 40,
+	height : 40,
+	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
+	mask : 'images/profileMask.png',
+	image : 'images/defaultProfilePicture.png'
+}
+
+".time" : {
+	color : '#cedd',
+	right : 7,
+	top : 11,
+	font : {
+		fontFamily : 'AppleSDGothicNeo-Regular',
+		fontSize : 13
+	}
+}
+
+".photoTitleLabel" : {
+	left: 50,
+	width : null,
+	right : 10,
+	bottom : -5,
+	//borderColor : 'red',
+	verticalAlign : null
+}
+
+".commentCount" : {
+	left: 14,
+	top : 50,
+	width : 40,
+	textAlign : 'left',
+	font : {
+		fontFamily : 'FontAwesome',
+		fontSize : 12
+	},
+	// color : '#eedc'
+	color : '#eddd'
+}
+
+".distance" : {
+	left: 56,
+	top : 26,
+	// width : 60,
+	height: 15,	// 두줄 방지 차원에서 셋팅 
+	textAlign : 'left',
+	font : {
+		fontFamily : 'FontAwesome',
+		fontSize : 13
+	},
+	// font : {
+		// fontFamily : 'AppleSDGothicNeo-Light',
+		// fontSize : 13
+	// },
+	// color : "#dddc"
+	color : "#bfff",
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
+}
+
+"#cameraBtn[platform=android]" : {
+	bottom : 10,
+	width : '80%',
+	height : 40,
+	backgroundColor : '#9b59b6',
+	color : 'white',
+	selectedColor : '#bdc3c7',
+	// title : L('takePhoto')
+}
+
+"#cameraBtn[platform=ios]" : {
+	// borderWidth:1,
+	// borderColor:"black",
+	width: 67,
+	height: 85,
+	backgroundImage: "images/camera.png"
+	// title : L('takePhoto')
+}

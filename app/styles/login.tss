@@ -1,0 +1,83 @@
+"Button": {
+	bubbleParent: false
+}
+".container" : {
+	navBarHidden : false,
+	backgroundColor : 'white',
+	modal: true
+}
+".wrap" : {
+	layout : 'vertical',
+	height : Ti.UI.SIZE
+}
+"#closeBtn" : {
+	left : 15,
+	top : 30,
+	// title: L('cancel'),
+	title: 'X',
+	color: Alloy.Globals.COLORS.midGray,
+	font : {
+		fontSize : 29,
+		// fontFamily: 'FontAwesome'
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	}
+}
+// "#fbLogin" : {
+	// borderRadius: 4,
+	// backgroundColor : '#2980b9',
+    // backgroundImage: 'none',
+    // selectedColor : 'gray',
+	// color : 'white',
+	// width : '80%',
+	// font : {
+		// fontSize: 20
+	// }
+// }
+".or" : {
+	top : 20
+}
+
+
+"#loginView":{	// 로긴하지 않았을 때 프로필사진 대신 나올 뷰
+	// visible: false,
+	top: 60
+}
+"#logo": { 
+	backgroundImage: "images/logoWithTitle.png",
+	width: 77,
+	height: 91,
+	top: 40
+}
+"#loginGuidance": {
+	text: L("defaultLoginMessage"),
+	top: 317,
+	color: Alloy.Globals.COLORS.darkGray,
+	font : {
+		fontSize : 12,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	}
+}
+"#facebookImage": {
+	top: 334,
+	left: 22,
+	height: 55,
+	width: 55,
+	backgroundImage: 'images/facebookLogo.png',
+	zIndex:10
+}
+"#fbLogin": {
+	borderRadius: 5,
+	top: 334,
+	left: 65,
+	height: 55,
+	width: 232,
+	title: L("signInWithFacebook"),
+	color: 'white',
+	font : {
+		fontSize : 17,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	},
+	backgroundColor: Alloy.Globals.COLORS.facebookBlue,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
+	// backgroundColor: '#4063A7'
+}

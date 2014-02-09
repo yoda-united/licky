@@ -1,0 +1,20 @@
+<Alloy>
+	<Window class="container">
+		<Require src="baseListView" id="listViewC">
+		</Require>
+		<RightNavButton platform="ios">
+			<Button id="cameraBtn" class="cameraBtn" onClick="showCamera"></Button>
+		</RightNavButton>
+		
+		<Button platform="android" id="cameraBtn"  onClick="showCamera"></Button>
+		
+		<View id="listHeaderView">
+            <TabbedBar id="tBar" platform="ios">
+	            <Labels>
+	                <Label class="allLabel"></Label>
+	                <Label class="friendsLabel"></Label>
+	            </Labels>
+	        </TabbedBar>
+        </View>
+	</Window>
+</Alloy>

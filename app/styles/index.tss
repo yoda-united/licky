@@ -1,8 +1,35 @@
 ".container": {
-	backgroundColor:"white"
+	backgroundColor:"white",
+	// activeTabIconTint : "red",
+
+	tintColor: Alloy.Globals.COLORS.red, // "#FD9426",
+	// tabsTintColor : "#FD9426",
+	// shadowImage : "images/defaultImageView.png",
+	barColor: Alloy.Globals.COLORS.white,
+	// barColor: "#ddff9500",
+	// barColor: "#55FFFFFF",
+	tabsBackgroundColor : "#FFF"
 },
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	color: "#000"
-} 
+},
+"#allTab": {
+	activeIcon: "images/tabIcon_time_active.png",
+	icon: "images/tabIcon_time_inactive.png"
+},
+"#friendTab": {
+	activeIcon: "images/tabIcon_friends_active.png",
+	icon: "images/tabIcon_friends_inactive.png"
+},
+"#nearTab": {
+	activeIcon: "images/tabIcon_near_active.png",
+	icon: "images/tabIcon_near_inactive.png"
+},
+"#meTab": {
+	activeIcon: "images/tabIcon_me_active.png",
+	icon: "images/tabIcon_me_inactive.png"
+}
+
+

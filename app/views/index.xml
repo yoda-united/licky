@@ -1,5 +1,13 @@
 <Alloy>
-	<Window class="container">
-		<Label id="label" onClick="doClick">Hello, World</Label>
-	</Window>
+	<TabGroup class="container" >
+		<Tab id="allTab" title="L('timeLineTabTitle')" >
+			<Require src="postList"/>
+		</Tab>
+		<Tab id="nearTab" title="L('nearList')">
+			<Require src="nearPostList"/>
+		</Tab>
+		<Tab id="meTab" title="L('me')">
+			<Require id="profile" src="profile" />
+		</Tab>
+	</TabGroup>
 </Alloy>
