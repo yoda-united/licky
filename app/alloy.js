@@ -27,7 +27,7 @@ if(ENV_DEV || ENV_TEST){
 Ti.Geolocation.purpose = L('geoPurpose');//'위치 기반 검색 제공 및 ';
 AG.facebook = require('facebook');
 AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
-//AG.facebook.permissions = [FACEBOOK_APP_PERMISSIONS];
+AG.facebook.permissions = ["publish_stream","email"];
 
 AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 
