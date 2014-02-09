@@ -20,5 +20,5 @@
 	<string name="defaultLoginMessage">맛있을 땐 리키! 흐릅~</string>
 	<string name="logout">로그 아웃</string>
 	<string name="setting">환경설정</string>
-	<string name="geoPurpose">주변 검색 및 글 작성시 위치 기록</string>
+	<string name="geoPurpose">주변 검색 및 글 작성 시 위치 기록용</string>
 </resources>

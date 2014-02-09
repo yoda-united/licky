@@ -245,7 +245,7 @@ exports.showCamera = function(){
 								//alert(nextPreviewPhoto.get('urls').original);
 								AG.facebook.requestWithGraphPath('me/links', {
 									// message : "",
-									link : 'http://go.licky.co/pic/'+nextPost.id,
+									link : 'http://www.licky.co/post/'+nextPost.id,
 								}, "POST", function(e) {
 									if (e.success) {
 										//alert("Success!  From FB: " + e.result);
