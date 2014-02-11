@@ -44,6 +44,11 @@ exports.definition = {
 						canEdit : isMine
 					},
 				});
+			},
+			// 댓글 쓸땐 slimer로 요청해서 추가적인 작업이 필요(push noti)
+			create : function(model, options){
+				// options에 url를 주면 됨 
+				return Backbone.Collection.create(model, options);
 			}
 		});
 

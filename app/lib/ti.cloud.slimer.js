@@ -22,7 +22,8 @@ function InvokeService(path, method, data, cb) {
    } else {
        xhr.open(method, exports.URL + path);
    }
-   alert(AG.Cloud.sessionId);
+   // alert(AG.Cloud.sessionId);
+   // 추가된 코드 
    xhr.setRequestHeader( "Cookie", "_session_id="+AG.Cloud.sessionId );
    xhr.send(data);
 };
