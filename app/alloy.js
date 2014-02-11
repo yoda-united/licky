@@ -60,7 +60,6 @@ setTimeout(function(){
 	appMetaWidget.updateAppMeta({
 		success: function(data){
 			Ti.API.info(data);
-			Ti.API.info(data);
 		}
 	});
 },10000);
