@@ -1,3 +1,5 @@
+
+	
 var newrelic = require('ti.newrelic'); 
 newrelic.start("***REMOVED***");
 
@@ -64,3 +66,68 @@ setTimeout(function(){
 		}
 	});
 },10000);
+
+
+// push notification
+if( OS_IOS ){
+	// Ti.Network.unregisterForPushNotifications();
+	Ti.Network.registerForPushNotifications({
+		types: [
+			Ti.Network.NOTIFICATION_TYPE_BADGE,
+			Ti.Network.NOTIFICATION_TYPE_ALERT,
+			Ti.Network.NOTIFICATION_TYPE_SOUND
+		],
+		callback: function(e){
+			alert("push " + e.data + ", " + e.inBackground );
+			// var pushData = e.data;
+			// for(key in pushData){
+				// alert("key: " + key + "\ndata:" + pushData[key]);
+			// }
+			// e.data.aps : object
+			
+			// e.data.alert: hi hehe
+			// e.data.badge: 7
+			// e.data.sound: 
+			
+			// e.data.aps.alert: asdf
+			// e.data.aps.badge: 1
+			// e.data.aps.sound: default
+		},
+		error: function(e){
+			alert("error");
+			// alert("error " + e.code + ", " + e.error );
+		},
+		success: function(e){
+			alert("Ti.Network.registerForPushNotifications() success!" + Ti.Network.getRemoteDeviceUUID() );
+			// return;
+			
+			var subscribePush = function(){
+					alert("sub!@@"+AG.settings.get('cloudSessionId'));
+				if( AG.settings.get('cloudSessionId') ){
+					alert("haha");
+					AG.Cloud.PushNotifications.subscribe({
+					    channel: 'comment',
+					    type: 'ios',
+					    device_token: Ti.Network.getRemoteDeviceUUID()
+					}, function (e) {
+					    if (e.success) {
+					    	AG.settings.off('change:cloudSessionId', subscribePush );
+					        alert('Success subscribe\n' + JSON.stringify(e) );
+					    } else {
+					        alert('Error subscribe:\n' + ((e.error && e.message) || JSON.stringify(e)));
+					    }
+					});
+				}
+			};
+			
+			if( AG.settings.get('cloudSessionId') ){
+				alert("로긴된 상태 ");
+				subscribePush();
+			}else{
+				alert("로긴 전, 이벤트 들록 ");
+				AG.settings.on('change:cloudSessionId', subscribePush );
+			}
+		}
+	});
+}
+
