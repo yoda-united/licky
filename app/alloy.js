@@ -67,7 +67,6 @@ setTimeout(function(){
 	});
 },10000);
 
-
 // push notification
 if( OS_IOS ){
 	// Ti.Network.unregisterForPushNotifications();
@@ -78,24 +77,23 @@ if( OS_IOS ){
 			Ti.Network.NOTIFICATION_TYPE_SOUND
 		],
 		callback: function(e){
-			// alert("push " + e.data + ", " + e.inBackground );
-			// var pushData = e.data;
-			// for(key in pushData){
-				// alert("key: " + key + "\ndata:" + pushData[key]);
-			// }
-			// e.data.aps : object
-			
-			// e.data.alert: hi hehe
-			// e.data.badge: 7
-			// e.data.sound: 
-			
-			// e.data.aps.alert: asdf
-			// e.data.aps.badge: 1
-			// e.data.aps.sound: default
+			Ti.UI.iPhone.setAppBadge(0);
+			// AG.Cloud.PushNotifications.reset_badge_get({ 아직 구현 안돼서..
+			AG.Cloud.PushNotifications.notify({
+				channel: "comment",	// shoulbe all exist channel 
+				to_ids: AG.loggedInUser.get('id'),
+				payload: {
+				    "badge": 0
+				}
+			}, function (e) {
+			    if (e.success) {
+			    	alert("success");
+			    } else {
+			    	alert("fail:"+JSON.stringify(e));
+			    }
+			});
 		},
 		error: function(e){
-			// alert("error");
-			// alert("error " + e.code + ", " + e.error );
 		},
 		success: function(e){
 			var subscribePush = function(){
