@@ -21,4 +21,5 @@
 	<string name="logout">로그 아웃</string>
 	<string name="setting">환경설정</string>
 	<string name="geoPurpose">주변 검색 및 글 작성 시 위치 기록용</string>
+	<string name="noFBFriends">릭키를 사용중인 페이스북 친구가 없네요.\n먹는거 좋아하는 친구들에게 릭키를 소개해보세요.</string>
 </resources>
