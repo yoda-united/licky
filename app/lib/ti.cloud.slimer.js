@@ -2,6 +2,9 @@
  * This is generated code - it will be overwritten. Do not modify.
  * Copyright (c) 2012 by Appcelerator, Inc. All Rights Reserved.
  */
+// var ACS = require('ti.cloud');
+// _.extend( exports,  ACS);
+// exports = ACS;
 
 function InvokeService(path, method, data, cb) {
    if (typeof(data) == "function") {
@@ -23,8 +26,8 @@ function InvokeService(path, method, data, cb) {
        xhr.open(method, exports.URL + path);
    }
    // alert(AG.Cloud.sessionId);
-   // 추가된 코드 
-   xhr.setRequestHeader( "Cookie", "_session_id="+AG.Cloud.sessionId );
+   // 추가된 코드: If a _session_id cookie is present, ACS Node uses that session ID to make the ACS API call. 
+   xhr.setRequestHeader( "Cookie", "_session_id=" + AG.Cloud.sessionId );
    xhr.send(data);
 };
 
@@ -35,6 +38,8 @@ if(url && url.replace(/^\s+|\s+$/g, "")) {
 } else {
    exports.URL = "http://localhost:8080";
 }
+
+
 
 exports.application_index = function(data, cb) {
    var path = [];
@@ -67,3 +72,5 @@ exports.application_showMe = function(data, cb) {
    path.push('/show_me');
    InvokeService(path.join(''), "GET", data, cb);
 };
+
+

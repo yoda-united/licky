@@ -24,7 +24,8 @@ function Sync( method, model, opts) {
             } else {
                 params = model.toJSON();
             }
-            object_method.create(params, function(e) {
+            (model.alterSyncCreate || object_method.create)(params, function(e) {
+			// object_method.create(params, function(e) {
                 if (e.success) {
                     model.meta = e.meta;
                     opts.success && opts.success(e[object_name][0]), model.trigger("fetch");

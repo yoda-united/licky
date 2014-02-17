@@ -1,3 +1,5 @@
+
+	
 var newrelic = require('ti.newrelic'); 
 newrelic.start("***REMOVED***");
 
@@ -63,3 +65,59 @@ setTimeout(function(){
 		}
 	});
 },10000);
+
+// push notification
+if( OS_IOS ){
+	// Ti.Network.unregisterForPushNotifications();
+	Ti.Network.registerForPushNotifications({
+		types: [
+			Ti.Network.NOTIFICATION_TYPE_BADGE,
+			Ti.Network.NOTIFICATION_TYPE_ALERT,
+			Ti.Network.NOTIFICATION_TYPE_SOUND
+		],
+		callback: function(e){
+			Ti.UI.iPhone.setAppBadge(0);
+			// AG.Cloud.PushNotifications.reset_badge_get({ 아직 구현 안돼서..
+			AG.Cloud.PushNotifications.notify({
+				channel: "comment",	// shoulbe all exist channel 
+				to_ids: AG.loggedInUser.get('id'),
+				payload: {
+				    "badge": 0
+				}
+			}, function (e) {
+			    if (e.success) {
+			    	Ti.API.info("success");
+			    } else {
+			    	Ti.API.info("fail:"+JSON.stringify(e));
+			    }
+			});
+		},
+		error: function(e){
+		},
+		success: function(e){
+			var subscribePush = function(){
+				if( AG.settings.get('cloudSessionId') ){
+					AG.Cloud.PushNotifications.subscribe({
+					    channel: 'comment',
+					    type: 'ios',
+					    device_token: Ti.Network.getRemoteDeviceUUID()
+					}, function (e) {
+					    if (e.success) {
+					    	AG.settings.off('change:cloudSessionId', subscribePush );
+					        // alert('Success subscribe\n' + JSON.stringify(e) );
+					    } else {
+					        // alert('Error subscribe:\n' + ((e.error && e.message) || JSON.stringify(e)));
+					    }
+					});
+				}
+			};
+			
+			if( AG.settings.get('cloudSessionId') ){
+				subscribePush();
+			}else{
+				AG.settings.on('change:cloudSessionId', subscribePush );
+			}
+		}
+	});
+}
+
