@@ -18,6 +18,8 @@
 	<string name="logoutMessage">로그아웃 성공</string>
 	<string name="facebookConnecting">연결중..</string>
 	<string name="defaultLoginMessage">맛있을 땐 리키! 흐릅~</string>
+	<string name="commentNeedsLogin">댓글을 달려면 로그인이 필요합니다.</string>
+	<string name="cameraNeedsLogin">릭키로 음식 사진 찍으시게요? 어서 로그인하세요!</string>
 	<string name="logout">로그 아웃</string>
 	<string name="setting">환경설정</string>
 	<string name="geoPurpose">주변 검색 및 글 작성 시 위치 기록용</string>
