@@ -243,20 +243,22 @@ exports.showCamera = function(){
 						{
 							success : function(nextPreviewPhoto){
 								//alert(nextPreviewPhoto.get('urls').original);
-								AG.facebook.requestWithGraphPath('me/links', {
-									// message : "",
-									link : 'http://www.licky.co/post/'+nextPost.id,
-								}, "POST", function(e) {
-									if (e.success) {
-										//alert("Success!  From FB: " + e.result);
-									} else {
-										if (e.error) {
-											//alert(e.error);
+								if(AG.settings.get('postWithFacebook')){
+									AG.facebook.requestWithGraphPath('me/links', {
+										// message : "",
+										link : 'http://www.licky.co/post/'+nextPost.id,
+									}, "POST", function(e) {
+										if (e.success) {
+											//alert("Success!  From FB: " + e.result);
 										} else {
-											//alert("Unkown result");
+											if (e.error) {
+												//alert(e.error);
+											} else {
+												//alert("Unkown result");
+											}
 										}
-									}
-								});
+									});
+								}
 
 							}
 						});
