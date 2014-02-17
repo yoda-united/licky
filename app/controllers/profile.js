@@ -98,10 +98,10 @@ exports.setProperties = function() {
 	AG.facebook.requestWithGraphPath(fb_id, {
 		fields : 'cover'
 	}, "GET", function(e) {
-		// alert(e);
 		if (e.success) {
-			// alert(JSON.parse(e.result).cover.source);
-			$.profileBannerImage.image = JSON.parse(e.result).cover.source;
+			if(e.result.cover){
+				$.profileBannerImage.image = e.result.cover.source;
+			}
 		}
 	});
 };
