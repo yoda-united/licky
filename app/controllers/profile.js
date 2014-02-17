@@ -99,8 +99,9 @@ exports.setProperties = function() {
 		fields : 'cover'
 	}, "GET", function(e) {
 		if (e.success) {
-			if(e.result.cover){
-				$.profileBannerImage.image = e.result.cover.source;
+			var resultObj = JSON.parse(e.result);
+			if(resultObj.cover){
+				$.profileBannerImage.image = resultObj.cover.source;
 			}
 		}
 	});
