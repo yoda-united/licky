@@ -198,7 +198,7 @@ exports.showCamera = function(){
 			});
 
 			var fbPreviewFile;
-			if(AG.settings.get('postWithFacebook')){
+			// if(AG.settings.get('postWithFacebook')){
 				$.fieldWrap.width = 320;
 				$.fieldWrap.height = 180;
 				$.fieldOpacityBG.visible = false;
@@ -208,7 +208,7 @@ exports.showCamera = function(){
 				$.contentLabel.visible = true;
 				$.contentLabel.text = $.contentField.value;
 				fbPreviewFile = $.fieldWrap.toImage(null, true); 
-			}
+			// }
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
 			postCol.create({
@@ -229,7 +229,7 @@ exports.showCamera = function(){
 				success : function(nextPost){
 					Ti.API.info(nextPost.attributes);
 					
-					if(AG.settings.get('postWithFacebook')){
+					// if(AG.settings.get('postWithFacebook')){
 						var sharePhoto = Alloy.createModel('photo');
 						sharePhoto.save({
 							"collection_name" : "facebook_preview",
@@ -260,7 +260,7 @@ exports.showCamera = function(){
 
 							}
 						});
-					}
+					// }
 				}
 			});
 			
