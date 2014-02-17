@@ -46,9 +46,31 @@ exports.definition = {
 				});
 			},
 			// 댓글 쓸땐 slimer로 요청해서 추가적인 작업이 필요(push noti)
-			create : function(model, options){
-				// options에 url를 주면 됨 
-				return Backbone.Collection.create(model, options);
+			alterSyncCreate: function(params,callback){
+				//httpClient params를 넘기고
+				// var url = "http://192.168.0.50:8080/api/acs/"+exports.definition.config.setttings.object_method;
+				var url = ( ENV_DEV || ENV_TEST ) ? "http://local.licky.co:8080" : Ti.App.Properties.getString("acs-service-baseurl-slimer");
+				url = url + "/api/acs/Reviews";
+				
+				var client = Ti.Network.createHTTPClient({
+					// function called when the response data is available
+					onload : function(e) {
+						Ti.API.info("Received text: " + this.responseText);
+						//alert('success');
+						callback(JSON.parse(this.responseText));
+					},
+					// function called when an error occurs, including a timeout
+					onerror : function(e) {
+						Ti.API.debug(e.error);
+						alert('error');
+					},
+					timeout : 5000 // in milliseconds
+				});
+				// Prepare the connection.
+				client.open("POST", url);
+				// Send the request.
+				client.setRequestHeader("Cookie", "_session_id=" + AG.Cloud.sessionId);
+				client.send(params);
 			}
 		});
 
@@ -61,6 +83,31 @@ exports.definition = {
 				  if (modelB.get('updated_at') > modelA.get('updated_at')) return -1; // after
 				  return 0; // equal
 			}
+			// create: function(model,options) {
+				// var coll = this;
+				// options = options ? _.clone(options) : {};
+				// model = this._prepareModel(model, options);
+				// if (!model)
+					// return false;
+				// if (!options.wait)
+					// coll.add(model, options);
+				// var success = options.success;
+				// options.success = function(nextModel, resp, xhr) {
+					// if (options.wait)
+						// coll.add(nextModel, options);
+					// if (success) {
+						// success(nextModel, resp);
+					// } else {
+						// nextModel.trigger('sync', model, resp, options);
+					// }
+				// };
+// 				
+				// //model.save(null, options);
+// 				
+// 				
+				// return model;
+			// }
+
 		});
 
 		return Collection;

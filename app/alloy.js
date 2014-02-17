@@ -87,9 +87,9 @@ if( OS_IOS ){
 				}
 			}, function (e) {
 			    if (e.success) {
-			    	alert("success");
+			    	Ti.API.info("success");
 			    } else {
-			    	alert("fail:"+JSON.stringify(e));
+			    	Ti.API.info("fail:"+JSON.stringify(e));
 			    }
 			});
 		},
