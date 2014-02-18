@@ -39,8 +39,8 @@ function Sync( method, model, opts) {
             var id_name = object_name.replace(/s+$/, "") + "_id", params = {};
             params[id_name] = model.id = opts.id || model.id;
 
+            !opts.data ? opts.data = {} : opts.data;
             if (model.config.settings.object_method === "Objects") {
-                !opts.data ? opts.data = {} : opts.data;
                 opts.data['classname'] = object_name;
                 opts.data['id'] = model.id;
             } else {
@@ -57,7 +57,7 @@ function Sync( method, model, opts) {
             }
             break;
         case "update":
-            Ti.API.info(' updating object with id ' + model.id);
+            Ti.API.info('updating object with id ' + model.id);
 
             var params = model.toJSON(), id_name = object_name.replace(/s+$/, "") + "_id";
             params[id_name] = model.id = opts.id || model.id;

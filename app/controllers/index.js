@@ -14,3 +14,14 @@ $.index.addEventListener('focus', function(e){
 		});
 	};
 });
+
+AG.mainTabGroup.add( AG.notifyController.getView() );
+// AG.notifyController.push({
+	// message: "hello"
+// });
+// AG.notifyController.push({
+	// message: "fucking"
+// });
+// AG.notifyController.push({
+	// message: "world"
+// });

@@ -55,7 +55,26 @@ AG.isLogIn = function(){
 	return !!AG.settings.get('cloudSessionId');
 };
 AG.loginController =  Alloy.createController('login');
-
+AG.notifyController = Alloy.createController('notifyView');
+AG.setAppBadge = function(number){
+	Ti.UI.iPhone.setAppBadge(number);
+	if( AG.isLogIn ){
+		// PushNotifications.reset_badge_get 이 아직 구현 안돼서..
+		AG.Cloud.PushNotifications.notify({
+			channel: "comment",	// shoulbe all exist channel 
+			to_ids: AG.loggedInUser.get('id'),
+			payload: {
+			    "badge": number
+			}
+		}, function (e) {
+		    if (e.success) {
+		    	Ti.API.info("success");
+		    } else {
+		    	Ti.API.info("fail:"+JSON.stringify(e));
+		    }
+		});		
+	}
+};
 
 setTimeout(function(){
 	var appMetaWidget = Alloy.createWidget('appMetaFromACS');
@@ -65,6 +84,10 @@ setTimeout(function(){
 		}
 	});
 },10000);
+
+
+
+
 
 // push notification
 if( OS_IOS ){
@@ -76,23 +99,17 @@ if( OS_IOS ){
 			Ti.Network.NOTIFICATION_TYPE_SOUND
 		],
 		callback: function(e){
-			Ti.UI.iPhone.setAppBadge(0);
-			// AG.Cloud.PushNotifications.reset_badge_get({ 아직 구현 안돼서..
-			AG.Cloud.PushNotifications.notify({
-				channel: "comment",	// shoulbe all exist channel 
-				to_ids: AG.loggedInUser.get('id'),
-				payload: {
-				    "badge": 0
-				}
-			}, function (e) {
-			    if (e.success) {
-			    	Ti.API.info("success");
-			    } else {
-			    	Ti.API.info("fail:"+JSON.stringify(e));
-			    }
+			// alert("data: "+JSON.stringify(e.data) +"\n"+e.inBackground);
+			// 뱃지를 0으로 하는거를 무시하지 않으면 무한 반복 푸쉬 됨..
+			if(  e.data.badge === 0 ){
+				return;
+			}
+			AG.notifyController.push({
+				pushEvent: e
 			});
 		},
 		error: function(e){
+			Ti.API.info('register for pushnotification error');
 		},
 		success: function(e){
 			var subscribePush = function(){
@@ -120,4 +137,3 @@ if( OS_IOS ){
 		}
 	});
 }
-

@@ -1,0 +1,20 @@
+".container" : {
+	zIndex: 100,
+	top : -64,
+	width : '100%',
+	height : 64,
+	// backgroundColor : Alloy.Globals.COLORS.red,
+    backgroundGradient: {
+        type: 'linear',
+        // startPoint: { x: '100%', y: '50%' },
+        // endPoint: { x: '0%', y: '50%' },
+        startPoint: { x: '50%', y: '100%' },
+        endPoint: { x: '50%', y: '0%' },
+        colors: Alloy.Globals.COLORS.gradient.lickyRed
+    },
+	opacity: 0.93
+}
+"#message" : {
+	bottom: 12,
+	color: 'white'
+}
