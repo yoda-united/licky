@@ -235,26 +235,35 @@ $.sendBtn.addEventListener('click', function(e) {
 	}
 	//alert($.commentField.value);
 	$.sendBtn.enabled = false;
-	commentCol.create({
-		post_id: postModel.id,
-	    content: $.commentField.value,
-	    allow_duplicate : true
-	},{
-		wait : true, //TODO : wait true하기전에 먼저 보여주고 나중에 update하도록 변경
-		success : function(nextModel, resp){
-			$.commentField.value = '';
-			doCommentBlur();
-			$.sendBtn.enabled = true;
-			
-			//댓글 개수가 2개 이상 차이가 나면 댓글을 다시 불러옴.. 아니면 말구
-			// if(nextModel.attributes.post.reviews_count - postModel.get('reviews_count')>1){
-				// fetchComments();
-			// }
-			postModel.set('reviews_count',postModel.get('reviews_count')+1);
+	
+	AG.loginController.requireLogin({
+		success : function(){
+			commentCol.create({
+				post_id: postModel.id,
+			    content: $.commentField.value,
+			    allow_duplicate : true
+			},{
+				wait : true, //TODO : wait true하기전에 먼저 보여주고 나중에 update하도록 변경
+				success : function(nextModel, resp){
+					$.commentField.value = '';
+					doCommentBlur();
+					$.sendBtn.enabled = true;
+					
+					//댓글 개수가 2개 이상 차이가 나면 댓글을 다시 불러옴.. 아니면 말구
+					// if(nextModel.attributes.post.reviews_count - postModel.get('reviews_count')>1){
+						// fetchComments();
+					// }
+					postModel.set('reviews_count',postModel.get('reviews_count')+1);
+				},
+				error : function(){
+					$.sendBtn.enabled = true;
+				}
+			});
 		},
-		error : function(){
+		cancel : function(){
 			$.sendBtn.enabled = true;
-		}
+		},
+		message : L('commentNeedsLogin')
 	});
 });
 

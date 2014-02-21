@@ -1,3 +1,5 @@
+
+	
 var newrelic = require('ti.newrelic'); 
 newrelic.start("***REMOVED***");
 
@@ -53,14 +55,85 @@ AG.isLogIn = function(){
 	return !!AG.settings.get('cloudSessionId');
 };
 AG.loginController =  Alloy.createController('login');
-
+AG.notifyController = Alloy.createController('notifyView');
+AG.setAppBadge = function(number){
+	Ti.UI.iPhone.setAppBadge(number);
+	if( AG.isLogIn ){
+		// PushNotifications.reset_badge_get 이 아직 구현 안돼서..
+		AG.Cloud.PushNotifications.notify({
+			channel: "comment",	// shoulbe all exist channel 
+			to_ids: AG.loggedInUser.get('id'),
+			payload: {
+			    "badge": number
+			}
+		}, function (e) {
+		    if (e.success) {
+		    	Ti.API.info("success");
+		    } else {
+		    	Ti.API.info("fail:"+JSON.stringify(e));
+		    }
+		});		
+	}
+};
 
 setTimeout(function(){
 	var appMetaWidget = Alloy.createWidget('appMetaFromACS');
 	appMetaWidget.updateAppMeta({
 		success: function(data){
 			Ti.API.info(data);
-			Ti.API.info(data);
 		}
 	});
 },10000);
+
+
+
+
+
+// push notification
+if( OS_IOS ){
+	// Ti.Network.unregisterForPushNotifications();
+	Ti.Network.registerForPushNotifications({
+		types: [
+			Ti.Network.NOTIFICATION_TYPE_BADGE,
+			Ti.Network.NOTIFICATION_TYPE_ALERT,
+			Ti.Network.NOTIFICATION_TYPE_SOUND
+		],
+		callback: function(e){
+			// alert("data: "+JSON.stringify(e.data) +"\n"+e.inBackground);
+			// 뱃지를 0으로 하는거를 무시하지 않으면 무한 반복 푸쉬 됨..
+			if(  e.data.badge === 0 ){
+				return;
+			}
+			AG.notifyController.push({
+				pushEvent: e
+			});
+		},
+		error: function(e){
+			Ti.API.info('register for pushnotification error');
+		},
+		success: function(e){
+			var subscribePush = function(){
+				if( AG.settings.get('cloudSessionId') ){
+					AG.Cloud.PushNotifications.subscribe({
+					    channel: 'comment',
+					    type: 'ios',
+					    device_token: Ti.Network.getRemoteDeviceUUID()
+					}, function (e) {
+					    if (e.success) {
+					    	AG.settings.off('change:cloudSessionId', subscribePush );
+					        // alert('Success subscribe\n' + JSON.stringify(e) );
+					    } else {
+					        // alert('Error subscribe:\n' + ((e.error && e.message) || JSON.stringify(e)));
+					    }
+					});
+				}
+			};
+			
+			if( AG.settings.get('cloudSessionId') ){
+				subscribePush();
+			}else{
+				AG.settings.on('change:cloudSessionId', subscribePush );
+			}
+		}
+	});
+}

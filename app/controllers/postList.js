@@ -114,7 +114,16 @@ function fetchOnlyFriendsPost(userIds) {
 		});
 	}else{
 		//TODO: 추천 방법과 관련되서는 더 고민 필요
-		$.listViewC.listView.footerTitle = "Bogoyo를 사용 중인 친구가 없습니다. 친구들에게 bogoyo 앱을 추천해보세요.";
+		if($.tBar.index==1){ //친구것만 일때
+			$.listViewC.listView.footerView = Ti.UI.createLabel({
+				text : L('noFBFriends'),
+				font : {
+					fontFamily : 'AppleSDGothicNeo-Light'
+				},
+				left : 10,
+				right : 10
+			});
+		}
 	}
 }
 

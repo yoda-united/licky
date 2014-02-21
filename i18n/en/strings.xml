@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<string name="timeLine">Timeline</string>
-	<string name="timeLineTabTitle">Timeline</string>
-	<string name="allList">All</string>
-	<string name="friendList">Friend's</string>
-	<string name="nearList">Near</string>
-	<string name="me">Me</string>
-	<string name="all">All</string>
-	<string name="friendsOnly">Friend's</string>
-	<string name="myLicks">My Lick Photos</string>
-	<string name="someoneLicks">%s's Lick Photos</string>
-	<string name="cancel">Cancel</string>	
-	<string name="close">Close</string>
-	<string name="back">Back</string>
-	<string name="loading">Loading</string>
-	<string name="signInWithFacebook">Connect with Facebook</string>
-	<string name="logoutMessage">Sign out Success</string>
-	<string name="facebookConnecting">Connecting..</string>
-	<string name="defaultLoginMessage">Licking your chops. Licky!</string>
-	<string name="logout">Sign out</string>
-	<string name="setting">Settings</string>
-	<string name="geoPurpose">For search post and log to post</string>
-	
+	<string name="timeLine">타임라인</string>
+	<string name="timeLineTabTitle">타임라인</string>
+	<string name="allList">전체</string>
+	<string name="friendList">친구</string>
+	<string name="nearList">근처</string>
+	<string name="me">나</string>
+	<string name="all">전체</string>
+	<string name="friendsOnly">친구 것만</string>
+	<string name="myLicks">내 Lick 사진</string>
+	<string name="someoneLicks">%s의 Lick 사진</string>
+	<string name="cancel">취소</string>
+	<string name="close">닫기</string>
+	<string name="back">뒤로</string>
+	<string name="loading">불러오는 중</string>
+	<string name="signInWithFacebook">Facebook으로 로그인하기</string>
+	<string name="logoutMessage">로그아웃 성공</string>
+	<string name="facebookConnecting">연결중..</string>
+	<string name="defaultLoginMessage">맛있을 땐 리키! 흐릅~</string>
+	<string name="commentNeedsLogin">댓글을 달려면 로그인이 필요합니다.</string>
+	<string name="cameraNeedsLogin">릭키로 음식 사진 찍으시게요? 어서 로그인하세요!</string>
+	<string name="logout">로그 아웃</string>
+	<string name="setting">환경설정</string>
+	<string name="geoPurpose">주변 검색 및 글 작성 시 위치 기록용</string>
+	<string name="noFBFriends">릭키를 사용중인 페이스북 친구가 없네요.\n먹는거 좋아하는 친구들에게 릭키를 소개해보세요.</string>
 </resources>

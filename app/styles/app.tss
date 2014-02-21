@@ -12,8 +12,11 @@
 	}
 }
 "Window[platform=ios]": {
-	// statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT
-	statusBarStyle: Ti.UI.iPhone.StatusBar.GRAY,
+	// statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	// statusBarStyle: Ti.UI.iPhone.StatusBar.GRAY,
+	// includeOpaqueBars: true,
+	// translucent: false,
+
 	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
 	autoAdjustScrollViewInsets : true
 }

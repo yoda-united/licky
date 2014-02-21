@@ -130,6 +130,7 @@ exports.requireLogin = function(args){
 		success && success();
 	}else{
 		//window 닫힐때 로그인 성공했으면 callback 실행
+		$.loginGuidance.text = args.message || L('defaultLoginMessage');
 		currentWindow.addEventListener('close', function(e) {
 			if(AG.settings.get('cloudSessionId')){
 				success && success();
