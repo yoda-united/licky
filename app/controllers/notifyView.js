@@ -51,8 +51,8 @@ function _notifies(){
 	}
 
 	// notibar를 보여주지 않아도 queue는 일정 간격으로 계속 처리 하기 위해 실행 		
-	// timerId = setTimeout(_hide, processing.duration || DURATION);
-	timerId = setTimeout(_hide, 2900);
+	timerId = setTimeout(_hide, processing.duration || DURATION);
+	// timerId = setTimeout(_hide, 2900);
 }
 
 function _doAction(){
