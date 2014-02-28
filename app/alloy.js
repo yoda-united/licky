@@ -1,4 +1,4 @@
-if(EVN_PRODUCTION){
+if(ENV_PRODUCTION){
 	var newrelic = require('ti.newrelic'); 
 	newrelic.start("***REMOVED***");
 }
