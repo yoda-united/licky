@@ -229,7 +229,7 @@ $.listView.addEventListener('delete', function(e) {
 	}
 });
 
-$.sendBtn.addEventListener('click', function(e) {
+$.sendBtn.addEventListener('click',_.throttle(function(e) {
 	if(!_.str.trim($.commentField.value)){
 		return;
 	}
@@ -265,7 +265,7 @@ $.sendBtn.addEventListener('click', function(e) {
 		},
 		message : L('commentNeedsLogin')
 	});
-});
+},1000));
 
 if(OS_IOS){
 	Ti.App.addEventListener('keyboardframechanged', function(e) {
