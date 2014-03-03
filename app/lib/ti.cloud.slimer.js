@@ -36,7 +36,7 @@ var url = Ti.App.Properties.getString("acs-service-baseurl-slimer");
 if(url && url.replace(/^\s+|\s+$/g, "")) {
    exports.URL = url.replace(/^\s+|\s+$/g, "");
 } else {
-   exports.URL = "http://localhost:8080";
+   exports.URL = "http://local.licy.co:8080";
 }
 
 
