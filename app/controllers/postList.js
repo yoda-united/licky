@@ -82,7 +82,10 @@ $.fetchFirstCollection = function(){
 function searchFacebookFriends(){
 	if(AG.isLogIn()){
 		var friendIds = [];
-		AG.Cloud.SocialIntegrations.searchFacebookFriends(function (e){
+		AG.Cloud.SocialIntegrations.searchFacebookFriends({
+			per_page : 10000
+		},
+			function (e){
 		    if (e.success) {
 		        // alert('Success:\n' + 'Count: ' + e.users.length);
 		        _.each(e.users,function(user){
