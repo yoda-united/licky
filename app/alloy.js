@@ -1,10 +1,7 @@
-
-	
-var newrelic = require('ti.newrelic'); 
-newrelic.start("***REMOVED***");
-
-
-
+if(ENV_PRODUCTION){
+	var newrelic = require('ti.newrelic'); 
+	newrelic.start("***REMOVED***");
+}
 
 //alias
 var AG = Alloy.Globals;
