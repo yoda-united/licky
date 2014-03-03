@@ -27,4 +27,13 @@
 	<string name="willBePostedToFacebook">페이스북에 공유 하기</string>
 	<string name="willNotShareWithFacebook">페이스북에 공유 하지 않기</string>
 	<string name="failToDelete">삭제하지 못했습니다. 다시 시도해 주세요.</string>
+	
+	<string name="report">신고하기</string>
+	<string name="delete">삭제</string>
+	<string name="unReport">신고 취소하기</string>
+	<string name="successReportedInappropriate">신고 접수 되었습니다.</string>
+	<string name="failToReport">신고 접수하지 못했어요. 잠시 후 다시 시도해주세요.</string>
+	<string name="successUnReport">신고 취소 되었습니다.</string>
+	<string name="failUnReport">신고 취소하지 못했어. 잠시 후 다시 시도해주세요.</string>
+	<string name="unReportDialogTitle">이미 신고 하셨어요.</string>
 </resources>

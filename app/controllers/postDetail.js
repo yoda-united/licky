@@ -141,15 +141,21 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 		if (e.index === 0) {
 			reportCol.at(0).destroy({
 				success: function(e){
-					alert("successUnReport");
+					alert(L("successUnReport"));
 				},
 				error: function(e){
-					alert("failUnReport");
+					alert(L("failUnReport"));
 				}
 			});
 		}
 	});
-	$.moreButton.addEventListener('click', function(e){
+	$.moreButton.addEventListener('click', _.throttle(function(e){
+		var indi = Ti.UI.createActivityIndicator({
+			style: Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+		});
+		$.postDetail.rightNavButton = indi;
+		indi.show();
+		
 		reportCol.fetch({
 			data:{
 				class_name: "reports",
@@ -162,12 +168,14 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 			},
 			success: function(e){
 				(reportCol.length > 0)? $.unReportDialog.show() : $.reportDialog.show();
+				$.postDetail.rightNavButton = $.moreButton;
 			},
 			error: function(e){
 				alert("networkFailure");
+				$.postDetail.rightNavButton = $.moreButton;
 			}
 		});
-	});
+	},1000));
 }
 
 /* TODO: pullView가 alloy에서 먹지를 않는데 언젠간 되겠지 뭐..
