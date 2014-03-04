@@ -82,20 +82,36 @@ $.fetchFirstCollection = function(){
 function searchFacebookFriends(){
 	if(AG.isLogIn()){
 		var friendIds = [];
-		AG.Cloud.SocialIntegrations.searchFacebookFriends({
-			per_page : 10000
-		},
+		AG.Cloud.SocialIntegrations.searchFacebookFriends(
+			{
+				per_page : 10000
+			},
 			function (e){
-		    if (e.success) {
-		        // alert('Success:\n' + 'Count: ' + e.users.length);
-		        _.each(e.users,function(user){
-		        	friendIds.push(user.id);
-		        });
-		        fetchOnlyFriendsPost(friendIds);
-		    } else {
-		        // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
-		    }
-		});
+			    if (e.success) {
+			        // alert('Success:\n' + 'Count: ' + e.users.length);
+			        _.each(e.users,function(user){
+			        	friendIds.push(user.id);
+			        });
+			        fetchOnlyFriendsPost(friendIds);
+			    } else {
+			        if(e.code===400 && e.message && e.message.indexOf('OAuthException')){
+			        	AG.SocialIntegrations.externalAccountLogin({
+			        		external_accounts : {
+			        			token: AG.facebook.getAccessToken()	
+			        		}
+						}, function (e) {
+							alert(e);
+						    if (e.success) {
+						        arguments.callee();
+						    } else {
+						    	alert(L('failToTokenRenewalLogin'));
+					        	$.tBar.setIndex(0);
+						    }
+						});
+			        }// alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+			    }
+			}
+		);
 	}else{
 		showOnlyLoginRequiredMessage();
 	}
