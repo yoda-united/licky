@@ -36,4 +36,5 @@
 	<string name="successUnReport">신고 취소 되었습니다.</string>
 	<string name="failUnReport">신고 취소하지 못했어. 잠시 후 다시 시도해주세요.</string>
 	<string name="unReportDialogTitle">이미 신고 하셨어요.</string>
+	<string name="failToTokenRenewalLogin">Facebook 정보를 갱신하는데 실패했어요. 잠시후 다시 시도해 주세요.</string>
 </resources>
