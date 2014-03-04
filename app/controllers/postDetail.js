@@ -92,6 +92,12 @@ function fetchComments(){
 		data : {
 			post_id : postModel.id,
 			per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
+		},
+		error: function(e,resp){
+			if( resp === "post not found" ){	// code 400
+				alert(L('deletedLick'));
+				$.postDetail.close();
+			}
 		}
 	});
 }

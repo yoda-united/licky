@@ -27,4 +27,5 @@
 	<string name="willBePostedToFacebook">페이스북에 공유 하기</string>
 	<string name="willNotShareWithFacebook">페이스북에 공유 하지 않기</string>
 	<string name="failToDelete">삭제하지 못했습니다. 다시 시도해 주세요.</string>
+	<string name="deletedLick">삭제된거네요..</string>
 </resources>
