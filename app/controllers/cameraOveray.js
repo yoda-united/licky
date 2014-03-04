@@ -17,7 +17,6 @@ function send(e) {
 // $.sendBtn.addEventListener('click', send);
 $.contentField.addEventListener('return', _.throttle(send,1000));
 
-
 // facebook share toggle 
 var timeoutId;
 var toggleBtn = function(toggle){
@@ -78,6 +77,7 @@ $.closeBtn.addEventListener('click', function(e) {
 });
 
 $.contentField.addEventListener('change', function(e) {
+	$.contentLabel.text = this.value;
 });
 
 
@@ -161,6 +161,10 @@ $.contentField.addEventListener('postlayout', function(e) {
 	$.contentField.removeEventListener('postlayout',arguments.callee);
 	$.contentField.focus();
 	toggleBtn(false);
+	
+	
+	//fake cursor
+	$.fakeCursor.start();	
 });
 
 

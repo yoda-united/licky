@@ -33,13 +33,40 @@
 	touchEnabled : false
 }
 "#contentField" : {
-	bottom: 11,
-	maxLength : 22,
+	top: 0,
 	tintColor : 'red',
-	returnKeyType : Ti.UI.RETURNKEY_SEND	
+	returnKeyType : Ti.UI.RETURNKEY_SEND,
+	visible : false	
 }
 
 "#contentLabel" : {
+	textAlign : 'left',
+	right : 0,
+	backgroundColor : 'transparent',
+	color : 'white',
+	font : {
+		fontSize : 40,
+		fontFamily : 'AppleSDGothicNeo-Thin'
+	},
+	minimumFontSize : 40,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM,
+	height : 80
+}
+
+"#fakeFieldWrap" : {
+	right : 10,
+	left : 10,
+	bottom : 0,
+	height : 80
+}
+
+"#fakeCursor" : {
+	width : 2,
+	height : 50,
+	right : 0,
+	bottom : 15,
+	images : ['images/1px_red.png','images/1px_trans.png'],
+	duration : 500
 }
 
 "#contentField[platform=android]" : {
