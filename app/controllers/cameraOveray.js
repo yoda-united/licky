@@ -201,6 +201,7 @@ exports.showCamera = function(){
 				height : catureSize.height
 			});
 
+			//og:image 만들기위해 view를 변경하는 부분
 			var fbPreviewFile;
 			// if(AG.settings.get('postWithFacebook')){
 				$.fieldWrap.width = 320;
@@ -210,7 +211,8 @@ exports.showCamera = function(){
 				$.fieldWrap.backgroundImage = croppedImage;
 				$.contentField.visible = false;
 				$.contentLabel.visible = true;
-				$.contentLabel.text = $.contentField.value;
+				$.fakeCursor.visible = false;
+				$.contentLabel.textAlign = 'right';
 				fbPreviewFile = $.fieldWrap.toImage(null, true); 
 			// }
 			
