@@ -16,7 +16,7 @@ $.listView.addEventListener('itemclick', function(e) {
 		AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
 			//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
 			// userModel : Alloy.createModel('user', postModel.get('user'))
-			userModel : Alloy.createModel('user', commentCol.get(e.itemId).get('user'))
+			userModel :e.section.id === "commentSection" ? Alloy.createModel('user', commentCol.get(e.itemId).get('user')) : Alloy.createModel('user', postModel.get('user'))
 		});
 	}
 });
