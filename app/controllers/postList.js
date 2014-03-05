@@ -94,13 +94,12 @@ function searchFacebookFriends(){
 			        });
 			        fetchOnlyFriendsPost(friendIds);
 			    } else {
-			        if(e.code===400 && e.message && e.message.indexOf('OAuthException')){
+			        if(e.code===400 && e.message && e.message.indexOf('OAuthException')>=0){
 			        	AG.SocialIntegrations.externalAccountLogin({
 			        		external_accounts : {
 			        			token: AG.facebook.getAccessToken()	
 			        		}
 						}, function (e) {
-							alert(e);
 						    if (e.success) {
 						        arguments.callee();
 						    } else {
