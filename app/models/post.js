@@ -61,7 +61,7 @@ exports.definition = {
 						text : AG.moment(this.get('created_at')).twitter()
 					},
 					profileImage : {
-						image : profileUrl
+						image : "images/defaultProfilePicture_small.png"
 					},
 					hiddenProfile : {
 						image : profileUrl
