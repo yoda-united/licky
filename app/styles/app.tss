@@ -38,18 +38,18 @@
 }
 
 ".photoTitle" : {
-	width : 300,
-	textAlign : 'right',
+	left : 10,
 	right : 10,
 	bottom : 0,
 	height : 80,
+	textAlign : 'right',
 	backgroundColor : 'transparent',
 	color : 'white',
 	font : {
-		fontSize : 48,
+		fontSize : 40,
 		fontFamily : 'AppleSDGothicNeo-Thin'
 	},
-	minimumFontSize : 4,
+	minimumFontSize : 40,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }
 

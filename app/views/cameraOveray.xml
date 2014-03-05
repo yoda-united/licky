@@ -10,7 +10,7 @@
 			<TextField id="contentField" class="photoTitle"></TextField>
 			<Label class="userName" id="userName"></Label>
 			<View id="fakeFieldWrap">
-				<Label id="contentLabel"></Label>
+				<Label id="contentLabel" class="photoTitle"></Label>
 				<ImageView id="fakeCursor"></ImageView>
 			</View>
 			<!-- <Label class="commentCount" bindId="commentCount"></Label> -->

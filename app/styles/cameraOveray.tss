@@ -42,15 +42,8 @@
 "#contentLabel" : {
 	textAlign : 'left',
 	right : 0,
-	backgroundColor : 'transparent',
-	color : 'white',
-	font : {
-		fontSize : 40,
-		fontFamily : 'AppleSDGothicNeo-Thin'
-	},
-	minimumFontSize : 40,
-	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM,
-	height : 80
+	left : null,
+	width : Ti.UI.SIZE
 }
 
 "#fakeFieldWrap" : {
