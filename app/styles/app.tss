@@ -79,8 +79,8 @@
 	height : 40,
 	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
 	// mask : 'images/profileMask.png',
-	mask: "images/defaultProfilePicture_small.png",
-	image: "images/defaultProfilePicture_small.png"
+	mask: "images/defaultProfilePicture_small.png"
+	// image: "images/defaultProfilePicture_small.png"
 }
 
 ".time" : {
