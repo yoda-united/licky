@@ -36,7 +36,8 @@
 	top: 0,
 	tintColor : 'red',
 	returnKeyType : Ti.UI.RETURNKEY_SEND,
-	visible : false	
+	visible : false,
+	autocorrect : false
 }
 
 "#contentLabel" : {
