@@ -44,6 +44,9 @@ AG.settings.fetch({
 		if( !AG.settings.has("platformHeight") ){
 			AG.settings.save("platformHeight", Ti.Platform.displayCaps.platformHeight);
 		}	
+		if( !AG.settings.has("postWithFacebook") ){
+			AG.settings.save("postWithFacebook", true);
+		}	
 	}
 });
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');

@@ -5,6 +5,7 @@
 			<Button id="sendBtn" />
 			<View class="trailingEdge" />
 		</View>
+		
 		<View id="fieldWrap">
 			<View id="fieldOpacityBG"></View>
 			<TextField id="contentField" class="photoTitle"></TextField>
@@ -18,15 +19,17 @@
 			<Label class="distance" id="distance"></Label>
 			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
 		</View>
+		
 		<View id="mapWrap" />
 		
+		<View class="leadingEdge" />
+		
+		<Label id="guidanceLabel"></Label>
+		
 		<View id="controlBar" >
-			<View class="leadingEdge" />
-			<!-- <Switch id="fbSwitch" value="true" /> -->
 			<Button id="fbShareBtn" />
-			<Label id="fbShareGuidance" class="fbGuidance"/>
-			<Label id="fbDontShareGuidance" class="fbGuidance" />
 		</View>
+		
 		<View id="behindKeyboard" />
 		<!-- <View class="infoWrap">
 			<Label id="geoLabel" >위치 확인 중..</Label>

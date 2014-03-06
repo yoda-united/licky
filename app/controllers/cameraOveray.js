@@ -17,53 +17,43 @@ function send(e) {
 // $.sendBtn.addEventListener('click', send);
 $.contentField.addEventListener('return', _.throttle(send,1000));
 
-// facebook share toggle 
-var timeoutId;
-var toggleBtn = function(toggle){
-	var flag;
-	if( AG.settings.has("postWithFacebook") ){
-		if(toggle){
-			flag = !AG.settings.get('postWithFacebook');
-		}else{
-			flag = AG.settings.get('postWithFacebook');
-		}
-	}else{
-		flag = true;
-	}
-	
+// guidance for facebook, twitter, etcs.. share 
+var timeoutId, 
+	guidanceTop_down = $.guidanceLabel.getTop(),
+	guidanceTop_up = guidanceTop_down - $.guidanceLabel.getHeight() + $.guidanceLabel.getBorderRadius();
+var showGuidance = function(message){
 	if( timeoutId ){
 		clearTimeout(timeoutId);
 	}
-	$.fbShareGuidance.setOpacity(0);
-	$.fbDontShareGuidance.setOpacity(0);
-	if(flag){	// on
-		$.fbShareBtn.setBackgroundImage('images/fbShareActive.png');
-		$.fbShareGuidance.setOpacity(1);
+	$.guidanceLabel.setText("  "+message+"  ");
+	$.guidanceLabel.animate({
+		duration: 60,
+		top: guidanceTop_up
+	}, function(){
 		timeoutId = setTimeout(function(){
-			// $.fbShareGuidance.setVisible(false);
-			$.fbShareGuidance.animate({
-				duration: 1000,
-				// top: 100,
-				opacity : 0
+			$.guidanceLabel.animate({
+				duration: 60,
+				top: guidanceTop_down
 			});
-		}, 500 );
-	}else{
-		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
-		$.fbDontShareGuidance.setOpacity(1);
-		timeoutId = setTimeout(function(){
-			// $.fbDontShareGuidance.setVisible(false);
-			$.fbDontShareGuidance.animate({
-				duration: 1000,
-				// top:100,
-				opacity : 0
-			});
-		}, 500 );
-	}
-	AG.settings.save('postWithFacebook', flag);
-	// alert(flag);
+		}, 900);
+	});
 };
+var setFbShareBtn = function(){
+	if( AG.settings.get('postWithFacebook') ){
+		showGuidance( L('willBePostedToFacebook') );
+		$.fbShareBtn.setBackgroundImage('images/fbShareActive.png');
+	}else{
+		showGuidance( L('willNotShareWithFacebook')	);
+		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
+	}
+};
+setFbShareBtn();
 $.fbShareBtn.addEventListener('click', function(){
-	toggleBtn(true);
+	AG.settings.save('postWithFacebook', !AG.settings.get("postWithFacebook"), {
+		success: function(){
+			setFbShareBtn();
+		}
+	});
 });
 
 
