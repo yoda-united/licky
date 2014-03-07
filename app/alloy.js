@@ -83,7 +83,7 @@ setTimeout(function(){
 			Ti.API.info(data);
 		}
 	});
-},10000);
+},3000);
 
 
 
