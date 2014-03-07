@@ -29,12 +29,12 @@
 ".leadingEdge": {
 	top: 0,
 	height: 0.5,
-	backgroundColor: Alloy.Globals.COLORS.red
+	backgroundColor: Alloy.Globals.COLORS.darkGray
 }
 ".trailingEdge": {
 	bottom: 0,
 	height: 0.5,
-	backgroundColor: Alloy.Globals.COLORS.red
+	backgroundColor: Alloy.Globals.COLORS.darkGray
 }
 
 ".photoTitle" : {

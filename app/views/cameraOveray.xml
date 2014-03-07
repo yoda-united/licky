@@ -22,7 +22,7 @@
 		
 		<View id="mapWrap" />
 		
-		<View class="trailingEdge" />
+		<View class="leadingEdge" />
 		<Label id="guidanceLabel"></Label>
 		<View id="controlBar" >
 			<Button id="fbShareBtn" />
