@@ -92,21 +92,24 @@
 	touchEnabled : false
 }
 
-".leadingEdge" : {
+".trailingEdge" : {
 	zIndex: 10,
-	top: 311.5
+	// top: 311.5
+	bottom: 256
 }
 "#guidanceLabel": {
 	zIndex: 15,
-	top: 312,
+	// top: 312,
+	bottom: 220,
 	left: 52,
-	height: 38,
+	height: 36,
 	borderRadius: 10,
 	borderWidth: 0.5,
 	borderColor: Alloy.Globals.COLORS.red,
 	backgroundColor: Alloy.Globals.COLORS.whiteGray,
+	color: Alloy.Globals.COLORS.darkGray,
 	font : {
-		fontSize : 15,
+		fontSize : 14,
 		fontFamily : 'AppleSDGothicNeo-UltraLight'
 	}
 }
@@ -120,9 +123,17 @@
 "#fbShareBtn" : {
 	left: 14,
 	height: 40,
-	width: 40,
-	zIndex: 2,
+	width: 40
 	// backgroundImage: "images/fbShareActive.png"
+}
+"#shopNameField" : {
+	right: 7,
+	width: 100,
+	borderRadius: 10,
+	borderWidth: 0.5,
+	borderColor: Alloy.Globals.COLORS.red,
+	paddingLeft: 5,
+	hintText: L('# name')
 }
 
 "#behindKeyboard" : {

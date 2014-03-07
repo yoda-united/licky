@@ -22,12 +22,11 @@
 		
 		<View id="mapWrap" />
 		
-		<View class="leadingEdge" />
-		
+		<View class="trailingEdge" />
 		<Label id="guidanceLabel"></Label>
-		
 		<View id="controlBar" >
 			<Button id="fbShareBtn" />
+			<TextField id="shopNameField"></TextField>
 		</View>
 		
 		<View id="behindKeyboard" />

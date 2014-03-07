@@ -19,21 +19,21 @@ $.contentField.addEventListener('return', _.throttle(send,1000));
 
 // guidance for facebook, twitter, etcs.. share 
 var timeoutId, 
-	guidanceTop_down = $.guidanceLabel.getTop(),
-	guidanceTop_up = guidanceTop_down - $.guidanceLabel.getHeight() + $.guidanceLabel.getBorderRadius();
+	guidanceBottom_down = $.guidanceLabel.getBottom(),
+	guidanceBottom_up = guidanceBottom_down + $.guidanceLabel.getHeight() - $.guidanceLabel.getBorderRadius();
 var showGuidance = function(message){
 	if( timeoutId ){
 		clearTimeout(timeoutId);
 	}
-	$.guidanceLabel.setText("  "+message+"  ");
+	$.guidanceLabel.setText("   "+message+"   ");
 	$.guidanceLabel.animate({
 		duration: 60,
-		top: guidanceTop_up
+		bottom: guidanceBottom_up
 	}, function(){
 		timeoutId = setTimeout(function(){
 			$.guidanceLabel.animate({
 				duration: 60,
-				top: guidanceTop_down
+				bottom: guidanceBottom_down
 			});
 		}, 900);
 	});
@@ -43,7 +43,7 @@ var setFbShareBtn = function(){
 		showGuidance( L('willBePostedToFacebook') );
 		$.fbShareBtn.setBackgroundImage('images/fbShareActive.png');
 	}else{
-		showGuidance( L('willNotShareWithFacebook')	);
+		showGuidance( L('willNotShareOnFacebook')	);
 		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
 	}
 };
@@ -136,7 +136,7 @@ function getCurrentPosition(){
 				currentAddress.en = add;
 				
 				if( AG.currentLanguage == 'en'){
-					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
+					$.distance.text = '\uf041 ' +AG.utils.getGoogleShortAddress(add.results[0]);
 				}
 			},
 			error: function(){
