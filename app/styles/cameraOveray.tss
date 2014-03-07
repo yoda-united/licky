@@ -87,9 +87,10 @@
 
 "#mapWrap" : {
 	top: 224,
-	backgroundColor : 'white',
-	height : 88,
-	touchEnabled : false
+	// bottom: 0,
+	backgroundColor: 'white',
+	height: 88,
+	touchEnabled: false
 }
 
 ".leadingEdge" : {
@@ -110,7 +111,7 @@
 	backgroundColor: Alloy.Globals.COLORS.whiteGray,
 	color: Alloy.Globals.COLORS.darkGray,
 	font : {
-		fontSize : 14,
+		fontSize : 15,
 		fontFamily : 'AppleSDGothicNeo-UltraLight'
 	}
 }
@@ -134,7 +135,7 @@
 	height: 30,
 	borderRadius: 15,
 	borderWidth: 0.5,
-	borderColor: Alloy.Globals.COLORS.gray,
+	borderColor: Alloy.Globals.COLORS.darkGray,
 	// backgroundColor: Alloy.Globals.COLORS.lightGray,
 	// borderStyle :  Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 	clearButtonMode: Ti.UI.INPUT_BUTTONMODE_ALWAYS,
