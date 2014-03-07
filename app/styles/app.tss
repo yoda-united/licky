@@ -38,18 +38,18 @@
 }
 
 ".photoTitle" : {
-	left : 10,
 	right : 10,
-	bottom : 0,
+	// bottom : 0,
+	top: 40,
 	height : 80,
 	textAlign : 'right',
 	backgroundColor : 'transparent',
 	color : 'white',
 	font : {
-		fontSize : 40,
+		fontSize : 35,
 		fontFamily : 'AppleSDGothicNeo-Thin'
 	},
-	minimumFontSize : 40,
+	minimumFontSize : 35,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }
 
@@ -93,14 +93,14 @@
 	}
 }
 
-".photoTitleLabel" : {
-	left: 50,
-	width : null,
-	right : 10,
-	bottom : -5,
-	//borderColor : 'red',
-	verticalAlign : null
-}
+// ".photoTitleLabel" : {
+	// left: 50,
+	// width : null,
+	// right : 10,
+	// bottom : -5,
+	// //borderColor : 'red',
+	// verticalAlign : null
+// }
 
 ".commentCount" : {
 	left: 14,

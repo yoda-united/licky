@@ -42,25 +42,27 @@
 	autocorrect : false
 }
 
-"#contentLabel" : {
-	textAlign : 'left',
-	right : 0,
-	left : null,
-	width : Ti.UI.SIZE
-}
 
 "#fakeFieldWrap" : {
+	// borderColor: Alloy.Globals.COLORS.red,
+	// color: Alloy.Globals.COLORS.red,
+	
 	right : 10,
 	left : 10,
-	bottom : 0,
+	top : 25,
 	height : 80
 }
-
+"#contentLabel" : {
+	top: 0,
+	right : 0,
+	textAlign : 'left',
+	width : Ti.UI.SIZE
+}
 "#fakeCursor" : {
+	top : 0,
+	right : 0,
 	width : 2,
 	height : 50,
-	right : 0,
-	bottom : 15,
 	images : ['images/1px_red.png','images/1px_trans.png'],
 	duration : 500
 }
@@ -105,7 +107,7 @@
 	bottom: 220,
 	left: 18,
 	height: 36,
-	borderRadius: 10,
+	borderRadius: 11,
 	borderWidth: 0.5,
 	borderColor: Alloy.Globals.COLORS.darkGray,
 	backgroundColor: Alloy.Globals.COLORS.whiteGray,
@@ -129,11 +131,25 @@
 	width: 40
 	// backgroundImage: "images/fbShareActive.png"
 }
+"#locationBtn" : {
+	top: 0,
+	left: 64,
+	height: 40,
+	width: 40,
+	backgroundImage: "images/locationInactive.png"
+}
+"#lockImg" : {
+	top: 5,
+	left: 8,
+	width: 8,
+	height: 12,
+	image: "images/lock.png"
+}
 "#shopNameField" : {
 	right: 19,
 	width: 120,
 	height: 30,
-	borderRadius: 15,
+	borderRadius: 12,
 	borderWidth: 0.5,
 	borderColor: Alloy.Globals.COLORS.darkGray,
 	// backgroundColor: Alloy.Globals.COLORS.lightGray,

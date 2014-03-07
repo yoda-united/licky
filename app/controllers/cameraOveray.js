@@ -56,6 +56,13 @@ $.fbShareBtn.addEventListener('click', function(){
 	});
 });
 
+$.shopNameField.addEventListener('focus', function(e){
+});
+$.shopNameField.addEventListener('blur', function(e){
+	if( !$.shopNameField.hasText() ){
+	}
+});
+
 
 $.closeBtn.addEventListener('click', function(e) {
 	if(OS_IOS){

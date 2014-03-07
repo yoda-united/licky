@@ -3,7 +3,7 @@
 		<ImageView class="photo" bindId="photo"></ImageView>
 		<View backgroundColor="black" opacity="0.2"></View>
 		
-		<Label class="photoTitle photoTitleLabel" bindId="title"></Label>
+		<Label class="photoTitle" bindId="title"></Label>
 		<Label class="time" bindId="time"></Label>
 		<Label class="userName" bindId="userName"></Label>
 		
