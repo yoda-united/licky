@@ -76,18 +76,9 @@ AG.setAppBadge = function(number){
 	}
 };
 
-setTimeout(function(){
-	var appMetaWidget = Alloy.createWidget('appMetaFromACS');
-	appMetaWidget.updateAppMeta({
-		success: function(data){
-			Ti.API.info(data);
-		}
-	});
-},3000);
-
-
-
-
+Alloy.createWidget('appMetaFromACS').fetch({
+	delay : 3000
+});
 
 // push notification
 if( OS_IOS ){
