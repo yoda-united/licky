@@ -46,8 +46,7 @@
 "#fakeFieldWrap" : {
 	// borderColor: Alloy.Globals.COLORS.red,
 	// color: Alloy.Globals.COLORS.red,
-	
-	right : 10,
+	right : 5,
 	left : 10,
 	top : 25,
 	height : 80
@@ -59,10 +58,10 @@
 	width : Ti.UI.SIZE
 }
 "#fakeCursor" : {
-	top : 0,
+	top : 20,
 	right : 0,
 	width : 2,
-	height : 50,
+	height : 38,
 	images : ['images/1px_red.png','images/1px_trans.png'],
 	duration : 500
 }

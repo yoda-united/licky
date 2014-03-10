@@ -47,7 +47,7 @@ var setFbShareBtn = function(){
 		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
 	}
 };
-setFbShareBtn();
+
 $.fbShareBtn.addEventListener('click', function(){
 	AG.settings.save('postWithFacebook', !AG.settings.get("postWithFacebook"), {
 		success: function(){
@@ -157,11 +157,11 @@ function getCurrentPosition(){
 $.contentField.addEventListener('postlayout', function(e) {
 	$.contentField.removeEventListener('postlayout',arguments.callee);
 	$.contentField.focus();
-	toggleBtn(false);
-	
+	// toggleBtn(false);
 	
 	//fake cursor
-	$.fakeCursor.start();	
+	$.fakeCursor.start();
+	setFbShareBtn();
 });
 
 
