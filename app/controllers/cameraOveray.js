@@ -56,15 +56,51 @@ $.fbShareBtn.addEventListener('click', function(){
 	});
 });
 
+function suggestCompletionShopName(q){
+	Ti.API.info("searchShopName");
+	var url = "https://api.foursquare.com/v2/venues/suggestcompletion"
+		// params
+		+"?client_id=EJDKZREE2GSE31ZCWQUKPLVMFEQUINI0DT4A2V20XE21ZQ02&client_secret=NP5ZRYKNDKZC2CPBAC2KZDQLUOMSHT1FVTVZCF0SSRCWBOLH&v=20140310"
+		+"&ll="+currentPosition.latitude+","+currentPosition.longitude+"&query="+q;
+	
+
+	var client = Ti.Network.createHTTPClient({
+		// function called when the response data is available
+		onload : function(e) {
+			Ti.API.info("----Received text from Foursquare------- ");
+			Ti.API.info(JSON.parse(this.responseText));
+			// callback(JSON.parse(this.responseText));
+		},
+		// function called when an error occurs, including a timeout
+		onerror : function(e) {
+			Ti.API.info("----Received text from Foursquare:error------- ");
+			Ti.API.info(JSON.parse(this.responseText));
+			Ti.API.debug(e.error);
+		},
+		timeout : 5000 // in milliseconds
+	});
+	// Prepare the connection.
+	client.open("GET", url);
+	client.send();
+}
 $.shopNameField.addEventListener('focus', function(e){
 });
 $.shopNameField.addEventListener('blur', function(e){
 	if( !$.shopNameField.hasText() ){
 	}
 });
+$.shopNameField.addEventListener('change', function(e){
+	if( $.shopNameField.getValue().length > 2 ){
+		suggestCompletionShopName( $.shopNameField.getValue() );
+	}
+	// coordinates: [currentPosition.longitude, currentPosition.latitude ],
+});
 
 
 $.closeBtn.addEventListener('click', function(e) {
+	if( $.shopNameField.hasText() ){
+		alert($.shopNameField.getValue()+"ddd");
+	}
 	if(OS_IOS){
 		Ti.Media.hideCamera();
 	}else{
@@ -154,6 +190,7 @@ function getCurrentPosition(){
 	});	
 }
 
+
 $.contentField.addEventListener('postlayout', function(e) {
 	$.contentField.removeEventListener('postlayout',arguments.callee);
 	$.contentField.focus();
@@ -226,6 +263,7 @@ exports.showCamera = function(){
 				"photo_sizes[thumb_100]" : "100x100#",
 				'photo_sync_sizes[]' :'original',
 				custom_fields : {
+					
 					coordinates: [currentPosition.longitude, currentPosition.latitude ],
 					address_ko : currentAddress.ko.results[0],
 					address_en : currentAddress.en.results[0]

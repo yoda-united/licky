@@ -49,7 +49,7 @@ exports.definition = {
 			alterSyncCreate: function(params,callback){
 				//httpClient params를 넘기고
 				// var url = "http://192.168.0.50:8080/api/acs/"+exports.definition.config.setttings.object_method;
-				url = AG.slimer.URL + "/api/acs/Reviews";
+				var url = AG.slimer.URL + "/api/acs/Reviews";
 				
 				var client = Ti.Network.createHTTPClient({
 					// function called when the response data is available
