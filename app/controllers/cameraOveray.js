@@ -181,7 +181,7 @@ exports.showCamera = function(){
 		success : function(event) {
 			if(OS_IOS){
 				_.defer(function(){
-					//Ti.Media.hideCamera();
+					Ti.Media.hideCamera();
 				});
 			}
 			
@@ -190,13 +190,6 @@ exports.showCamera = function(){
 			Ti.API.info(event.media.mimeType);
 
 			var height = parseInt(catureSize.width*event.media.height/event.media.width);
-			// var resizedImage = event.media.imageAsResized(catureSize.width,height);
-			// var croppedImage = resizedImage.imageAsCropped({
-				// x: 0,
-				// y: catureSize.top,
-				// width: catureSize.width,
-				// height : catureSize.height
-			// });
 			var resizedImage = ImageFactory.imageAsResized(event.media, {
 					width : catureSize.width,
 					height : height
@@ -224,60 +217,60 @@ exports.showCamera = function(){
 			// }
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
-			// postCol.create({
-				// title : $.contentField.value,
-				// content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
-				// photo : blob,
-				// //user_id: AG.loggedInUser.get('id'),
-				// "photo_sizes[medium_320]" : "320x180",
-				// "photo_sizes[thumb_100]" : "100x100#",
-				// 'photo_sync_sizes[]' :'original',
-				// custom_fields : {
-					// coordinates: [currentPosition.longitude, currentPosition.latitude ],
-					// address_ko : currentAddress.ko.results[0],
-					// address_en : currentAddress.en.results[0]
-				// }
-			// },{
-				// wait:true,
-				// success : function(nextPost){
-					// Ti.API.info(nextPost.attributes);
-// 					
-					// // if(AG.settings.get('postWithFacebook')){
-						// var sharePhoto = Alloy.createModel('photo');
-						// sharePhoto.save({
-							// "collection_name" : "facebook_preview",
-							// "photo_sizes[medium_320]" : "320x180",
-							// 'photo_sync_sizes[]' :'original',
-		    				// photo: ImageFactory.compress(fbPreviewFile, 0.75),
-		    				// custom_fields : {
-								// "[ACS_Post]parent_id": nextPost.id
-							// }
-						// },
-						// {
-							// success : function(nextPreviewPhoto){
-								// //alert(nextPreviewPhoto.get('urls').original);
-								// if(AG.settings.get('postWithFacebook')){
-									// AG.facebook.requestWithGraphPath('me/links', {
-										// // message : "",
-										// link : 'http://www.licky.co/post/'+nextPost.id,
-									// }, "POST", function(e) {
-										// if (e.success) {
-											// //alert("Success!  From FB: " + e.result);
-										// } else {
-											// if (e.error) {
-												// //alert(e.error);
-											// } else {
-												// //alert("Unkown result");
-											// }
-										// }
-									// });
-								// }
-// 
-							// }
-						// });
-					// // }
-				// }
-			// });
+			postCol.create({
+				title : $.contentField.value,
+				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
+				photo : blob,
+				//user_id: AG.loggedInUser.get('id'),
+				"photo_sizes[medium_320]" : "320x180",
+				"photo_sizes[thumb_100]" : "100x100#",
+				'photo_sync_sizes[]' :'original',
+				custom_fields : {
+					coordinates: [currentPosition.longitude, currentPosition.latitude ],
+					address_ko : currentAddress.ko.results[0],
+					address_en : currentAddress.en.results[0]
+				}
+			},{
+				wait:true,
+				success : function(nextPost){
+					Ti.API.info(nextPost.attributes);
+					
+					// if(AG.settings.get('postWithFacebook')){
+						var sharePhoto = Alloy.createModel('photo');
+						sharePhoto.save({
+							"collection_name" : "facebook_preview",
+							"photo_sizes[medium_320]" : "320x180",
+							'photo_sync_sizes[]' :'original',
+		    				photo: ImageFactory.compress(fbPreviewFile, 0.75),
+		    				custom_fields : {
+								"[ACS_Post]parent_id": nextPost.id
+							}
+						},
+						{
+							success : function(nextPreviewPhoto){
+								//alert(nextPreviewPhoto.get('urls').original);
+								if(AG.settings.get('postWithFacebook')){
+									AG.facebook.requestWithGraphPath('me/links', {
+										// message : "",
+										link : 'http://www.licky.co/post/'+nextPost.id,
+									}, "POST", function(e) {
+										if (e.success) {
+											//alert("Success!  From FB: " + e.result);
+										} else {
+											if (e.error) {
+												//alert(e.error);
+											} else {
+												//alert("Unkown result");
+											}
+										}
+									});
+								}
+
+							}
+						});
+					// }
+				}
+			});
 			
 			
 			

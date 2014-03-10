@@ -33,10 +33,11 @@ function InvokeService(path, method, data, cb) {
 
 var url = Ti.App.Properties.getString("acs-service-baseurl-slimer");
 
-if(url && url.replace(/^\s+|\s+$/g, "")) {
+if(url && url.replace(/^\s+|\s+$/g, "") && !( ENV_DEV || ENV_TEST )) {
    exports.URL = url.replace(/^\s+|\s+$/g, "");
-} else {
+} else  {
    exports.URL = "http://local.licy.co:8080";
+   // exports.URL = "http://192.168.0.50:8080";
 }
 
 
