@@ -1,11 +1,17 @@
 var Cloud = require('ti.cloud');
 
-exports.updateAppMeta = function(args){
+exports.fetch = function(args){
 	args = args || {};
 	var success = args.success,
 		cancel = args.cancel,
 		error = args.error;
-		
+	
+	if(args.delay){
+		args.delay = 0;
+		arguments.callee(args);
+		return;
+	}
+	
 	var appMeta = {
 		osname : Ti.Platform.osname,
 		model : Ti.Platform.model,
@@ -37,7 +43,6 @@ exports.updateAppMeta = function(args){
 				// });
 			// });
 			
-			Ti.API.info()
 			_.each(metaInfo, function(queryItems){
 				var queryFun = require(WPATH('underscore-query'))(_,false); //notMix
 				var result = queryFun([appMeta],queryItems.query) || [];
