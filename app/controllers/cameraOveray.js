@@ -56,7 +56,7 @@ $.fbShareBtn.addEventListener('click', function(){
 	});
 });
 
-function suggestCompletionShopName(q){
+var suggestCompletionShopName = _.throttle(function(q){
 	Ti.API.info("searchShopName");
 	var url = "https://api.foursquare.com/v2/venues/suggestcompletion"
 		// params
@@ -82,7 +82,7 @@ function suggestCompletionShopName(q){
 	// Prepare the connection.
 	client.open("GET", url);
 	client.send();
-}
+}, 300);
 $.shopNameField.addEventListener('focus', function(e){
 });
 $.shopNameField.addEventListener('blur', function(e){
