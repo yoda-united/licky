@@ -22,7 +22,7 @@ exports.fetch = function(args){
 	};
 	
 	Cloud.KeyValues.get({
-	    name: 'appMeta'
+	    name: 'appMetaV1.1'
 	}, function (e) {
 	    if (e.success) {
 	    	
