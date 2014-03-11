@@ -18,6 +18,7 @@
 			</View>
 			<!-- <Label class="commentCount" bindId="commentCount"></Label> -->
 			<MaskedImage id="profileImage" class="profileImage" bindId="profileImage"></MaskedImage>
+			<Label class="gpsIcon"></Label>
 			<Label class="distance" id="distance"></Label>
 			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
 		</View>

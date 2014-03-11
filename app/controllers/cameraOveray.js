@@ -36,7 +36,7 @@ var showGuidance = function(message){
 				duration: 60,
 				bottom: guidanceBottom_down
 			});
-		}, 901);
+		}, 900);
 	});
 };
 var setFbShareBtn = function(){
@@ -66,14 +66,14 @@ $.suggestCompletionListC.setProps({
 	textField: $.shopNameField
 });
 $.shopNameField.addEventListener('change', function(){
-	$.distance.setText('\uf041 '+ $.shopNameField.getValue() +": "
+	$.distance.setText( $.shopNameField.getValue() +": "
 		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
 });
 $.shopNameField.addEventListener('suggestComplete', function(e){
 	// alert(JSON.stringify(e.itemId));
 	foursquare.venue_id = e.itemId;
 	foursquare.venue_name = $.shopNameField.getValue();
-	$.distance.setText('\uf041 '+ $.shopNameField.getValue() +": "
+	$.distance.setText( $.shopNameField.getValue() +": "
 		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
 });
 
@@ -146,7 +146,7 @@ function getCurrentPosition(){
 				currentAddress.ko = add;
 				
 				if( AG.currentLanguage == 'ko'){
-					$.distance.text = '\uf041 ' + AG.utils.getGoogleShortAddress(add.results[0]);
+					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
 				}
 			},
 			error: function(){
@@ -162,7 +162,7 @@ function getCurrentPosition(){
 				currentAddress.en = add;
 				
 				if( AG.currentLanguage == 'en'){
-					$.distance.text = '\uf041 ' +AG.utils.getGoogleShortAddress(add.results[0]);
+					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
 				}
 			},
 			error: function(){

@@ -26,7 +26,7 @@ exports.definition = {
 					
 				if(coordi) {
 					distance = {
-						text : "\uf041 "+ String.format("%.1fkm, %s",
+						text : String.format("%.1fkm, %s",
 							AG.utils.calculateDistance([
 								coordi[0],
 								AG.currentPosition.attributes
