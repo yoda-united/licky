@@ -56,30 +56,69 @@ $.fbShareBtn.addEventListener('click', function(){
 	});
 });
 
-var suggestCompletionShopName = _.throttle(function(q){
-	Ti.API.info("searchShopName");
+$.shopNameSuggestList.addEventListener('itemclick', function(e){
+	// alert(1);
+	// alert(e.itemId);
+	
+	alert(JSON.stringify(e.itemId));
+});
+// venue is array
+var showShopNameGuidance = function(venues){
+	var items = [];
+	_.each(venues, function(venue){
+		items.push({
+			properties:{
+				itemId : venue.id
+			},
+			name: {
+				text: " "+venue.name+ " "
+			}
+		});
+	});
+	$.shopNameSuggestListSection.setItems(items);
+	$.shopNameGuidanceWrap.animate({
+		duration: 240,
+		bottom: 245
+	});
+};
+var hideShopNameGuidance = function(){
+	$.shopNameGuidanceWrap.animate({
+		duration: 240,
+		bottom: 95
+	});
+};
+var suggestCompletionShopName = _.throttle(function(options){
+	var query = options.query,
+		callback = options.callback;
+
 	var url = "https://api.foursquare.com/v2/venues/suggestcompletion"
+	// var url = "https://api.foursquare.com/v2/venues/explore"
+	// var url = "https://api.foursquare.com/v2/venues/search"
 		// params
 		+"?client_id=EJDKZREE2GSE31ZCWQUKPLVMFEQUINI0DT4A2V20XE21ZQ02&client_secret=NP5ZRYKNDKZC2CPBAC2KZDQLUOMSHT1FVTVZCF0SSRCWBOLH&v=20140310"
-		+"&ll="+currentPosition.latitude+","+currentPosition.longitude+"&query="+q;
+		// +"&categoryId=4d4b7105d754a06374d81259"	// for search api
+		// +"&section=food"	// for explore api
+		+"&limit=6"	// max 100
+		+"&ll="+currentPosition.latitude+","+currentPosition.longitude+"&query="+ query;
 	
 
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
 			Ti.API.info("----Received text from Foursquare------- ");
-			Ti.API.info(JSON.parse(this.responseText));
-			// callback(JSON.parse(this.responseText));
+			var res = JSON.parse(this.responseText);
+			if( res && res.meta && res.meta.code === 200 ){
+				callback(res.response.minivenues);
+			}
 		},
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
-			Ti.API.info("----Received text from Foursquare:error------- ");
+			Ti.API.info("----Received text from Foursquare:error----- ");
 			Ti.API.info(JSON.parse(this.responseText));
 			Ti.API.debug(e.error);
 		},
 		timeout : 5000 // in milliseconds
 	});
-	// Prepare the connection.
 	client.open("GET", url);
 	client.send();
 }, 300);
@@ -91,7 +130,10 @@ $.shopNameField.addEventListener('blur', function(e){
 });
 $.shopNameField.addEventListener('change', function(e){
 	if( $.shopNameField.getValue().length > 2 ){
-		suggestCompletionShopName( $.shopNameField.getValue() );
+		suggestCompletionShopName({
+			query: $.shopNameField.getValue(),
+			callback: showShopNameGuidance
+		});
 	}
 	// coordinates: [currentPosition.longitude, currentPosition.latitude ],
 });
@@ -197,8 +239,22 @@ $.contentField.addEventListener('postlayout', function(e) {
 	// toggleBtn(false);
 	
 	//fake cursor
-	$.fakeCursor.start();
+	// $.fakeCursor.start();
 	setFbShareBtn();
+});
+
+$.contentField.addEventListener('focus', function(){
+	$.fieldWrap.setTouchEnabled(false);
+	$.fakeCursor.setVisible(true);
+	$.fakeCursor.start();
+});
+$.contentField.addEventListener('blur', function(){
+	$.fieldWrap.setTouchEnabled(true);
+	$.fakeCursor.stop();
+	$.fakeCursor.setVisible(false);
+});
+$.fieldWrap.addEventListener('click', function(){
+	$.contentField.focus();
 });
 
 

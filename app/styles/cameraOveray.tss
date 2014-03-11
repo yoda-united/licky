@@ -29,10 +29,10 @@
 
 
 "#fieldWrap" : {
+	touchEnabled : false,
 	top: Alloy.Globals.cameraInfo.top,
 	height : 180,
-	backgroundColor : 'transparent',
-	touchEnabled : false
+	backgroundColor : 'transparent'
 }
 "#contentField" : {
 	top: 0,
@@ -94,6 +94,42 @@
 	touchEnabled: false
 }
 
+".guidance": {
+
+}
+"#shopNameGuidanceWrap" : {
+	// zIndex: 15,
+	backgroundColor: 'transparent',
+	// height: 400,
+	// height: Ti.UI.SIZE,
+	height: 160,
+	width: 150,
+	bottom: 95,
+	right: 19
+	// layout : 'vertical'
+}
+"#shopNameSuggestList" : {
+	backgroundColor: 'transparent',
+	top: 5,
+	separatorStyle : Titanium.UI.iPhone.ListViewSeparatorStyle.NONE
+}
+"#shopNameSuggestion" : {
+	// left: 5,
+	right: 5,
+	height: 25,
+	width: Ti.UI.SIZE,
+	borderRadius: 7,
+	// borderWidth: 0.5,
+	// borderColor: Alloy.Globals.COLORS.darkGray,
+	backgroundColor: Alloy.Globals.COLORS.red,
+	color: Alloy.Globals.COLORS.lightGray
+}
+"#shopNameSuggestTemplate": {
+	backgroundColor: 'transparent',
+	height: 28,
+	selectionStyle: Ti.UI.iPhone.ListViewCellSelectionStyle.NONE
+}
+
 ".leadingEdge" : {
 	zIndex: 10,
 	// top: 311.5
@@ -102,15 +138,15 @@
 }
 "#guidanceLabel": {
 	zIndex: 15,
-	// top: 312,
-	bottom: 220,
-	left: 18,
-	height: 36,
 	borderRadius: 11,
 	borderWidth: 0.5,
 	borderColor: Alloy.Globals.COLORS.darkGray,
 	backgroundColor: Alloy.Globals.COLORS.whiteGray,
 	color: Alloy.Globals.COLORS.darkGray,
+
+	bottom: 220,
+	left: 18,
+	height: 36,
 	font : {
 		fontSize : 15,
 		fontFamily : 'AppleSDGothicNeo-UltraLight'
