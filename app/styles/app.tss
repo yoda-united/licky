@@ -118,22 +118,22 @@
 	left: 56,
 	top: 26,
 	textAlign : 'left',
-	font : {
+	font: {
 		fontFamily : 'FontAwesome',
 		fontSize : 13
 	},
-	color : "#bfff",
+	color: "#bfff",
 	text: "\uf041",
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
 }
 ".distance" : {
 	// left: 56,
-	left:66,
-	top : 26,
+	left: 66,
+	top: 26,
 	// width : 60,
-	height: 19,	// 두줄 방지 차원에서 셋팅 
-	textAlign : 'left',
-	font : {
+	height: 15,	// 두줄 방지 차원에서 셋팅 
+	textAlign: 'left',
+	font: {
 		fontFamily : 'AppleSDGothicNeo-Light',
 		fontSize : 13
 	},
