@@ -28,7 +28,7 @@
 	color: Alloy.Globals.COLORS.lightGray,
 	font : {
 		fontSize : 12,
-		fontFamily : 'AppleSDGothicNeo-UltraLight'
+		fontFamily : 'AppleSDGothicNeo-Light'
 	}
 }
 "#shopNameSuggestTemplate": {

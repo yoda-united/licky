@@ -3,15 +3,11 @@ var args = arguments[0] || {};
 var bottom_up = 260,
 	bottom_down = 95;
 
-var venues =[],
-	position,
-	textField;
+var venues = [],	// 결
+	position,	// 검색할 위
+	textField;	// 자동완성할 텍스트 필
 
 
-$.suggestCompletionList.addEventListener('itemclick', function(e){
-	// alert(JSON.stringify(e.itemId));
-	$.suggestCompletionList.fireEvent('clickVenue');
-});
 // venue is array
 var showShopNameGuidance = function(venues){
 	// if(!venues || venues.length == 0 ){
@@ -29,7 +25,7 @@ var showShopNameGuidance = function(venues){
 			hideShopNameGuidance();
 			return;
 		}
-		$.suggestCompletionList.setHeight(30*venues.length);
+		$.suggestCompletionList.setHeight(30 * venues.length);
 		$.suggestCompletionList.animate({
 			duration: 240,
 			bottom: bottom_up
@@ -91,7 +87,7 @@ var suggestCompletionShopName = _.throttle(function(options){
 		},
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
-			Ti.API.info("----Received text from Foursquare:error----- ");
+			Ti.API.info("----Received text from Foursquare:error-----");
 			Ti.API.info(JSON.parse(this.responseText));
 			Ti.API.debug(e.error);
 		},
@@ -101,7 +97,15 @@ var suggestCompletionShopName = _.throttle(function(options){
 	client.send();
 }, 300);
 
-
+$.suggestCompletionList.addEventListener('itemclick', function(e){
+	hideShopNameGuidance();
+	// alert(e.itemId);
+	for(var i = 0; i < venues.length; i++){
+		if( venues[i].id == e.itemId ){
+			textField.setValue(venues[i].name);
+		}
+	}
+});
 
 
 exports.query = function(options){
@@ -110,43 +114,31 @@ exports.query = function(options){
 		position: options.position
 	});
 };
-
-exports.setPosition = function(pos){
-	position = pos;
+exports.hide = function(){
+	hideShopNameGuidance();
 };
-exports.setTextField = function(textField){
-	textField.addEventListener('change', _.debounce(function(){
-		query({
-			query:$.shopNameField.getValue(),
-			position: currentPosition
-		});
-	}, 220));
+exports.show = function(){
+	showShopNameGuidance(venues);
 };
 
+// 이것만 셋팅 해 놓으면 됨 
 exports.setProps = function(options){
 	position = options.position;
 	textField = options.textField;
+	
 	textField.addEventListener('change', _.debounce(function(){
 		suggestCompletionShopName({
 			query: textField.getValue(),
 			position: position
 		});
 	}, 220));
-	
 	textField.addEventListener('focus', function(){
 		showShopNameGuidance(venues);
 	});
 	textField.addEventListener('blur', function(){
 		hideShopNameGuidance();
 	});
+	
+	
 };
-
-exports.hide = function(){
-	hideShopNameGuidance();
-};
-
-exports.show = function(){
-	showShopNameGuidance(venues);
-};
-
 
