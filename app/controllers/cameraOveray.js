@@ -64,6 +64,35 @@ $.shopNameSuggestList.addEventListener('itemclick', function(e){
 });
 // venue is array
 var showShopNameGuidance = function(venues){
+// alert(venues.length);
+	// if(!venues || venues.length == 0 ){
+	if(!venues ){
+		return;
+	}
+	// alert($.shopNameSuggestList.getHeight());
+	$.shopNameSuggestList.animate({
+		// duration: 10,
+		// height: 1
+		duration: 240,
+		bottom: 95
+	}, function(){
+	// hideShopNameGuidance(function(){
+		if( venues.length == 0){
+			hideShopNameGuidance();
+			return;
+		}
+		$.shopNameSuggestList.setHeight(30*venues.length);
+		// $.shopNameSuggestList.animate({
+			// duration: 400 + 30*venues.length,
+			// height: 30*venues.length
+			// // height: 30*venues.length > 600 ? 600 :30*venues.length 
+		// });
+		// $.shopNameGuidanceWrap.animate({
+		$.shopNameSuggestList.animate({
+			duration: 240,
+			bottom: 260
+		});
+	});
 	var items = [];
 	_.each(venues, function(venue){
 		items.push({
@@ -74,15 +103,32 @@ var showShopNameGuidance = function(venues){
 				text: " "+venue.name+ " "
 			}
 		});
+		// $.shopNameSuggestListSection.appendItems([{
+			// properties:{
+				// itemId : venue.id
+			// },
+			// name: {
+				// text: " "+venue.name+ " "
+			// }		
+		// }], {
+			// animationStyle: Titanium.UI.iPhone.RowAnimationStyle.BOTTOM,
+			// position: Titanium.UI.iPhone.ListViewScrollPosition.BOTTOM
+		// });
 	});
-	$.shopNameSuggestListSection.setItems(items);
-	$.shopNameGuidanceWrap.animate({
-		duration: 240,
-		bottom: 245
+	// $.shopNameSuggestListSection.setItems(items,{
+		// // animated: false
+		// animationStyle: Titanium.UI.iPhone.RowAnimationStyle.TOP,
+		// position: Titanium.UI.iPhone.ListViewScrollPosition.BOTTOM
+	// });
+	var section = Ti.UI.createListSection({
+		items: items
+	});
+	$.shopNameSuggestList.replaceSectionAt(0, section,{
+		animated: false
 	});
 };
 var hideShopNameGuidance = function(){
-	$.shopNameGuidanceWrap.animate({
+	$.shopNameSuggestList.animate({
 		duration: 240,
 		bottom: 95
 	});
@@ -90,6 +136,9 @@ var hideShopNameGuidance = function(){
 var suggestCompletionShopName = _.throttle(function(options){
 	var query = options.query,
 		callback = options.callback;
+	if( query.length < 3 ){
+		return;
+	}
 
 	var url = "https://api.foursquare.com/v2/venues/suggestcompletion"
 	// var url = "https://api.foursquare.com/v2/venues/explore"
@@ -98,7 +147,7 @@ var suggestCompletionShopName = _.throttle(function(options){
 		+"?client_id=EJDKZREE2GSE31ZCWQUKPLVMFEQUINI0DT4A2V20XE21ZQ02&client_secret=NP5ZRYKNDKZC2CPBAC2KZDQLUOMSHT1FVTVZCF0SSRCWBOLH&v=20140310"
 		// +"&categoryId=4d4b7105d754a06374d81259"	// for search api
 		// +"&section=food"	// for explore api
-		+"&limit=6"	// max 100
+		+"&limit=5"	// max 100
 		+"&ll="+currentPosition.latitude+","+currentPosition.longitude+"&query="+ query;
 	
 
@@ -123,20 +172,23 @@ var suggestCompletionShopName = _.throttle(function(options){
 	client.send();
 }, 300);
 $.shopNameField.addEventListener('focus', function(e){
+	suggestCompletionShopName({
+		query: $.shopNameField.getValue(),
+		callback: showShopNameGuidance
+	});
 });
 $.shopNameField.addEventListener('blur', function(e){
 	if( !$.shopNameField.hasText() ){
 	}
+	hideShopNameGuidance();
 });
-$.shopNameField.addEventListener('change', function(e){
-	if( $.shopNameField.getValue().length > 2 ){
-		suggestCompletionShopName({
-			query: $.shopNameField.getValue(),
-			callback: showShopNameGuidance
-		});
-	}
-	// coordinates: [currentPosition.longitude, currentPosition.latitude ],
-});
+$.shopNameField.addEventListener('change', _.debounce(function(){
+	// alert("change: "+$.shopNameField.getValue());
+	suggestCompletionShopName({
+		query: $.shopNameField.getValue(),
+		callback: showShopNameGuidance
+	});
+}, 260));
 
 
 $.closeBtn.addEventListener('click', function(e) {
