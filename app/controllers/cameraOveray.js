@@ -60,18 +60,12 @@ $.fbShareBtn.addEventListener('click', function(){
 /**
  *  shop name
  */
-$.shopNameField.addEventListener('focus', function(e){
-	$.suggestCompletionListC.show();
+$.suggestCompletionListC.setProps({
+	position: currentPosition,
+	textField: $.shopNameField
 });
-$.shopNameField.addEventListener('change', _.debounce(function(){
-	$.suggestCompletionListC.query({
-		query:$.shopNameField.getValue(),
-		position: currentPosition
-	});
-}, 220));
-$.shopNameField.addEventListener('blur', function(e){
-	$.suggestCompletionListC.hide();
-});
+
+
 
 
 $.closeBtn.addEventListener('click', function(e) {

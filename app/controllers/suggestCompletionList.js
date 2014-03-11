@@ -3,11 +3,14 @@ var args = arguments[0] || {};
 var bottom_up = 260,
 	bottom_down = 95;
 
-var venues =[];
+var venues =[],
+	position,
+	textField;
 
 
 $.suggestCompletionList.addEventListener('itemclick', function(e){
-	alert(JSON.stringify(e.itemId));
+	// alert(JSON.stringify(e.itemId));
+	$.suggestCompletionList.fireEvent('clickVenue');
 });
 // venue is array
 var showShopNameGuidance = function(venues){
@@ -58,8 +61,8 @@ var hideShopNameGuidance = function(){
 };
 var suggestCompletionShopName = _.throttle(function(options){
 	var query = options.query,
-		callback = options.callback,
-		currentPosition = options.position;
+		currentPosition = options.position || position;
+	// alert(query+"\n"	+ JSON.stringify(currentPosition));
 
 	if( query.length < 3 ){
 		return;
@@ -83,7 +86,7 @@ var suggestCompletionShopName = _.throttle(function(options){
 			var res = JSON.parse(this.responseText);
 			if( res && res.meta && res.meta.code === 200 ){
 				venues = res.response.minivenues;
-				callback(venues);
+				showShopNameGuidance(venues);
 			}
 		},
 		// function called when an error occurs, including a timeout
@@ -104,8 +107,37 @@ var suggestCompletionShopName = _.throttle(function(options){
 exports.query = function(options){
 	suggestCompletionShopName({
 		query: options.query,
-		position: options.position,
-		callback: showShopNameGuidance
+		position: options.position
+	});
+};
+
+exports.setPosition = function(pos){
+	position = pos;
+};
+exports.setTextField = function(textField){
+	textField.addEventListener('change', _.debounce(function(){
+		query({
+			query:$.shopNameField.getValue(),
+			position: currentPosition
+		});
+	}, 220));
+};
+
+exports.setProps = function(options){
+	position = options.position;
+	textField = options.textField;
+	textField.addEventListener('change', _.debounce(function(){
+		suggestCompletionShopName({
+			query: textField.getValue(),
+			position: position
+		});
+	}, 220));
+	
+	textField.addEventListener('focus', function(){
+		showShopNameGuidance(venues);
+	});
+	textField.addEventListener('blur', function(){
+		hideShopNameGuidance();
 	});
 };
 
