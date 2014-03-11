@@ -1,7 +1,8 @@
 var ImageFactory = require('ti.imagefactory');
 
 var currentPosition = {},
-	currentAddress = {};
+	currentAddress = {},
+	foursquare = {};
 
 var args = arguments[0],
 	postCol = args.collection;
@@ -47,7 +48,7 @@ var setFbShareBtn = function(){
 		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
 	}
 };
-setFbShareBtn();
+
 $.fbShareBtn.addEventListener('click', function(){
 	AG.settings.save('postWithFacebook', !AG.settings.get("postWithFacebook"), {
 		success: function(){
@@ -56,15 +57,33 @@ $.fbShareBtn.addEventListener('click', function(){
 	});
 });
 
-$.shopNameField.addEventListener('focus', function(e){
+
+/**
+ *  shop name
+ */
+$.suggestCompletionListC.setProps({
+	position: currentPosition,
+	textField: $.shopNameField
 });
-$.shopNameField.addEventListener('blur', function(e){
-	if( !$.shopNameField.hasText() ){
-	}
+$.shopNameField.addEventListener('change', function(){
+	$.distance.setText( $.shopNameField.getValue() +": "
+		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
 });
+$.shopNameField.addEventListener('suggestComplete', function(e){
+	// alert(JSON.stringify(e.itemId));
+	foursquare.venue_id = e.itemId;
+	foursquare.venue_name = $.shopNameField.getValue();
+	$.distance.setText( $.shopNameField.getValue() +": "
+		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
+});
+
+
 
 
 $.closeBtn.addEventListener('click', function(e) {
+	if( $.shopNameField.hasText() ){
+		// alert($.shopNameField.getValue()+"ddd");
+	}
 	if(OS_IOS){
 		Ti.Media.hideCamera();
 	}else{
@@ -127,7 +146,7 @@ function getCurrentPosition(){
 				currentAddress.ko = add;
 				
 				if( AG.currentLanguage == 'ko'){
-					$.distance.text = '\uf041 ' + AG.utils.getGoogleShortAddress(add.results[0]);
+					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
 				}
 			},
 			error: function(){
@@ -143,7 +162,7 @@ function getCurrentPosition(){
 				currentAddress.en = add;
 				
 				if( AG.currentLanguage == 'en'){
-					$.distance.text = '\uf041 ' +AG.utils.getGoogleShortAddress(add.results[0]);
+					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
 				}
 			},
 			error: function(){
@@ -154,14 +173,30 @@ function getCurrentPosition(){
 	});	
 }
 
+
 $.contentField.addEventListener('postlayout', function(e) {
 	$.contentField.removeEventListener('postlayout',arguments.callee);
 	$.contentField.focus();
-	toggleBtn(false);
-	
+	// toggleBtn(false);
 	
 	//fake cursor
-	$.fakeCursor.start();	
+	// $.fakeCursor.start();
+	setFbShareBtn();
+});
+
+
+$.contentField.addEventListener('focus', function(){
+	$.fieldWrap.setTouchEnabled(false);
+	$.fakeCursor.setVisible(true);
+	$.fakeCursor.start();
+});
+$.contentField.addEventListener('blur', function(){
+	$.fieldWrap.setTouchEnabled(true);
+	$.fakeCursor.stop();
+	$.fakeCursor.setVisible(false);
+});
+$.fieldWrap.addEventListener('click', function(){
+	$.contentField.focus();
 });
 
 
@@ -217,7 +252,7 @@ exports.showCamera = function(){
 			// }
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
-			postCol.create({
+			postCol.create(_.extend({
 				title : $.contentField.value,
 				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
 				photo : blob,
@@ -226,11 +261,14 @@ exports.showCamera = function(){
 				"photo_sizes[thumb_100]" : "100x100#",
 				'photo_sync_sizes[]' :'original',
 				custom_fields : {
+					foursquare_venue_id: foursquare.venue_id,
+					foursquare_venue_name: foursquare.venue_name,
+					
 					coordinates: [currentPosition.longitude, currentPosition.latitude ],
-					address_ko : currentAddress.ko.results[0],
-					address_en : currentAddress.en.results[0]
+					address_ko: currentAddress.ko.results[0],
+					address_en: currentAddress.en.results[0]
 				}
-			},{
+			}),{
 				wait:true,
 				success : function(nextPost){
 					Ti.API.info(nextPost.attributes);
