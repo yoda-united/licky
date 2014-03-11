@@ -64,6 +64,14 @@ $.suggestCompletionListC.setProps({
 	position: currentPosition,
 	textField: $.shopNameField
 });
+$.shopNameField.addEventListener('change', function(){
+	$.distance.setText('\uf041 '+ $.shopNameField.getValue() +": "
+		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
+});
+$.shopNameField.addEventListener('suggestComplete', function(){
+	$.distance.setText('\uf041 '+ $.shopNameField.getValue() +": "
+		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
+});
 
 
 

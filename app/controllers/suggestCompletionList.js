@@ -105,6 +105,7 @@ $.suggestCompletionList.addEventListener('itemclick', function(e){
 			textField.setValue(venues[i].name);
 		}
 	}
+	textField.fireEvent('suggestComplete', e);
 });
 
 
