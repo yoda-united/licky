@@ -1,0 +1,13 @@
+<Alloy>
+	        <!-- <ListView id="shopNameSuggestList" defaultItemTemplate="template"> -->
+	        <ListView  defaultItemTemplate="template">
+	            <Templates>
+	                <ItemTemplate name="template" id="shopNameSuggestTemplate" >
+	                    <Label bindId="name" id="shopNameSuggestion" />
+	                </ItemTemplate>
+	            </Templates>
+	
+	            <ListSection id="shopNameSuggestListSection">
+	            </ListSection>
+	        </ListView>
+</Alloy>

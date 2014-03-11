@@ -56,144 +56,27 @@ $.fbShareBtn.addEventListener('click', function(){
 	});
 });
 
-$.shopNameSuggestList.addEventListener('itemclick', function(e){
-	// alert(1);
-	// alert(e.itemId);
-	
-	alert(JSON.stringify(e.itemId));
-});
-// venue is array
-var showShopNameGuidance = function(venues){
-// alert(venues.length);
-	// if(!venues || venues.length == 0 ){
-	if(!venues ){
-		return;
-	}
-	// alert($.shopNameSuggestList.getHeight());
-	$.shopNameSuggestList.animate({
-		// duration: 10,
-		// height: 1
-		duration: 240,
-		bottom: 95
-	}, function(){
-	// hideShopNameGuidance(function(){
-		if( venues.length == 0){
-			hideShopNameGuidance();
-			return;
-		}
-		$.shopNameSuggestList.setHeight(30*venues.length);
-		// $.shopNameSuggestList.animate({
-			// duration: 400 + 30*venues.length,
-			// height: 30*venues.length
-			// // height: 30*venues.length > 600 ? 600 :30*venues.length 
-		// });
-		// $.shopNameGuidanceWrap.animate({
-		$.shopNameSuggestList.animate({
-			duration: 240,
-			bottom: 260
-		});
-	});
-	var items = [];
-	_.each(venues, function(venue){
-		items.push({
-			properties:{
-				itemId : venue.id
-			},
-			name: {
-				text: " "+venue.name+ " "
-			}
-		});
-		// $.shopNameSuggestListSection.appendItems([{
-			// properties:{
-				// itemId : venue.id
-			// },
-			// name: {
-				// text: " "+venue.name+ " "
-			// }		
-		// }], {
-			// animationStyle: Titanium.UI.iPhone.RowAnimationStyle.BOTTOM,
-			// position: Titanium.UI.iPhone.ListViewScrollPosition.BOTTOM
-		// });
-	});
-	// $.shopNameSuggestListSection.setItems(items,{
-		// // animated: false
-		// animationStyle: Titanium.UI.iPhone.RowAnimationStyle.TOP,
-		// position: Titanium.UI.iPhone.ListViewScrollPosition.BOTTOM
-	// });
-	var section = Ti.UI.createListSection({
-		items: items
-	});
-	$.shopNameSuggestList.replaceSectionAt(0, section,{
-		animated: false
-	});
-};
-var hideShopNameGuidance = function(){
-	$.shopNameSuggestList.animate({
-		duration: 240,
-		bottom: 95
-	});
-};
-var suggestCompletionShopName = _.throttle(function(options){
-	var query = options.query,
-		callback = options.callback;
-	if( query.length < 3 ){
-		return;
-	}
 
-	var url = "https://api.foursquare.com/v2/venues/suggestcompletion"
-	// var url = "https://api.foursquare.com/v2/venues/explore"
-	// var url = "https://api.foursquare.com/v2/venues/search"
-		// params
-		+"?client_id=EJDKZREE2GSE31ZCWQUKPLVMFEQUINI0DT4A2V20XE21ZQ02&client_secret=NP5ZRYKNDKZC2CPBAC2KZDQLUOMSHT1FVTVZCF0SSRCWBOLH&v=20140310"
-		// +"&categoryId=4d4b7105d754a06374d81259"	// for search api
-		// +"&section=food"	// for explore api
-		+"&limit=5"	// max 100
-		+"&ll="+currentPosition.latitude+","+currentPosition.longitude+"&query="+ query;
-	
-
-	var client = Ti.Network.createHTTPClient({
-		// function called when the response data is available
-		onload : function(e) {
-			Ti.API.info("----Received text from Foursquare------- ");
-			var res = JSON.parse(this.responseText);
-			if( res && res.meta && res.meta.code === 200 ){
-				callback(res.response.minivenues);
-			}
-		},
-		// function called when an error occurs, including a timeout
-		onerror : function(e) {
-			Ti.API.info("----Received text from Foursquare:error----- ");
-			Ti.API.info(JSON.parse(this.responseText));
-			Ti.API.debug(e.error);
-		},
-		timeout : 5000 // in milliseconds
-	});
-	client.open("GET", url);
-	client.send();
-}, 300);
+/**
+ *  shop name
+ */
 $.shopNameField.addEventListener('focus', function(e){
-	suggestCompletionShopName({
-		query: $.shopNameField.getValue(),
-		callback: showShopNameGuidance
-	});
-});
-$.shopNameField.addEventListener('blur', function(e){
-	if( !$.shopNameField.hasText() ){
-	}
-	hideShopNameGuidance();
+	$.suggestCompletionListC.show();
 });
 $.shopNameField.addEventListener('change', _.debounce(function(){
-	// alert("change: "+$.shopNameField.getValue());
-	suggestCompletionShopName({
-		query: $.shopNameField.getValue(),
-		callback: showShopNameGuidance
+	$.suggestCompletionListC.query({
+		query:$.shopNameField.getValue(),
+		position: currentPosition
 	});
-}, 260));
+}, 220));
+$.shopNameField.addEventListener('blur', function(e){
+	$.suggestCompletionListC.hide();
+});
 
 
 $.closeBtn.addEventListener('click', function(e) {
 	if( $.shopNameField.hasText() ){
-		alert($.shopNameField.getValue()+"ddd");
+		// alert($.shopNameField.getValue()+"ddd");
 	}
 	if(OS_IOS){
 		Ti.Media.hideCamera();
@@ -294,6 +177,7 @@ $.contentField.addEventListener('postlayout', function(e) {
 	// $.fakeCursor.start();
 	setFbShareBtn();
 });
+
 
 $.contentField.addEventListener('focus', function(){
 	$.fieldWrap.setTouchEnabled(false);

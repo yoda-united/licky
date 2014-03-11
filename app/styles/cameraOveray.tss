@@ -94,56 +94,74 @@
 	touchEnabled: false
 }
 
-".guidance": {
-
-}
-"#shopNameGuidanceWrap" : {
-	// borderColor: Alloy.Globals.COLORS.darkGray,
-	// zIndex: 15,
-	backgroundColor: 'transparent',
-	// height: 400,
-	// height: Ti.UI.SIZE,
-	height: 160,
-	width: 280,
-	bottom: 95,
-	right: 19
-	// layout : 'vertical'
-}
-"#shopNameSuggestList" : {
-	width: 280,
-	right: 19,
-	
-	
-	// pruneSectionsOnEdit: true,
+// "#suggestCompletionListC": {
+	// // pruneSectionsOnEdit: true,
+	// // backgroundColor: 'transparent',
+	// backgroundColor: 'yellow',
+	// // canScroll: false,
+	// // separatorStyle : Titanium.UI.iPhone.ListViewSeparatorStyle.NONE,
+	// // width: 190,
+	// height: 300,
+	// width: 300,
+	// bottom: 100
+// }
+// ".guidance": {
+// 
+// }
+// "#shopNameGuidanceWrap" : {
+	// // borderColor: Alloy.Globals.COLORS.darkGray,
+	// // zIndex: 15,
 	// backgroundColor: 'transparent',
-	backgroundColor: 'yellow',
-	canScroll: false,
-	separatorStyle : Titanium.UI.iPhone.ListViewSeparatorStyle.NONE,
-	// width: 190,
-	height: 30,
-	bottom: 0
-}
-"#shopNameSuggestion" : {
-	// left: 5,
-	// right: 5,
-	right: 0,
-	height: 25,
-	width: Ti.UI.SIZE,
-	borderRadius: 7,
-	borderWidth: 0.5,
-	borderColor: Alloy.Globals.COLORS.lickyRed,
-	backgroundColor: Alloy.Globals.COLORS.red,
-	color: Alloy.Globals.COLORS.lightGray,
-	font : {
-		fontSize : 12,
-		fontFamily : 'AppleSDGothicNeo-UltraLight'
-	}
-}
-"#shopNameSuggestTemplate": {
-	backgroundColor: 'transparent',
-	height: 30,
-	selectionStyle: Ti.UI.iPhone.ListViewCellSelectionStyle.NONE
-}
+	// // height: 400,
+	// // height: Ti.UI.SIZE,
+	// height: 160,
+	// width: 280,
+	// bottom: 95,
+	// right: 19
+	// // layout : 'vertical'
+// }
+// "#shopNameSuggestList" : {
+	// width: 280,
+	// right: 19,
+// 	
+// 	
+	// // pruneSectionsOnEdit: true,
+	// // backgroundColor: 'transparent',
+	// backgroundColor: 'yellow',
+	// canScroll: false,
+	// separatorStyle : Titanium.UI.iPhone.ListViewSeparatorStyle.NONE,
+	// // width: 190,
+	// height: 30,
+	// bottom: 0
+// }
+// "#shopNameSuggestion" : {
+	// // left: 5,
+	// // right: 5,
+	// right: 0,
+	// height: 25,
+	// width: Ti.UI.SIZE,
+	// borderRadius: 7,
+	// borderWidth: 0.5,
+	// borderColor: Alloy.Globals.COLORS.lickyRed,
+	// backgroundColor: Alloy.Globals.COLORS.red,
+	// color: Alloy.Globals.COLORS.lightGray,
+	// font : {
+		// fontSize : 12,
+		// fontFamily : 'AppleSDGothicNeo-UltraLight'
+	// }
+// }
+// "#shopNameSuggestTemplate": {
+	// backgroundColor: 'transparent',
+	// height: 30,
+	// selectionStyle: Ti.UI.iPhone.ListViewCellSelectionStyle.NONE
+// }
+// 
+// "#suggestCompletionListC": {
+// 	
+// }
+
+
+
 
 ".leadingEdge" : {
 	zIndex: 10,

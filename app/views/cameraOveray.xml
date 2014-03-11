@@ -25,7 +25,8 @@
 		<View id="mapWrap" />
 		
 		<!-- <View id="shopNameGuidanceWrap" > -->
-	        <ListView id="shopNameSuggestList" defaultItemTemplate="template">
+		<Require src="suggestCompletionList" id="suggestCompletionListC">
+	       <!-- <ListView id="shopNameSuggestList" defaultItemTemplate="template">
 	            <Templates>
 	                <ItemTemplate name="template" id="shopNameSuggestTemplate" >
 	                    <Label bindId="name" id="shopNameSuggestion" />
@@ -35,7 +36,7 @@
 	            <ListSection id="shopNameSuggestListSection">
 	            </ListSection>
 	        </ListView>
-		<!-- </View> -->
+		 </View> -->
 		
 		<View class="leadingEdge" />
 		<Label id="guidanceLabel"></Label>
