@@ -57,22 +57,22 @@ var hideShopNameGuidance = function(){
 };
 var suggestCompletionShopName = _.throttle(function(options){
 	var query = options.query,
-		currentPosition = options.position || position;
-	// alert(query+"\n"	+ JSON.stringify(currentPosition));
+		currentPosition = options.position || position,
+		url, foursquareEndpoint = (query.length < 3 ) ? "EXPLORE" :  "SUGGEST";
 
-	if( query.length < 3 ){
-		return;
+	if( foursquareEndpoint === "EXPLORE" ){
+		url = "https://api.foursquare.com/v2/venues/explore"
+		+"?section=food";	// for explore api
+	}else{
+		url = "https://api.foursquare.com/v2/venues/suggestcompletion"
+		+ "?query="+ query;
 	}
-
-	var url = "https://api.foursquare.com/v2/venues/suggestcompletion"
-	// var url = "https://api.foursquare.com/v2/venues/explore"
-	// var url = "https://api.foursquare.com/v2/venues/search"
-		// params
-		+"?client_id=EJDKZREE2GSE31ZCWQUKPLVMFEQUINI0DT4A2V20XE21ZQ02&client_secret=NP5ZRYKNDKZC2CPBAC2KZDQLUOMSHT1FVTVZCF0SSRCWBOLH&v=20140310"
-		// +"&categoryId=4d4b7105d754a06374d81259"	// for search api
-		// +"&section=food"	// for explore api
+	url = url +"&ll="+currentPosition.latitude+","+currentPosition.longitude
 		+"&limit=5"	// max 100
-		+"&ll="+currentPosition.latitude+","+currentPosition.longitude+"&query="+ query;
+		+"&client_id=EJDKZREE2GSE31ZCWQUKPLVMFEQUINI0DT4A2V20XE21ZQ02&client_secret=NP5ZRYKNDKZC2CPBAC2KZDQLUOMSHT1FVTVZCF0SSRCWBOLH&v=20140310";
+	// url = "https://api.foursquare.com/v2/venues/explore"
+	// url = "https://api.foursquare.com/v2/venues/search"
+		// +"&categoryId=4d4b7105d754a06374d81259"	// for search api
 	
 
 	var client = Ti.Network.createHTTPClient({
@@ -81,7 +81,15 @@ var suggestCompletionShopName = _.throttle(function(options){
 			// Ti.API.info("----Received text from Foursquare------- ");
 			var res = JSON.parse(this.responseText);
 			if( res && res.meta && res.meta.code === 200 ){
-				venues = res.response.minivenues;
+				if( foursquareEndpoint === "EXPLORE" ){
+					// 확인 안된 코드:
+					var tItemArray = res.response.groups[0].items;
+					for( var i in tItemArray ){
+						venues.push(i.venue);
+					}
+				}else{
+					venues = res.response.minivenues;
+				}
 				showShopNameGuidance(venues);
 			}
 		},
