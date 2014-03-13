@@ -14,7 +14,7 @@ $.getView().backButtonTitle = L('back');
 
 
 postCol.defaultFetchData = {
-	//order : "-created_at",
+	order : "-created_at",
 	where :{
 		user_id: {'$in' : [someoneId]}
 	}

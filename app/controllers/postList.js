@@ -72,7 +72,7 @@ $.onFirstFocus = function(e){
 
 $.fetchFirstCollection = function(){
 	postCol.defaultFetchData = {
-		// order : "-created_at",
+		order : "-created_at",
 		// response_json_depth: 4,
 		// limit: 1,
 		where : $.fetchWhereData
