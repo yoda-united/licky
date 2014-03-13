@@ -105,6 +105,9 @@ var suggestCompletionShopName = _.throttle(function(options){
 					venues = res.response.minivenues;
 				}
 				// alert(foursquareEndpoint+"\n"+JSON.stringify(venues));
+				venues = _.uniq(venues, function(venue){
+					return venue.name;
+				});
 				showShopNameGuidance(venues);
 			}
 		},
