@@ -9,7 +9,7 @@ var venues = [],	// 결
 
 
 // venue is array
-var showShopNameGuidance = function(venues){
+var showShopNameGuidance = _.throttle(function(venues){
 	// if(!venues || venues.length == 0 ){
 	if(!venues ){
 		return;
@@ -48,7 +48,7 @@ var showShopNameGuidance = function(venues){
 	$.suggestCompletionList.replaceSectionAt(0, section,{
 		animated: false
 	});
-};
+}, 300);
 var hideShopNameGuidance = function(){
 	$.suggestCompletionList.animate({
 		duration: 240,
@@ -58,7 +58,15 @@ var hideShopNameGuidance = function(){
 var suggestCompletionShopName = _.throttle(function(options){
 	var query = options.query,
 		currentPosition = options.position || position,
-		url, foursquareEndpoint = (query.length < 3 ) ? "EXPLORE" :  "SUGGEST";
+		url, foursquareEndpoint;
+	
+	if (query.length === 0 ){
+		foursquareEndpoint = "EXPLORE";
+	}else if( query.length >= 3){
+		foursquareEndpoint = "SUGGEST";
+	}else{
+		return;
+	}
 
 	if( foursquareEndpoint === "EXPLORE" ){
 		url = "https://api.foursquare.com/v2/venues/explore"
@@ -74,7 +82,6 @@ var suggestCompletionShopName = _.throttle(function(options){
 	// url = "https://api.foursquare.com/v2/venues/search"
 		// +"&categoryId=4d4b7105d754a06374d81259"	// for search api
 	
-
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
@@ -84,12 +91,17 @@ var suggestCompletionShopName = _.throttle(function(options){
 				if( foursquareEndpoint === "EXPLORE" ){
 					// 확인 안된 코드:
 					var tItemArray = res.response.groups[0].items;
-					for( var i in tItemArray ){
-						venues.push(i.venue);
+					if( tItemArray.length > 0){
+						venues = [];
+						_.each(tItemArray, function(item){
+							venues.push(item.venue);
+							// Ti.API.info(JSON.stringify(item));
+						});
 					}
 				}else{
 					venues = res.response.minivenues;
 				}
+				// alert(foursquareEndpoint+"\n"+JSON.stringify(venues));
 				showShopNameGuidance(venues);
 			}
 		},
@@ -116,7 +128,6 @@ $.suggestCompletionList.addEventListener('itemclick', function(e){
 	textField.fireEvent('suggestComplete', e);
 });
 
-
 exports.query = function(options){
 	suggestCompletionShopName({
 		query: options.query,
@@ -135,19 +146,22 @@ exports.setProps = function(options){
 	position = options.position;
 	textField = options.textField;
 	
-	textField.addEventListener('change', _.debounce(function(){
+	var suggestHandler = _.debounce(function(){
 		suggestCompletionShopName({
 			query: textField.getValue(),
 			position: position
 		});
-	}, 220));
+	}, 220);
+	
+	textField.addEventListener('change', suggestHandler);
 	textField.addEventListener('focus', function(){
-		showShopNameGuidance(venues);
+		suggestCompletionShopName({
+			query: textField.getValue(),
+			position: position
+		});
 	});
 	textField.addEventListener('blur', function(){
 		hideShopNameGuidance();
 	});
-	
-	
 };
 
