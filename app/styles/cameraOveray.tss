@@ -21,10 +21,18 @@
 	left : 10
 }
 "#sendBtn" : {
+	// visible : false,
 	height : Ti.UI.FILL,
-	width : '50%',
-	title : 'Send',
-	visible : false
+	// width : Ti.UI.SIZE,
+	width: 70,	// 클릭 영역 크게 하려고..
+	color: Alloy.Globals.COLORS.red,	// image color
+	// backgroundColor : Alloy.Globals.COLORS.gray,
+	right: 0,
+	// font : {
+		// fontSize: 15,
+		// fontFamily : 'AppleSDGothicNeo-SemiBold'
+	// },
+	title : L('send')
 }
 
 
@@ -37,11 +45,15 @@
 "#contentField" : {
 	top: 0,
 	tintColor : 'red',
-	returnKeyType : Ti.UI.RETURNKEY_SEND,
+	// returnKeyType : Ti.UI.RETURNKEY_SEND,
+	returnKeyType : Ti.UI.RETURNKEY_NEXT,
 	visible : false,
 	autocorrect : false
 }
-
+"#contentField[platform=android]" : {
+	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
+}
 
 "#fakeFieldWrap" : {
 	// borderColor: Alloy.Globals.COLORS.red,
@@ -66,10 +78,6 @@
 	duration : 500
 }
 
-"#contentField[platform=android]" : {
-	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
-	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
-}
 "#fieldOpacityBG" : {
 	top:0,
 	height : 90,
@@ -228,6 +236,7 @@
 	tintColor: Alloy.Globals.COLORS.red,
 	paddingLeft: 12,
 	hintText: L('shopName'),
+	returnKeyType : Ti.UI.RETURNKEY_NEXT,
 	autocorrect: false,
 	autocapitalization: false
 }
