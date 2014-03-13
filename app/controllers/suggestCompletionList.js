@@ -9,7 +9,7 @@ var venues = [],	// 결
 
 
 // venue is array
-var showShopNameGuidance = function(venues){
+var showShopNameGuidance = _.throttle(function(venues){
 	// if(!venues || venues.length == 0 ){
 	if(!venues ){
 		return;
@@ -48,7 +48,7 @@ var showShopNameGuidance = function(venues){
 	$.suggestCompletionList.replaceSectionAt(0, section,{
 		animated: false
 	});
-};
+}, 300);
 var hideShopNameGuidance = function(){
 	$.suggestCompletionList.animate({
 		duration: 240,
@@ -57,31 +57,51 @@ var hideShopNameGuidance = function(){
 };
 var suggestCompletionShopName = _.throttle(function(options){
 	var query = options.query,
-		currentPosition = options.position || position;
-	// alert(query+"\n"	+ JSON.stringify(currentPosition));
-
-	if( query.length < 3 ){
+		currentPosition = options.position || position,
+		url, foursquareEndpoint;
+	
+	if (query.length === 0 ){
+		foursquareEndpoint = "EXPLORE";
+	}else if( query.length >= 3){
+		foursquareEndpoint = "SUGGEST";
+	}else{
 		return;
 	}
 
-	var url = "https://api.foursquare.com/v2/venues/suggestcompletion"
-	// var url = "https://api.foursquare.com/v2/venues/explore"
-	// var url = "https://api.foursquare.com/v2/venues/search"
-		// params
-		+"?client_id=EJDKZREE2GSE31ZCWQUKPLVMFEQUINI0DT4A2V20XE21ZQ02&client_secret=NP5ZRYKNDKZC2CPBAC2KZDQLUOMSHT1FVTVZCF0SSRCWBOLH&v=20140310"
-		// +"&categoryId=4d4b7105d754a06374d81259"	// for search api
-		// +"&section=food"	// for explore api
+	if( foursquareEndpoint === "EXPLORE" ){
+		url = "https://api.foursquare.com/v2/venues/explore"
+		+"?section=food";	// for explore api
+	}else{
+		url = "https://api.foursquare.com/v2/venues/suggestcompletion"
+		+ "?query="+ query;
+	}
+	url = url +"&ll="+currentPosition.latitude+","+currentPosition.longitude
 		+"&limit=5"	// max 100
-		+"&ll="+currentPosition.latitude+","+currentPosition.longitude+"&query="+ query;
+		+"&client_id=EJDKZREE2GSE31ZCWQUKPLVMFEQUINI0DT4A2V20XE21ZQ02&client_secret=NP5ZRYKNDKZC2CPBAC2KZDQLUOMSHT1FVTVZCF0SSRCWBOLH&v=20140310";
+	// url = "https://api.foursquare.com/v2/venues/explore"
+	// url = "https://api.foursquare.com/v2/venues/search"
+		// +"&categoryId=4d4b7105d754a06374d81259"	// for search api
 	
-
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
 			// Ti.API.info("----Received text from Foursquare------- ");
 			var res = JSON.parse(this.responseText);
 			if( res && res.meta && res.meta.code === 200 ){
-				venues = res.response.minivenues;
+				if( foursquareEndpoint === "EXPLORE" ){
+					// 확인 안된 코드:
+					var tItemArray = res.response.groups[0].items;
+					if( tItemArray.length > 0){
+						venues = [];
+						_.each(tItemArray, function(item){
+							venues.push(item.venue);
+							// Ti.API.info(JSON.stringify(item));
+						});
+					}
+				}else{
+					venues = res.response.minivenues;
+				}
+				// alert(foursquareEndpoint+"\n"+JSON.stringify(venues));
 				showShopNameGuidance(venues);
 			}
 		},
@@ -108,7 +128,6 @@ $.suggestCompletionList.addEventListener('itemclick', function(e){
 	textField.fireEvent('suggestComplete', e);
 });
 
-
 exports.query = function(options){
 	suggestCompletionShopName({
 		query: options.query,
@@ -127,19 +146,22 @@ exports.setProps = function(options){
 	position = options.position;
 	textField = options.textField;
 	
-	textField.addEventListener('change', _.debounce(function(){
+	var suggestHandler = _.debounce(function(){
 		suggestCompletionShopName({
 			query: textField.getValue(),
 			position: position
 		});
-	}, 220));
+	}, 220);
+	
+	textField.addEventListener('change', suggestHandler);
 	textField.addEventListener('focus', function(){
-		showShopNameGuidance(venues);
+		suggestCompletionShopName({
+			query: textField.getValue(),
+			position: position
+		});
 	});
 	textField.addEventListener('blur', function(){
 		hideShopNameGuidance();
 	});
-	
-	
 };
 
