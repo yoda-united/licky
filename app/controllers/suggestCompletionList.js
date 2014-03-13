@@ -5,11 +5,14 @@ var bottom_up = 260,
 
 var venues = [],	// 결
 	position,	// 검색할 위
-	textField;	// 자동완성할 텍스트 필
-
+	textField,	// 자동완성할 텍스트 필드
+	isTextFieldFocus = false;	//
 
 // venue is array
 var showShopNameGuidance = _.throttle(function(venues){
+	if( !isTextFieldFocus ){
+		return;
+	}
 	// if(!venues || venues.length == 0 ){
 	if(!venues ){
 		return;
@@ -155,12 +158,14 @@ exports.setProps = function(options){
 	
 	textField.addEventListener('change', suggestHandler);
 	textField.addEventListener('focus', function(){
+		isTextFieldFocus = true;
 		suggestCompletionShopName({
 			query: textField.getValue(),
 			position: position
 		});
 	});
 	textField.addEventListener('blur', function(){
+		isTextFieldFocus = false;
 		hideShopNameGuidance();
 	});
 };
