@@ -51,13 +51,15 @@ exports.definition = {
 					commentCountText = String.format(' %d', this.get('reviews_count') || 0);
 				}
 
-				var recentBlob = this.collection.recentBlob;
+				// BOG-196 관련 임시 조치
+				this.cachedBlob = this.cachedBlob || this.collection.recentBlob;
 				this.collection.recentBlob = null;
+				/////////////////////
 				
 				return({
 					//template : 'itemTemplate',
 					photo : {
-						image : urls.original || recentBlob
+						image : urls.original || this.cachedBlob
  
 						// backgroundLeftCap : 0,
 						// backgroundTopCap: 0,

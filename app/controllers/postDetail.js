@@ -92,6 +92,7 @@ commentCol.on('add',function(model,col,options){
 function fetchComments(){
 	commentCol.fetch({
 		data : {
+			order : '-created_at',
 			post_id : postModel.id,
 			per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
 		},

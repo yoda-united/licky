@@ -109,3 +109,19 @@
 "#cameraBtn" : {
 	visible : false
 }
+
+"#contactUsBtn" : {
+	title : '버그 신고 및 제안하기',
+	borderRadius: 5,
+	borderWidth : 0.5,
+	borderColor : Alloy.Globals.COLORS.darkGray,
+	height: 44,
+	width: 232,
+	color: Alloy.Globals.COLORS.darkGray,
+	bottom : 10,
+	font : {
+		fontSize : 17,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	},
+	backgroundColor: Alloy.Globals.COLORS.whiteGray,
+}

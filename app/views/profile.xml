@@ -15,6 +15,7 @@
 	                <TableViewRow id="foodRow" />
 	            </TableViewSection>
 	        </TableView>
+	        <Button id="contactUsBtn"/>
 		</ScrollView>
 
 
