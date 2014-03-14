@@ -16,6 +16,7 @@ if (userModel) {
 var isMe = userModel.get('id') == AG.loggedInUser.get('id');
 $.profile.title = isMe?L('me'):userModel.get('first_name');
 $.foodRow.title = isMe?L('myLicks'):String.format(L('someoneLicks'),userModel.get('first_name'));
+$.contactUsBtn.visible = isMe;
 
 $.getView().addEventListener('focus', function(e) {
 	$.setProperties();
@@ -49,6 +50,37 @@ $.settingDialog.addEventListener('click', _.throttle(function(e) {
 $.profileSettingBtn.addEventListener('click', function(e) {
 	$.settingDialog.show();
 });
+
+$.contactUsBtn.addEventListener('click', function(e) {
+	
+	var phoneInfo = {
+		platform : Ti.Platform.model,
+		osVersion : Ti.Platform.version,
+		locale : Ti.Platform.locale,
+		appId : Ti.App.id,
+		appVersion : Ti.App.version
+	};
+	
+	var bodyString='<br/><br/> <strong>* 사용자 환경 *</strong><br/>';
+	_.each(phoneInfo,function(value,key){
+		bodyString+=String.format("<strong>%s</strong> : %s<br/>",key,value);
+	});
+	var emailDialog = Ti.UI.createEmailDialog({
+		subject : '[제안] Licky',
+		toRecipients : ['app@licky.co'],
+		messageBody : bodyString,
+		barColor : '#3498db',
+		html : true
+	});
+	
+	if(!emailDialog.isSupported()){
+		alert('릭키 메일 주소는 app@licky.co \n클립보드에 복사했으니 원하는 메일 앱에 붙여 넣고 메일 주세요!');
+		Ti.UI.Clipboard.setText('app@licky.co');
+	} else {
+		emailDialog.open();
+	}	
+});
+
 
 //로그인 상태 변경시
 AG.settings.on('change:cloudSessionId', loginChangeHandler);
