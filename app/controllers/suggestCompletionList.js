@@ -17,11 +17,12 @@ var showShopNameGuidance = _.throttle(function(venues){
 	if(!venues ){
 		return;
 	}
+	venues = _.first(venues, 5);
 	// alert($.shopNameSuggestList.getHeight());
 	$.suggestCompletionList.animate({
 		// duration: 10,
 		// height: 1
-		duration: 240,
+		duration: 270,
 		bottom: bottom_down
 	}, function(){
 		if( venues.length == 0){
@@ -30,7 +31,7 @@ var showShopNameGuidance = _.throttle(function(venues){
 		}
 		$.suggestCompletionList.setHeight(30 * venues.length);
 		$.suggestCompletionList.animate({
-			duration: 240,
+			duration: 270,
 			bottom: bottom_up
 		});
 	});
@@ -73,13 +74,13 @@ var suggestCompletionShopName = _.throttle(function(options){
 
 	if( foursquareEndpoint === "EXPLORE" ){
 		url = "https://api.foursquare.com/v2/venues/explore"
-		+"?section=food";	// for explore api
+		+"?section=food&sortByDistance=1";
 	}else{
 		url = "https://api.foursquare.com/v2/venues/suggestcompletion"
 		+ "?query="+ query;
 	}
 	url = url +"&ll="+currentPosition.latitude+","+currentPosition.longitude
-		+"&limit=5"	// max 100
+		+"&limit=12"	// max 100
 		+"&client_id=EJDKZREE2GSE31ZCWQUKPLVMFEQUINI0DT4A2V20XE21ZQ02&client_secret=NP5ZRYKNDKZC2CPBAC2KZDQLUOMSHT1FVTVZCF0SSRCWBOLH&v=20140310";
 	// url = "https://api.foursquare.com/v2/venues/explore"
 	// url = "https://api.foursquare.com/v2/venues/search"
