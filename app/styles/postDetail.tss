@@ -12,7 +12,6 @@
 		// style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
 		showVerticalScrollIndicator :false,
 		
-	separatorColor: 'white',
 	bottom : 44,
 	willScrollOnStatusTap : true
 }
@@ -23,7 +22,6 @@
 "#moreButton": {
 	title: "\u2026"
 }
-
 
 ".commentTemplate" : {
 	// backgroundColor: 'white',

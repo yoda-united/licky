@@ -1,10 +1,10 @@
 "ListView[platform=ios]":{
-	// separatorColor: '#99333333',
+	separatorColor: Alloy.Globals.COLORS.red,
 	separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle.NONE
 }
 
 "#listView" : {
-	// separatorColor: 'white',
+	// separatorColor: 'green',
 	//defaultItemTemplate : 'selectedItemTemplate'
 	defaultItemTemplate : 'postItemTemplate',
 	showVerticalScrollIndicator : false,

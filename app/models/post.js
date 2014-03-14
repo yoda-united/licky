@@ -38,6 +38,10 @@ exports.definition = {
 							)
 						)
 					};
+				}else{
+					distance = {
+						text: ""
+					};
 				}
 				
 				var isMine = this.get('user').id == AG.loggedInUser.get('id'); 
@@ -51,6 +55,10 @@ exports.definition = {
 					//template : 'itemTemplate',
 					photo : {
 						image : urls.original 
+						// backgroundLeftCap : 0,
+						// backgroundTopCap: 0,
+						// backgroundRepeat : true,
+						// backgroundImage : urls.original 
 					},
 					title :{
 						text : this.get('title'),
@@ -73,6 +81,8 @@ exports.definition = {
 					},
 					distance : distance,
 					properties :{
+						// backgroundRepeat : true,
+						// backgroundImage : urls.original ,
 						itemId : this.id,
 						canEdit : isMine
 					},

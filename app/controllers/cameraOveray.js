@@ -295,7 +295,8 @@ exports.showCamera = function(){
 								if(AG.settings.get('postWithFacebook')){
 									AG.facebook.requestWithGraphPath('me/links', {
 										// message : "",
-										link : 'http://www.licky.co/post/'+nextPost.id,
+										link : 'http://www.licky.co/post/'+nextPost.id
+										// link: 'http://dasolute.com/asdf3.html'
 									}, "POST", function(e) {
 										if (e.success) {
 											//alert("Success!  From FB: " + e.result);

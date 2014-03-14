@@ -1,7 +1,9 @@
 <Alloy>
 	<ItemTemplate class="itemTemplate" name="postItemTemplate">
-		<ImageView class="photo" bindId="photo"></ImageView>
-		<View backgroundColor="black" opacity="0.2"></View>
+		<View>
+			<ImageView class="photo" bindId="photo"></ImageView>
+		</View>
+		<View class="opacityScreen"></View>
 		
 		<Label class="photoTitle" bindId="title"></Label>
 		<Label class="time" bindId="time"></Label>

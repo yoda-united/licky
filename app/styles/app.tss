@@ -52,14 +52,21 @@
 	minimumFontSize : 35,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }
-
+".opacityScreen": {
+	backgroundColor: "#6A5800",
+	opacity: 0.2
+}
 ".photo": {
 	width : Alloy.Globals.cameraInfo.width,
-	height : 180,
+	// height : 108,
+	height: 180,
+	// height: Ti.UI.FILL,
 	defaultImage: "images/defaultFoodPhoto.png",
 	image: "images/defaultFoodPhoto.png",
 	// preventDefaultImage : true,
-	bottom : 0
+	// contentMode: 'aspectfill',
+	// bottom : 0
+	top: 0
 }
 
 ".userName" : {

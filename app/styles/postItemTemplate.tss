@@ -1,4 +1,6 @@
 ".itemTemplate" : {
+	// Titanium.UI.ListItemselectedBackgroundColor : String
+	selectionStyle : Titanium.UI.iPhone.ListViewCellSelectionStyle.GRAY,
+	backgroundColor: Alloy.Globals.COLORS.red,
 	height : 108
-	//height : 90
 }
