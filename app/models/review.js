@@ -78,8 +78,8 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			comparator : function(modelA, modelB) {
-				if (modelA.get('updated_at') > modelB.get('updated_at')) return 1; // before
-				  if (modelB.get('updated_at') > modelA.get('updated_at')) return -1; // after
+				if (modelA.get('created_at') > modelB.get('created_at')) return 1; // before
+				  if (modelB.get('created_at') > modelA.get('created_at')) return -1; // after
 				  return 0; // equal
 			}
 			// create: function(model,options) {
