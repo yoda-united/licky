@@ -212,7 +212,8 @@
 	left: 64,
 	height: 40,
 	width: 40,
-	backgroundImage: "images/locationInactive.png"
+	backgroundImage: "images/locationInactive.png",
+	visible : false
 }
 "#lockImg" : {
 	top: 5,
