@@ -289,7 +289,10 @@ exports.showCamera = function(){
 							"collection_name" : "facebook_preview",
 							"photo_sizes[medium_320]" : "320x180",
 							'photo_sync_sizes[]' :'original',
-		    				photo: ImageFactory.compress(fbPreviewFile, 0.75),
+		    				photo: ImageFactory.compress(ImageFactory.imageAsResized(fbPreviewFile,{
+		    					width : 640,
+								height :360
+		    				}), 0.2),
 		    				custom_fields : {
 								"[ACS_Post]parent_id": nextPost.id
 							}
