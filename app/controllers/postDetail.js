@@ -11,9 +11,12 @@ var args = arguments[0] || {},
 
 $.listView.addEventListener('itemclick', function(e) {
 	if (e.bindId == "profileImage") {
+		// alert(JSON.stringify(e));
+		// alert(commentCol.get(e.itemId).get('user'));
 		AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
 			//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
-			userModel : Alloy.createModel('user', postModel.get('user'))
+			// userModel : Alloy.createModel('user', postModel.get('user'))
+			userModel :e.section.id === "commentSection" ? Alloy.createModel('user', commentCol.get(e.itemId).get('user')) : Alloy.createModel('user', postModel.get('user'))
 		});
 	}
 });
@@ -26,6 +29,8 @@ function resetPostContent(){
 	}
 	contentItem.distance.height = 35; // 주소가 두줄 나오게 BOG-113
 	contentItem.properties.height = 180;
+	contentItem.properties.backgroundColor = Alloy.Globals.COLORS.whiteGray;
+	// contentItem.photo.height = 180;
 	$.contentSection.setItems([
 		contentItem
 	]);
@@ -87,8 +92,15 @@ commentCol.on('add',function(model,col,options){
 function fetchComments(){
 	commentCol.fetch({
 		data : {
+			order : '-created_at',
 			post_id : postModel.id,
 			per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
+		},
+		error: function(e,resp){
+			if( resp === "post not found" ){	// code 400
+				alert(L('deletedLick'));
+				$.postDetail.close();
+			}
 		}
 	});
 }
@@ -138,15 +150,21 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 		if (e.index === 0) {
 			reportCol.at(0).destroy({
 				success: function(e){
-					alert("successUnReport");
+					alert(L("successUnReport"));
 				},
 				error: function(e){
-					alert("failUnReport");
+					alert(L("failUnReport"));
 				}
 			});
 		}
 	});
-	$.moreButton.addEventListener('click', function(e){
+	$.moreButton.addEventListener('click', _.throttle(function(e){
+		var indi = Ti.UI.createActivityIndicator({
+			style: Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+		});
+		$.postDetail.rightNavButton = indi;
+		indi.show();
+		
 		reportCol.fetch({
 			data:{
 				class_name: "reports",
@@ -159,12 +177,14 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 			},
 			success: function(e){
 				(reportCol.length > 0)? $.unReportDialog.show() : $.reportDialog.show();
+				$.postDetail.rightNavButton = $.moreButton;
 			},
 			error: function(e){
 				alert("networkFailure");
+				$.postDetail.rightNavButton = $.moreButton;
 			}
 		});
-	});
+	},1000));
 }
 
 /* TODO: pullView가 alloy에서 먹지를 않는데 언젠간 되겠지 뭐..

@@ -1,7 +1,8 @@
 var ImageFactory = require('ti.imagefactory');
 
 var currentPosition = {},
-	currentAddress = {};
+	currentAddress = {},
+	foursquare = {};
 
 var args = arguments[0],
 	postCol = args.collection;
@@ -14,61 +15,80 @@ function send(e) {
 	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
 	Ti.Media.takePicture();
 }
-// $.sendBtn.addEventListener('click', send);
-$.contentField.addEventListener('return', _.throttle(send,1000));
+$.sendBtn.addEventListener('click', _.throttle(send,1000));
+// $.contentField.addEventListener('return', _.throttle(send,1000));
+$.contentField.addEventListener('return', function(){
+	$.shopNameField.focus();
+});
 
-
-// facebook share toggle 
-var timeoutId;
-var toggleBtn = function(toggle){
-	var flag;
-	if( AG.settings.has("postWithFacebook") ){
-		if(toggle){
-			flag = !AG.settings.get('postWithFacebook');
-		}else{
-			flag = AG.settings.get('postWithFacebook');
-		}
-	}else{
-		flag = true;
-	}
-	
+// guidance for facebook, twitter, etcs.. share 
+var timeoutId, 
+	guidanceBottom_down = $.guidanceLabel.getBottom(),
+	guidanceBottom_up = guidanceBottom_down + $.guidanceLabel.getHeight() - $.guidanceLabel.getBorderRadius();
+var showGuidance = function(message){
 	if( timeoutId ){
 		clearTimeout(timeoutId);
 	}
-	$.fbShareGuidance.setOpacity(0);
-	$.fbDontShareGuidance.setOpacity(0);
-	if(flag){	// on
-		$.fbShareBtn.setBackgroundImage('images/fbShareActive.png');
-		$.fbShareGuidance.setOpacity(1);
+	$.guidanceLabel.setText("   "+message+"   ");
+	$.guidanceLabel.animate({
+		duration: 60,
+		bottom: guidanceBottom_up
+	}, function(){
 		timeoutId = setTimeout(function(){
-			// $.fbShareGuidance.setVisible(false);
-			$.fbShareGuidance.animate({
-				duration: 1000,
-				// top: 100,
-				opacity : 0
+			$.guidanceLabel.animate({
+				duration: 60,
+				bottom: guidanceBottom_down
 			});
-		}, 500 );
-	}else{
-		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
-		$.fbDontShareGuidance.setOpacity(1);
-		timeoutId = setTimeout(function(){
-			// $.fbDontShareGuidance.setVisible(false);
-			$.fbDontShareGuidance.animate({
-				duration: 1000,
-				// top:100,
-				opacity : 0
-			});
-		}, 500 );
-	}
-	AG.settings.save('postWithFacebook', flag);
-	// alert(flag);
+		}, 900);
+	});
 };
+var setFbShareBtn = function(){
+	if( AG.settings.get('postWithFacebook') ){
+		showGuidance( L('willBePostedToFacebook') );
+		$.fbShareBtn.setBackgroundImage('images/fbShareActive.png');
+	}else{
+		showGuidance( L('willNotShareOnFacebook')	);
+		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
+	}
+};
+
 $.fbShareBtn.addEventListener('click', function(){
-	toggleBtn(true);
+	AG.settings.save('postWithFacebook', !AG.settings.get("postWithFacebook"), {
+		success: function(){
+			setFbShareBtn();
+		}
+	});
 });
 
 
+/**
+ *  shop name
+ */
+$.suggestCompletionListC.setProps({
+	position: currentPosition,
+	textField: $.shopNameField
+});
+$.shopNameField.addEventListener('change', function(){
+	$.distance.setText( $.shopNameField.getValue() +": "
+		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
+});
+$.shopNameField.addEventListener('suggestComplete', function(e){
+	// alert(JSON.stringify(e.itemId));
+	foursquare.venue_id = e.itemId;
+	foursquare.venue_name = $.shopNameField.getValue();
+	$.distance.setText( $.shopNameField.getValue() +": "
+		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
+});
+$.shopNameField.addEventListener('return', function(){
+	$.contentField.focus();
+});
+
+
+
 $.closeBtn.addEventListener('click', function(e) {
+	if( $.shopNameField.hasText() ){
+		// alert($.shopNameField.getValue()+"ddd");
+	}
 	if(OS_IOS){
 		Ti.Media.hideCamera();
 	}else{
@@ -78,6 +98,7 @@ $.closeBtn.addEventListener('click', function(e) {
 });
 
 $.contentField.addEventListener('change', function(e) {
+	$.contentLabel.text = this.value;
 });
 
 
@@ -130,7 +151,7 @@ function getCurrentPosition(){
 				currentAddress.ko = add;
 				
 				if( AG.currentLanguage == 'ko'){
-					$.distance.text = '\uf041 ' + AG.utils.getGoogleShortAddress(add.results[0]);
+					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
 				}
 			},
 			error: function(){
@@ -157,10 +178,30 @@ function getCurrentPosition(){
 	});	
 }
 
+
 $.contentField.addEventListener('postlayout', function(e) {
 	$.contentField.removeEventListener('postlayout',arguments.callee);
 	$.contentField.focus();
-	toggleBtn(false);
+	// toggleBtn(false);
+	
+	//fake cursor
+	// $.fakeCursor.start();
+	setFbShareBtn();
+});
+
+
+$.contentField.addEventListener('focus', function(){
+	$.fieldWrap.setTouchEnabled(false);
+	$.fakeCursor.setVisible(true);
+	$.fakeCursor.start();
+});
+$.contentField.addEventListener('blur', function(){
+	$.fieldWrap.setTouchEnabled(true);
+	$.fakeCursor.stop();
+	$.fakeCursor.setVisible(false);
+});
+$.fieldWrap.addEventListener('click', function(){
+	$.contentField.focus();
 });
 
 
@@ -189,14 +230,18 @@ exports.showCamera = function(){
 			Ti.API.info(event.media.mimeType);
 
 			var height = parseInt(catureSize.width*event.media.height/event.media.width);
-			var resizedImage = event.media.imageAsResized(catureSize.width,height);
-			var croppedImage = resizedImage.imageAsCropped({
+			var resizedImage = ImageFactory.imageAsResized(event.media, {
+					width : catureSize.width,
+					height : height
+				});
+			var croppedImage = ImageFactory.imageAsCropped(resizedImage,{
 				x: 0,
 				y: catureSize.top,
 				width: catureSize.width,
 				height : catureSize.height
 			});
 
+			//og:image 만들기위해 view를 변경하는 부분
 			var fbPreviewFile;
 			// if(AG.settings.get('postWithFacebook')){
 				$.fieldWrap.width = 320;
@@ -206,11 +251,17 @@ exports.showCamera = function(){
 				$.fieldWrap.backgroundImage = croppedImage;
 				$.contentField.visible = false;
 				$.contentLabel.visible = true;
-				$.contentLabel.text = $.contentField.value;
+				$.fakeCursor.visible = false;
+				$.contentLabel.textAlign = 'right';
 				fbPreviewFile = $.fieldWrap.toImage(null, true); 
 			// }
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
+			
+			//TODO : bug에 따른 임시 지정 
+			postCol.recentBlob = blob;
+			///
+			
 			postCol.create({
 				title : $.contentField.value,
 				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
@@ -220,9 +271,12 @@ exports.showCamera = function(){
 				"photo_sizes[thumb_100]" : "100x100#",
 				'photo_sync_sizes[]' :'original',
 				custom_fields : {
+					foursquare_venue_id: foursquare.venue_id,
+					foursquare_venue_name: foursquare.venue_name,
+					
 					coordinates: [currentPosition.longitude, currentPosition.latitude ],
-					address_ko : currentAddress.ko.results[0],
-					address_en : currentAddress.en.results[0]
+					address_ko: currentAddress.ko.results[0],
+					address_en: currentAddress.en.results[0]
 				}
 			},{
 				wait:true,
@@ -235,7 +289,10 @@ exports.showCamera = function(){
 							"collection_name" : "facebook_preview",
 							"photo_sizes[medium_320]" : "320x180",
 							'photo_sync_sizes[]' :'original',
-		    				photo: ImageFactory.compress(fbPreviewFile, 0.75),
+		    				photo: ImageFactory.compress(ImageFactory.imageAsResized(fbPreviewFile,{
+		    					width : 640,
+								height :360
+		    				}), 0.2),
 		    				custom_fields : {
 								"[ACS_Post]parent_id": nextPost.id
 							}
@@ -244,20 +301,44 @@ exports.showCamera = function(){
 							success : function(nextPreviewPhoto){
 								//alert(nextPreviewPhoto.get('urls').original);
 								if(AG.settings.get('postWithFacebook')){
-									AG.facebook.requestWithGraphPath('me/links', {
-										// message : "",
-										link : 'http://www.licky.co/post/'+nextPost.id,
-									}, "POST", function(e) {
-										if (e.success) {
-											//alert("Success!  From FB: " + e.result);
-										} else {
-											if (e.error) {
-												//alert(e.error);
+									
+									var goFacebook = function(){
+										AG.facebook.requestWithGraphPath('me/links', {
+											// message : "",
+											link : 'http://www.licky.co/post/'+nextPost.id
+											// link: 'http://dasolute.com/asdf3.html'
+										}, "POST", function(e) {
+											if (e.success) {
+												//alert("Success!  From FB: " + e.result);
 											} else {
-												//alert("Unkown result");
+												if (e.error) {
+													//alert(e.error);
+												} else {
+													//alert("Unkown result");
+												}
 											}
-										}
-									});
+										});
+									};
+									
+									var cnt = 0;
+									var checkAgain = function(){
+										AG.Cloud.Photos.show({
+											 photo_id: nextPreviewPhoto.id
+										}, function (e) {
+										    if (e.success) {
+										        var photo = e.photos[0];
+										        if(photo.processed){
+										        	goFacebook();
+										        	return;
+										        }
+										    }
+										    
+										    if(cnt++<10){
+										    	setTimeout(checkAgain,5000);
+										    }
+										});
+									};
+									checkAgain();
 								}
 
 							}

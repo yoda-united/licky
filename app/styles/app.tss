@@ -29,37 +29,44 @@
 ".leadingEdge": {
 	top: 0,
 	height: 0.5,
-	backgroundColor: Alloy.Globals.COLORS.red
+	backgroundColor: Alloy.Globals.COLORS.darkGray
 }
 ".trailingEdge": {
 	bottom: 0,
 	height: 0.5,
-	backgroundColor: Alloy.Globals.COLORS.red
+	backgroundColor: Alloy.Globals.COLORS.darkGray
 }
 
 ".photoTitle" : {
-	width : 300,
-	textAlign : 'right',
 	right : 10,
-	bottom : 0,
+	// bottom : 0,
+	top: 40,
 	height : 80,
+	textAlign : 'right',
 	backgroundColor : 'transparent',
 	color : 'white',
 	font : {
-		fontSize : 48,
+		fontSize : 35,
 		fontFamily : 'AppleSDGothicNeo-Thin'
 	},
-	minimumFontSize : 4,
+	minimumFontSize : 35,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }
-
+".opacityScreen": {
+	backgroundColor: "#6A5800",
+	opacity: 0.2
+}
 ".photo": {
 	width : Alloy.Globals.cameraInfo.width,
-	height : 180,
+	// height : 108,
+	height: 180,
+	// height: Ti.UI.FILL,
 	defaultImage: "images/defaultFoodPhoto.png",
 	image: "images/defaultFoodPhoto.png",
 	// preventDefaultImage : true,
-	bottom : 0
+	// contentMode: 'aspectfill',
+	// bottom : 0
+	top: 0
 }
 
 ".userName" : {
@@ -78,8 +85,9 @@
 	width : 40,
 	height : 40,
 	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
-	mask : 'images/profileMask.png',
-	image : 'images/defaultProfilePicture.png'
+	// mask : 'images/profileMask.png',
+	mask: "images/defaultProfilePicture_small.png"
+	// image: "images/defaultProfilePicture_small.png"
 }
 
 ".time" : {
@@ -92,14 +100,14 @@
 	}
 }
 
-".photoTitleLabel" : {
-	left: 50,
-	width : null,
-	right : 10,
-	bottom : -5,
-	//borderColor : 'red',
-	verticalAlign : null
-}
+// ".photoTitleLabel" : {
+	// left: 50,
+	// width : null,
+	// right : 10,
+	// bottom : -5,
+	// //borderColor : 'red',
+	// verticalAlign : null
+// }
 
 ".commentCount" : {
 	left: 14,
@@ -113,21 +121,29 @@
 	// color : '#eedc'
 	color : '#eddd'
 }
-
-".distance" : {
+".gpsIcon": {
 	left: 56,
-	top : 26,
-	// width : 60,
-	height: 15,	// 두줄 방지 차원에서 셋팅 
+	top: 26,
 	textAlign : 'left',
-	font : {
+	font: {
 		fontFamily : 'FontAwesome',
 		fontSize : 13
 	},
-	// font : {
-		// fontFamily : 'AppleSDGothicNeo-Light',
-		// fontSize : 13
-	// },
+	color: "#bfff",
+	text: "\uf041",
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
+}
+".distance" : {
+	// left: 56,
+	left: 66,
+	top: 26,
+	// width : 60,
+	height: 15,	// 두줄 방지 차원에서 셋팅 
+	textAlign: 'left',
+	font: {
+		fontFamily : 'AppleSDGothicNeo-Light',
+		fontSize : 13
+	},
 	// color : "#dddc"
 	color : "#bfff",
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP

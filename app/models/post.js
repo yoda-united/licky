@@ -22,19 +22,25 @@ exports.definition = {
 					profileUrl = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", this.get('user').external_accounts[0].external_id, 80, 80),
 					custom = this.get("custom_fields"),
 					coordi = custom && custom.coordinates,
+					foursquare_venue_name = custom && custom.foursquare_venue_name,
 					distance;
 					
 				if(coordi) {
 					distance = {
-						text : "\uf041 "+ String.format("%.1fkm, %s",
+						text : String.format("%.1fkm%s, %s",
 							AG.utils.calculateDistance([
 								coordi[0],
 								AG.currentPosition.attributes
 							]),
+							foursquare_venue_name ? ": " + foursquare_venue_name : "",
 							AG.utils.getGoogleShortAddress(
 								custom['address_'+(( AG.currentLanguage == 'ko')?'ko':'en')]
 							)
 						)
+					};
+				}else{
+					distance = {
+						text: ""
 					};
 				}
 				
@@ -45,10 +51,20 @@ exports.definition = {
 					commentCountText = String.format(' %d', this.get('reviews_count') || 0);
 				}
 
+				// BOG-196 관련 임시 조치
+				this.cachedBlob = this.cachedBlob || this.collection.recentBlob;
+				this.collection.recentBlob = null;
+				/////////////////////
+				
 				return({
 					//template : 'itemTemplate',
 					photo : {
-						image : urls.original 
+						image : urls.original || this.cachedBlob
+ 
+						// backgroundLeftCap : 0,
+						// backgroundTopCap: 0,
+						// backgroundRepeat : true,
+						// backgroundImage : urls.original 
 					},
 					title :{
 						text : this.get('title'),
@@ -71,6 +87,8 @@ exports.definition = {
 					},
 					distance : distance,
 					properties :{
+						// backgroundRepeat : true,
+						// backgroundImage : urls.original ,
 						itemId : this.id,
 						canEdit : isMine
 					},

@@ -1,0 +1,42 @@
+
+"#suggestCompletionList" : {
+	width: 190,
+	// width: 'auto',	// deprecated
+	right: 19,
+	
+	
+	// pruneSectionsOnEdit: true,
+	backgroundColor: 'transparent',
+	// backgroundColor: 'yellow',
+	// canScroll: false,
+	separatorStyle : Titanium.UI.iPhone.ListViewSeparatorStyle.NONE,
+	height: 30,
+	bottom: 95
+}
+
+
+"#shopNameSuggestion" : {
+	// left: 5,
+	// right: 5,
+	right: 0,
+	height: 25,
+	width: Ti.UI.SIZE,
+	borderRadius: 9,
+	borderWidth: 0.5,
+	borderColor: Alloy.Globals.COLORS.darkGray,
+	backgroundColor: Alloy.Globals.COLORS.lightGray,
+	color: Alloy.Globals.COLORS.darkGray,
+	// borderColor: Alloy.Globals.COLORS.lickyRed,
+	// backgroundColor: Alloy.Globals.COLORS.red,
+	// color: Alloy.Globals.COLORS.lightGray,
+	opacity: 0.9,
+	font : {
+		fontSize : 12,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	}
+}
+"#shopNameSuggestTemplate": {
+	backgroundColor: 'transparent',
+	height: 30,
+	selectionStyle: Ti.UI.iPhone.ListViewCellSelectionStyle.NONE
+}

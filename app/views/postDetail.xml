@@ -56,27 +56,14 @@
 			</View>
 		</View>
 
-        <OptionDialog id="deleteDialog" title="delete" destructive="0" cancel="1">
-            <!-- The Options tag sets the options property. -->
-            <Options> 
-                <Option>delete</Option>
-                <Option>cancel</Option>
-            </Options>
+        <OptionDialog id="deleteDialog">
+            <!-- style에서 options 설정 -->
         </OptionDialog>
-        <OptionDialog id="reportDialog" title="report inappropriate" destructive="0" cancel="1">
-            <!-- The Options tag sets the options property. -->
-            <Options> 
-                <Option>report</Option>
-                <Option>cancel</Option>
-            </Options>
+        <OptionDialog id="reportDialog" >
+            <!-- style에서 options 설정 -->
         </OptionDialog>
-        <OptionDialog id="unReportDialog" title="aleady reported" cancel="1">
-            <!-- The Options tag sets the options property. -->
-            <Options> 
-                <Option>unReport</Option>
-                <Option>cancel</Option>
-            </Options>
+        <OptionDialog id="unReportDialog" >
+             <!-- style에서 options 설정 -->
         </OptionDialog>
-
 	</Window>
 </Alloy>

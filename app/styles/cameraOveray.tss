@@ -1,10 +1,11 @@
 
 ".container" : {
   //backgroundColor : 'white'
-  layout : 'vertical'
+  // layout : 'vertical'
 }
 
 ".buttonWrap" : {
+	top:0,
 	backgroundColor : Alloy.Globals.COLORS.whiteGray,
 	height : Alloy.Globals.cameraInfo.top,
 	opacity : 0.9
@@ -20,32 +21,63 @@
 	left : 10
 }
 "#sendBtn" : {
+	// visible : false,
 	height : Ti.UI.FILL,
-	width : '50%',
-	title : 'Send',
-	visible : false
+	// width : Ti.UI.SIZE,
+	width: 70,	// 클릭 영역 크게 하려고..
+	color: Alloy.Globals.COLORS.red,	// image color
+	// backgroundColor : Alloy.Globals.COLORS.gray,
+	right: 0,
+	// font : {
+		// fontSize: 15,
+		// fontFamily : 'AppleSDGothicNeo-SemiBold'
+	// },
+	title : L('send')
 }
 
 
 "#fieldWrap" : {
+	touchEnabled : false,
+	top: Alloy.Globals.cameraInfo.top,
 	height : 180,
-	backgroundColor : 'transparent',
-	touchEnabled : false
+	backgroundColor : 'transparent'
 }
 "#contentField" : {
-	bottom: 11,
-	maxLength : 22,
+	top: 0,
 	tintColor : 'red',
-	returnKeyType : Ti.UI.RETURNKEY_SEND	
+	// returnKeyType : Ti.UI.RETURNKEY_SEND,
+	returnKeyType : Ti.UI.RETURNKEY_NEXT,
+	visible : false,
+	autocorrect : false
 }
-
-"#contentLabel" : {
-}
-
 "#contentField[platform=android]" : {
 	softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }
+
+"#fakeFieldWrap" : {
+	// borderColor: Alloy.Globals.COLORS.red,
+	// color: Alloy.Globals.COLORS.red,
+	right : 5,
+	left : 10,
+	top : 25,
+	height : 80
+}
+"#contentLabel" : {
+	top: 0,
+	right : 0,
+	textAlign : 'left',
+	width : Ti.UI.SIZE
+}
+"#fakeCursor" : {
+	top : 20,
+	right : 0,
+	width : 2,
+	height : 38,
+	images : ['images/1px_red.png','images/1px_trans.png'],
+	duration : 500
+}
+
 "#fieldOpacityBG" : {
 	top:0,
 	height : 90,
@@ -63,59 +95,156 @@
 }
 
 "#mapWrap" : {
-	backgroundColor : 'white',
-	height : 88,
-	touchEnabled : false
+	top: 224,
+	// bottom: 0,
+	backgroundColor: 'white',
+	height: 88,
+	touchEnabled: false
 }
 
+// "#suggestCompletionListC": {
+	// // pruneSectionsOnEdit: true,
+	// // backgroundColor: 'transparent',
+	// backgroundColor: 'yellow',
+	// // canScroll: false,
+	// // separatorStyle : Titanium.UI.iPhone.ListViewSeparatorStyle.NONE,
+	// // width: 190,
+	// height: 300,
+	// width: 300,
+	// bottom: 100
+// }
+// ".guidance": {
+// 
+// }
+// "#shopNameGuidanceWrap" : {
+	// // borderColor: Alloy.Globals.COLORS.darkGray,
+	// // zIndex: 15,
+	// backgroundColor: 'transparent',
+	// // height: 400,
+	// // height: Ti.UI.SIZE,
+	// height: 160,
+	// width: 280,
+	// bottom: 95,
+	// right: 19
+	// // layout : 'vertical'
+// }
+// "#shopNameSuggestList" : {
+	// width: 280,
+	// right: 19,
+// 	
+// 	
+	// // pruneSectionsOnEdit: true,
+	// // backgroundColor: 'transparent',
+	// backgroundColor: 'yellow',
+	// canScroll: false,
+	// separatorStyle : Titanium.UI.iPhone.ListViewSeparatorStyle.NONE,
+	// // width: 190,
+	// height: 30,
+	// bottom: 0
+// }
+// "#shopNameSuggestion" : {
+	// // left: 5,
+	// // right: 5,
+	// right: 0,
+	// height: 25,
+	// width: Ti.UI.SIZE,
+	// borderRadius: 7,
+	// borderWidth: 0.5,
+	// borderColor: Alloy.Globals.COLORS.lickyRed,
+	// backgroundColor: Alloy.Globals.COLORS.red,
+	// color: Alloy.Globals.COLORS.lightGray,
+	// font : {
+		// fontSize : 12,
+		// fontFamily : 'AppleSDGothicNeo-UltraLight'
+	// }
+// }
+// "#shopNameSuggestTemplate": {
+	// backgroundColor: 'transparent',
+	// height: 30,
+	// selectionStyle: Ti.UI.iPhone.ListViewCellSelectionStyle.NONE
+// }
+// 
+// "#suggestCompletionListC": {
+// 	
+// }
+
+
+
+
+".leadingEdge" : {
+	zIndex: 10,
+	// top: 311.5
+	top: null,	// app.tss 에 지정된 값을 삭제해야 bottom값이 적용됨 
+	bottom: 256
+}
+"#guidanceLabel": {
+	zIndex: 15,
+	borderRadius: 11,
+	borderWidth: 0.5,
+	borderColor: Alloy.Globals.COLORS.darkGray,
+	backgroundColor: Alloy.Globals.COLORS.whiteGray,
+	color: Alloy.Globals.COLORS.darkGray,
+
+	bottom: 220,
+	left: 18,
+	height: 36,
+	font : {
+		fontSize : 15,
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	}
+}
 "#controlBar" : {
+	zIndex: 20,
+	// top: 312,
+	bottom: 216,	// softKeyboard's height
 	height: 40,
 	backgroundColor: Alloy.Globals.COLORS.whiteGray
 }
-// "#fbSwitch" :{
-	// // backgroundDisabledColor : "yellow",
-	// // backgroundSelectedColor : "pink",
-	// backgroundFocusedColor : "blue",
-	// title:"will share with Facebook",
-	// left:12,
-	// tintColor: "pink",
-	// color: "gray",
-	// height: 5
-// }
-"#fbShareBtn": {
+"#fbShareBtn" : {
+	top: 0,
 	left: 14,
 	height: 40,
+	width: 40
+	// backgroundImage: "images/fbShareActive.png"
+}
+"#locationBtn" : {
+	top: 0,
+	left: 64,
+	height: 40,
 	width: 40,
-	zIndex: 2,
-	backgroundImage: "images/fbShareActive.png"
+	backgroundImage: "images/locationInactive.png",
+	visible : false
 }
-".fbGuidance":{
-	top: 9,
-	left: 57,
-	height: 28,
-	width: 240,
-	color: Alloy.Globals.COLORS.blue,
-	// textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
-	font : {
-		fontSize : 18,
-		fontFamily : 'AppleSDGothicNeo-UltraLight'
-	},
-	// borderWidth: 0.5,
-	// borderRadius: 14,
-	// borderColor: Alloy.Globals.COLORS.blue,
-	zIndex: 1
+"#lockImg" : {
+	top: 5,
+	left: 8,
+	width: 8,
+	height: 12,
+	image: "images/lock.png"
 }
-"#fbShareGuidance": {
-	text: L('willBePostedToFacebook')
+"#shopNameField" : {
+	right: 19,
+	width: 140,
+	height: 30,
+	maxLength : 240,
+	borderRadius: 12,
+	borderWidth: 0.5,
+	borderColor: Alloy.Globals.COLORS.darkGray,
+	// backgroundColor: Alloy.Globals.COLORS.lightGray,
+	// borderStyle :  Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	clearButtonMode: Ti.UI.INPUT_BUTTONMODE_ALWAYS,
+	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+	tintColor: Alloy.Globals.COLORS.red,
+	paddingLeft: 12,
+	hintText: L('shopName'),
+	returnKeyType : Ti.UI.RETURNKEY_NEXT,
+	autocorrect: false,
+	autocapitalization: false
 }
-"#fbDontShareGuidance": {
-	// visible: false,
-	opacity: 0,
-	color: Alloy.Globals.COLORS.midGray,
-	text: L('willNotShareWithFacebook')	
-	// borderColor: Alloy.Globals.COLORS.darkGray
-}
+
 "#behindKeyboard" : {
+	// top: 352,
+	bottom:0,
 	height: 216,	// softKeyboard's height
 	// width: Ti.UI.SIZE,
 	// backgroundColor : 'red',

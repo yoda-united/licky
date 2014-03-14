@@ -49,8 +49,7 @@ exports.definition = {
 			alterSyncCreate: function(params,callback){
 				//httpClient params를 넘기고
 				// var url = "http://192.168.0.50:8080/api/acs/"+exports.definition.config.setttings.object_method;
-				var url = ( ENV_DEV || ENV_TEST ) ? "http://local.licky.co:8080" : Ti.App.Properties.getString("acs-service-baseurl-slimer");
-				url = url + "/api/acs/Reviews";
+				var url = AG.slimer.URL + "/api/acs/Reviews";
 				
 				var client = Ti.Network.createHTTPClient({
 					// function called when the response data is available
@@ -79,8 +78,8 @@ exports.definition = {
 	extendCollection: function(Collection) {
 		_.extend(Collection.prototype, {
 			comparator : function(modelA, modelB) {
-				if (modelA.get('updated_at') > modelB.get('updated_at')) return 1; // before
-				  if (modelB.get('updated_at') > modelA.get('updated_at')) return -1; // after
+				if (modelA.get('created_at') > modelB.get('created_at')) return 1; // before
+				  if (modelB.get('created_at') > modelA.get('created_at')) return -1; // after
 				  return 0; // equal
 			}
 			// create: function(model,options) {

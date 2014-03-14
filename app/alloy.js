@@ -44,6 +44,9 @@ AG.settings.fetch({
 		if( !AG.settings.has("platformHeight") ){
 			AG.settings.save("platformHeight", Ti.Platform.displayCaps.platformHeight);
 		}	
+		if( !AG.settings.has("postWithFacebook") ){
+			AG.settings.save("postWithFacebook", true);
+		}	
 	}
 });
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');
@@ -73,18 +76,9 @@ AG.setAppBadge = function(number){
 	}
 };
 
-setTimeout(function(){
-	var appMetaWidget = Alloy.createWidget('appMetaFromACS');
-	appMetaWidget.updateAppMeta({
-		success: function(data){
-			Ti.API.info(data);
-		}
-	});
-},10000);
-
-
-
-
+Alloy.createWidget('appMetaFromACS').fetch({
+	delay : 3000
+});
 
 // push notification
 if( OS_IOS ){

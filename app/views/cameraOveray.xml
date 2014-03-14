@@ -5,25 +5,50 @@
 			<Button id="sendBtn" />
 			<View class="trailingEdge" />
 		</View>
+		
+		<!-- visible=false -->
+		<TextField id="contentField"></TextField>
+		
 		<View id="fieldWrap">
 			<View id="fieldOpacityBG"></View>
-			<TextField id="contentField" class="photoTitle"></TextField>
-			<Label id="contentLabel" class="photoTitle"></Label>
 			<Label class="userName" id="userName"></Label>
+			<View id="fakeFieldWrap">
+				<Label id="contentLabel" class="photoTitle"></Label>
+				<ImageView id="fakeCursor"></ImageView>
+			</View>
 			<!-- <Label class="commentCount" bindId="commentCount"></Label> -->
 			<MaskedImage id="profileImage" class="profileImage" bindId="profileImage"></MaskedImage>
+			<Label class="gpsIcon"></Label>
 			<Label class="distance" id="distance"></Label>
 			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
 		</View>
+		
 		<View id="mapWrap" />
 		
+		<!-- <View id="shopNameGuidanceWrap" > -->
+		<Require src="suggestCompletionList" id="suggestCompletionListC">
+	       <!-- <ListView id="shopNameSuggestList" defaultItemTemplate="template">
+	            <Templates>
+	                <ItemTemplate name="template" id="shopNameSuggestTemplate" >
+	                    <Label bindId="name" id="shopNameSuggestion" />
+	                </ItemTemplate>
+	            </Templates>
+	
+	            <ListSection id="shopNameSuggestListSection">
+	            </ListSection>
+	        </ListView>
+		 </View> -->
+		
+		<View class="leadingEdge" />
+		<Label id="guidanceLabel"></Label>
 		<View id="controlBar" >
-			<View class="leadingEdge" />
-			<!-- <Switch id="fbSwitch" value="true" /> -->
 			<Button id="fbShareBtn" />
-			<Label id="fbShareGuidance" class="fbGuidance"/>
-			<Label id="fbDontShareGuidance" class="fbGuidance" />
+			<Button id="locationBtn" >
+				<ImageView id="lockImg"></ImageView>
+			</Button>
+			<TextField id="shopNameField"></TextField>
 		</View>
+		
 		<View id="behindKeyboard" />
 		<!-- <View class="infoWrap">
 			<Label id="geoLabel" >위치 확인 중..</Label>
