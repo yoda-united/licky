@@ -3,7 +3,9 @@
  * Models
  */
 
-$.fetchWhereData = {}; // 상속할때 where에 추가하고 싶으면 여기에 지정
+$.fetchWhereData = {
+	user_id: {'$ne' : "5322b0eb5204c6106802ea57"}
+}; // 상속할때 where에 추가하고 싶으면 여기에 지정
 
 var postCol = Alloy.createCollection('post');
 var friendPostCol = Alloy.createCollection('post');
