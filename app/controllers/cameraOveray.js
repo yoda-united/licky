@@ -257,7 +257,12 @@ exports.showCamera = function(){
 			// }
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
-			postCol.create(_.extend({
+			
+			//TODO : bug에 따른 임시 지정 
+			postCol.recentBlob = blob;
+			///
+			
+			postCol.create({
 				title : $.contentField.value,
 				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
 				photo : blob,
@@ -273,7 +278,7 @@ exports.showCamera = function(){
 					address_ko: currentAddress.ko.results[0],
 					address_en: currentAddress.en.results[0]
 				}
-			}),{
+			},{
 				wait:true,
 				success : function(nextPost){
 					Ti.API.info(nextPost.attributes);
@@ -293,21 +298,44 @@ exports.showCamera = function(){
 							success : function(nextPreviewPhoto){
 								//alert(nextPreviewPhoto.get('urls').original);
 								if(AG.settings.get('postWithFacebook')){
-									AG.facebook.requestWithGraphPath('me/links', {
-										// message : "",
-										link : 'http://www.licky.co/post/'+nextPost.id
-										// link: 'http://dasolute.com/asdf3.html'
-									}, "POST", function(e) {
-										if (e.success) {
-											//alert("Success!  From FB: " + e.result);
-										} else {
-											if (e.error) {
-												//alert(e.error);
+									
+									var goFacebook = function(){
+										AG.facebook.requestWithGraphPath('me/links', {
+											// message : "",
+											link : 'http://www.licky.co/post/'+nextPost.id
+											// link: 'http://dasolute.com/asdf3.html'
+										}, "POST", function(e) {
+											if (e.success) {
+												//alert("Success!  From FB: " + e.result);
 											} else {
-												//alert("Unkown result");
+												if (e.error) {
+													//alert(e.error);
+												} else {
+													//alert("Unkown result");
+												}
 											}
-										}
-									});
+										});
+									};
+									
+									var cnt = 0;
+									var checkAgain = function(){
+										AG.Cloud.Photos.show({
+											 photo_id: nextPreviewPhoto.id
+										}, function (e) {
+										    if (e.success) {
+										        var photo = e.photos[0];
+										        if(photo.processed){
+										        	goFacebook();
+										        	return;
+										        }
+										    }
+										    
+										    if(cnt++<10){
+										    	setTimeout(checkAgain,5000);
+										    }
+										});
+									};
+									checkAgain();
 								}
 
 							}

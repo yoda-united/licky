@@ -51,10 +51,14 @@ exports.definition = {
 					commentCountText = String.format(' %d', this.get('reviews_count') || 0);
 				}
 
+				var recentBlob = this.collection.recentBlob;
+				this.collection.recentBlob = null;
+				
 				return({
 					//template : 'itemTemplate',
 					photo : {
-						image : urls.original 
+						image : urls.original || recentBlob
+ 
 						// backgroundLeftCap : 0,
 						// backgroundTopCap: 0,
 						// backgroundRepeat : true,
