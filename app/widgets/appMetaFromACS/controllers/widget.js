@@ -6,12 +6,6 @@ exports.fetch = function(args){
 		cancel = args.cancel,
 		error = args.error;
 	
-	if(args.delay){
-		args.delay = 0;
-		arguments.callee(args);
-		return;
-	}
-	
 	var appMeta = {
 		osname : Ti.Platform.osname,
 		model : Ti.Platform.model,
