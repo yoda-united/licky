@@ -23,7 +23,6 @@
 					<View backgoundColor="yellow" height="100" width="320"></View>
 				</PullView> -->
 				<ListSection id="contentSection">
-					<ListItem template="postItemTemplate" height="180"></ListItem>
 				</ListSection>
 				<ListSection id="mapSection">
 					<HeaderView>

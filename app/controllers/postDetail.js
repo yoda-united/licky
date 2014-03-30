@@ -37,8 +37,7 @@ function resetPostContent(){
 }
 
 postModel.on('change',resetPostContent);
-
-
+resetPostContent();
 
 
 var commentCol = Alloy.createCollection('review');
@@ -311,7 +310,6 @@ function hiddenProfileOnLoad(){
 
 
 $.getView().addEventListener('open', function(e) {
-	resetPostContent();	
 	/**
 	 * Google Map
 	 */
