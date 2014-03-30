@@ -52,8 +52,8 @@ exports.definition = {
 				}
 
 				// BOG-196 관련 임시 조치
-				this.cachedBlob = this.cachedBlob || this.collection.recentBlob;
-				this.collection.recentBlob = null;
+				this.cachedBlob = this.cachedBlob || this.collection?this.collection.recentBlob:'';
+				this.collection && (this.collection.recentBlob = null);
 				/////////////////////
 				
 				return({
