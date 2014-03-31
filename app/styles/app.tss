@@ -71,10 +71,11 @@
 
 ".userName" : {
 	color : Alloy.Globals.COLORS.whiteGray,
-	top : 8,
-	left: 53,
+	top : 10,
+	left: 55,
 	font : {
-		fontFamily : 'AppleSDGothicNeo-SemiBold',
+		// fontFamily : 'AppleSDGothicNeo-SemiBold',
+		fontFamily : 'AppleSDGothicNeo-Regular',
 		fontSize : 16
 	}
 }
@@ -91,9 +92,9 @@
 }
 
 ".time" : {
-	color : '#cedd',
+	color : '#eddd',
 	right : 7,
-	top : 11,
+	top : 12,
 	font : {
 		fontFamily : 'AppleSDGothicNeo-Regular',
 		fontSize : 13
@@ -123,7 +124,7 @@
 }
 ".gpsIcon": {
 	left: 56,
-	top: 26,
+	top: 29,
 	textAlign : 'left',
 	font: {
 		fontFamily : 'FontAwesome',
@@ -136,7 +137,7 @@
 ".distance" : {
 	// left: 56,
 	left: 66,
-	top: 26,
+	top: 28,
 	// width : 60,
 	height: 15,	// 두줄 방지 차원에서 셋팅 
 	textAlign: 'left',
