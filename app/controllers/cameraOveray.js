@@ -68,8 +68,11 @@ $.suggestCompletionListC.setProps({
 	position: currentPosition,
 	textField: $.shopNameField
 });
-$.shopNameField.addEventListener('change', function(){
-	$.distance.setText( $.shopNameField.getValue() +": "
+$.shopNameField.addEventListener('change', function(e){
+	foursquare.venue_id = "";
+	foursquare.venue_name = e.value;
+
+	$.distance.setText( e.value +": "
 		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
 });
 $.shopNameField.addEventListener('suggestComplete', function(e){
@@ -272,7 +275,8 @@ exports.showCamera = function(){
 				'photo_sync_sizes[]' :'original',
 				custom_fields : {
 					foursquare_venue_id: foursquare.venue_id,
-					foursquare_venue_name: foursquare.venue_name,
+					// foursquare_venue_name: foursquare.venue_name,
+					venue_name: foursquare.venue_name,
 					
 					coordinates: [currentPosition.longitude, currentPosition.latitude ],
 					address_ko: currentAddress.ko.results[0],
