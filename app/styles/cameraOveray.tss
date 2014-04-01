@@ -39,7 +39,7 @@
 "#fieldWrap" : {
 	touchEnabled : false,
 	top: Alloy.Globals.cameraInfo.top,
-	height : 180,
+	height : 256,
 	backgroundColor : 'transparent'
 }
 "#contentField" : {

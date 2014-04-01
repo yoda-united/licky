@@ -210,19 +210,19 @@ exports.showCamera = function(){
 	if(OS_IOS){
 		Ti.Media.hideCamera();
 	}
-	var catureSize = _.clone(AG.cameraInfo);
-	_.each(catureSize,function(value,key){
-		catureSize[key]=value*2;
+	var captureSize_2x = _.clone(AG.cameraInfo);
+	_.each(captureSize_2x,function(value,key){
+		captureSize_2x[key]=value*2;
 	});
 	
 					  
-	Ti.API.info(catureSize);
+	Ti.API.info(captureSize_2x);
 	
 	Ti.Media.showCamera({
 		success : function(event) {
 			if(OS_IOS){
 				_.defer(function(){
-					Ti.Media.hideCamera();
+					//Ti.Media.hideCamera();
 				});
 			}
 			
@@ -230,23 +230,32 @@ exports.showCamera = function(){
 			Ti.API.info(event.media.height);
 			Ti.API.info(event.media.mimeType);
 
-			var height = parseInt(catureSize.width*event.media.height/event.media.width);
+			
+			// 카메라에 찍힌 것을 비율 유지한체 높이를 640(captureSize_2x.width)에 맞도록 리사이징
+			var height = parseInt(captureSize_2x.width*event.media.height/event.media.width);
 			var resizedImage = ImageFactory.imageAsResized(event.media, {
-					width : catureSize.width,
+					width : captureSize_2x.width,
 					height : height
 				});
+				
+			// 카메라 height 에 맞게 crop
 			var croppedImage = ImageFactory.imageAsCropped(resizedImage,{
 				x: 0,
-				y: catureSize.top,
-				width: catureSize.width,
-				height : catureSize.height
+				y: captureSize_2x.top, //상단 닫기가 있는 nav 영역
+				width: captureSize_2x.width,
+				height : captureSize_2x.height
 			});
 
 			//og:image 만들기위해 view를 변경하는 부분
-			var fbPreviewFile;
+			var fbPreviewFile,
+				fbImageSize_2x = { 
+					width : captureSize_2x.width,
+					height : 340
+				}; // 1.91 : 1 을 유지하고 
+				// https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/
 			// if(AG.settings.get('postWithFacebook')){
-				$.fieldWrap.width = 320;
-				$.fieldWrap.height = 180;
+				$.fieldWrap.width = AG.cameraInfo.width;
+				$.fieldWrap.height = AG.cameraInfo.height;
 				$.fieldOpacityBG.visible = false;
 				// $.fieldOpacityBG2.visible = true;
 				$.fieldWrap.backgroundImage = croppedImage;
@@ -254,7 +263,15 @@ exports.showCamera = function(){
 				$.contentLabel.visible = true;
 				$.fakeCursor.visible = false;
 				$.contentLabel.textAlign = 'right';
-				fbPreviewFile = $.fieldWrap.toImage(null, true); 
+				
+				fbPreviewFile = ImageFactory.imageAsCropped($.fieldWrap.toImage(null, true),{
+					x: 0,
+					y: 0,
+					width: fbImageSize_2x.width,
+					height : fbImageSize_2x.height
+				});
+ 
+				 
 			// }
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
@@ -268,7 +285,7 @@ exports.showCamera = function(){
 				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
 				photo : blob,
 				//user_id: AG.loggedInUser.get('id'),
-				"photo_sizes[medium_320]" : "320x180",
+				"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
 				"photo_sizes[thumb_100]" : "100x100#",
 				'photo_sync_sizes[]' :'original',
 				custom_fields : {
@@ -289,11 +306,11 @@ exports.showCamera = function(){
 						var sharePhoto = Alloy.createModel('photo');
 						sharePhoto.save({
 							"collection_name" : "facebook_preview",
-							"photo_sizes[medium_320]" : "320x180",
+							"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
 							'photo_sync_sizes[]' :'original',
 		    				photo: ImageFactory.compress(ImageFactory.imageAsResized(fbPreviewFile,{
-		    					width : 640,
-								height :360
+		    					width : fbImageSize_2x.width*2,
+								height :fbImageSize_2x.height*2
 		    				}), 0.2),
 		    				custom_fields : {
 								"[ACS_Post]parent_id": nextPost.id

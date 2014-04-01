@@ -17,7 +17,7 @@ exports.definition = {
 			// extended functions and properties go here
 			doDefaultTransform : function(){
 				
-				
+				Ti.API.info(this.get('photo'));
 				var urls = this.get('photo') && this.get('photo').urls || {}, 
 					profileUrl = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", this.get('user').external_accounts[0].external_id, 80, 80),
 					custom = this.get("custom_fields"),
