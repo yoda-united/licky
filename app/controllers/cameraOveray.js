@@ -15,11 +15,11 @@ function send(e) {
 	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
 	Ti.Media.takePicture();
 }
-$.sendBtn.addEventListener('click', _.throttle(send,1000));
-// $.contentField.addEventListener('return', _.throttle(send,1000));
-$.contentField.addEventListener('return', function(){
-	$.shopNameField.focus();
-});
+// $.sendBtn.addEventListener('click', _.throttle(send,1000));
+$.contentField.addEventListener('return', _.throttle(send,1000));
+// $.contentField.addEventListener('return', function(){
+	// $.shopNameField.focus();
+// });
 
 // guidance for facebook, twitter, etcs.. share 
 var timeoutId, 
@@ -82,9 +82,7 @@ $.shopNameField.addEventListener('suggestComplete', function(e){
 	$.distance.setText( $.shopNameField.getValue() +": "
 		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
 });
-$.shopNameField.addEventListener('return', function(){
-	$.contentField.focus();
-});
+$.shopNameField.addEventListener('return', _.throttle(send,1000));
 
 
 

@@ -21,7 +21,7 @@
 	left : 10
 }
 "#sendBtn" : {
-	// visible : false,
+	visible : false,
 	height : Ti.UI.FILL,
 	// width : Ti.UI.SIZE,
 	width: 70,	// 클릭 영역 크게 하려고..
@@ -46,7 +46,7 @@
 	top: 0,
 	tintColor : 'red',
 	// returnKeyType : Ti.UI.RETURNKEY_SEND,
-	returnKeyType : Ti.UI.RETURNKEY_NEXT,
+	returnKeyType : Ti.UI.RETURNKEY_SEND,
 	visible : false,
 	autocorrect : false
 }
@@ -237,7 +237,7 @@
 	tintColor: Alloy.Globals.COLORS.red,
 	paddingLeft: 12,
 	hintText: L('shopName'),
-	returnKeyType : Ti.UI.RETURNKEY_NEXT,
+	returnKeyType : Ti.UI.RETURNKEY_SEND,
 	autocorrect: false,
 	autocapitalization: false
 }
