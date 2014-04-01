@@ -22,21 +22,20 @@ exports.definition = {
 					profileUrl = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", this.get('user').external_accounts[0].external_id, 80, 80),
 					custom = this.get("custom_fields"),
 					coordi = custom && custom.coordinates,
-					foursquare_venue_name = custom && (custom.venue_name || custom.foursquare_venue_name ),
+					venue_name = custom && (custom.venue_name || custom.foursquare_venue_name ),
 					distance;
 					
 				if(coordi) {
 					distance = {
-						text : String.format("%.1fkm%s, %s",
-							AG.utils.calculateDistance([
-								coordi[0],
-								AG.currentPosition.attributes
-							]),
-							foursquare_venue_name ? ": " + foursquare_venue_name : "",
-							AG.utils.getGoogleShortAddress(
+						text : 
+							(AG.currentPosition.get('accuracy') ? 
+								String.format("%.1fkm", AG.utils.calculateDistance([
+									coordi[0],	AG.currentPosition.attributes])) : 
+									"") 
+							+ (venue_name ? ": "+venue_name+", " : ", ") 
+							+ AG.utils.getGoogleShortAddress(
 								custom['address_'+(( AG.currentLanguage == 'ko')?'ko':'en')]
 							)
-						)
 					};
 				}else{
 					distance = {

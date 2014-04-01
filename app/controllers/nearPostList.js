@@ -12,8 +12,8 @@ function fetchByCurrentPosition(){
 	Titanium.Geolocation.getCurrentPosition(function(e){
 		if (!e.success || e.error){
 			currentLocation.text = 'error: ' + JSON.stringify(e.error);
-			Ti.API.info("Code translation: "+translateErrorCode(e.code));
-			alert('error ' + JSON.stringify(e.error));
+			// Ti.API.info("Code translation: "+translateErrorCode(e.code));
+			Ti.API.info('error ' + JSON.stringify(e.error));
 			return;
 		}
 		
