@@ -59,7 +59,8 @@
 ".photo": {
 	width : Alloy.Globals.cameraInfo.width,
 	// height : 108,
-	height: 180,
+	height: 256,
+	// height: Ti.UI.SIZE,
 	// height: Ti.UI.FILL,
 	defaultImage: "images/defaultFoodPhoto.png",
 	image: "images/defaultFoodPhoto.png",

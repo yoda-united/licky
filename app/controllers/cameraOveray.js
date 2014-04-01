@@ -8,7 +8,7 @@ var args = arguments[0],
 	postCol = args.collection;
 
 if(AG.settings.get("platformHeight") < 568){
-	$.cameraOveray.remove($.mapWrap);
+	// $.cameraOveray.remove($.mapWrap);
 }
 
 function send(e) {
@@ -130,18 +130,18 @@ function getCurrentPosition(){
 		currentPosition.latitude = latitude;
 		
 		if(AG.settings.get("platformHeight") >= 568){
-			var GoogleMapsClass = require('GoogleMaps');
-			var GoogleMaps = new GoogleMapsClass({
-				iOSKey: "***REMOVED***"
-			});
-			var mapView = GoogleMaps.initMap({
-				latitude:latitude,
-				longitude:longitude,
-				zoom: 13, //15, 16이 적당해 보임
-				width : Ti.UI.FILL,
-				height : 108,
-			});
-			$.mapWrap.add(mapView);
+			// var GoogleMapsClass = require('GoogleMaps');
+			// var GoogleMaps = new GoogleMapsClass({
+				// iOSKey: "***REMOVED***"
+			// });
+			// var mapView = GoogleMaps.initMap({
+				// latitude:latitude,
+				// longitude:longitude,
+				// zoom: 13, //15, 16이 적당해 보임
+				// width : Ti.UI.FILL,
+				// height : 108,
+			// });
+			// $.mapWrap.add(mapView);
 		}
 		
 		//alert(currentPosition);

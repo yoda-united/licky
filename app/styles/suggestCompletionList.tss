@@ -11,7 +11,7 @@
 	// canScroll: false,
 	separatorStyle : Titanium.UI.iPhone.ListViewSeparatorStyle.NONE,
 	height: 30,
-	bottom: 95
+	bottom: 107
 }
 
 
