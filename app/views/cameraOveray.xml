@@ -23,7 +23,7 @@
 			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
 		</View>
 		
-		<View id="mapWrap" />
+		<!-- <View id="mapWrap" /> -->
 		
 		<!-- <View id="shopNameGuidanceWrap" > -->
 		<Require src="suggestCompletionList" id="suggestCompletionListC">

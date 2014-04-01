@@ -8,18 +8,18 @@ var args = arguments[0],
 	postCol = args.collection;
 
 if(AG.settings.get("platformHeight") < 568){
-	$.cameraOveray.remove($.mapWrap);
+	// $.cameraOveray.remove($.mapWrap);
 }
 
 function send(e) {
 	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
 	Ti.Media.takePicture();
 }
-$.sendBtn.addEventListener('click', _.throttle(send,1000));
-// $.contentField.addEventListener('return', _.throttle(send,1000));
-$.contentField.addEventListener('return', function(){
-	$.shopNameField.focus();
-});
+// $.sendBtn.addEventListener('click', _.throttle(send,1000));
+$.contentField.addEventListener('return', _.throttle(send,1000));
+// $.contentField.addEventListener('return', function(){
+	// $.shopNameField.focus();
+// });
 
 // guidance for facebook, twitter, etcs.. share 
 var timeoutId, 
@@ -68,8 +68,11 @@ $.suggestCompletionListC.setProps({
 	position: currentPosition,
 	textField: $.shopNameField
 });
-$.shopNameField.addEventListener('change', function(){
-	$.distance.setText( $.shopNameField.getValue() +": "
+$.shopNameField.addEventListener('change', function(e){
+	foursquare.venue_id = "";
+	foursquare.venue_name = e.value;
+
+	$.distance.setText( e.value +": "
 		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
 });
 $.shopNameField.addEventListener('suggestComplete', function(e){
@@ -79,9 +82,7 @@ $.shopNameField.addEventListener('suggestComplete', function(e){
 	$.distance.setText( $.shopNameField.getValue() +": "
 		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
 });
-$.shopNameField.addEventListener('return', function(){
-	$.contentField.focus();
-});
+$.shopNameField.addEventListener('return', _.throttle(send,1000));
 
 
 
@@ -129,18 +130,18 @@ function getCurrentPosition(){
 		currentPosition.latitude = latitude;
 		
 		if(AG.settings.get("platformHeight") >= 568){
-			var GoogleMapsClass = require('GoogleMaps');
-			var GoogleMaps = new GoogleMapsClass({
-				iOSKey: "***REMOVED***"
-			});
-			var mapView = GoogleMaps.initMap({
-				latitude:latitude,
-				longitude:longitude,
-				zoom: 13, //15, 16이 적당해 보임
-				width : Ti.UI.FILL,
-				height : 108,
-			});
-			$.mapWrap.add(mapView);
+			// var GoogleMapsClass = require('GoogleMaps');
+			// var GoogleMaps = new GoogleMapsClass({
+				// iOSKey: "***REMOVED***"
+			// });
+			// var mapView = GoogleMaps.initMap({
+				// latitude:latitude,
+				// longitude:longitude,
+				// zoom: 13, //15, 16이 적당해 보임
+				// width : Ti.UI.FILL,
+				// height : 108,
+			// });
+			// $.mapWrap.add(mapView);
 		}
 		
 		//alert(currentPosition);
@@ -272,7 +273,8 @@ exports.showCamera = function(){
 				'photo_sync_sizes[]' :'original',
 				custom_fields : {
 					foursquare_venue_id: foursquare.venue_id,
-					foursquare_venue_name: foursquare.venue_name,
+					// foursquare_venue_name: foursquare.venue_name,
+					venue_name: foursquare.venue_name,
 					
 					coordinates: [currentPosition.longitude, currentPosition.latitude ],
 					address_ko: currentAddress.ko.results[0],

@@ -33,7 +33,8 @@ AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 AG.cameraInfo = {
 	top : 44,
 	width : 320,
-	height : 180
+	height: 256 // 1136/2 - 44 - 216 - 52
+	// height : 180
 };
 
 //singleton Models (static id)

@@ -1,6 +1,6 @@
 var args = arguments[0] || {};
 
-var bottom_up = 260,
+var bottom_up = 270,
 	bottom_down = 95;
 
 var venues = [],	// 결
