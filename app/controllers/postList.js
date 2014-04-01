@@ -120,6 +120,7 @@ function searchFacebookFriends(){
 
 function fetchOnlyFriendsPost(userIds) {
 	if(userIds && userIds.length){
+		userIds.push(AG.loggedInUser.get('id'));
 		friendPostCol.defaultFetchData = {
 			where : _.extend(_.clone($.fetchWhereData),{
 				user_id: {'$in' : userIds}
