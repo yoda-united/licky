@@ -222,9 +222,11 @@ exports.showCamera = function(){
 		success : function(event) {
 			if(OS_IOS){
 				_.defer(function(){
-					//Ti.Media.hideCamera();
+					Ti.Media.hideCamera();
 				});
 			}
+			
+			return;
 			
 			Ti.API.info(event.media.width);
 			Ti.API.info(event.media.height);
@@ -247,31 +249,32 @@ exports.showCamera = function(){
 			});
 
 			//og:image 만들기위해 view를 변경하는 부분
-			var fbPreviewFile,
-				fbImageSize_2x = { 
+			var fbImageSize_2x = { 
 					width : captureSize_2x.width,
 					height : 340
 				}; // 1.91 : 1 을 유지하고 
 				// https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/
-			// if(AG.settings.get('postWithFacebook')){
-				$.fieldWrap.width = AG.cameraInfo.width;
-				$.fieldWrap.height = AG.cameraInfo.height;
-				$.fieldOpacityBG.visible = false;
-				// $.fieldOpacityBG2.visible = true;
-				$.fieldWrap.backgroundImage = croppedImage;
-				$.contentField.visible = false;
-				$.contentLabel.visible = true;
-				$.fakeCursor.visible = false;
-				$.contentLabel.textAlign = 'right';
 				
-				fbPreviewFile = ImageFactory.imageAsCropped($.fieldWrap.toImage(null, true),{
-					x: 0,
-					y: 0,
-					width: fbImageSize_2x.width,
-					height : fbImageSize_2x.height
-				});
+			// if(AG.settings.get('postWithFacebook')){
+				
+				// 캡쳐하기 위해서 불필요한 부분 감추고 필요한 부분 보인다.
+				// $.fieldWrap.width = AG.cameraInfo.width;
+				// $.fieldWrap.height = AG.cameraInfo.height;
+				$.fieldOpacityBG.visible = false;
+				$.fieldWrap.backgroundImage = croppedImage;
+
+				// $.fieldOpacityBG2.visible = true;
+				$.fakeCursor.visible = false;
+				//가짜 textfiled가 typing ux를 위해 left 정렬했기에 ...이 나오면 왼쪽에 쏠리게 되는데 캡쳐할 때는 오른쪽에 붙도록
+				// $.contentLabel.textAlign = 'right';  
+				$.contentLabel.visible = false;  
+				
+				$.captureTitle.text = $.contentLabel.text;
+				
+				$.captureContentImage.width = AG.cameraInfo.width;
+				$.captureContentImage.height = AG.cameraInfo.height;
+				$.captureContentImage.image = $.fieldWrap.toImage(null, true);
  
-				 
 			// }
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
@@ -308,9 +311,10 @@ exports.showCamera = function(){
 							"collection_name" : "facebook_preview",
 							"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
 							'photo_sync_sizes[]' :'original',
-		    				photo: ImageFactory.compress(ImageFactory.imageAsResized(fbPreviewFile,{
-		    					width : fbImageSize_2x.width*2,
-								height :fbImageSize_2x.height*2
+		    				photo: ImageFactory.compress(ImageFactory.imageAsResized($.fbOgImageRenderView.toImage(null,true),{
+		    					width : fbImageSize_2x.width,
+								height :fbImageSize_2x.height,
+								hires : false
 		    				}), 0.2),
 		    				custom_fields : {
 								"[ACS_Post]parent_id": nextPost.id
