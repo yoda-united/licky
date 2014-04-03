@@ -14,7 +14,7 @@ exports.definition = {
 				if( this.get('timestamp') ){
 					if( (Date.now() - self.get('timestamp') ) < 5000 ){
 						// doCallback(this.attributes);
-						cb && cb();
+						cb && cb(self.attributes);
 						return;
 					}
 				}
@@ -24,7 +24,7 @@ exports.definition = {
 					self.set('success', e.success);
 					self.set('error', e.error);
 					self.set(e.coords);
-					cb && cb();
+					cb && cb(e.coords);
 				});
 			}
 		});
