@@ -197,17 +197,6 @@ function showCamera(){
 }
 
 
-Titanium.Geolocation.getCurrentPosition(function(e){
-	if (!e.success || e.error)
-	{
-		// currentLocation.text = 'error: ' + JSON.stringify(e.error);
-		// Ti.API.info("Code translation: "+translateErrorCode(e.code));
-		Ti.API.info('error ' + JSON.stringify(e.error));
-		return;
-	}
-	AG.currentPosition.set(e.coords);	
-	//postCol.trigger('reset',postCol);
-});
 
 
 

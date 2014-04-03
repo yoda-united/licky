@@ -7,24 +7,17 @@ $.onFirstFocus = function(){
 	fetchByCurrentPosition();
 };
 
-
 function fetchByCurrentPosition(){
-	Titanium.Geolocation.getCurrentPosition(function(e){
-		if (!e.success || e.error){
-			currentLocation.text = 'error: ' + JSON.stringify(e.error);
-			// Ti.API.info("Code translation: "+translateErrorCode(e.code));
-			Ti.API.info('error ' + JSON.stringify(e.error));
-			return;
-		}
-		
+	AG.currentPosition.update( function(e){
 		$.fetchWhereData = {
 			"coordinates":{
-				"$nearSphere": [e.coords.longitude, e.coords.latitude],
+				"$nearSphere": [AG.currentPosition.get('longitude'), 
+							AG.currentPosition.get('latitude') ]
 				//"$maxDistance" : 1000/6371 // km/6371 or mile/3959 )
 			 }
 		};
 		
-		$.fetchFirstCollection();
+		$.fetchFirstCollection();			
 	});
 }
 

@@ -39,7 +39,9 @@ AG.cameraInfo = {
 
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');
-AG.currentPosition = new Backbone.Model();
+// AG.currentPosition = new Backbone.Model();
+AG.currentPosition = Alloy.Models.instance('currentPosition');
+AG.currentPosition.update();
 AG.settings.fetch({
 	success: function(){
 		if( !AG.settings.has("platformHeight") ){

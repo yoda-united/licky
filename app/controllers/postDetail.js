@@ -313,24 +313,28 @@ function hiddenProfileOnLoad(){
 }
 
 
-$.getView().addEventListener('open', function(e) {
-	/**
-	 * Google Map
-	 */
-	var GoogleMapsClass = require('GoogleMaps');
-	var GoogleMaps = new GoogleMapsClass({
-		iOSKey: "***REMOVED***"
+if( !postModel.get('custom_fields') || !postModel.get('custom_fields').coordinates ){
+	$.mapWrap.setHeight(0);
+}else{
+	$.getView().addEventListener('open', function(e) {
+		/**
+		 * Google Map
+		 */
+		var GoogleMapsClass = require('GoogleMaps');
+		var GoogleMaps = new GoogleMapsClass({
+			iOSKey: "***REMOVED***"
+		});
+		var coord = postModel.get("custom_fields").coordinates;
+		var mapView = GoogleMaps.initMap({
+			latitude:coord[0][1],
+			longitude:coord[0][0],
+			zoom: 16, //15, 16이 적당해 보임
+			width : 304,
+			height : 119,
+			top:0
+		});
+		$.mapWrap.add(mapView);
+		
+		fetchComments();
 	});
-	var coord = postModel.get("custom_fields").coordinates;
-	var mapView = GoogleMaps.initMap({
-		latitude:coord[0][1],
-		longitude:coord[0][0],
-		zoom: 16, //15, 16이 적당해 보임
-		width : 304,
-		height : 119,
-		top:0
-	});
-	$.mapWrap.add(mapView);
-	
-	fetchComments();
-});
+}
