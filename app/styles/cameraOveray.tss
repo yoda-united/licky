@@ -39,7 +39,7 @@
 "#fieldWrap" : {
 	touchEnabled : false,
 	top: Alloy.Globals.cameraInfo.top,
-	height : 180,
+	height : 256,
 	backgroundColor : 'transparent'
 }
 "#contentField" : {
@@ -249,4 +249,28 @@
 	// borderColor : 'orange',
 	// borderWidth : '1px',
 	backgroundImage: "images/behindKeyboard.png"
+}
+
+"#fbOgImageRenderView" : {
+	width : 320,
+	height : 170,
+	top: 600
+}
+
+"#captureNavImage" : {
+	height : 60,
+	top : 0,
+	image : 'images/ogImage.png'
+}
+
+"#captureContentImage" : {
+	top  : 44
+}
+
+"#captureTitle" : {
+	bottom: 7,
+	height : 40,
+	top : null,
+	textAlign : 'right',
+	width : Ti.UI.SIZE
 }
