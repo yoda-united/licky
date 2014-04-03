@@ -113,18 +113,13 @@ $.userName.text = AG.loggedInUser.get('first_name');
 
 function getCurrentPosition(){
 	// reverse geo
-	Titanium.Geolocation.getCurrentPosition(function(e)
-	{
-		if (!e.success || e.error)
-		{
-			currentLocation.text = 'error: ' + JSON.stringify(e.error);
-			Ti.API.info("Code translation: "+translateErrorCode(e.code));
-			alert('error ' + JSON.stringify(e.error));
+	// Titanium.Geolocation.getCurrentPosition(function(e){
+	AG.currentPosition.update(function(e){
+		var longitude = e.longitude;
+		var latitude = e.latitude;
+		if( !AG.currentPosition.get('success') ){
 			return;
 		}
-	
-		var longitude = e.coords.longitude;
-		var latitude = e.coords.latitude;
 		
 		currentPosition.longitude = longitude;
 		currentPosition.latitude = latitude;
@@ -262,8 +257,7 @@ exports.showCamera = function(){
 			//TODO : bug에 따른 임시 지정 
 			postCol.recentBlob = blob;
 			///
-			
-			postCol.create({
+			var postContent = {
 				title : $.contentField.value,
 				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
 				photo : blob,
@@ -276,11 +270,17 @@ exports.showCamera = function(){
 					// foursquare_venue_name: foursquare.venue_name,
 					venue_name: foursquare.venue_name,
 					
-					coordinates: [currentPosition.longitude, currentPosition.latitude ],
-					address_ko: currentAddress.ko.results[0],
-					address_en: currentAddress.en.results[0]
+					// coordinates: [currentPosition.longitude, currentPosition.latitude ],
+					// address_ko: currentAddress.ko.results[0],
+					// address_en: currentAddress.en.results[0]
 				}
-			},{
+			};
+			if( currentAddress.ko ){
+				postContent.custom_fields.coordinates = [currentPosition.longitude, currentPosition.latitude ];
+				postContent.custom_fields.address_ko = currentAddress.ko.results[0];
+				postContent.custom_fields.address_en = currentAddress.en.results[0];
+			}
+			postCol.create(postContent,{
 				wait:true,
 				success : function(nextPost){
 					Ti.API.info(nextPost.attributes);
