@@ -1,10 +1,11 @@
 <Alloy>
-	<View class="container">
+	<Window class="container">
 		<View class="buttonWrap">
 			<Button id="closeBtn" />
 			<Button id="sendBtn" />
 			<View class="trailingEdge" />
 		</View>
+		<View ns="AG.TiCamera" id="tiCamera"></View>
 		
 		<!-- visible=false -->
 		<TextField id="contentField"></TextField>
@@ -16,29 +17,12 @@
 				<Label id="contentLabel" class="photoTitle"></Label>
 				<ImageView id="fakeCursor"></ImageView>
 			</View>
-			<!-- <Label class="commentCount" bindId="commentCount"></Label> -->
 			<MaskedImage id="profileImage" class="profileImage" bindId="profileImage"></MaskedImage>
 			<Label class="gpsIcon"></Label>
 			<Label class="distance" id="distance"></Label>
 			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
 		</View>
-		
-		<!-- <View id="mapWrap" /> -->
-		
-		<!-- <View id="shopNameGuidanceWrap" > -->
 		<Require src="suggestCompletionList" id="suggestCompletionListC">
-	       <!-- <ListView id="shopNameSuggestList" defaultItemTemplate="template">
-	            <Templates>
-	                <ItemTemplate name="template" id="shopNameSuggestTemplate" >
-	                    <Label bindId="name" id="shopNameSuggestion" />
-	                </ItemTemplate>
-	            </Templates>
-	
-	            <ListSection id="shopNameSuggestListSection">
-	            </ListSection>
-	        </ListView>
-		 </View> -->
-		
 		<View class="leadingEdge" />
 		<Label id="guidanceLabel"></Label>
 		<View id="controlBar" >
@@ -56,8 +40,5 @@
 			<ImageView id="captureNavImage"></ImageView>
 			<Label id="captureTitle"class="photoTitle"></Label>
 		</View>
-		<!-- <View class="infoWrap">
-			<Label id="geoLabel" >위치 확인 중..</Label>
-		</View> -->
-	</View>
+	</Window>
 </Alloy>

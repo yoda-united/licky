@@ -6,6 +6,7 @@ if(ENV_PRODUCTION){
 //alias
 var AG = Alloy.Globals;
 AG.slimer = require("ti.cloud.slimer");
+AG.TiCamera = require('be.k0suke.ticamera');
 
 //extend library
 AG.moment = require('momentExtend');
@@ -135,3 +136,18 @@ if( OS_IOS ){
 		}
 	});
 }
+
+
+AG.Cloud.PushNotifications.query({
+	user_id: AG.loggedInUser.get('id')
+},function(e){
+	if (e.success) {
+		alert(e);
+        e.subscriptions.forEach(function(subscription){
+            Ti.API.info(subscription.channel.join());
+        });
+    } else {
+        alert('Error:\n' +
+            ((e.error && e.message) || JSON.stringify(e)));
+    }
+});

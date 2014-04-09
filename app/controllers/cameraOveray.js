@@ -1,4 +1,6 @@
 var ImageFactory = require('ti.imagefactory');
+var curWin = $.cameraOveray; 
+
 
 var currentPosition = {},
 	currentAddress = {},
@@ -12,8 +14,24 @@ if(AG.settings.get("platformHeight") < 568){
 }
 
 function send(e) {
-	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
-	Ti.Media.takePicture();
+	//Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
+	//Ti.Media.takePicture();
+	$.tiCamera.takePicture({
+		saveToPhotoGallery: false,	// default false
+		shutterSound: true,		// default true
+		success: function(e){
+			console.log(e);
+			console.log('width: ' + e.media.width);
+			console.log('height: ' + e.media.height);
+			console.log('mime: ' + e.media.mime);
+			//preview.setImage(e.media);
+			createPostWithPhoto(e);
+			
+		},
+		error: function(e){
+			console.log(e);
+		}
+	});
 }
 // $.sendBtn.addEventListener('click', _.throttle(send,1000));
 $.contentField.addEventListener('return', _.throttle(send,1000));
@@ -91,7 +109,11 @@ $.closeBtn.addEventListener('click', function(e) {
 		// alert($.shopNameField.getValue()+"ddd");
 	}
 	if(OS_IOS){
-		Ti.Media.hideCamera();
+		// Ti.Media.hideCamera();
+		$.tiCamera.stopCamera();
+		// $.tiCamera = null;
+		// curWin.close();
+		// curWin = null;
 	}else{
 		alert(Ti.Android);
 		var activity = Ti.Android.currentActivity;
@@ -103,7 +125,7 @@ $.contentField.addEventListener('change', function(e) {
 });
 
 
-// 현재 사용자 정보를 보여줌
+// ?????? ??��?��?? ???보�?? 보�?��??
 $.hiddenProfile.image = AG.loggedInUser.getProfileImageUrl();
 $.userName.text = AG.loggedInUser.get('first_name');
 
@@ -132,7 +154,7 @@ function getCurrentPosition(){
 			// var mapView = GoogleMaps.initMap({
 				// latitude:latitude,
 				// longitude:longitude,
-				// zoom: 13, //15, 16이 적당해 보임
+				// zoom: 13, //15, 16??? ?????��?? 보�??
 				// width : Ti.UI.FILL,
 				// height : 108,
 			// });
@@ -200,68 +222,90 @@ $.fieldWrap.addEventListener('click', function(){
 	$.contentField.focus();
 });
 
+var captureSize_2x = _.clone(AG.cameraInfo);
+_.each(captureSize_2x,function(value,key){
+	captureSize_2x[key]=value*2;
+});
 
 exports.showCamera = function(){
+	getCurrentPosition();
 	if(OS_IOS){
-		Ti.Media.hideCamera();
+		curWin.open();
+	}else{
+		Ti.Media.showCamera({
+			success : function(event) {
+				Ti.API.info(event.media.width);
+				Ti.API.info(event.media.height);
+				Ti.API.info(event.media.mimeType);
+	
+				createPostWithPhoto(event);
+			},
+			cancel : function() {
+			},
+			error : function(error) {
+				var message;
+				if (error.code == Ti.Media.NO_CAMERA) {
+					message = 'Device does not have video recording capabilities';
+				} else {
+					message = 'Unexpected error: ' + error.code;
+				}
+		
+				Ti.UI.createAlertDialog({
+					title : 'Camera',
+					message : message
+				}).show();
+			},
+			overlay : this.getView(),
+			saveToPhotoGallery : false,
+			allowEditing : false,
+			showControls : false,
+			animated : true,
+			autohide : false,
+			transform : Ti.UI.create2DMatrix().scale(1),
+			mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO]
+		});
 	}
-	var captureSize_2x = _.clone(AG.cameraInfo);
-	_.each(captureSize_2x,function(value,key){
-		captureSize_2x[key]=value*2;
+};
+
+function hiddenProfileOnLoad(){
+	$.profileImage.image = this.image;
+}
+
+function createPostWithPhoto(event){
+	// 카�????��?? �???? �???? �???? ???�????�? ?????��?? 640(captureSize_2x.width)??? �????�? 리�?��?��??
+	var height = parseInt(captureSize_2x.width*event.media.height/event.media.width);
+	var resizedImage = ImageFactory.imageAsResized(event.media, {
+			width : captureSize_2x.width,
+			height : height
+		});
+		
+	// 카�????? height ??? �?�? crop
+	var croppedImage = ImageFactory.imageAsCropped(resizedImage,{
+		x: 0,
+		y: captureSize_2x.top, //?????? ??�기�? ?????? nav ??????
+		width: captureSize_2x.width,
+		height : captureSize_2x.height
 	});
-	
-					  
-	Ti.API.info(captureSize_2x);
-	
-	Ti.Media.showCamera({
-		success : function(event) {
-			if(OS_IOS){
-				_.defer(function(){
-					Ti.Media.hideCamera();
-				});
-			}
-			
-			return;
-			
-			Ti.API.info(event.media.width);
-			Ti.API.info(event.media.height);
-			Ti.API.info(event.media.mimeType);
 
-			
-			// 카메라에 찍힌 것을 비율 유지한체 높이를 640(captureSize_2x.width)에 맞도록 리사이징
-			var height = parseInt(captureSize_2x.width*event.media.height/event.media.width);
-			var resizedImage = ImageFactory.imageAsResized(event.media, {
-					width : captureSize_2x.width,
-					height : height
-				});
-				
-			// 카메라 height 에 맞게 crop
-			var croppedImage = ImageFactory.imageAsCropped(resizedImage,{
-				x: 0,
-				y: captureSize_2x.top, //상단 닫기가 있는 nav 영역
-				width: captureSize_2x.width,
-				height : captureSize_2x.height
-			});
+	//og:image �???�기?????? view�? �?경�????? �?�?
+	var fbImageSize_2x = { 
+			width : captureSize_2x.width,
+			height : 340
+		}; // 1.91 : 1 ??? ???�????�? 
+		// https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/
+		
+	// if(AG.settings.get('postWithFacebook')){
+		
+		// 캡�?????�? ?????��?? �?????????? �?�? �?�?�? ????????? �?�? 보�?��??.
+		// $.fieldWrap.width = AG.cameraInfo.width;
+		// $.fieldWrap.height = AG.cameraInfo.height;
+		$.fieldOpacityBG.visible = false;
+		$.fieldWrap.backgroundImage = croppedImage;
 
-			//og:image 만들기위해 view를 변경하는 부분
-			var fbImageSize_2x = { 
-					width : captureSize_2x.width,
-					height : 340
-				}; // 1.91 : 1 을 유지하고 
-				// https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/
-				
-			// if(AG.settings.get('postWithFacebook')){
-				
-				// 캡쳐하기 위해서 불필요한 부분 감추고 필요한 부분 보인다.
-				// $.fieldWrap.width = AG.cameraInfo.width;
-				// $.fieldWrap.height = AG.cameraInfo.height;
-				$.fieldOpacityBG.visible = false;
-				$.fieldWrap.backgroundImage = croppedImage;
-
-				// $.fieldOpacityBG2.visible = true;
-				$.fakeCursor.visible = false;
-				//가짜 textfiled가 typing ux를 위해 left 정렬했기에 ...이 나오면 왼쪽에 쏠리게 되는데 캡쳐할 때는 오른쪽에 붙도록
-				// $.contentLabel.textAlign = 'right';  
+		// $.fieldOpacityBG2.visible = true;
+		$.fakeCursor.visible = false;
+		//�?�? textfiled�? typing ux�? ?????? left ?????��??기�?? ...??? ?????�면 ??�쪽??? ???리�?? ????????? 캡�????? ?????? ??�른쪽�?? �????�?
+		// $.contentLabel.textAlign = 'right';  
 				$.contentLabel.visible = false;  
 				
 				$.captureTitle.text = $.contentLabel.text;
@@ -271,139 +315,103 @@ exports.showCamera = function(){
 				$.captureContentImage.image = $.fieldWrap.toImage(null, true);
  
 			// }
-			
-			var blob = ImageFactory.compress(croppedImage, 0.75);
-			
-			//TODO : bug에 따른 임시 지정 
-			postCol.recentBlob = blob;
-			///
-			var postContent = {
-				title : $.contentField.value,
-				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
-				photo : blob,
-				//user_id: AG.loggedInUser.get('id'),
-				"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
-				"photo_sizes[thumb_100]" : "100x100#",
-				'photo_sync_sizes[]' :'original',
-				custom_fields : {
-					foursquare_venue_id: foursquare.venue_id,
-					// foursquare_venue_name: foursquare.venue_name,
-					venue_name: foursquare.venue_name,
-					
-					// coordinates: [currentPosition.longitude, currentPosition.latitude ],
-					// address_ko: currentAddress.ko.results[0],
-					// address_en: currentAddress.en.results[0]
-				}
-			};
-			if( currentAddress.ko ){
-				postContent.custom_fields.coordinates = [currentPosition.longitude, currentPosition.latitude ];
-				postContent.custom_fields.address_ko = currentAddress.ko.results[0];
-				postContent.custom_fields.address_en = currentAddress.en.results[0];
-			}
-			postCol.create(postContent,{
-				wait:true,
-				success : function(nextPost){
-					Ti.API.info(nextPost.attributes);
-					
-					// if(AG.settings.get('postWithFacebook')){
-						var sharePhoto = Alloy.createModel('photo');
-						sharePhoto.save({
-							"collection_name" : "facebook_preview",
-							"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
-							'photo_sync_sizes[]' :'original',
-		    				photo: ImageFactory.compress(ImageFactory.imageAsResized($.fbOgImageRenderView.toImage(null,true),{
-		    					width : fbImageSize_2x.width,
-								height :fbImageSize_2x.height,
-								hires : false
-		    				}), 0.2),
-		    				custom_fields : {
-								"[ACS_Post]parent_id": nextPost.id
-							}
-						},
-						{
-							success : function(nextPreviewPhoto){
-								//alert(nextPreviewPhoto.get('urls').original);
-								if(AG.settings.get('postWithFacebook')){
-									
-									var goFacebook = function(){
-										AG.facebook.requestWithGraphPath('me/links', {
-											// message : "",
-											link : 'http://www.licky.co/post/'+nextPost.id
-											// link: 'http://dasolute.com/asdf3.html'
-										}, "POST", function(e) {
-											if (e.success) {
-												//alert("Success!  From FB: " + e.result);
-											} else {
-												if (e.error) {
-													//alert(e.error);
-												} else {
-													//alert("Unkown result");
-												}
-											}
-										});
-									};
-									
-									var cnt = 0;
-									var checkAgain = function(){
-										AG.Cloud.Photos.show({
-											 photo_id: nextPreviewPhoto.id
-										}, function (e) {
-										    if (e.success) {
-										        var photo = e.photos[0];
-										        if(photo.processed){
-										        	goFacebook();
-										        	return;
-										        }
-										    }
-										    
-										    if(cnt++<10){
-										    	setTimeout(checkAgain,5000);
-										    }
-										});
-									};
-									checkAgain();
-								}
-
-							}
-						});
-					// }
-				}
-			});
-			
-			
-			
-		},
-		cancel : function() {
-		},
-		error : function(error) {
-			var message;
-			if (error.code == Ti.Media.NO_CAMERA) {
-				message = 'Device does not have video recording capabilities';
-			} else {
-				message = 'Unexpected error: ' + error.code;
-			}
 	
-			Ti.UI.createAlertDialog({
-				title : 'Camera',
-				message : message
-			}).show();
-		},
-		overlay : this.getView(),
-		saveToPhotoGallery : false,
-		allowEditing : false,
-		showControls : false,
-		animated : true,
-		autohide : false,
-		transform : Ti.UI.create2DMatrix().scale(1),
-		mediaTypes : [Ti.Media.MEDIA_TYPE_PHOTO]
-	});
-	getCurrentPosition();
-};
+	var blob = ImageFactory.compress(croppedImage, 0.75);
+	
+	//TODO : bug??? ??�른 ?????? �???? 
+	postCol.recentBlob = blob;
+	///
+	var postContent = {
+		title : $.contentField.value,
+		content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
+		photo : blob,
+		//user_id: AG.loggedInUser.get('id'),
+		"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
+		"photo_sizes[thumb_100]" : "100x100#",
+		'photo_sync_sizes[]' :'original',
+		custom_fields : {
+			foursquare_venue_id: foursquare.venue_id,
+			// foursquare_venue_name: foursquare.venue_name,
+			venue_name: foursquare.venue_name,
+			
+			// coordinates: [currentPosition.longitude, currentPosition.latitude ],
+			// address_ko: currentAddress.ko.results[0],
+			// address_en: currentAddress.en.results[0]
+		}
+	};
+	if( currentAddress.ko ){
+		postContent.custom_fields.coordinates = [currentPosition.longitude, currentPosition.latitude ];
+		postContent.custom_fields.address_ko = currentAddress.ko.results[0];
+		postContent.custom_fields.address_en = currentAddress.en.results[0];
+	}
+	postCol.create(postContent,{
+		wait:true,
+		success : function(nextPost){
+			Ti.API.info(nextPost.attributes);
+			
+			// if(AG.settings.get('postWithFacebook')){
+				var sharePhoto = Alloy.createModel('photo');
+				sharePhoto.save({
+					"collection_name" : "facebook_preview",
+					"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
+					'photo_sync_sizes[]' :'original',
+    				photo: ImageFactory.compress(ImageFactory.imageAsResized($.fbOgImageRenderView.toImage(null,true),{
+    					width : fbImageSize_2x.width,
+						height :fbImageSize_2x.height,
+						hires : false
+    				}), 0.2),
+    				custom_fields : {
+						"[ACS_Post]parent_id": nextPost.id
+					}
+				},
+				{
+					success : function(nextPreviewPhoto){
+						//alert(nextPreviewPhoto.get('urls').original);
+						if(AG.settings.get('postWithFacebook')){
+							
+							var goFacebook = function(){
+								AG.facebook.requestWithGraphPath('me/links', {
+									// message : "",
+									link : 'http://www.licky.co/post/'+nextPost.id
+									// link: 'http://dasolute.com/asdf3.html'
+								}, "POST", function(e) {
+									if (e.success) {
+										//alert("Success!  From FB: " + e.result);
+									} else {
+										if (e.error) {
+											//alert(e.error);
+										} else {
+											//alert("Unkown result");
+										}
+									}
+								});
+							};
+							
+							var cnt = 0;
+							var checkAgain = function(){
+								AG.Cloud.Photos.show({
+									 photo_id: nextPreviewPhoto.id
+								}, function (e) {
+								    if (e.success) {
+								        var photo = e.photos[0];
+								        if(photo.processed){
+								        	goFacebook();
+								        	return;
+								        }
+								    }
+								    
+								    if(cnt++<10){
+								    	setTimeout(checkAgain,5000);
+								    }
+								});
+							};
+							checkAgain();
+						}
 
-function hiddenProfileOnLoad(){
-	// _.find(this.parent.children,function(proxy){
-		// return proxy.bindId === 'profileImage';
-	// }).image = this.image;
-	$.profileImage.image = this.image;
-	//TODO : proxy찾는 하드코딩된 부분을 제거
+					}
+				});
+			// }
+		}
+	});
+	
 }

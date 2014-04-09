@@ -274,3 +274,13 @@
 	textAlign : 'right',
 	width : Ti.UI.SIZE
 }
+
+"#tiCamera" : {
+	top : 44,
+	width: 320,
+	height: 320,
+	backgroundColor: '#000',
+	videoQuality: Alloy.Globals.TiCamera.QUALITY_MEDIUM,
+	cameraPosition: Alloy.Globals.TiCamera.CAMERA_BACK,
+	frameDuration: 16
+}
