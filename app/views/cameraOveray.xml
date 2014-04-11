@@ -54,7 +54,7 @@
 		<View id="fbOgImageRenderView">
 			<ImageView id="captureContentImage"></ImageView>
 			<ImageView id="captureNavImage"></ImageView>
-			<Label id="captureTitle"class="photoTitle"></Label>
+			<Label id="captureTitle" class="photoTitle"></Label>
 		</View>
 		<!-- <View class="infoWrap">
 			<Label id="geoLabel" >위치 확인 중..</Label>
