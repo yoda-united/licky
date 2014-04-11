@@ -32,15 +32,9 @@ $.getView().addEventListener('focus', function(e) {
 	chatCol.fetch();
 });
 
-$.listViewC.on('itemclick',function(e){
-	console.log(e.model.attributes);
-	// alert(e.model.get('message'));
-	var data = JSON.stringify(e.model.get('message'));
-	
-	
-	var postModel = Alloy.createModel('post', {id: data.id});
+$.listViewC.on('itemclick',_.throttle(function(e){
+	var data = JSON.parse(e.model.get('message'));
 	AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
-		postModel: postModel
+		post_id : data.post_id
 	});
-	postModel.fetch();
-});
+},1000));

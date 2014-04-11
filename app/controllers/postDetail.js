@@ -1,18 +1,6 @@
 var args = arguments[0] || {},
 	postModel = args.postModel;
 
-if(!!postModel && args.post_id){
-	postModel = Alloy.createModel('post', {id:  args.post_id});
-}
-
-// var mapWrap = Ti.UI.createView({
-	// width : Ti.UI.FILL,
-	// height : 90,
-	// // touchEnabled : false
-// });
-// mapWrap.add(mapView);
-// $.mapSection.headerView = mapWrap;
-
 $.listView.addEventListener('itemclick', function(e) {
 	if (e.bindId == "profileImage") {
 		// alert(JSON.stringify(e));
@@ -44,8 +32,13 @@ function resetPostContent(){
 	]);
 }
 
+if(!args.postModel && args.post_id){
+	postModel = Alloy.createModel('post', {id:  args.post_id});
+}
 postModel.on('change',resetPostContent);
-resetPostContent();
+
+// model이 없을 땐 fetch하고 있을땐 바로 resetPostContent호출해서 그려줌
+(!args.postModel && args.post_id)?postModel.fetch():resetPostContent();
 
 
 var commentCol = Alloy.createCollection('review');
@@ -56,6 +49,13 @@ var testLabel = Ti.UI.createLabel({
 		fontSize : 15,
 		fontFamily : 'AppleSDGothicNeo-UltraLight'
 	}});
+
+
+var GoogleMapsClass,
+	GoogleMaps;
+		
+
+
 var resetCommentItems = function(){
 	var items = [];
 	commentCol.each(function(comment){
@@ -77,6 +77,33 @@ var resetCommentItems = function(){
 		items.push(item);
 	});
 	$.commentSection.setItems(items);
+	
+	if( !postModel.get('custom_fields') || postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates ){
+		$.mapWrap.setHeight(0);
+	}else{
+		/**
+		 * Google Map
+		 */
+		if(!GoogleMaps){
+			(function(){
+				GoogleMapsClass = require('GoogleMaps');
+				GoogleMaps = new GoogleMapsClass({
+					iOSKey: "***REMOVED***"
+				});
+				var coord = postModel.get("custom_fields").coordinates;
+				var mapView = GoogleMaps.initMap({
+					latitude:coord[0][1],
+					longitude:coord[0][0],
+					zoom: 16, //15, 16이 적당해 보임
+					width : 304,
+					height : 119,
+					top:0
+				});
+				$.mapWrap.setHeight(119);
+				$.mapWrap.add(mapView);
+			})();
+		}
+	}
 	return items;
 };
 
@@ -347,29 +374,8 @@ function hiddenProfileOnLoad(){
 	//TODO : proxy찾는 하드코딩된 부분을 제거
 }
 
-
-if( !postModel.get('custom_fields') || !postModel.get('custom_fields').coordinates ){
-	$.mapWrap.setHeight(0);
-}else{
-	$.getView().addEventListener('open', function(e) {
-		/**
-		 * Google Map
-		 */
-		var GoogleMapsClass = require('GoogleMaps');
-		var GoogleMaps = new GoogleMapsClass({
-			iOSKey: "***REMOVED***"
-		});
-		var coord = postModel.get("custom_fields").coordinates;
-		var mapView = GoogleMaps.initMap({
-			latitude:coord[0][1],
-			longitude:coord[0][0],
-			zoom: 16, //15, 16이 적당해 보임
-			width : 304,
-			height : 119,
-			top:0
-		});
-		$.mapWrap.add(mapView);
-		
-		fetchComments();
-	});
-}
+$.getView().addEventListener('open', function(e) {
+	
+	
+	fetchComments();
+});
