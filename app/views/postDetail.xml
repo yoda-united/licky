@@ -55,14 +55,6 @@
 			</View>
 		</View>
 
-        <OptionDialog id="deleteDialog">
-            <!-- style에서 options 설정 -->
-        </OptionDialog>
-        <OptionDialog id="reportDialog" >
-            <!-- style에서 options 설정 -->
-        </OptionDialog>
-        <OptionDialog id="unReportDialog" >
-             <!-- style에서 options 설정 -->
-        </OptionDialog>
+		<OptionDialog id="moreOptionDialog"></OptionDialog>
 	</Window>
 </Alloy>

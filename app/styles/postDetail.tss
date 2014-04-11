@@ -147,21 +147,3 @@
 	image : 'images/profileMask.png',
 	visible : 'false'
 }
-
-"#reportDialog" : {
-	options : [L('report'),L('cancel')],
-	destructive : 0,
-	cancel : 1
-}
-
-"#deleteDialog" : {
-	options : [L('delete'),L('cancel')],
-	destructive : 0,
-	cancel : 1
-}
-
-"#unReportDialog" : {
-	options : [L('unReport'),L('cancel')],
-	title : L('unReportDialogTitle'),
-	cancel : 1
-}

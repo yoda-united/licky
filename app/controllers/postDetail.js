@@ -1,6 +1,10 @@
 var args = arguments[0] || {},
 	postModel = args.postModel;
 
+if(!!postModel && args.post_id){
+	postModel = Alloy.createModel('post', {id:  args.post_id});
+}
+
 // var mapWrap = Ti.UI.createView({
 	// width : Ti.UI.FILL,
 	// height : 90,
@@ -113,10 +117,43 @@ function fetchComments(){
 /**
  * 신고 or 삭제 기능 (자신의 사진이면 삭제, 타인의 사진이면 신고 기능)
  */
-// alert(JSON.stringify(postModel.get('user').id)+ "\n "+ AG.loggedInUser.get('id'));
-if(postModel.get('user').id === AG.loggedInUser.get('id')){
-	$.deleteDialog.addEventListener('click', function(e) {
-		if (e.index === 0) {
+
+// dialog 및 handler 통합
+var STATE_MINE = 'mine',
+	STATE_OTHERS = 'others',
+	STATE_REPORTED = 'reported',
+	OPTION_LABELS = {
+		'mine' : {
+			options : [L('delete'),L('cancel')],
+			destructive : 0,
+			cancel : 1
+		},
+		'others' : {
+			options : [L('report'),L('cancel')],
+			destructive : 0,
+			cancel : 1	
+		},
+		'reported' : {
+			options : [L('unReport'),L('cancel')],
+			title : L('unReportDialogTitle'),
+			cancel : 1
+		}
+	},
+	reportCol = Alloy.createCollection('report'),
+	indi = Ti.UI.createActivityIndicator({
+		style: Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+	});
+	
+
+function showOptionByState(state){
+	console.log(OPTION_LABELS[state]);
+	$.moreOptionDialog.applyProperties(OPTION_LABELS[state]);
+	$.moreOptionDialog.show();
+}
+
+$.moreOptionDialog.addEventListener('click', function(e) {
+	switch(this.options[e.index]){
+		case L('delete'):
 			postModel.destroy({
 				success:function(e){
 					$.postDetail.close();
@@ -125,16 +162,9 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 					alert(L("failToDelete"));
 				}
 			});
-		}
-	});
-	$.moreButton.addEventListener('click', function(e){
-		$.deleteDialog.show();
-	});
-}else{
-	var reportCol = Alloy.createCollection('report');
-	$.reportDialog.addEventListener('click', function(e) {
-		if (e.index === 0) {
-			Alloy.createModel('report').save({
+		break;
+		case L('report'):
+			reportCol.create({
 					class_name : "reports",
 					fields : {
 						"target_post_id": postModel.get('id')
@@ -147,10 +177,8 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 						alert(L("failToReport"));
 					}		
 			});	
-		}
-	});
-	$.unReportDialog.addEventListener('click', function(e) {
-		if (e.index === 0) {
+		break;
+		case L('unReport'):
 			reportCol.at(0).destroy({
 				success: function(e){
 					alert(L("successUnReport"));
@@ -159,15 +187,22 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 					alert(L("failUnReport"));
 				}
 			});
-		}
-	});
-	$.moreButton.addEventListener('click', _.throttle(function(e){
-		var indi = Ti.UI.createActivityIndicator({
-			style: Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
-		});
+		break;
+		
+		case L('cancel'):
+		default :
+		break;
+	}
+});
+
+
+
+$.moreButton.addEventListener('click', _.throttle(function(e){
+	if(postModel.get('user').id === AG.loggedInUser.get('id')){
+		showOptionByState(STATE_MINE);
+	}else{
 		$.postDetail.rightNavButton = indi;
 		indi.show();
-		
 		reportCol.fetch({
 			data:{
 				class_name: "reports",
@@ -179,16 +214,16 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 				limit: 1
 			},
 			success: function(e){
-				(reportCol.length > 0)? $.unReportDialog.show() : $.reportDialog.show();
 				$.postDetail.rightNavButton = $.moreButton;
+				showOptionByState((reportCol.length > 0)? STATE_REPORTED : STATE_OTHERS);
 			},
 			error: function(e){
-				alert("networkFailure");
+				// alert("networkFailure");
 				$.postDetail.rightNavButton = $.moreButton;
 			}
 		});
-	},1000));
-}
+	}
+},1000));
 
 /* TODO: pullView가 alloy에서 먹지를 않는데 언젠간 되겠지 뭐..
 if(OS_IOS){
