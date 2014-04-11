@@ -1,5 +1,8 @@
 <Alloy>
 	<TabGroup class="container" >
+		<Tab id="pushTab" title="L('pushHistoryTabTitle')" >
+			<Require src="pushHistory"/>
+		</Tab>
 		<Tab id="allTab" title="L('timeLineTabTitle')" >
 			<Require src="postList"/>
 		</Tab>

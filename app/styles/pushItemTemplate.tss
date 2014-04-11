@@ -1,0 +1,42 @@
+".pushItemTemplate" : {
+	// Titanium.UI.ListItemselectedBackgroundColor : String
+	selectionStyle : Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE,
+	// backgroundColor: Alloy.Globals.COLORS.red,
+	height : 64
+}
+
+".pushPhotoThumb" : {
+	left: 64,
+	height : 64,
+	right : 0,
+	contentMode : 'aspectfill'
+}
+
+".pushProfile" : {
+	left: 0,
+	height : 64,
+	width : 64
+}
+
+".pushTitle" : {
+	top : 10,
+	left: 74,
+	right : 10,
+	height : 15
+}
+
+".pushPhotoTitle" : {
+	top : 25,
+	left: 74,
+	right : 10,
+	height : 15
+}
+
+".date" : {
+	bottom : 10,
+	right : 10
+}
+
+"Label":{
+	color : '#333'
+}
