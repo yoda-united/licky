@@ -26,7 +26,7 @@
 		<!-- <View id="mapWrap" /> -->
 		
 		<!-- <View id="shopNameGuidanceWrap" > -->
-		<Require src="suggestCompletionList" id="suggestCompletionListC">
+		<Require src="suggestCompletionList" id="suggestCompletionListC"/>
 	       <!-- <ListView id="shopNameSuggestList" defaultItemTemplate="template">
 	            <Templates>
 	                <ItemTemplate name="template" id="shopNameSuggestTemplate" >

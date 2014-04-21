@@ -135,3 +135,17 @@ if( OS_IOS ){
 		}
 	});
 }
+
+AG.Cloud.Chats.create({
+	    to_ids: '52841ff87bf3190b300173ea,5345c10f891fdf43ba114cec',
+	    message: '{"user":{"id":"528805007bf3190b30023701","first_name":"yo","last_name":"lee","created_at":"2013-11-16T23:51:28+0000","updated_at":"2014-04-11T09:06:54+0000","external_accounts":[{"external_id":"100001903675798","external_type":"facebook","token":"CAACuXxCk7vUBAFw4M7Rk3eXBjeQ1gZB06lQX82gxwpk87NZBgcEIiZCm9dweZBRiFtp2H6TbfFLxv1s2Vgx48nSMDKIQNZAFd4WuKEvjtPz2MGp8JnSDU1U7JZCmtQ9qsjFrHCnSE2IaM6rw5A39dKPNuZA3kXdGdNT4U1f2gUaMELZBm1z9jWkOUVUNiEZCdYrcZD"}],"confirmed_at":"2013-11-16T23:51:28+0000","admin":"false","stats":{"photos":{"total_count":0},"storage":{"used":0}}},"photo_urls":{"thumb_100":"http://storage.cloud.appcelerator.com/P9mmtk4COHPiuvp1GF18IpnE8ydCbbRl/photos/09/18/533bc4b90f4fb50bae003585/15fcaaa0_thumb_100.jpeg","medium_320":"http://storage.cloud.appcelerator.com/P9mmtk4COHPiuvp1GF18IpnE8ydCbbRl/photos/09/18/533bc4b90f4fb50bae003585/15fcaaa0_medium_320.jpeg","original":"http://storage.cloud.appcelerator.com/P9mmtk4COHPiuvp1GF18IpnE8ydCbbRl/photos/09/18/533bc4b90f4fb50bae003585/15fcaaa0_original.jpeg"},"post_user":{"id":"52841ff87bf3190b300173ea","first_name":"jongeun","last_name":"lee","created_at":"2013-11-14T00:57:28+0000","updated_at":"2014-04-09T22:53:24+0000","external_accounts":[{"external_id":"1417938346","external_type":"facebook"}],"confirmed_at":"2013-11-14T00:57:28+0000","admin":"true","stats":{"photos":{"total_count":0},"storage":{"used":0}},"custom_fields":{"betaStatus":"sent","beta_test_request":true,"beta_status":""}},"badge":"+1","sound":"default","alert":"yo: wowowo","post_id":"533bc4b90f4fb50bae003583"}',
+	    payload: '{"alert":"222"}',
+		channel : 'comment',
+		custom_fields: {
+			wow : 'wowowow'
+		}
+	}, function (e) {
+		console.log(e);
+		alert(e);
+}
+);
