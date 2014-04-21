@@ -25,7 +25,7 @@ exports.definition = {
 				   return null;
 				}
 				
-				return (this.get('from').id == AG.loggedInUser.get('id'))?{properties:{height:0}}:{
+				return {
 					template : 'pushItemTemplate',
 					title : {
 						text: JSON.parse(message).alert
@@ -38,6 +38,9 @@ exports.definition = {
 					},
 					userName : {
 						text : payloadObj.user.frist_name + ' ' + payloadObj.user.last_name
+					},
+					photoTitle : {
+						text : '@ ' + payloadObj.post_title
 					},
 					date : {
 						text : AG.moment(this.get('created_at')).twitter()

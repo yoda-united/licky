@@ -13,6 +13,9 @@ function addSystemPushId(arr){
 	arr.push((ENV_DEV || ENV_TEST)?"5345c10f891fdf43ba114cec":"5345c244891fdf43ba114e39");
 	return arr;
 }
+
+
+
 chatCol.defaultFetchData = {
 	participate_ids : addSystemPushId([AG.loggedInUser.get('id')]).join(','),
 	where : {
@@ -21,6 +24,17 @@ chatCol.defaultFetchData = {
 		// from: { id : {'$ne' : "52841ff87bf3190b300173ea"} }
 	}
 }; // 상속할때 where에 추가하고 싶으면 여기에 지정
+
+
+function onChangeLoginUser(){
+	if(chatCol.defaultFetchData){
+		chatCol.defaultFetchData.participate_ids = addSystemPushId([AG.loggedInUser.get('id')]).join(',');
+	};
+}
+
+AG.settings.on('change:cloudSessionId', onChangeLoginUser);
+
+
 
 $.listViewC.setCollection(chatCol);
 

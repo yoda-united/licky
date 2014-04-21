@@ -26,7 +26,7 @@
 }
 
 ".pushPhotoTitle" : {
-	top : 25,
+	top : 27,
 	left: 74,
 	right : 10,
 	height : 15
