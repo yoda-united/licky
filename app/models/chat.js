@@ -15,7 +15,10 @@ exports.definition = {
 		_.extend(Model.prototype, {
 			// extended functions and properties go here
 			doDefaultTransform : function(){
-				console.log(this.get('message'));
+				// Ti.API.info("===========");
+				// Ti.API.info(JSON.stringify(this.attributes));
+				// Ti.API.info("===========");
+				// console.log(this.get('message'));
 				var message = this.get('message');
 				var payloadObj;
 				try {
