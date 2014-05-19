@@ -28,6 +28,10 @@
 	activeIcon: "images/tabIcon_near_active.png",
 	icon: "images/tabIcon_near_inactive.png"
 },
+"#pushTab": {
+	activeIcon: "images/tabIcon_push_active.png",
+	icon: "images/tabIcon_push_inactive.png"
+},
 "#meTab": {
 	activeIcon: "images/tabIcon_me_active.png",
 	icon: "images/tabIcon_me_inactive.png"
