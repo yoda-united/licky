@@ -8,7 +8,7 @@ function setDefaultFetchData(){
 			(ENV_DEV || ENV_TEST)?"5345c10f891fdf43ba114cec":"5345c244891fdf43ba114e39",
 			AG.loggedInUser.get('id') ].join(','),
 		where : {
-			updated_at: { '$gt': AG.moment().subtract('days', 7).toISOString() }, // 최근 7일
+			updated_at: { '$gt': AG.moment().subtract('days', 31).toISOString() }, // 최근 31일
 			from_id: { "$ne": AG.loggedInUser.get('id')}	// 자신이 포스트한 것이 아닌것만
 		}
 	}; // 상속할때 where에 추가하고 싶으면 여기에 지정
