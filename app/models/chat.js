@@ -32,7 +32,7 @@ exports.definition = {
 					template : 'pushItemTemplate',
 					title : {
 						text: (custom_fields.type==='COMMENT')
-							?this.get('from').first_name+ " left a comment on your licky: " + custom_fields.contents
+							?this.get('from').first_name+ L("leftACommentOnYourLicky") + custom_fields.contents
 							:payloadObj.alert
 					},
 					photo : {
