@@ -19,19 +19,21 @@ exports.definition = {
 				// Ti.API.info(JSON.stringify(this.attributes));
 				// Ti.API.info("===========");
 				// console.log(this.get('message'));
-				var message = this.get('message');
-				var payloadObj;
+				var custom_fields = this.get('custom_fields');
+				var payloadObj = {};
 				try {
-				   payloadObj = JSON.parse(message);
+				   payloadObj = JSON.parse( this.get('message') );
 				}
 				catch (e) {
 				   return null;
 				}
-				
+				// Ti.API.info(payloadObj);
 				return {
 					template : 'pushItemTemplate',
 					title : {
-						text: JSON.parse(message).alert
+						text: (custom_fields.type==='COMMENT')
+							?this.get('from').first_name+ " left a comment on your licky: " + custom_fields.contents
+							:payloadObj.alert
 					},
 					photo : {
 						image : payloadObj.photo_urls.original
@@ -43,7 +45,7 @@ exports.definition = {
 						text : payloadObj.user.frist_name + ' ' + payloadObj.user.last_name
 					},
 					photoTitle : {
-						text : '@ ' + payloadObj.post_title
+						text : payloadObj.post_title?'@ ' + payloadObj.post_title:''
 					},
 					date : {
 						text : AG.moment(this.get('created_at')).twitter()
