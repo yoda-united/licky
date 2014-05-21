@@ -51,8 +51,8 @@ exports.fetch = function(args){
 					});
 		            a.addEventListener('click', function(e)
                     {
-                        if(e.index!==queryItems.cancel){
-                            if(Ti.Platform.canOpenURL(queryItems.url)){
+                        if(e.index!==a.getCancel()){
+                            if(Ti.Platform.canOpenURL(queryItems.url || "")){
                                 Ti.Platform.openURL(queryItems.url);
                             }
                         }

@@ -1,0 +1,18 @@
+
+
+".container" : {
+  title : L('pushHistory')
+}
+
+"#listViewC" : {
+	// refreshControlTintColor : Alloy.Globals.COLORS.orange
+	listViewProperties:{
+		separatorInsets : {
+			left: 50,
+			right: 0
+		},
+		separatorColor: Alloy.Globals.COLORS.gray,
+		separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle.SINGLE_LINE
+	},
+	refreshControlTintColor : Alloy.Globals.COLORS.red
+}

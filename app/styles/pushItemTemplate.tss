@@ -1,0 +1,61 @@
+
+
+".pushItemTemplate" : {
+	// Titanium.UI.ListItemselectedBackgroundColor : String
+	// selectionStyle : Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE,
+	backgroundColor: Alloy.Globals.COLORS.whiteGray,
+	height : 66
+}
+
+".pushPhotoThumb" : {
+	// left: 64,
+	right: 0,
+	width: 100,
+	height: 66,
+	opacity: 0.2,
+	contentMode : 'aspectfill'
+}
+
+".pushProfile" : {
+	top: 6,
+	left: 5,
+	height : 36,
+	width : 36,
+	borderRadius : 18
+}
+
+".pushTitle" : {
+	// backgroundColor:'yellow',
+	top: 9,
+	left: 52,
+	width: 222,
+	height : 51,
+	verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP,
+	color: Alloy.Globals.COLORS.darkGray,
+	font : {
+		fontFamily : 'AppleSDGothicNeo-Regular',
+		fontSize : 14
+	}
+}
+
+".pushPhotoTitle" : {
+	visible: false,
+	top : 37,
+	left: 74,
+	right : 10,
+	height : 15
+}
+
+".date" : {
+	top : 5,
+	right : 8,
+	color: Alloy.Globals.COLORS.darkGray,
+	font : {
+		fontFamily : 'AppleSDGothicNeo',
+		fontSize : 13
+	}
+}
+
+"Label":{
+	color : '#333'
+}

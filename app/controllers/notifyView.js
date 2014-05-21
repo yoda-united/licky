@@ -59,20 +59,8 @@ function _doAction(){
 	var pushEvent = processing.pushEvent;
 
 	if( pushEvent && pushEvent.data.post_id ){
-		var postModel = Alloy.createModel('post', {id: pushEvent.data.post_id});
-		postModel.fetch({
-			error: function(){
-				Ti.API.info("[notifyView] error to retreive post");
-			},
-			success: function(){
-				// if( !AG.mainTabGroup ){
-					// return;
-				// }
-				// AG.mainTabGroup.activeTab.getWindow().setFullscreen(true);
-				AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
-					postModel: postModel
-				});
-			}
+		AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
+			post_id: pushEvent.data.post_id
 		});
 	}
 }

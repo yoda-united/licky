@@ -1,0 +1,6 @@
+<Alloy>
+	<Window class="container">
+		<Require src="baseListView" id="listViewC">
+		</Require>
+	</Window>
+</Alloy>

@@ -108,7 +108,7 @@
 	// height:2200
 }
 "#mapWrap": {
-	height: 119,
+	height: 119, //주의 postDetail.js 에서도 height를 다룸
 	backgroundColor: "white"
 }
 "#commentField": {
@@ -146,22 +146,4 @@
 	top : 0,
 	image : 'images/profileMask.png',
 	visible : 'false'
-}
-
-"#reportDialog" : {
-	options : [L('report'),L('cancel')],
-	destructive : 0,
-	cancel : 1
-}
-
-"#deleteDialog" : {
-	options : [L('delete'),L('cancel')],
-	destructive : 0,
-	cancel : 1
-}
-
-"#unReportDialog" : {
-	options : [L('unReport'),L('cancel')],
-	title : L('unReportDialogTitle'),
-	cancel : 1
 }
