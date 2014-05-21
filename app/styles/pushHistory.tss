@@ -7,7 +7,11 @@
 "#listViewC" : {
 	// refreshControlTintColor : Alloy.Globals.COLORS.orange
 	listViewProperties:{
-		separatorColor: Alloy.Globals.COLORS.red,
+		separatorInsets : {
+			left: 50,
+			right: 0
+		},
+		separatorColor: Alloy.Globals.COLORS.gray,
 		separatorStyle: Ti.UI.iPhone.ListViewSeparatorStyle.SINGLE_LINE
 	},
 	refreshControlTintColor : Alloy.Globals.COLORS.red
