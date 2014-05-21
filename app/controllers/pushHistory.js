@@ -37,6 +37,6 @@ $.listViewC.on('itemclick',_.throttle(function(e){
 	});
 },1000));
 
+chatCol.fetch();
 $.getView().addEventListener('focus', function(e) {
-	chatCol.fetch();
 });
