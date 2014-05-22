@@ -26,6 +26,7 @@ function resetPostContent(){
 	contentItem.photo.height = photoHeight;
 	contentItem.properties.height = photoHeight;
 	contentItem.properties.backgroundColor = Alloy.Globals.COLORS.whiteGray;
+	contentItem.properties.canEdit = false;
 	// contentItem.photo.height = 180;
 	$.contentSection.setItems([
 		contentItem
