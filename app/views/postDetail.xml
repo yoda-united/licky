@@ -11,11 +11,11 @@
 					<ItemTemplate class="commentTemplate" name="commentTemplate">
 						<Label class="time" bindId="time"></Label>
 						<Label class="userName" bindId="userName"></Label>
-						<MaskedImage class="maskedProfile" bindId="profileImage"></MaskedImage>
+						<MaskedImage class="profileImage" bindId="profileImage"></MaskedImage>
 						<View class="speechBubble">
 							<Label class="commentContent" bindId="content"></Label>
 						</View>
-						<ImageView onLoad="hiddenProfileOnLoad" class="hiddenProfile" bindId="hiddenProfile"></ImageView>
+						<ImageView onLoad="hiddenProfileOnLoad" visible="false" class="hiddenProfile" bindId="hiddenProfile"></ImageView>
 						<ImageView class="profileRing" />
 					</ItemTemplate>
 				</Templates>
