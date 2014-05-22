@@ -1,6 +1,6 @@
 
 ".container" : {
-	backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
+	backgroundColor: Alloy.Globals.COLORS.lightGray,
  	extendEdges : []
 }
 

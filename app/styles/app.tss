@@ -1,5 +1,5 @@
 "Window":{
-	backgroundColor : 'white',
+	backgroundColor : Alloy.Globals.COLORS.lightGray,
 	titleAttributes:{
 		// color:'#dfff',
 		// color: Alloy.Globals.COLORS.orange,
@@ -86,7 +86,7 @@
 }
 ".profileImage" : {
 	left : 8,
-	top : 10,
+	top : 6,
 	width : 40,
 	height : 40,
 	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
@@ -113,7 +113,7 @@
 // }
 ".commentCount" : {
 	left: 13,
-	top : 52,
+	top : 48,
 	width : 40,
 	textAlign : 'left',
 	font : {
@@ -136,7 +136,7 @@
 	// verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
 // }
 ".distance" : {
-	left: 58,
+	left: 55,
 	// left: 66,
 	top: 27,
 	// width : 60,
