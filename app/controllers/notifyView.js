@@ -24,8 +24,7 @@ function _hide(){
 		duration: 100,
 		top: -THIS_HEIGHT
 	}, function(){
-
-		Ti.API.info("[notifyView] queue length: "+ queue.length);
+		// Ti.API.info("[notifyView] queue length: "+ queue.length);
 		if (queue.length > 0){
 			_notifies();
 		}else{
@@ -43,7 +42,9 @@ function _notifies(){
 		AG.setAppBadge(0);
 		_doAction();
 	}else{
+		// expose
 		$.message.setText(message);
+		$.notifyView.fireEvent( "notifyExpose", {ndata: processing});
 		$.notifyView.animate({
 			duration: 100,
 			top:0

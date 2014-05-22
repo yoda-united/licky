@@ -357,6 +357,7 @@ $.sendBtn.addEventListener('click',_.throttle(function(e) {
 	});
 },1000));
 
+
 if(OS_IOS){
 	Ti.App.addEventListener('keyboardframechanged', function(e) {
 		if(e.keyboardFrame.width==320 && e.keyboardFrame.y<400){ //appear
@@ -396,6 +397,25 @@ function hiddenProfileOnLoad(){
 	//TODO : proxy찾는 하드코딩된 부분을 제거
 }
 
+function refreshByNotification(e) {
+	if( e &&
+		e.ndata && 
+		e.ndata.pushEvent &&
+		e.ndata.pushEvent.data &&
+		e.ndata.pushEvent.data.post_id == postModel.id ){
+		fetchComments();
+	}
+}
+
 $.getView().addEventListener('open', function(e) {
 	fetchComments();
+	
+	// 현재 post의 댓글이 추가되었다는 notification을 받았을때 
+	AG.notifyController.getView().addEventListener("notifyExpose", refreshByNotification);
 });
+
+$.getView().addEventListener('close', function(){
+	AG.notifyController.getView().removeEventListener("notifyExpose", refreshByNotification);
+});
+
+
