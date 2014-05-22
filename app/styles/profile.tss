@@ -93,7 +93,11 @@
 "#menuTable": {
 	top: 207.5,	// 프로필 배너 확대될때 떨림을 조금 가리기 위해 5픽셀 위로. 
 	height: 44,
-	scrollable: false
+	scrollable: false,
+	separatorInsets : {
+		left: 0,
+		right: 0
+	},
 }
 "#foodRow": {
 	title: L('myLicks'),
