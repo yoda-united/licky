@@ -123,12 +123,17 @@ commentCol.on('add',function(model,col,options){
 });
 
 
-function fetchComments(){
+function fetchComments(options){
 	commentCol.fetch({
 		data : {
 			order : '-created_at',
 			post_id : postModel.id,
 			per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
+		},
+		success: function(){
+			if( options && options.success){
+				options.success();
+			}
 		},
 		error: function(e,resp){
 			if( resp === "post not found" ){	// code 400
@@ -360,10 +365,27 @@ if(OS_IOS){
 			
 		}
 	});
+	
+	// refresh control
+	var control = Ti.UI.createRefreshControl({
+	    tintColor: args.refreshControlTintColor || Alloy.Globals.COLORS.red
+	});
+	$.listView.refreshControl = control;
+	control.addEventListener('refreshstart', function(e){
+		fetchComments({
+			success : function(col){
+				control.endRefreshing();
+			},
+			error : function(){
+				control.endRefreshing();
+			}
+			// reset : true
+		});
+	});
 }
 
 function onMapClick(e){
-	alert(e);
+	// alert(e);
 }
 
 function hiddenProfileOnLoad(){
@@ -375,7 +397,5 @@ function hiddenProfileOnLoad(){
 }
 
 $.getView().addEventListener('open', function(e) {
-	
-	
 	fetchComments();
 });
