@@ -18,7 +18,7 @@ exports.init = function (logger, config, cli, appc) {
 		spawn = require('child_process').spawn,
 		parallel = appc.async.parallel;
 
-	function run(deviceFamily, deployType, target, finished) {
+	function run(deviceFamily, deployType, finished) {
 		var appDir = path.join(cli.argv['project-dir'], 'app');
 		if (!afs.exists(appDir)) {
 			logger.info(__('Project not an Alloy app, continuing'));
@@ -41,8 +41,7 @@ exports.init = function (logger, config, cli, appc) {
 				version: '0',
 				simtype: 'none',
 				devicefamily: /(?:iphone|ios)/.test(cli.argv.platform) ? deviceFamily : 'none',
-				deploytype: deployType || cli.argv['deploy-type'] || 'development',
-				target: target
+				deploytype: deployType || cli.argv['deploy-type'] || 'development'
 			};
 
 		config = Object.keys(config).map(function (c) {
@@ -155,10 +154,8 @@ exports.init = function (logger, config, cli, appc) {
 	cli.addHook('build.pre.compile', function (build, finished) {
 		// TODO: Remove this workaround when the CLI reports the right deploy type for android
 		var deployType = build.deployType;
-		var target = build.target;
-
 		if (cli.argv.platform === 'android') {
-			switch(target) {
+			switch(cli.argv.target) {
 				case 'dist-playstore':
 					deployType = 'production';
 					break;
@@ -171,10 +168,10 @@ exports.init = function (logger, config, cli, appc) {
 					break;
 			}
 		}
-		run(build.deviceFamily, deployType, target, finished);
+		run(build.deviceFamily, deployType, finished);
 	});
 
 	cli.addHook('codeprocessor.pre.run', function (build, finished) {
-		run('none', 'development', undefined, finished);
+		run('none', 'development', finished);
 	});
 };
