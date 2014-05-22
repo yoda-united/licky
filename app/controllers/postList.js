@@ -97,7 +97,7 @@ function searchFacebookFriends(){
 			        fetchOnlyFriendsPost(friendIds);
 			    } else {
 			        if(e.code===400 && e.message && e.message.indexOf('OAuthException')>=0){
-			        	AG.SocialIntegrations.externalAccountLogin({
+			        	AG.Cloud.SocialIntegrations.externalAccountLogin({
 			        		external_accounts : {
 			        			token: AG.facebook.getAccessToken()	
 			        		}
