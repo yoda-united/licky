@@ -221,12 +221,9 @@ exports.showCamera = function(){
 				});
 			}
 			
-			return;
-			
 			Ti.API.info(event.media.width);
 			Ti.API.info(event.media.height);
 			Ti.API.info(event.media.mimeType);
-
 			
 			// 카메라에 찍힌 것을 비율 유지한체 높이를 640(captureSize_2x.width)에 맞도록 리사이징
 			var height = parseInt(captureSize_2x.width*event.media.height/event.media.width);
