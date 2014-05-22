@@ -96,9 +96,26 @@
 	scrollable: false
 }
 "#foodRow": {
-	title: L('myLicks'),
 	hasChild: true,
-	selectionStyle : Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY
+	selectionStyle : Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY,
+	height : 44
+}
+
+"#foodRowLabel" :{
+	left: 15,
+	font: {
+		fontSize : 18
+	},
+	color: Alloy.Globals.COLORS.darkGray
+}
+
+"#foodRowCount" : {
+	right : 5,
+	textAlign : 'right',
+	font : {
+		fontSize : 15
+	},
+	color : Alloy.Globals.COLORS.gray
 }
 
 "#settingDialog" : {
