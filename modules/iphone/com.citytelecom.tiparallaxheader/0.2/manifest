@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.2
+apiversion: 3
+description: Parallax HeaderView for the Titanium ListView
+author: James Chow
+license: MIT
+copyright: City Telecom Services ltd
+
+
+# these should not be edited
+name: TiParallaxHeader
+moduleid: com.citytelecom.tiparallaxheader
+guid: d9d5b1e0-b0fc-4814-bb86-41dc12db6808
+platform: iphone
+minsdk: 3.2.1.GA
