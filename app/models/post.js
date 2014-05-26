@@ -92,6 +92,30 @@ exports.definition = {
 						canEdit : isMine
 					},
 				});
+			},
+			// 포스트 삭제하면 업로드된 사진들과 커맨트들을 slimer에서 삭제
+			alterSyncRemove: function(params, callback){
+				// alert(this.get('photo'));
+// 				
+				// return;
+				params.photo_id = this.get('photo').id;
+				var url = AG.slimer.URL + "/api/acs/Posts/" + params.post_id;
+				var client = Ti.Network.createHTTPClient({
+					onload: function(e){
+						callback(JSON.parse(this.responseText));
+						Ti.API.info("----");
+						Ti.API.info(JSON.parse(this.responseText));
+						Ti.API.info("----");
+					},
+					onerror: function(e){
+						Ti.API.debug(e.error);
+						alert("error");
+					},
+					timeout: 5000
+				});
+				client.open("DELETE", url);
+				client.setRequestHeader("Cookie", "_session_id=" + AG.Cloud.sessionId);
+				client.send(params);
 			}
 		});
 
