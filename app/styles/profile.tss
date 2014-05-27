@@ -29,9 +29,9 @@
 	// contentHeight: 672.5	// profileBanner + controlBar + photoList's height
 }
 "#profileBannerImage": {
-	defaultImage: "images/defaultProfileBannerPicture.png",
-	image: "images/defaultProfileBannerPicture.png",
-	backgroundColor: Alloy.Globals.COLORS.lightGray,
+	// defaultImage: "images/defaultProfileBannerPicture.png",
+	// image: "images/defaultProfileBannerPicture.png",
+	backgroundColor: Alloy.Globals.COLORS.darkGray,
 	contentMode: 'aspectfill',
 	height: 212.5,
 	width: 320, //'100%',
