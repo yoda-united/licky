@@ -1,5 +1,8 @@
 <Alloy>
 	<TabGroup class="container" >
+		<Tab id="meTab" title="테스트">
+			<Require id="profile2" src="profile2" />
+		</Tab>
 		<Tab id="allTab" title="L('timeLineTabTitle')" >
 			<Require src="postList"/>
 		</Tab>

@@ -1,0 +1,140 @@
+
+".container" : {
+  
+}
+
+"#loginBtn" : {
+	width : '80%',
+}
+".afterLogin" : {
+	title : L('logout'),
+	backgroundColor : '#c0392b',
+	color : 'white',
+	selectedColor : 'gray'
+}
+
+".beforeLogin" : {
+	title : L('login'),
+	backgroundColor : '#2ecc71',
+	color : 'white',
+	selectedColor : 'gray'
+}
+
+"#listView" : {
+	separatorInsets : {
+		left: 0,
+		right : 0
+	},
+	width : Ti.UI.FILL,
+    height : Ti.UI.FILL
+}
+
+".titleAndCount": {
+	height : 44
+}
+
+".title_of_titleAndCount" :{
+	left: 15,
+	font: {
+		fontSize : 18
+	},
+	color: Alloy.Globals.COLORS.darkGray
+}
+
+".count_of_titleAndCount" : {
+	right : 5,
+	textAlign : 'right',
+	font : {
+		fontSize : 15
+	},
+	color : Alloy.Globals.COLORS.gray
+}
+
+"#headerView":{
+	top : 0,
+	height : 260
+}
+
+".headerInnerWrap" : {
+	top : 64
+}
+
+"#profileBannerImage": {
+	defaultImage: "images/defaultProfileBannerPicture.png",
+	image: "images/defaultProfileBannerPicture.png",
+	backgroundColor: Alloy.Globals.COLORS.lightGray,
+	contentMode: 'aspectfill',
+	height: 212.5,
+	width: 320, //'100%',
+	left: 0,
+	top: 0,
+	visible : false
+}
+"#profileImage": {
+	preventDefaultImage : false,
+	defaultImage: "images/defaultProfilePicture.png",
+	image: "images/defaultProfilePicture.png",
+	height: 70,
+	width: 70,
+	top: 30,
+	zIndex: 10,
+	borderColor: "#eee",
+	borderWidth: 1,
+	borderRadius: 35
+}
+"#wireForBtnImg": {
+	width: 72,
+	height: 32,
+	top: 66,
+	left: 158,
+	// borderColor: "red",
+	// borderWidth: 1,
+	image: "images/wireForButton.png"
+}
+"#profileSettingBtn": {
+	height: 50,
+	width: 50,
+	top: 78,
+	left: 214,
+	zIndex: 10,
+	backgroundImage: "images/profileSettingButton.png"
+	// borderColor: "#fff",
+	// borderWidht: 1,
+	// borderRadius: 14
+}
+"#name": {
+	// borderWidth:1,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	top: 105 ,
+	color: "#fff",
+	font : {
+		fontSize : 18,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	},
+}
+"#name[platform=ios]": {
+	shadowColor: '#aaa',
+	shadowOffset: {x:0.5, y:0.5}
+}
+
+"#settingDialog" : {
+	title : L('setting'),
+	cancel : 1,
+	options : [L('logout'),L('cancel')]
+}
+
+"#contactUsBtn" : {
+	title : '버그 신고 및 제안하기',
+	borderRadius: 5,
+	borderWidth : 0.5,
+	borderColor : Alloy.Globals.COLORS.darkGray,
+	height: 44,
+	width: 232,
+	color: Alloy.Globals.COLORS.darkGray,
+	bottom : 10,
+	font : {
+		fontSize : 17,
+		fontFamily : 'AppleSDGothicNeo-Light'
+	},
+	backgroundColor: Alloy.Globals.COLORS.whiteGray,
+}

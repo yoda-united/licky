@@ -1,0 +1,26 @@
+<Alloy>
+	<Window class="container">
+		<View id="headerView">
+			<View class="headerInnerWrap">
+				<ImageView id="profileBannerImage" />
+				
+				<ImageView id="profileImage" />
+				<Label id="name" />
+				<ImageView id="wireForBtnImg" />
+				<Button id="profileSettingBtn" />
+			</View>
+		</View>
+		<ListView id="listView">
+			<Templates>
+				<ItemTemplate name="titleAndCount" class="titleAndCount">
+					<Label bindId="title" class="title_of_titleAndCount">제목</Label>
+					<Label bindId="count" class="count_of_titleAndCount">0</Label>
+				</ItemTemplate>
+			</Templates>
+			<ListSection id="section">
+			</ListSection>
+		</ListView>
+		<OptionDialog id="settingDialog">
+        </OptionDialog>
+	</Window>
+</Alloy>
