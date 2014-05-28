@@ -30,7 +30,7 @@ $.listViewC.setTemplateControls([
 	'pushItemTemplate'
 ]);
 
-$.listViewC.on('itemclick',_.throttle(function(e){
+$.listViewC.on('itemclick', _.throttle(function(e){
 	var data = JSON.parse(e.model.get('message'));
 	AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
 		post_id : data.post_id
@@ -39,4 +39,9 @@ $.listViewC.on('itemclick',_.throttle(function(e){
 
 chatCol.fetch();
 $.getView().addEventListener('focus', function(e) {
+	// focus 된 이후 reset에 한해서  
+	chatCol.on('reset', function(){
+		AG.notifyController.setBadge(0);
+	});
 });
+

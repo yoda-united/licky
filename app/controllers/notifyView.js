@@ -39,7 +39,6 @@ function _notifies(){
 	var message = processing.message || pushEvent.data.alert;
 
 	if(pushEvent && pushEvent.inBackground){
-		AG.setAppBadge(0);
 		_doAction();
 	}else{
 		// expose
@@ -57,6 +56,7 @@ function _notifies(){
 }
 
 function _doAction(){
+	setBadge("-1");
 	var pushEvent = processing.pushEvent;
 
 	if( pushEvent && pushEvent.data.post_id ){
@@ -70,6 +70,29 @@ $.notifyView.addEventListener('click', function(){
 	_hide();
 });
 
+
+// number can be integer or string like "+1"
+function setBadge(number){
+	if( AG.isLogIn() ){
+		AG.Cloud.PushNotifications.setBadge({
+		    device_token: AG.settings.get('deviceToken'),
+		    badge_number: number
+		}, function (e) {
+		    if (e.success) {
+		        // Ti.API.info('Badge Set!');
+		    }
+		    else {
+		        // Ti.API.error(e);
+		    }
+		});
+	}
+	if( _.isString(number) ){
+		number =  Ti.UI.iPhone.getAppBadge() + parseInt(number);
+		alert(Ti.UI.iPhone.getAppBadge() + ", " + number);
+	}
+	Ti.App.fireEvent( "changeBadge", {"number": number});
+};
+exports.setBadge = setBadge;
 
 /**
  * 노티할 객체를 큐에 담아 놓고 하나씩 보여준다. message와 pushEvent 둘중 하나는 셋팅 해줘영 
@@ -88,7 +111,9 @@ $.notifyView.addEventListener('click', function(){
  * 	message: "world"
  * });
  */
-exports.push = function(options){
+function push(options){
+	Ti.App.fireEvent( "changeBadge", {"number": Ti.UI.iPhone.getAppBadge()});
+	
 	// queueing
 	queue.push(options);
 	if( nowExposing ){
@@ -98,7 +123,5 @@ exports.push = function(options){
 	dummyWindow.open();
 	_notifies();
 };
+exports.push = push;	
 
-
-
-	

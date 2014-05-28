@@ -39,6 +39,7 @@ AG.cameraInfo = {
 AG.loginController =  Alloy.createController('login');
 AG.notifyController = Alloy.createController('notifyView');
 
+
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');
 // AG.currentPosition = new Backbone.Model();
@@ -48,6 +49,7 @@ AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동
 AG.isLogIn = function(){
 	return !!AG.settings.get('cloudSessionId');
 };
+
 
 AG.settings.fetch({
 	success: function(){
@@ -106,33 +108,18 @@ AG.settings.fetch({
 AG.currentPosition = Alloy.Models.instance('currentPosition');
 AG.currentPosition.update();
 
-AG.setAppBadge = function(number){
-	Ti.UI.iPhone.setAppBadge(number);
-	if( AG.isLogIn ){
-		// PushNotifications.reset_badge_get 이 아직 구현 안돼서..
-		AG.Cloud.PushNotifications.notify({
-			channel: "comment",	// shoulbe all exist channel 
-			to_ids: AG.loggedInUser.get('id'),
-			payload: {
-			    "badge": number
-			}
-		}, function (e) {
-		    if (e.success) {
-		    	Ti.API.info("success");
-		    } else {
-		    	Ti.API.info("fail:"+JSON.stringify(e));
-		    }
-		});		
-	}
-};
 
 var appMetaDebounce = _.debounce(function() {
 	Alloy.createWidget('appMetaFromACS').fetch();
+	// AG.notifyController.setBadge(20);
 });
 
 setTimeout(appMetaDebounce,3000);
 Ti.App.addEventListener('resume', appMetaDebounce);
 
+Ti.App.addEventListener('changeBadge', function(e){
+	Ti.UI.iPhone.setAppBadge(e.number);
+});
 
 
 

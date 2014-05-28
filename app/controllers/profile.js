@@ -156,3 +156,6 @@ exports.setProperties = function() {
 	});
 };
 
+$.name.addEventListener('click', function(e){
+	// AG.notifyController.setBadge(10);
+});
