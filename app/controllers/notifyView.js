@@ -56,10 +56,11 @@ function _notifies(){
 }
 
 function _doAction(){
-	setBadge("-1");
 	var pushEvent = processing.pushEvent;
 
 	if( pushEvent && pushEvent.data.post_id ){
+		AG.mainTabGroup.setActiveTab(2);	// index 2 is pushHistory
+		setBadge("-1");
 		AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
 			post_id: pushEvent.data.post_id
 		});
@@ -71,7 +72,7 @@ $.notifyView.addEventListener('click', function(){
 });
 
 
-// number can be integer or string like "+1"
+// number can be integer or string like "+1" or "-2"
 function setBadge(number){
 	if( AG.isLogIn() ){
 		AG.Cloud.PushNotifications.setBadge({
@@ -88,7 +89,8 @@ function setBadge(number){
 	}
 	if( _.isString(number) ){
 		number =  Ti.UI.iPhone.getAppBadge() + parseInt(number);
-		alert(Ti.UI.iPhone.getAppBadge() + ", " + number);
+		// alert(Ti.UI.iPhone.getAppBadge() + ", " + number);
+		number = (number<0)? 0: number;
 	}
 	Ti.App.fireEvent( "changeBadge", {"number": number});
 };

@@ -37,11 +37,15 @@ $.listViewC.on('itemclick', _.throttle(function(e){
 	});
 },1000));
 
-chatCol.fetch();
+
 $.getView().addEventListener('focus', function(e) {
-	// focus 된 이후 reset에 한해서  
-	chatCol.on('reset', function(){
-		AG.notifyController.setBadge(0);
-	});
+	// 문서에는 명시돼 있지 않지만 로긴한 사용자만 쿼리 날릴수 있는 듯.
+	if( AG.isLogIn()){
+		chatCol.fetch();
+	}
+});
+  
+chatCol.on('reset', function(){
+	AG.notifyController.setBadge(0);
 });
 
