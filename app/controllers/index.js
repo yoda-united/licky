@@ -44,3 +44,13 @@ AG.mainTabGroup.add( AG.notifyController.getView() );
 // AG.notifyController.push({
 	// message: "world"
 // });
+
+$.pushTab.setBadge( Ti.UI.iPhone.getAppBadge() || null );
+
+Ti.App.addEventListener('changeBadge', function(e){
+	$.pushTab.setBadge(e.number || null);
+});
+
+
+
+

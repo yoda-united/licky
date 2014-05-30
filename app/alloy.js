@@ -39,6 +39,7 @@ AG.cameraInfo = {
 AG.loginController =  Alloy.createController('login');
 AG.notifyController = Alloy.createController('notifyView');
 
+
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');
 // AG.currentPosition = new Backbone.Model();
@@ -48,6 +49,7 @@ AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동
 AG.isLogIn = function(){
 	return !!AG.settings.get('cloudSessionId');
 };
+
 
 AG.settings.fetch({
 	success: function(){
@@ -69,70 +71,55 @@ AG.settings.fetch({
 			AG.settings.save("postWithFacebook", true);
 		}
 		if( !AG.settings.has("deviceToken")  ){
-			// push notification
-			if( OS_IOS ){
-				// Ti.Network.unregisterForPushNotifications();
-				Ti.Network.registerForPushNotifications({
-					types: [
-						Ti.Network.NOTIFICATION_TYPE_BADGE,
-						Ti.Network.NOTIFICATION_TYPE_ALERT,
-						Ti.Network.NOTIFICATION_TYPE_SOUND
-					],
-					callback: function(e){
-						// alert("data: "+JSON.stringify(e.data) +"\n"+e.inBackground);
-						// 뱃지를 0으로 하는거를 무시하지 않으면 무한 반복 푸쉬 됨..
-						if(  e.data.badge === 0 ){
-							return;
-						}
-						AG.notifyController.push({
-							pushEvent: e
-						});
-					},
-					error: function(e){
-						Ti.API.info('register for pushnotification error');
-					},
-					success: function(e){
-						AG.settings.save("deviceToken", Ti.Network.getRemoteDeviceUUID() );
-						AG.loginController.subscribePushChannel();
-					}
-				});
-			}			
 		}else{
 			// 안해도 되는데..
 			// AG.loginController.subscribePushChannel('broadcast');
 		}
 	}
 });
+
+// push notification
+if( OS_IOS ){
+	// Ti.Network.unregisterForPushNotifications();
+	Ti.Network.registerForPushNotifications({
+		types: [
+			Ti.Network.NOTIFICATION_TYPE_BADGE,
+			Ti.Network.NOTIFICATION_TYPE_ALERT,
+			Ti.Network.NOTIFICATION_TYPE_SOUND
+		],
+		callback: function(e){
+			// alert("data: "+JSON.stringify(e.data) +"\n"+e.inBackground);
+			// 뱃지를 0으로 하는거를 무시하지 않으면 무한 반복 푸쉬 됨..
+			if(  e.data.badge === 0 ){
+				return;
+			}
+			AG.notifyController.push({
+				pushEvent: e
+			});
+		},
+		error: function(e){
+			Ti.API.info('register for pushnotification error');
+		},
+		success: function(e){
+			AG.settings.save("deviceToken", Ti.Network.getRemoteDeviceUUID() );
+			AG.loginController.subscribePushChannel();
+		}
+	});
+}
+
 AG.currentPosition = Alloy.Models.instance('currentPosition');
 AG.currentPosition.update();
 
-AG.setAppBadge = function(number){
-	Ti.UI.iPhone.setAppBadge(number);
-	if( AG.isLogIn ){
-		// PushNotifications.reset_badge_get 이 아직 구현 안돼서..
-		AG.Cloud.PushNotifications.notify({
-			channel: "comment",	// shoulbe all exist channel 
-			to_ids: AG.loggedInUser.get('id'),
-			payload: {
-			    "badge": number
-			}
-		}, function (e) {
-		    if (e.success) {
-		    	Ti.API.info("success");
-		    } else {
-		    	Ti.API.info("fail:"+JSON.stringify(e));
-		    }
-		});		
-	}
-};
-
 var appMetaDebounce = _.debounce(function() {
 	Alloy.createWidget('appMetaFromACS').fetch();
+	// AG.notifyController.setBadge(20);
 });
-
 setTimeout(appMetaDebounce,3000);
 Ti.App.addEventListener('resume', appMetaDebounce);
 
+Ti.App.addEventListener('changeBadge', function(e){
+	Ti.UI.iPhone.setAppBadge(e.number);
+});
 
 
 
