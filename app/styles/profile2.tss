@@ -24,9 +24,7 @@
 	separatorInsets : {
 		left: 0,
 		right : 0
-	},
-	width : Ti.UI.FILL,
-    height : Ti.UI.FILL
+	}	
 }
 
 ".titleAndCount": {
@@ -51,8 +49,7 @@
 }
 
 "#headerView":{
-	top : 0,
-	height : 260
+	top : 0
 }
 
 ".headerInnerWrap" : {
