@@ -28,7 +28,7 @@
 	// backgroundColor:'yellow',
 	top: 9,
 	left: 52,
-	width: 222,
+	right : 105,
 	height : 51,
 	verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP,
 	color: Alloy.Globals.COLORS.darkGray,

@@ -5,7 +5,7 @@ $.index.open();
 $.index.addEventListener('focus', function(e){
 	var prevTabIndex = e.previousIndex;
 	
-	if(e.tab.title === $.meTab.title ){
+	if(e.tab.title === $.meTab.title || e.tab.title === $.pushTab.title){
 		AG.loginController.requireLogin({
 			success: function(){
 			},

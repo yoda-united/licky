@@ -193,4 +193,6 @@ if(OS_IOS){
 			reset : true
 		});
 	});
+	
+	$.refreshControl = control;
 }
