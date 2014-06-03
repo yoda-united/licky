@@ -3,6 +3,32 @@ var currentWindow = $.login;
 $.closeBtn.addEventListener('click', function(e) {
 	currentWindow.close();
 });
+
+$.termsLabel.addEventListener('click', function(e) {
+	var win = Ti.UI.createWindow();
+	win.add(Ti.UI.createWebView({
+		url : (ENV_DEV || ENV_TEST)?'http://192.168.0.2:8080/terms.html':'http://www.licky.co/terms.html'
+	}));
+	currentWindow.openWindow(win);
+});
+
+if(OS_IOS){
+	$.termsLabel.attributedString = Ti.UI.iOS.createAttributedString({
+		text : L('termsAndPrivacy'),
+		attributes:[{
+			type : Ti.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE,
+			value : Ti.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
+			range : [L('termsAndPrivacy').indexOf('이용약관'),'이용약관'.length]
+		},
+		{
+			type : Ti.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE,
+			value : Ti.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
+			range : [L('termsAndPrivacy').indexOf('개인정보 취급정책'),'개인정보 취급정책'.length]
+		}
+		]
+	});
+}
+
 // currentWindow.addEventListener('swipe', function(e){
 	// if( e.direction === 'down'){
 		// currentWindow.close();
@@ -79,8 +105,12 @@ $.fbLogin.addEventListener('click', function(e) {
 // currentWindow.addEventListener('close', function(e) {
 	AG.facebook.addEventListener('logout', fbHandler);
 // });
-	
 
+// Navigation Window를 써서 그런지 window 재사용시 화면의 일부가 안보이는 문제 임시 해결
+currentWindow.addEventListener('close', function(e) {
+	AG.loginController = Alloy.createController('login');
+	$ = null;
+});
 
 exports.requireLogin = function(args){
 	args = args || {};
