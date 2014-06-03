@@ -53,7 +53,7 @@ var fbHandler = function(e){
 		        
 		        subscribePushChannel('comment');
 		        
-				$.fbLogin.title = L("facebookConnect");
+				//$.fbLogin.title = L("facebookConnect");
 				currentWindow.close();
 				
 		    } else {
