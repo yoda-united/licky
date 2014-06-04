@@ -4,7 +4,8 @@ $.index.open();
 
 $.index.addEventListener('focus', function(e){
 	var prevTabIndex = e.previousIndex;
-	if(e.tab.title === $.meTab.title ){
+	
+	if(e.tab.title === $.meTab.title || e.tab.title === $.pushTab.title){
 		AG.loginController.requireLogin({
 			success: function(){
 			},
@@ -13,6 +14,24 @@ $.index.addEventListener('focus', function(e){
 			}
 		});
 	};
+	
+	if(e.tab.title === $.nearTab.title){
+		// if( !AG.currentPosition.get('accuracy') ){
+		AG.currentPosition.update( function(){
+			if( !AG.currentPosition.get('success') ){
+				var dialog = Ti.UI.createAlertDialog({
+				    message: L('locationServiceNeeded'),
+				    ok: L('OK'),
+				    title: L('notice')
+				  });
+				dialog.addEventListener('click', function(){
+					$.index.setActiveTab(prevTabIndex);
+				});
+				dialog.show();
+			}
+		});
+		// }
+	}
 });
 
 AG.mainTabGroup.add( AG.notifyController.getView() );
@@ -25,3 +44,13 @@ AG.mainTabGroup.add( AG.notifyController.getView() );
 // AG.notifyController.push({
 	// message: "world"
 // });
+
+$.pushTab.setBadge( Ti.UI.iPhone.getAppBadge() || null );
+
+Ti.App.addEventListener('changeBadge', function(e){
+	$.pushTab.setBadge(e.number || null);
+});
+
+
+
+

@@ -1,11 +1,11 @@
 
 ".container" : {
-	backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
+	backgroundColor: Alloy.Globals.COLORS.lightGray,
  	extendEdges : []
 }
 
 "#loginBtn" : {
-	width : '80%',
+	width : '80%'
 }
 ".afterLogin" : {
 	title : L('logout'),
@@ -29,14 +29,15 @@
 	// contentHeight: 672.5	// profileBanner + controlBar + photoList's height
 }
 "#profileBannerImage": {
-	defaultImage: "images/defaultProfileBannerPicture.png",
-	image: "images/defaultProfileBannerPicture.png",
-	backgroundColor: Alloy.Globals.COLORS.lightGray,
+	// defaultImage: "images/defaultProfileBannerPicture.png",
+	// image: "images/defaultProfileBannerPicture.png",
+	backgroundColor: Alloy.Globals.COLORS.darkGray,
 	contentMode: 'aspectfill',
 	height: 212.5,
 	width: 320, //'100%',
 	left: 0,
-	top: 0
+	top: 0,
+	preventDefaultImage : true
 }
 "#profileImage": {
 	preventDefaultImage : false,
@@ -93,12 +94,33 @@
 "#menuTable": {
 	top: 207.5,	// 프로필 배너 확대될때 떨림을 조금 가리기 위해 5픽셀 위로. 
 	height: 44,
-	scrollable: false
+	scrollable: false,
+	separatorInsets : {
+		left: 0,
+		right: 0
+	},
 }
 "#foodRow": {
-	title: L('myLicks'),
 	hasChild: true,
-	selectionStyle : Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY
+	selectionStyle : Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY,
+	height : 44
+}
+
+"#foodRowLabel" :{
+	left: 15,
+	font: {
+		fontSize : 18
+	},
+	color: Alloy.Globals.COLORS.darkGray
+}
+
+"#foodRowCount" : {
+	right : 5,
+	textAlign : 'right',
+	font : {
+		fontSize : 15
+	},
+	color : Alloy.Globals.COLORS.gray
 }
 
 "#settingDialog" : {

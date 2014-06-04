@@ -12,7 +12,7 @@
 		left: 0,
 		right : 0
 	},
-	backgroundColor: Alloy.Globals.COLORS.lightWarmGray
+	backgroundColor: Alloy.Globals.COLORS.lightGray
 }
 
 "#loadingActivity" : {

@@ -7,6 +7,7 @@ exports = {
 	yellow : '#fc0',
 	green : '#4cd964',
 	teal : '#34aadc',
+	softBlue : '#5AC8FA',
 	blue : '#007aff',
 	violet : '#5856d6',
 	pink : '#ff2d55',

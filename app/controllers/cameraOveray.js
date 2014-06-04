@@ -8,18 +8,18 @@ var args = arguments[0],
 	postCol = args.collection;
 
 if(AG.settings.get("platformHeight") < 568){
-	$.cameraOveray.remove($.mapWrap);
+	// $.cameraOveray.remove($.mapWrap);
 }
 
 function send(e) {
 	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
 	Ti.Media.takePicture();
 }
-$.sendBtn.addEventListener('click', _.throttle(send,1000));
-// $.contentField.addEventListener('return', _.throttle(send,1000));
-$.contentField.addEventListener('return', function(){
-	$.shopNameField.focus();
-});
+// $.sendBtn.addEventListener('click', _.throttle(send,1000));
+$.contentField.addEventListener('return', _.throttle(send,1000));
+// $.contentField.addEventListener('return', function(){
+	// $.shopNameField.focus();
+// });
 
 // guidance for facebook, twitter, etcs.. share 
 var timeoutId, 
@@ -68,8 +68,11 @@ $.suggestCompletionListC.setProps({
 	position: currentPosition,
 	textField: $.shopNameField
 });
-$.shopNameField.addEventListener('change', function(){
-	$.distance.setText( $.shopNameField.getValue() +": "
+$.shopNameField.addEventListener('change', function(e){
+	foursquare.venue_id = "";
+	foursquare.venue_name = e.value;
+
+	$.distance.setText( e.value +": "
 		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
 });
 $.shopNameField.addEventListener('suggestComplete', function(e){
@@ -79,9 +82,7 @@ $.shopNameField.addEventListener('suggestComplete', function(e){
 	$.distance.setText( $.shopNameField.getValue() +": "
 		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
 });
-$.shopNameField.addEventListener('return', function(){
-	$.contentField.focus();
-});
+$.shopNameField.addEventListener('return', _.throttle(send,1000));
 
 
 
@@ -112,35 +113,30 @@ $.userName.text = AG.loggedInUser.get('first_name');
 
 function getCurrentPosition(){
 	// reverse geo
-	Titanium.Geolocation.getCurrentPosition(function(e)
-	{
-		if (!e.success || e.error)
-		{
-			currentLocation.text = 'error: ' + JSON.stringify(e.error);
-			Ti.API.info("Code translation: "+translateErrorCode(e.code));
-			alert('error ' + JSON.stringify(e.error));
+	// Titanium.Geolocation.getCurrentPosition(function(e){
+	AG.currentPosition.update(function(e){
+		var longitude = e.longitude;
+		var latitude = e.latitude;
+		if( !AG.currentPosition.get('success') ){
 			return;
 		}
-	
-		var longitude = e.coords.longitude;
-		var latitude = e.coords.latitude;
 		
 		currentPosition.longitude = longitude;
 		currentPosition.latitude = latitude;
 		
 		if(AG.settings.get("platformHeight") >= 568){
-			var GoogleMapsClass = require('GoogleMaps');
-			var GoogleMaps = new GoogleMapsClass({
-				iOSKey: "***REMOVED***"
-			});
-			var mapView = GoogleMaps.initMap({
-				latitude:latitude,
-				longitude:longitude,
-				zoom: 13, //15, 16이 적당해 보임
-				width : Ti.UI.FILL,
-				height : 108,
-			});
-			$.mapWrap.add(mapView);
+			// var GoogleMapsClass = require('GoogleMaps');
+			// var GoogleMaps = new GoogleMapsClass({
+				// iOSKey: "***REMOVED***"
+			// });
+			// var mapView = GoogleMaps.initMap({
+				// latitude:latitude,
+				// longitude:longitude,
+				// zoom: 13, //15, 16이 적당해 보임
+				// width : Ti.UI.FILL,
+				// height : 108,
+			// });
+			// $.mapWrap.add(mapView);
 		}
 		
 		//alert(currentPosition);
@@ -209,13 +205,13 @@ exports.showCamera = function(){
 	if(OS_IOS){
 		Ti.Media.hideCamera();
 	}
-	var catureSize = _.clone(AG.cameraInfo);
-	_.each(catureSize,function(value,key){
-		catureSize[key]=value*2;
+	var captureSize_2x = _.clone(AG.cameraInfo);
+	_.each(captureSize_2x,function(value,key){
+		captureSize_2x[key]=value*2;
 	});
 	
 					  
-	Ti.API.info(catureSize);
+	Ti.API.info(captureSize_2x);
 	
 	Ti.Media.showCamera({
 		success : function(event) {
@@ -228,32 +224,49 @@ exports.showCamera = function(){
 			Ti.API.info(event.media.width);
 			Ti.API.info(event.media.height);
 			Ti.API.info(event.media.mimeType);
-
-			var height = parseInt(catureSize.width*event.media.height/event.media.width);
+			
+			// 카메라에 찍힌 것을 비율 유지한체 높이를 640(captureSize_2x.width)에 맞도록 리사이징
+			var height = parseInt(captureSize_2x.width*event.media.height/event.media.width);
 			var resizedImage = ImageFactory.imageAsResized(event.media, {
-					width : catureSize.width,
+					width : captureSize_2x.width,
 					height : height
 				});
+				
+			// 카메라 height 에 맞게 crop
 			var croppedImage = ImageFactory.imageAsCropped(resizedImage,{
 				x: 0,
-				y: catureSize.top,
-				width: catureSize.width,
-				height : catureSize.height
+				y: captureSize_2x.top, //상단 닫기가 있는 nav 영역
+				width: captureSize_2x.width,
+				height : captureSize_2x.height
 			});
 
 			//og:image 만들기위해 view를 변경하는 부분
-			var fbPreviewFile;
+			var fbImageSize_2x = { 
+					width : captureSize_2x.width,
+					height : 340
+				}; // 1.91 : 1 을 유지하고 
+				// https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/
+				
 			// if(AG.settings.get('postWithFacebook')){
-				$.fieldWrap.width = 320;
-				$.fieldWrap.height = 180;
+				
+				// 캡쳐하기 위해서 불필요한 부분 감추고 필요한 부분 보인다.
+				// $.fieldWrap.width = AG.cameraInfo.width;
+				// $.fieldWrap.height = AG.cameraInfo.height;
 				$.fieldOpacityBG.visible = false;
-				// $.fieldOpacityBG2.visible = true;
 				$.fieldWrap.backgroundImage = croppedImage;
-				$.contentField.visible = false;
-				$.contentLabel.visible = true;
+
+				// $.fieldOpacityBG2.visible = true;
 				$.fakeCursor.visible = false;
-				$.contentLabel.textAlign = 'right';
-				fbPreviewFile = $.fieldWrap.toImage(null, true); 
+				//가짜 textfiled가 typing ux를 위해 left 정렬했기에 ...이 나오면 왼쪽에 쏠리게 되는데 캡쳐할 때는 오른쪽에 붙도록
+				// $.contentLabel.textAlign = 'right';  
+				$.contentLabel.visible = false;  
+				
+				$.captureTitle.text = $.contentLabel.text;
+				
+				$.captureContentImage.width = AG.cameraInfo.width;
+				$.captureContentImage.height = AG.cameraInfo.height;
+				$.captureContentImage.image = $.fieldWrap.toImage(null, true);
+ 
 			// }
 			
 			var blob = ImageFactory.compress(croppedImage, 0.75);
@@ -261,24 +274,36 @@ exports.showCamera = function(){
 			//TODO : bug에 따른 임시 지정 
 			postCol.recentBlob = blob;
 			///
-			
-			postCol.create({
+			var postContent = {
 				title : $.contentField.value,
 				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
 				photo : blob,
 				//user_id: AG.loggedInUser.get('id'),
-				"photo_sizes[medium_320]" : "320x180",
+				"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
 				"photo_sizes[thumb_100]" : "100x100#",
 				'photo_sync_sizes[]' :'original',
 				custom_fields : {
 					foursquare_venue_id: foursquare.venue_id,
-					foursquare_venue_name: foursquare.venue_name,
+					// foursquare_venue_name: foursquare.venue_name,
+					venue_name: foursquare.venue_name,
 					
-					coordinates: [currentPosition.longitude, currentPosition.latitude ],
-					address_ko: currentAddress.ko.results[0],
-					address_en: currentAddress.en.results[0]
+					// coordinates: [currentPosition.longitude, currentPosition.latitude ],
+					// address_ko: currentAddress.ko.results[0],
+					// address_en: currentAddress.en.results[0]
 				}
-			},{
+			};
+			if( currentAddress.ko ){
+				postContent.custom_fields.coordinates = [currentPosition.longitude, currentPosition.latitude ];
+				postContent.custom_fields.address_ko = currentAddress.ko.results[0];
+				postContent.custom_fields.address_en = currentAddress.en.results[0];
+			}
+			
+			var fbOgImageBlog = ImageFactory.compress(ImageFactory.imageAsResized($.fbOgImageRenderView.toImage(null,true),{
+				width : fbImageSize_2x.width,
+				height :fbImageSize_2x.height,
+				hires : false
+			}), 0.2);
+			postCol.create(postContent,{
 				wait:true,
 				success : function(nextPost){
 					Ti.API.info(nextPost.attributes);
@@ -287,12 +312,9 @@ exports.showCamera = function(){
 						var sharePhoto = Alloy.createModel('photo');
 						sharePhoto.save({
 							"collection_name" : "facebook_preview",
-							"photo_sizes[medium_320]" : "320x180",
+							"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
 							'photo_sync_sizes[]' :'original',
-		    				photo: ImageFactory.compress(ImageFactory.imageAsResized(fbPreviewFile,{
-		    					width : 640,
-								height :360
-		    				}), 0.2),
+		    				photo: fbOgImageBlog,
 		    				custom_fields : {
 								"[ACS_Post]parent_id": nextPost.id
 							}

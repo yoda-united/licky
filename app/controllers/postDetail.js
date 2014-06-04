@@ -1,14 +1,6 @@
 var args = arguments[0] || {},
 	postModel = args.postModel;
 
-// var mapWrap = Ti.UI.createView({
-	// width : Ti.UI.FILL,
-	// height : 90,
-	// // touchEnabled : false
-// });
-// mapWrap.add(mapView);
-// $.mapSection.headerView = mapWrap;
-
 $.listView.addEventListener('itemclick', function(e) {
 	if (e.bindId == "profileImage") {
 		// alert(JSON.stringify(e));
@@ -23,22 +15,31 @@ $.listView.addEventListener('itemclick', function(e) {
 
 function resetPostContent(){
 	var contentItem = postModel.doDefaultTransform();
+	var photoHeight =  Ti.UI.createImageView({image:contentItem.photo.image}).toImage().height/2;
 	contentItem.template = 'postItemTemplate';
 	if(OS_IOS){
 		contentItem.properties.selectionStyle = Ti.UI.iPhone.ListViewCellSelectionStyle.NONE;
 	}
 	contentItem.distance.height = 35; // 주소가 두줄 나오게 BOG-113
-	contentItem.properties.height = 180;
+	// contentItem.properties.height = 180;
+	// alert(Alloy.Globals.cameraInfo.width+","+ photoHeight);
+	contentItem.photo.height = photoHeight;
+	contentItem.properties.height = photoHeight;
 	contentItem.properties.backgroundColor = Alloy.Globals.COLORS.whiteGray;
+	contentItem.properties.canEdit = false;
 	// contentItem.photo.height = 180;
 	$.contentSection.setItems([
 		contentItem
 	]);
 }
 
+if(!args.postModel && args.post_id){
+	postModel = Alloy.createModel('post', {id:  args.post_id});
+}
 postModel.on('change',resetPostContent);
 
-
+// model이 없을 땐 fetch하고 있을땐 바로 resetPostContent호출해서 그려줌
+(!args.postModel && args.post_id)?postModel.fetch():resetPostContent();
 
 
 var commentCol = Alloy.createCollection('review');
@@ -49,6 +50,13 @@ var testLabel = Ti.UI.createLabel({
 		fontSize : 15,
 		fontFamily : 'AppleSDGothicNeo-UltraLight'
 	}});
+
+
+var GoogleMapsClass,
+	GoogleMaps;
+		
+
+
 var resetCommentItems = function(){
 	var items = [];
 	commentCol.each(function(comment){
@@ -70,6 +78,33 @@ var resetCommentItems = function(){
 		items.push(item);
 	});
 	$.commentSection.setItems(items);
+	
+	if( !postModel.get('custom_fields') || postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates ){
+		$.mapWrap.setHeight(0);
+	}else{
+		/**
+		 * Google Map
+		 */
+		if(!GoogleMaps){
+			(function(){
+				GoogleMapsClass = require('GoogleMaps');
+				GoogleMaps = new GoogleMapsClass({
+					iOSKey: "***REMOVED***"
+				});
+				var coord = postModel.get("custom_fields").coordinates;
+				var mapView = GoogleMaps.initMap({
+					latitude:coord[0][1],
+					longitude:coord[0][0],
+					zoom: 16, //15, 16이 적당해 보임
+					width : 304,
+					height : 119,
+					top:0
+				});
+				$.mapWrap.setHeight(119);
+				$.mapWrap.add(mapView);
+			})();
+		}
+	}
 	return items;
 };
 
@@ -89,12 +124,17 @@ commentCol.on('add',function(model,col,options){
 });
 
 
-function fetchComments(){
+function fetchComments(options){
 	commentCol.fetch({
 		data : {
 			order : '-created_at',
 			post_id : postModel.id,
 			per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
+		},
+		success: function(){
+			if( options && options.success){
+				options.success();
+			}
 		},
 		error: function(e,resp){
 			if( resp === "post not found" ){	// code 400
@@ -110,10 +150,43 @@ function fetchComments(){
 /**
  * 신고 or 삭제 기능 (자신의 사진이면 삭제, 타인의 사진이면 신고 기능)
  */
-// alert(JSON.stringify(postModel.get('user').id)+ "\n "+ AG.loggedInUser.get('id'));
-if(postModel.get('user').id === AG.loggedInUser.get('id')){
-	$.deleteDialog.addEventListener('click', function(e) {
-		if (e.index === 0) {
+
+// dialog 및 handler 통합
+var STATE_MINE = 'mine',
+	STATE_OTHERS = 'others',
+	STATE_REPORTED = 'reported',
+	OPTION_LABELS = {
+		'mine' : {
+			options : [L('delete'),L('cancel')],
+			destructive : 0,
+			cancel : 1
+		},
+		'others' : {
+			options : [L('report'),L('cancel')],
+			destructive : 0,
+			cancel : 1	
+		},
+		'reported' : {
+			options : [L('unReport'),L('cancel')],
+			title : L('unReportDialogTitle'),
+			cancel : 1
+		}
+	},
+	reportCol = Alloy.createCollection('report'),
+	indi = Ti.UI.createActivityIndicator({
+		style: Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+	});
+	
+
+function showOptionByState(state){
+	console.log(OPTION_LABELS[state]);
+	$.moreOptionDialog.applyProperties(OPTION_LABELS[state]);
+	$.moreOptionDialog.show();
+}
+
+$.moreOptionDialog.addEventListener('click', function(e) {
+	switch(this.options[e.index]){
+		case L('delete'):
 			postModel.destroy({
 				success:function(e){
 					$.postDetail.close();
@@ -122,16 +195,9 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 					alert(L("failToDelete"));
 				}
 			});
-		}
-	});
-	$.moreButton.addEventListener('click', function(e){
-		$.deleteDialog.show();
-	});
-}else{
-	var reportCol = Alloy.createCollection('report');
-	$.reportDialog.addEventListener('click', function(e) {
-		if (e.index === 0) {
-			Alloy.createModel('report').save({
+		break;
+		case L('report'):
+			reportCol.create({
 					class_name : "reports",
 					fields : {
 						"target_post_id": postModel.get('id')
@@ -144,10 +210,8 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 						alert(L("failToReport"));
 					}		
 			});	
-		}
-	});
-	$.unReportDialog.addEventListener('click', function(e) {
-		if (e.index === 0) {
+		break;
+		case L('unReport'):
 			reportCol.at(0).destroy({
 				success: function(e){
 					alert(L("successUnReport"));
@@ -156,15 +220,22 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 					alert(L("failUnReport"));
 				}
 			});
-		}
-	});
-	$.moreButton.addEventListener('click', _.throttle(function(e){
-		var indi = Ti.UI.createActivityIndicator({
-			style: Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
-		});
+		break;
+		
+		case L('cancel'):
+		default :
+		break;
+	}
+});
+
+
+
+$.moreButton.addEventListener('click', _.throttle(function(e){
+	if(postModel.get('user').id === AG.loggedInUser.get('id')){
+		showOptionByState(STATE_MINE);
+	}else{
 		$.postDetail.rightNavButton = indi;
 		indi.show();
-		
 		reportCol.fetch({
 			data:{
 				class_name: "reports",
@@ -176,16 +247,16 @@ if(postModel.get('user').id === AG.loggedInUser.get('id')){
 				limit: 1
 			},
 			success: function(e){
-				(reportCol.length > 0)? $.unReportDialog.show() : $.reportDialog.show();
 				$.postDetail.rightNavButton = $.moreButton;
+				showOptionByState((reportCol.length > 0)? STATE_REPORTED : STATE_OTHERS);
 			},
 			error: function(e){
-				alert("networkFailure");
+				// alert("networkFailure");
 				$.postDetail.rightNavButton = $.moreButton;
 			}
 		});
-	},1000));
-}
+	}
+},1000));
 
 /* TODO: pullView가 alloy에서 먹지를 않는데 언젠간 되겠지 뭐..
 if(OS_IOS){
@@ -287,6 +358,7 @@ $.sendBtn.addEventListener('click',_.throttle(function(e) {
 	});
 },1000));
 
+
 if(OS_IOS){
 	Ti.App.addEventListener('keyboardframechanged', function(e) {
 		if(e.keyboardFrame.width==320 && e.keyboardFrame.y<400){ //appear
@@ -295,10 +367,27 @@ if(OS_IOS){
 			
 		}
 	});
+	
+	// refresh control
+	var control = Ti.UI.createRefreshControl({
+	    tintColor: args.refreshControlTintColor || Alloy.Globals.COLORS.red
+	});
+	$.listView.refreshControl = control;
+	control.addEventListener('refreshstart', function(e){
+		fetchComments({
+			success : function(col){
+				control.endRefreshing();
+			},
+			error : function(){
+				control.endRefreshing();
+			}
+			// reset : true
+		});
+	});
 }
 
 function onMapClick(e){
-	alert(e);
+	// alert(e);
 }
 
 function hiddenProfileOnLoad(){
@@ -309,26 +398,25 @@ function hiddenProfileOnLoad(){
 	//TODO : proxy찾는 하드코딩된 부분을 제거
 }
 
+function refreshByNotification(e) {
+	if( e &&
+		e.ndata && 
+		e.ndata.pushEvent &&
+		e.ndata.pushEvent.data &&
+		e.ndata.pushEvent.data.post_id == postModel.id ){
+		fetchComments();
+	}
+}
 
 $.getView().addEventListener('open', function(e) {
-	resetPostContent();	
-	/**
-	 * Google Map
-	 */
-	var GoogleMapsClass = require('GoogleMaps');
-	var GoogleMaps = new GoogleMapsClass({
-		iOSKey: "***REMOVED***"
-	});
-	var coord = postModel.get("custom_fields").coordinates;
-	var mapView = GoogleMaps.initMap({
-		latitude:coord[0][1],
-		longitude:coord[0][0],
-		zoom: 16, //15, 16이 적당해 보임
-		width : 304,
-		height : 119,
-		top:0
-	});
-	$.mapWrap.add(mapView);
-	
 	fetchComments();
+	
+	// 현재 post의 댓글이 추가되었다는 notification을 받았을때 
+	AG.notifyController.getView().addEventListener("notifyExpose", refreshByNotification);
 });
+
+$.getView().addEventListener('close', function(){
+	AG.notifyController.getView().removeEventListener("notifyExpose", refreshByNotification);
+});
+
+

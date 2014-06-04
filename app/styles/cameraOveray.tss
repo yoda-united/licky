@@ -21,7 +21,7 @@
 	left : 10
 }
 "#sendBtn" : {
-	// visible : false,
+	visible : false,
 	height : Ti.UI.FILL,
 	// width : Ti.UI.SIZE,
 	width: 70,	// 클릭 영역 크게 하려고..
@@ -39,14 +39,14 @@
 "#fieldWrap" : {
 	touchEnabled : false,
 	top: Alloy.Globals.cameraInfo.top,
-	height : 180,
+	height : 256,
 	backgroundColor : 'transparent'
 }
 "#contentField" : {
 	top: 0,
 	tintColor : 'red',
 	// returnKeyType : Ti.UI.RETURNKEY_SEND,
-	returnKeyType : Ti.UI.RETURNKEY_NEXT,
+	returnKeyType : Ti.UI.RETURNKEY_SEND,
 	visible : false,
 	autocorrect : false
 }
@@ -175,7 +175,7 @@
 	zIndex: 10,
 	// top: 311.5
 	top: null,	// app.tss 에 지정된 값을 삭제해야 bottom값이 적용됨 
-	bottom: 256
+	bottom: 268
 }
 "#guidanceLabel": {
 	zIndex: 15,
@@ -185,7 +185,7 @@
 	backgroundColor: Alloy.Globals.COLORS.whiteGray,
 	color: Alloy.Globals.COLORS.darkGray,
 
-	bottom: 220,
+	bottom: 232,
 	left: 18,
 	height: 36,
 	font : {
@@ -197,18 +197,16 @@
 	zIndex: 20,
 	// top: 312,
 	bottom: 216,	// softKeyboard's height
-	height: 40,
+	height: 52,
 	backgroundColor: Alloy.Globals.COLORS.whiteGray
 }
 "#fbShareBtn" : {
-	top: 0,
 	left: 14,
 	height: 40,
 	width: 40
 	// backgroundImage: "images/fbShareActive.png"
 }
 "#locationBtn" : {
-	top: 0,
 	left: 64,
 	height: 40,
 	width: 40,
@@ -237,7 +235,7 @@
 	tintColor: Alloy.Globals.COLORS.red,
 	paddingLeft: 12,
 	hintText: L('shopName'),
-	returnKeyType : Ti.UI.RETURNKEY_NEXT,
+	returnKeyType : Ti.UI.RETURNKEY_SEND,
 	autocorrect: false,
 	autocapitalization: false
 }
@@ -251,4 +249,28 @@
 	// borderColor : 'orange',
 	// borderWidth : '1px',
 	backgroundImage: "images/behindKeyboard.png"
+}
+
+"#fbOgImageRenderView" : {
+	width : 320,
+	height : 170,
+	top: 600
+}
+
+"#captureNavImage" : {
+	height : 60,
+	top : 0,
+	image : 'images/ogImage.png'
+}
+
+"#captureContentImage" : {
+	top  : 44
+}
+
+"#captureTitle" : {
+	bottom: 7,
+	height : 40,
+	top : null,
+	textAlign : 'right',
+	width : Ti.UI.SIZE
 }

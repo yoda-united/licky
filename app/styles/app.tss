@@ -1,5 +1,5 @@
 "Window":{
-	backgroundColor : 'white',
+	backgroundColor : Alloy.Globals.COLORS.lightGray,
 	titleAttributes:{
 		// color:'#dfff',
 		// color: Alloy.Globals.COLORS.orange,
@@ -17,6 +17,8 @@
 	// includeOpaqueBars: true,
 	// translucent: false,
 
+	tintColor: Alloy.Globals.COLORS.red,
+	navTintColor: Alloy.Globals.COLORS.red,
 	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],
 	autoAdjustScrollViewInsets : true
 }
@@ -37,6 +39,8 @@
 	backgroundColor: Alloy.Globals.COLORS.darkGray
 }
 
+
+/* postItemTemplate */
 ".photoTitle" : {
 	right : 10,
 	// bottom : 0,
@@ -52,14 +56,15 @@
 	minimumFontSize : 35,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM
 }
-".opacityScreen": {
+".opacityScreen" : {
 	backgroundColor: "#6A5800",
 	opacity: 0.2
 }
-".photo": {
+".photo" : {
 	width : Alloy.Globals.cameraInfo.width,
 	// height : 108,
-	height: 180,
+	height: 256,
+	// height: Ti.UI.SIZE,
 	// height: Ti.UI.FILL,
 	defaultImage: "images/defaultFoodPhoto.png",
 	image: "images/defaultFoodPhoto.png",
@@ -68,20 +73,20 @@
 	// bottom : 0
 	top: 0
 }
-
 ".userName" : {
-	color : Alloy.Globals.COLORS.whiteGray,
-	top : 8,
-	left: 53,
+	// color : Alloy.Globals.COLORS.whiteGray,
+	color : "#dfff",
+	top : 9,
+	left: 55,
 	font : {
-		fontFamily : 'AppleSDGothicNeo-SemiBold',
+		// fontFamily : 'AppleSDGothicNeo-SemiBold',
+		fontFamily : 'AppleSDGothicNeo-Regular',
 		fontSize : 16
 	}
 }
-
 ".profileImage" : {
 	left : 8,
-	top : 8,
+	top : 6,
 	width : 40,
 	height : 40,
 	mode : Ti.UI.iOS.BLEND_MODE_SOURCE_IN,
@@ -89,17 +94,15 @@
 	mask: "images/defaultProfilePicture_small.png"
 	// image: "images/defaultProfilePicture_small.png"
 }
-
 ".time" : {
-	color : '#cedd',
+	color : '#eddd',
 	right : 7,
-	top : 11,
+	top : 12,
 	font : {
 		fontFamily : 'AppleSDGothicNeo-Regular',
 		fontSize : 13
 	}
 }
-
 // ".photoTitleLabel" : {
 	// left: 50,
 	// width : null,
@@ -108,10 +111,9 @@
 	// //borderColor : 'red',
 	// verticalAlign : null
 // }
-
 ".commentCount" : {
-	left: 14,
-	top : 50,
+	left: 13,
+	top : 48,
 	width : 40,
 	textAlign : 'left',
 	font : {
@@ -121,33 +123,35 @@
 	// color : '#eedc'
 	color : '#eddd'
 }
-".gpsIcon": {
-	left: 56,
-	top: 26,
-	textAlign : 'left',
-	font: {
-		fontFamily : 'FontAwesome',
-		fontSize : 13
-	},
-	color: "#bfff",
-	text: "\uf041",
-	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
-}
-".distance" : {
+// ".gpsIcon" : {
 	// left: 56,
-	left: 66,
-	top: 26,
+	// top: 29,
+	// textAlign : 'left',
+	// font: {
+		// fontFamily : 'FontAwesome',
+		// fontSize : 13
+	// },
+	// color: "#bfff",
+	// text: "\uf041",
+	// verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
+// }
+".distance" : {
+	left: 55,
+	// left: 66,
+	top: 27,
 	// width : 60,
 	height: 15,	// 두줄 방지 차원에서 셋팅 
 	textAlign: 'left',
 	font: {
-		fontFamily : 'AppleSDGothicNeo-Light',
+		fontFamily : 'AppleSDGothicNeo-UltraLight',
 		fontSize : 13
 	},
 	// color : "#dddc"
-	color : "#bfff",
+	color : "#dfff",
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
 }
+/* postItemTemplate end */
+
 
 "#cameraBtn[platform=android]" : {
 	bottom : 10,

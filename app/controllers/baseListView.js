@@ -1,5 +1,10 @@
 var args = arguments[0] || {};
 
+if(args.listViewProperties) {
+	$.listView.applyProperties(args.listViewProperties);
+}
+
+
 //init UI defaults
 $.loadingActivity.show();
 
@@ -188,4 +193,6 @@ if(OS_IOS){
 			reset : true
 		});
 	});
+	
+	$.refreshControl = control;
 }

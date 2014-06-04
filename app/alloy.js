@@ -33,51 +33,49 @@ AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 AG.cameraInfo = {
 	top : 44,
 	width : 320,
-	height : 180
+	height: 256 // 1136/2 - 44 - 216 - 52
+	// height : 180
 };
+AG.loginController =  Alloy.createController('login');
+AG.notifyController = Alloy.createController('notifyView');
+
 
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');
-AG.currentPosition = new Backbone.Model();
-AG.settings.fetch({
-	success: function(){
-		if( !AG.settings.has("platformHeight") ){
-			AG.settings.save("platformHeight", Ti.Platform.displayCaps.platformHeight);
-		}	
-		if( !AG.settings.has("postWithFacebook") ){
-			AG.settings.save("postWithFacebook", true);
-		}	
-	}
-});
+// AG.currentPosition = new Backbone.Model();
+
 AG.loggedInUser = Alloy.Models.instance('loggedInUser');
 AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동기 방식.
 AG.isLogIn = function(){
 	return !!AG.settings.get('cloudSessionId');
 };
-AG.loginController =  Alloy.createController('login');
-AG.notifyController = Alloy.createController('notifyView');
-AG.setAppBadge = function(number){
-	Ti.UI.iPhone.setAppBadge(number);
-	if( AG.isLogIn ){
-		// PushNotifications.reset_badge_get 이 아직 구현 안돼서..
-		AG.Cloud.PushNotifications.notify({
-			channel: "comment",	// shoulbe all exist channel 
-			to_ids: AG.loggedInUser.get('id'),
-			payload: {
-			    "badge": number
-			}
-		}, function (e) {
-		    if (e.success) {
-		    	Ti.API.info("success");
-		    } else {
-		    	Ti.API.info("fail:"+JSON.stringify(e));
-		    }
-		});		
-	}
-};
 
-Alloy.createWidget('appMetaFromACS').fetch({
-	delay : 3000
+
+AG.settings.fetch({
+	success: function(){
+		if( AG.settings.get('cloudSessionId') ){
+			AG.Cloud.sessionId = AG.settings.get('cloudSessionId');
+			AG.Cloud.Users.showMe(function(e) {
+				if (e.success) {
+					var user = e.users[0];
+					AG.loggedInUser.save(user);
+				} else {
+					alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+				}
+			}); 
+		}
+		if( !AG.settings.has("platformHeight") ){
+			AG.settings.save("platformHeight", Ti.Platform.displayCaps.platformHeight);
+		}	
+		if( !AG.settings.has("postWithFacebook") ){
+			AG.settings.save("postWithFacebook", true);
+		}
+		if( !AG.settings.has("deviceToken")  ){
+		}else{
+			// 안해도 되는데..
+			// AG.loginController.subscribePushChannel('broadcast');
+		}
+	}
 });
 
 // push notification
@@ -103,28 +101,27 @@ if( OS_IOS ){
 			Ti.API.info('register for pushnotification error');
 		},
 		success: function(e){
-			var subscribePush = function(){
-				if( AG.settings.get('cloudSessionId') ){
-					AG.Cloud.PushNotifications.subscribe({
-					    channel: 'comment',
-					    type: 'ios',
-					    device_token: Ti.Network.getRemoteDeviceUUID()
-					}, function (e) {
-					    if (e.success) {
-					    	AG.settings.off('change:cloudSessionId', subscribePush );
-					        // alert('Success subscribe\n' + JSON.stringify(e) );
-					    } else {
-					        // alert('Error subscribe:\n' + ((e.error && e.message) || JSON.stringify(e)));
-					    }
-					});
-				}
-			};
-			
-			if( AG.settings.get('cloudSessionId') ){
-				subscribePush();
-			}else{
-				AG.settings.on('change:cloudSessionId', subscribePush );
-			}
+			AG.settings.save("deviceToken", Ti.Network.getRemoteDeviceUUID() );
+			AG.loginController.subscribePushChannel();
 		}
 	});
 }
+
+AG.currentPosition = Alloy.Models.instance('currentPosition');
+AG.currentPosition.update();
+
+var appMetaDebounce = _.debounce(function() {
+	Alloy.createWidget('appMetaFromACS').fetch();
+	// AG.notifyController.setBadge(20);
+});
+setTimeout(appMetaDebounce,3000);
+Ti.App.addEventListener('resume', appMetaDebounce);
+
+Ti.App.addEventListener('changeBadge', function(e){
+	Ti.UI.iPhone.setAppBadge(e.number);
+});
+
+
+
+
+

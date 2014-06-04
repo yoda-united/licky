@@ -1,14 +1,14 @@
+"NavigationWindow" : {
+	backgroundColor : 'white'
+}
 "Button": {
 	bubbleParent: false
 }
 ".container" : {
-	navBarHidden : false,
+	navBarHidden : true,
 	backgroundColor : 'white',
-	modal: true
-}
-".wrap" : {
-	layout : 'vertical',
-	height : Ti.UI.SIZE
+	modal: true,
+	title : L('login')
 }
 "#closeBtn" : {
 	left : 15,
@@ -55,7 +55,8 @@
 	font : {
 		fontSize : 12,
 		fontFamily : 'AppleSDGothicNeo-Light'
-	}
+	},
+	visible : false
 }
 "#facebookImage": {
 	top: 334,
@@ -80,4 +81,15 @@
 	backgroundColor: Alloy.Globals.COLORS.facebookBlue,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 	// backgroundColor: '#4063A7'
+}
+
+"#termsLabel" : {
+	bottom : 15,
+	left : 22,
+	right: 22,
+	color: Alloy.Globals.COLORS.darkGray,
+	text : L('termsAndPrivacy'),
+	font : {
+		fontSize: 13
+	}
 }

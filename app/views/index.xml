@@ -6,6 +6,9 @@
 		<Tab id="nearTab" title="L('nearList')">
 			<Require src="nearPostList"/>
 		</Tab>
+		<Tab id="pushTab" title="L('pushHistoryTabTitle')" >
+			<Require src="pushHistory"/>
+		</Tab>
 		<Tab id="meTab" title="L('me')">
 			<Require id="profile" src="profile" />
 		</Tab>

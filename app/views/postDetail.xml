@@ -11,11 +11,11 @@
 					<ItemTemplate class="commentTemplate" name="commentTemplate">
 						<Label class="time" bindId="time"></Label>
 						<Label class="userName" bindId="userName"></Label>
-						<MaskedImage class="maskedProfile" bindId="profileImage"></MaskedImage>
+						<MaskedImage class="profileImage" bindId="profileImage"></MaskedImage>
 						<View class="speechBubble">
 							<Label class="commentContent" bindId="content"></Label>
 						</View>
-						<ImageView onLoad="hiddenProfileOnLoad" class="hiddenProfile" bindId="hiddenProfile"></ImageView>
+						<ImageView onLoad="hiddenProfileOnLoad" visible="false" class="hiddenProfile" bindId="hiddenProfile"></ImageView>
 						<ImageView class="profileRing" />
 					</ItemTemplate>
 				</Templates>
@@ -23,7 +23,6 @@
 					<View backgoundColor="yellow" height="100" width="320"></View>
 				</PullView> -->
 				<ListSection id="contentSection">
-					<ListItem template="postItemTemplate" height="180"></ListItem>
 				</ListSection>
 				<ListSection id="mapSection">
 					<HeaderView>
@@ -56,14 +55,6 @@
 			</View>
 		</View>
 
-        <OptionDialog id="deleteDialog">
-            <!-- style에서 options 설정 -->
-        </OptionDialog>
-        <OptionDialog id="reportDialog" >
-            <!-- style에서 options 설정 -->
-        </OptionDialog>
-        <OptionDialog id="unReportDialog" >
-             <!-- style에서 options 설정 -->
-        </OptionDialog>
+		<OptionDialog id="moreOptionDialog"></OptionDialog>
 	</Window>
 </Alloy>

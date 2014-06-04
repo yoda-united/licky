@@ -17,26 +17,25 @@ exports.definition = {
 			// extended functions and properties go here
 			doDefaultTransform : function(){
 				
-				
+				Ti.API.info(this.get('photo'));
 				var urls = this.get('photo') && this.get('photo').urls || {}, 
 					profileUrl = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", this.get('user').external_accounts[0].external_id, 80, 80),
 					custom = this.get("custom_fields"),
 					coordi = custom && custom.coordinates,
-					foursquare_venue_name = custom && custom.foursquare_venue_name,
+					venue_name = custom && (custom.venue_name || custom.foursquare_venue_name ),
 					distance;
 					
 				if(coordi) {
 					distance = {
-						text : String.format("%.1fkm%s, %s",
-							AG.utils.calculateDistance([
-								coordi[0],
-								AG.currentPosition.attributes
-							]),
-							foursquare_venue_name ? ": " + foursquare_venue_name : "",
-							AG.utils.getGoogleShortAddress(
+						text : 
+							(AG.currentPosition.get('accuracy') ? 
+								String.format("%.1fkm", AG.utils.calculateDistance([
+									coordi[0],	AG.currentPosition.attributes])) : 
+									"") 
+							+ (venue_name ? ": "+venue_name+", " : ", ") 
+							+ AG.utils.getGoogleShortAddress(
 								custom['address_'+(( AG.currentLanguage == 'ko')?'ko':'en')]
 							)
-						)
 					};
 				}else{
 					distance = {
@@ -52,8 +51,8 @@ exports.definition = {
 				}
 
 				// BOG-196 관련 임시 조치
-				this.cachedBlob = this.cachedBlob || this.collection.recentBlob;
-				this.collection.recentBlob = null;
+				this.cachedBlob = this.cachedBlob || this.collection?this.collection.recentBlob:'';
+				this.collection && (this.collection.recentBlob = null);
 				/////////////////////
 				
 				return({
@@ -93,6 +92,30 @@ exports.definition = {
 						canEdit : isMine
 					},
 				});
+			},
+			// 포스트 삭제하면 업로드된 사진들과 커맨트들을 slimer에서 삭제
+			alterSyncRemove: function(params, callback){
+				// alert(this.get('photo'));
+// 				
+				// return;
+				params.photo_id = this.get('photo').id;
+				var url = AG.slimer.URL + "/api/acs/Posts/" + params.post_id;
+				var client = Ti.Network.createHTTPClient({
+					onload: function(e){
+						callback(JSON.parse(this.responseText));
+						Ti.API.info("----");
+						Ti.API.info(JSON.parse(this.responseText));
+						Ti.API.info("----");
+					},
+					onerror: function(e){
+						Ti.API.debug(e.error);
+						alert("error");
+					},
+					timeout: 5000
+				});
+				client.open("DELETE", url);
+				client.setRequestHeader("Cookie", "_session_id=" + AG.Cloud.sessionId);
+				client.send(params);
 			}
 		});
 

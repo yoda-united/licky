@@ -24,7 +24,10 @@ function Sync( method, model, opts) {
             } else {
                 params = model.toJSON();
             }
-            (model.alterSyncCreate || object_method.create)(params, function(e) {
+            
+            var that = model.alterSyncRemove?model:object_method;
+            // ( xx || xx)의 결과가 함수라 호출되는 함수에서 this가 글로벌이 되는 것 방지 
+            (model.alterSyncCreate || object_method.create).apply(that, [params, function(e) {
 			// object_method.create(params, function(e) {
                 if (e.success) {
                     model.meta = e.meta;
@@ -33,7 +36,7 @@ function Sync( method, model, opts) {
                 }
                 Ti.API.error(e);
                 opts.error && opts.error(e.error && e.message || e);
-            });
+            }]);
             break;
         case "read":
             var id_name = object_name.replace(/s+$/, "") + "_id", params = {};
@@ -94,7 +97,10 @@ function Sync( method, model, opts) {
             	params[reviewdObject.type.toLowerCase()+'_id'] = reviewdObject.id;
             }
             
-            object_method.remove(params, function(e) {
+            var that = model.alterSyncRemove?model:object_method;
+            // ( xx || xx)의 결과가 함수라 호출되는 함수에서 this가 글로벌이 되는 것 방지 
+            (model.alterSyncRemove || object_method.remove).apply(that, [params, function(e) {
+            // object_method.remove(params, function(e) {
                 if (e.success) {
                     model.meta = e.meta;
                     opts.success && opts.success({}), model.trigger("fetch");
@@ -102,7 +108,7 @@ function Sync( method, model, opts) {
                 }
                 Ti.API.error(e);
                 opts.error && opts.error(e.error && e.message || e);
-            });
+            }]);
     }
 }
 

@@ -1,0 +1,9 @@
+<Alloy>
+	<ItemTemplate class="pushItemTemplate" name="pushItemTemplate">
+		<ImageView class="pushPhotoThumb" bindId="photo"></ImageView>
+		<ImageView class="pushProfile" bindId="profile"></ImageView>
+		<Label class="pushTitle" bindId="title"></Label>
+		<Label class="pushPhotoTitle" bindId="photoTitle"></Label>
+		<Label class="date" bindId="date"></Label>
+	</ItemTemplate>
+</Alloy>

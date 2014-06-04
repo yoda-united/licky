@@ -23,10 +23,10 @@
 			<ImageView onLoad="hiddenProfileOnLoad" visible="false" id="hiddenProfile" bindId="hiddenProfile"></ImageView>
 		</View>
 		
-		<View id="mapWrap" />
+		<!-- <View id="mapWrap" /> -->
 		
 		<!-- <View id="shopNameGuidanceWrap" > -->
-		<Require src="suggestCompletionList" id="suggestCompletionListC">
+		<Require src="suggestCompletionList" id="suggestCompletionListC"/>
 	       <!-- <ListView id="shopNameSuggestList" defaultItemTemplate="template">
 	            <Templates>
 	                <ItemTemplate name="template" id="shopNameSuggestTemplate" >
@@ -50,6 +50,12 @@
 		</View>
 		
 		<View id="behindKeyboard" />
+
+		<View id="fbOgImageRenderView">
+			<ImageView id="captureContentImage"></ImageView>
+			<ImageView id="captureNavImage"></ImageView>
+			<Label id="captureTitle" class="photoTitle"></Label>
+		</View>
 		<!-- <View class="infoWrap">
 			<Label id="geoLabel" >위치 확인 중..</Label>
 		</View> -->

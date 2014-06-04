@@ -12,7 +12,10 @@
 			
 	        <TableView id="menuTable" >
 	            <TableViewSection >
-	                <TableViewRow id="foodRow" />
+	                <TableViewRow id="foodRow">
+	                	<Label id="foodRowLabel"></Label>
+	                	<Label id="foodRowCount">110</Label>
+	                </TableViewRow>
 	            </TableViewSection>
 	        </TableView>
 	        <Button id="contactUsBtn"/>

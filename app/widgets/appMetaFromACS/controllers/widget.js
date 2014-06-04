@@ -6,12 +6,6 @@ exports.fetch = function(args){
 		cancel = args.cancel,
 		error = args.error;
 	
-	if(args.delay){
-		args.delay = 0;
-		arguments.callee(args);
-		return;
-	}
-	
 	var appMeta = {
 		osname : Ti.Platform.osname,
 		model : Ti.Platform.model,
@@ -57,8 +51,8 @@ exports.fetch = function(args){
 					});
 		            a.addEventListener('click', function(e)
                     {
-                        if(e.index!==queryItems.cancel){
-                            if(Ti.Platform.canOpenURL(queryItems.url)){
+                        if(e.index!==a.getCancel()){
+                            if(Ti.Platform.canOpenURL(queryItems.url || "")){
                                 Ti.Platform.openURL(queryItems.url);
                             }
                         }

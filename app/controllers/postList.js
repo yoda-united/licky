@@ -3,7 +3,9 @@
  * Models
  */
 
-$.fetchWhereData = {}; // 상속할때 where에 추가하고 싶으면 여기에 지정
+$.fetchWhereData = {
+	user_id: {'$ne' : "5322b0eb5204c6106802ea57"}
+}; // 상속할때 where에 추가하고 싶으면 여기에 지정
 
 var postCol = Alloy.createCollection('post');
 var friendPostCol = Alloy.createCollection('post');
@@ -95,7 +97,7 @@ function searchFacebookFriends(){
 			        fetchOnlyFriendsPost(friendIds);
 			    } else {
 			        if(e.code===400 && e.message && e.message.indexOf('OAuthException')>=0){
-			        	AG.SocialIntegrations.externalAccountLogin({
+			        	AG.Cloud.SocialIntegrations.externalAccountLogin({
 			        		external_accounts : {
 			        			token: AG.facebook.getAccessToken()	
 			        		}
@@ -118,6 +120,7 @@ function searchFacebookFriends(){
 
 function fetchOnlyFriendsPost(userIds) {
 	if(userIds && userIds.length){
+		userIds.push(AG.loggedInUser.get('id'));
 		friendPostCol.defaultFetchData = {
 			where : _.extend(_.clone($.fetchWhereData),{
 				user_id: {'$in' : userIds}
@@ -193,14 +196,9 @@ function showCamera(){
 	});
 }
 
-Titanium.Geolocation.getCurrentPosition(function(e){
-	if (!e.success || e.error)
-	{
-		// currentLocation.text = 'error: ' + JSON.stringify(e.error);
-		Ti.API.info("Code translation: "+translateErrorCode(e.code));
-		alert('error ' + JSON.stringify(e.error));
-		return;
-	}
-	AG.currentPosition.set(e.coords);	
-	//postCol.trigger('reset',postCol);
-});
+
+
+
+
+
+
