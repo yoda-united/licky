@@ -297,6 +297,12 @@ exports.showCamera = function(){
 				postContent.custom_fields.address_ko = currentAddress.ko.results[0];
 				postContent.custom_fields.address_en = currentAddress.en.results[0];
 			}
+			
+			var fbOgImageBlog = ImageFactory.compress(ImageFactory.imageAsResized($.fbOgImageRenderView.toImage(null,true),{
+				width : fbImageSize_2x.width,
+				height :fbImageSize_2x.height,
+				hires : false
+			}), 0.2);
 			postCol.create(postContent,{
 				wait:true,
 				success : function(nextPost){
@@ -308,11 +314,7 @@ exports.showCamera = function(){
 							"collection_name" : "facebook_preview",
 							"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
 							'photo_sync_sizes[]' :'original',
-		    				photo: ImageFactory.compress(ImageFactory.imageAsResized($.fbOgImageRenderView.toImage(null,true),{
-		    					width : fbImageSize_2x.width,
-								height :fbImageSize_2x.height,
-								hires : false
-		    				}), 0.2),
+		    				photo: fbOgImageBlog,
 		    				custom_fields : {
 								"[ACS_Post]parent_id": nextPost.id
 							}
