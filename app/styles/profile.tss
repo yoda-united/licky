@@ -36,7 +36,8 @@
 	height: 212.5,
 	width: 320, //'100%',
 	left: 0,
-	top: 0
+	top: 0,
+	preventDefaultImage : true
 }
 "#profileImage": {
 	preventDefaultImage : false,
