@@ -1,0 +1,22 @@
+var args = arguments[0] || {};
+
+
+$.step03Button.addEventListener('click', function(){
+	AG.settings.save('isWalkthroughMaster', true);
+	$.walkthrough.close();
+});
+
+$.scrollableView.addEventListener('scrollend', function(e){
+	// 3 페이지 일때 
+	if( e.currentPage == 2	) {
+		// $.step03Button.setVisible(true);
+		$.step03Button.animate({
+			opacity: 1.0,
+			delay: 200,
+			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+			duration: 400
+		});
+	}else{
+		$.step03Button.setOpacity(0);
+	}
+});

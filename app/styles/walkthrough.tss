@@ -1,0 +1,69 @@
+"Label": {
+	color: Alloy.Globals.COLORS.darkGray
+}
+".container": {
+	modal: true,
+	// backgroundImage: 'images/restaurant.jpg',
+	// backgroundLeftCap : 320,
+	backgroundColor: "white"
+}
+"#backgoundImage":{
+	top: 200,
+	// widht: Ti.UI.SIZE,
+	// height: Ti.UI.SIZE
+	image: 'images/bbq.png'
+}
+
+"#scrollableView": {
+	top: 0,
+	// height: 400,
+	tintColor: "black",
+	// pagingControlOnTop: true,
+	showPagingControl: true,
+	// pagingControlAlpha : 0.5,
+	pagingControlColor: "transparent",
+	// pagingControlColor: Alloy.Globals.COLORS.lightWarmGray,
+	overlayEnabled: true
+}
+
+"#step01": {
+	// backgroundImage: "images/walkthrough01.png"
+}
+"#step02Image": {
+	top: 135,
+	width: 146,
+	height: 134,
+	image: "images/phoneWithCamera.png"
+}
+"#step03Image": {
+	top: 180,
+	width: 140,
+	height: 80,
+	image: "images/forkAndKnife.png"
+}
+"#step01Label": {
+	top: 300,
+	text: L('step1_order')
+}
+"#step02Label": {
+	top: 300,
+	text: L('step2_takePic')
+}
+"#step03Label": {
+	top: 300,
+	text: L('step3_try')
+}
+"#step03Button": {
+	// visible: false,
+	opacity: 0.0,
+	top: 365,
+	height: 50,
+	width: 150,
+	borderRadius: 5,
+	borderColor: Alloy.Globals.COLORS.gray,
+	backgroundColor: Alloy.Globals.COLORS.lightGray,
+	// backgroundColor: "#ECC28F",
+	title: L('letsGo')
+}
+
+
