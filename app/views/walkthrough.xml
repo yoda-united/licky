@@ -1,0 +1,19 @@
+<Alloy>
+	<Window class="container">
+		<ImageView id="backgoundImage"></ImageView>
+		<ScrollableView id="scrollableView" >
+            <View id="step01">
+            	<Label id="step01Label"></Label>
+            </View>
+            <View id="step02">
+            	<ImageView id="step02Image"></ImageView>
+            	<Label id="step02Label"></Label>
+            </View>
+            <View id="step03">
+            	<ImageView id="step03Image"></ImageView>
+            	<Label id="step03Label"></Label>
+            	<Button id="step03Button"></Button>
+            </View>
+        </ScrollableView>
+	</Window>
+</Alloy>

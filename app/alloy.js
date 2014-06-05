@@ -53,6 +53,9 @@ AG.isLogIn = function(){
 
 AG.settings.fetch({
 	success: function(){
+		if( !AG.settings.get('isWalkthroughMaster') ){
+			Alloy.createController('walkthrough').getView().open();
+		}
 		if( AG.settings.get('cloudSessionId') ){
 			AG.Cloud.sessionId = AG.settings.get('cloudSessionId');
 			AG.Cloud.Users.showMe(function(e) {

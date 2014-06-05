@@ -2,6 +2,7 @@
 AG.mainTabGroup = $.index;
 $.index.open();
 
+
 $.index.addEventListener('focus', function(e){
 	var prevTabIndex = e.previousIndex;
 	

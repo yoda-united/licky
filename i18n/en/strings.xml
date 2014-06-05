@@ -47,4 +47,10 @@
 	<string name="leftACommentOnYourLicky"> 님이 댓글을 남겼어요: </string>
 	<string name="friendsPostNeedsLogin">친구 것만 따로 보려면 로그인 먼저 하셔야죠^^</string>
 	<string name="termsAndPrivacy">로그인은 이용약관 및 개인정보 취급정책을 동의하는 것을 의미합니다.</string>
+	
+	<!-- walkthrough -->
+	<string name="step1_order">1. 음식을 시켜요</string>
+	<string name="step2_takePic">2. 사진을 찍어요</string>
+	<string name="step3_try">3. 먹어요</string>
+	<string name="letsGo">시작해 볼까요?</string>
 </resources>
