@@ -7,11 +7,14 @@
 	// backgroundLeftCap : 320,
 	backgroundColor: "white"
 }
-"#backgoundImage":{
+"#stilImage":{
 	top: 200,
-	// widht: Ti.UI.SIZE,
-	// height: Ti.UI.SIZE
 	image: 'images/bbq.png'
+}
+"#stilImage2":{
+	top: 200,
+	opacity: 0.0,
+	image: 'images/bbqWithPlate.png'
 }
 
 "#scrollableView": {
@@ -30,7 +33,7 @@
 	// backgroundImage: "images/walkthrough01.png"
 }
 "#step02Image": {
-	top: 135,
+	top: 130,
 	width: 146,
 	height: 134,
 	image: "images/phoneWithCamera.png"
@@ -56,13 +59,13 @@
 "#step03Button": {
 	// visible: false,
 	opacity: 0.0,
-	top: 365,
+	top: 335,
 	height: 50,
 	width: 150,
 	borderRadius: 5,
 	borderColor: Alloy.Globals.COLORS.gray,
-	backgroundColor: Alloy.Globals.COLORS.lightGray,
-	// backgroundColor: "#ECC28F",
+	backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
+	// backgroundColor: "#F2F6F6",
 	title: L('letsGo')
 }
 

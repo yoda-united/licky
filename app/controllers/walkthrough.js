@@ -16,7 +16,19 @@ $.scrollableView.addEventListener('scrollend', function(e){
 			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
 			duration: 400
 		});
+		$.stilImage2.animate({
+			opacity: 1.0,
+			delay: 200,
+			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+			duration: 400
+		});
 	}else{
 		$.step03Button.setOpacity(0);
+		$.stilImage2.animate({
+			opacity: 0.0,
+			delay: 0,
+			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
+			duration: 200
+		});
 	}
 });

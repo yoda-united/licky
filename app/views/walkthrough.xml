@@ -1,6 +1,7 @@
 <Alloy>
 	<Window class="container">
-		<ImageView id="backgoundImage"></ImageView>
+		<ImageView id="stilImage"></ImageView>
+		<ImageView id="stilImage2"></ImageView>
 		<ScrollableView id="scrollableView" >
             <View id="step01">
             	<Label id="step01Label"></Label>
