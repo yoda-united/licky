@@ -10,15 +10,15 @@ $.scrollableView.addEventListener('scrollend', function(e){
 	// 3 페이지 일때 
 	if( e.currentPage == 2	) {
 		// $.step03Button.setVisible(true);
-		$.step03Button.animate({
+		$.stilImage2.animate({
 			opacity: 1.0,
-			delay: 200,
+			delay: 600,
 			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
 			duration: 400
 		});
-		$.stilImage2.animate({
+		$.step03Button.animate({
 			opacity: 1.0,
-			delay: 200,
+			delay: 600,
 			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
 			duration: 400
 		});

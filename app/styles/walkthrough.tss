@@ -1,5 +1,9 @@
-"Label": {
-	color: Alloy.Globals.COLORS.darkGray
+".guidanceLabel": {
+	font: {
+		// fontFamily: 'AppleSDGothicNeo-Bold', 
+		fontSize: 16
+	},
+	color: Alloy.Globals.COLORS.midGray
 }
 ".container": {
 	modal: true,
@@ -25,7 +29,7 @@
 	showPagingControl: true,
 	// pagingControlAlpha : 0.5,
 	pagingControlColor: "transparent",
-	// pagingControlColor: Alloy.Globals.COLORS.lightWarmGray,
+	pagingControlColor: Alloy.Globals.COLORS.darkGray,
 	overlayEnabled: true
 }
 
@@ -58,13 +62,15 @@
 }
 "#step03Button": {
 	// visible: false,
+	zIndex: 10,
 	opacity: 0.0,
-	top: 335,
+	top: 285,
 	height: 50,
-	width: 150,
+	width: 160,
 	borderRadius: 5,
+	color: Alloy.Globals.COLORS.darkGray,
 	borderColor: Alloy.Globals.COLORS.gray,
-	backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
+	backgroundColor: Alloy.Globals.COLORS.whiteGray,
 	// backgroundColor: "#F2F6F6",
 	title: L('letsGo')
 }
