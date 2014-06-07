@@ -5,7 +5,7 @@
 		fontSize: 17
 	},
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-	color: Alloy.Globals.COLORS.midGray
+	color: Alloy.Globals.COLORS.darkGray
 }
 ".container": {
 	modal: true,
@@ -58,6 +58,9 @@
 }
 "#welcomeLabel": {
 	top: 250,
+	font: {
+		fontSize: 19
+	},
 	text: L('welcome')
 }
 "#walkthroughStart": {
@@ -84,7 +87,7 @@
 	height: 50,
 	width: 160,
 	borderRadius: 5,
-	color: Alloy.Globals.COLORS.darkGray,
+	tintColor: Alloy.Globals.COLORS.darkGray,
 	borderColor: Alloy.Globals.COLORS.gray,
 	backgroundColor: Alloy.Globals.COLORS.whiteGray,
 	// backgroundColor: "#F2F6F6",
