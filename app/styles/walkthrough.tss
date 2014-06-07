@@ -1,8 +1,10 @@
 ".guidanceLabel": {
+	top: 300,
 	font: {
 		// fontFamily: 'AppleSDGothicNeo-Bold', 
-		fontSize: 16
+		fontSize: 17
 	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	color: Alloy.Globals.COLORS.midGray
 }
 ".container": {
@@ -29,11 +31,17 @@
 	showPagingControl: true,
 	// pagingControlAlpha : 0.5,
 	pagingControlColor: "transparent",
-	pagingControlColor: Alloy.Globals.COLORS.darkGray,
+	// pagingControlColor: Alloy.Globals.COLORS.darkGray,
+	pagingControlColor: "black",
 	overlayEnabled: true
 }
 
-"#step01": {
+"#step00": {
+	zIndex: 10,
+	backgroundColor: "white",
+	top: 0,
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL
 	// backgroundImage: "images/walkthrough01.png"
 }
 "#step02Image": {
@@ -48,16 +56,24 @@
 	height: 80,
 	image: "images/forkAndKnife.png"
 }
+"#welcomeLabel": {
+	top: 250,
+	text: L('welcome')
+}
+"#walkthroughStart": {
+	top: 310,
+	font: {
+		fontSize: 15
+	},
+	text: L('walkthroughStart')
+}
 "#step01Label": {
-	top: 300,
 	text: L('step1_order')
 }
 "#step02Label": {
-	top: 300,
 	text: L('step2_takePic')
 }
 "#step03Label": {
-	top: 300,
 	text: L('step3_try')
 }
 "#step03Button": {
