@@ -114,7 +114,8 @@ exports.setBadge = setBadge;
  * });
  */
 function push(options){
-	Ti.App.fireEvent( "changeBadge", {"number": Ti.UI.iPhone.getAppBadge()});
+	// Ti.App.fireEvent( "changeBadge", {"number": Ti.UI.iPhone.getAppBadge()});
+	setBadge("+1");
 	
 	// queueing
 	queue.push(options);
