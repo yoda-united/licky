@@ -4,7 +4,7 @@ $.step03Button.addEventListener('click', function(){
 	AG.settings.save('isWalkthroughMaster', true);
 	$.walkthrough.close();
 });
-$.step00.addEventListener('click', function(){
+$.step00.addEventListener('touchend', function(){
 	$.step00.animate({
 			opacity: 0.0,
 			top: Ti.Platform.displayCaps.platformHeight,

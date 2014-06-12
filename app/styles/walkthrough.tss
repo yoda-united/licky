@@ -30,7 +30,7 @@
 	// pagingControlOnTop: true,
 	showPagingControl: true,
 	// pagingControlAlpha : 0.5,
-	pagingControlColor: "transparent",
+	// pagingControlColor: "transparent",
 	// pagingControlColor: Alloy.Globals.COLORS.darkGray,
 	pagingControlColor: "black",
 	overlayEnabled: true
