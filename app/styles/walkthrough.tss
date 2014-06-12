@@ -1,8 +1,8 @@
 ".guidanceLabel": {
 	top: 300,
 	font: {
-		// fontFamily: 'AppleSDGothicNeo-Bold', 
-		fontSize: 17
+		fontFamily: 'AppleSDGothicNeo-Thin', 
+		fontSize: 35
 	},
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	color: Alloy.Globals.COLORS.darkGray
@@ -15,6 +15,8 @@
 }
 "#stilImage":{
 	top: 200,
+	width : 160,
+	height : 92,
 	image: 'images/bbq.png'
 }
 "#stilImage2":{
@@ -30,9 +32,10 @@
 	// pagingControlOnTop: true,
 	showPagingControl: true,
 	// pagingControlAlpha : 0.5,
-	pagingControlColor: "transparent",
 	// pagingControlColor: Alloy.Globals.COLORS.darkGray,
-	pagingControlColor: "black",
+	pagingControlColor:'transparent',
+	pagingControlIndicatorColor : Alloy.Globals.COLORS.gray,
+	pagingControlCurrentIndicatorColor : Alloy.Globals.COLORS.darkGray,
 	overlayEnabled: true
 }
 
@@ -83,13 +86,24 @@
 	// visible: false,
 	zIndex: 10,
 	opacity: 0.0,
-	top: 285,
-	height: 50,
-	width: 160,
+	// top: 285,
+	top: 355,
+	height: 70,
+	width: 250,
 	borderRadius: 5,
 	tintColor: Alloy.Globals.COLORS.darkGray,
-	borderColor: Alloy.Globals.COLORS.gray,
-	backgroundColor: Alloy.Globals.COLORS.whiteGray,
+	// borderColor: Alloy.Globals.COLORS.gray,
+	backgroundGradient : {
+        type: 'linear',
+        startPoint: { x: '50%', y: '00%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: Alloy.Globals.COLORS.gradient.lickyRed,
+   },
+	color : 'white',
+	font: {
+		fontFamily: 'AppleSDGothicNeo-Thin', 
+		fontSize: 35
+	},
 	// backgroundColor: "#F2F6F6",
 	title: L('letsGo')
 }

@@ -4,16 +4,18 @@ $.step03Button.addEventListener('click', function(){
 	AG.settings.save('isWalkthroughMaster', true);
 	$.walkthrough.close();
 });
-$.step00.addEventListener('click', function(){
-	$.step00.animate({
-			opacity: 0.0,
-			top: Ti.Platform.displayCaps.platformHeight,
-			delay: 0,
-			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
-			duration: 400
-		});
-	$.step00.removeEventListener('click', arguments.callee);
-});
+
+$.step02Label.attributedString = Titanium.UI.iOS.createAttributedString({
+    text: L('step2_takePic'),
+    attributes: [
+        {
+            type: Titanium.UI.iOS.ATTRIBUTE_FOREGROUND_COLOR,
+            value: AG.COLORS.lickyRed,
+            range: [L('step2_takePic').indexOf('릭키'),2]
+        }
+    ]
+});;
+
 $.scrollableView.addEventListener('scrollend', function(e){
 	// if( e.currentPage == 1){
 		// var t1 = Ti.UI.create3DMatrix();
