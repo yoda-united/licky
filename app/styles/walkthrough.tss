@@ -15,12 +15,14 @@
 }
 "#stilImage":{
 	top: 200,
-	width : 160,
-	height : 92,
+	width : 119,
+	height : 58,
 	image: 'images/bbq.png'
 }
 "#stilImage2":{
 	top: 200,
+	width : 160,
+	height : 92,
 	opacity: 0.0,
 	image: 'images/bbqWithPlate.png'
 }
@@ -48,15 +50,15 @@
 	// backgroundImage: "images/walkthrough01.png"
 }
 "#step02Image": {
-	top: 130,
-	width: 146,
-	height: 134,
+	top: 115,
+	width: 183,
+	height: 169,
 	image: "images/phoneWithCamera.png"
 }
 "#step03Image": {
 	top: 180,
-	width: 140,
-	height: 80,
+	width: 208,
+	height: 110,
 	image: "images/forkAndKnife.png"
 }
 "#welcomeLabel": {
