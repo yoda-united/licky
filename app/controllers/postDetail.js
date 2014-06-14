@@ -229,6 +229,18 @@ $.moreOptionDialog.addEventListener('click', function(e) {
 });
 
 
+$.shareButton.addEventListener('click', function(e) {
+	// https://github.com/viezel/TiSocial.Framework
+	var Social = require('dk.napp.social');
+	Social.activityView({
+	    text: "먹기전에 릭키! 찰칵!",
+	    url: 'http://www.licky.co/post/'+postModel.id,
+	    removeIcons:"print,copy,contact,camera,mail,readinglist,airdrop"
+	},[
+	    
+	]);
+});
+
 
 $.moreButton.addEventListener('click', _.throttle(function(e){
 	if(postModel.get('user').id === AG.loggedInUser.get('id')){
@@ -247,12 +259,12 @@ $.moreButton.addEventListener('click', _.throttle(function(e){
 				limit: 1
 			},
 			success: function(e){
-				$.postDetail.rightNavButton = $.moreButton;
+				$.postDetail.rightNavButton = $.navButtonWrap;
 				showOptionByState((reportCol.length > 0)? STATE_REPORTED : STATE_OTHERS);
 			},
 			error: function(e){
 				// alert("networkFailure");
-				$.postDetail.rightNavButton = $.moreButton;
+				$.postDetail.rightNavButton = $.navButtonWrap;
 			}
 		});
 	}
