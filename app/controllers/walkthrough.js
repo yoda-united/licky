@@ -31,7 +31,7 @@ $.scrollableView.addEventListener('scrollend', function(e){
 		// $.step03Button.setVisible(true);
 		$.stilImage2.animate({
 			opacity: 1.0,
-			delay: 600,
+			delay: 300,
 			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
 			duration: 400
 		});
