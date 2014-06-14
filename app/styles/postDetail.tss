@@ -20,7 +20,23 @@
 }
 
 "#moreButton": {
-	title: "\u2026"
+	title: "\uf1b3",
+	font: {
+		fontFamily : 'ionicons',
+		fontSize : 30
+	},
+	left: 11
+}
+"#shareButton":{
+	title : "\uf1f1",
+	font: {
+		fontFamily : 'ionicons',
+		fontSize : 30
+	}
+}
+
+"#navButtonWrap" : {
+	layout : 'horizontal'
 }
 
 ".commentTemplate" : {
