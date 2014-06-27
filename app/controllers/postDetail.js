@@ -174,7 +174,8 @@ var STATE_MINE = 'mine',
 	},
 	reportCol = Alloy.createCollection('report'),
 	indi = Ti.UI.createActivityIndicator({
-		style: Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+		style: Titanium.UI.iPhone.ActivityIndicatorStyle.DARK,
+		indicatorColor : AG.COLORS.lickyRed
 	});
 	
 
