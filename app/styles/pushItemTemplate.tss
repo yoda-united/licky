@@ -13,7 +13,8 @@
 	width: 100,
 	height: 66,
 	opacity: 0.2,
-	contentMode : 'aspectfill'
+	contentMode : 'aspectfill',
+	preventDefaultImage : true
 }
 
 ".pushProfile" : {
@@ -21,7 +22,8 @@
 	left: 5,
 	height : 36,
 	width : 36,
-	borderRadius : 18
+	borderRadius : 18,
+	preventDefaultImage : true
 }
 
 ".pushTitle" : {
