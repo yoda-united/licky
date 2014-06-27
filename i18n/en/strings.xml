@@ -46,7 +46,7 @@
 	<string name="failToTokenRenewalLogin">Facebook 정보를 갱신하는데 실패했어요. 잠시후 다시 시도해 주세요.</string>
 	<string name="leftACommentOnYourLicky"> 님이 댓글을 남겼어요: </string>
 	<string name="friendsPostNeedsLogin">친구 것만 따로 보려면 로그인 먼저 하셔야죠^^</string>
-	<string name="termsAndPrivacy">로그인은 이용약관 및 개인정보 취급정책을 동의하는 것을 의미합니다.</string>
+	<string name="termsAndPrivacy">로그인은 이용약관 및 개인정보 취급정책에\n동의하는 것을 의미합니다.</string>
 	
 	<!-- walkthrough -->
 	<string name="welcome">반가워요, </string>
