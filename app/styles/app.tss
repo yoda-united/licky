@@ -1,5 +1,12 @@
 "Window":{
-	backgroundColor : Alloy.Globals.COLORS.lightGray,
+	backgroundColor : Alloy.Globals.COLORS.lightGray
+}
+"Window[platform=ios]": {
+	// statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	// statusBarStyle: Ti.UI.iPhone.StatusBar.GRAY,
+	// includeOpaqueBars: true,
+	// translucent: false,
+
 	titleAttributes:{
 		// color:'#dfff',
 		// color: Alloy.Globals.COLORS.orange,
@@ -9,14 +16,7 @@
 		font: {fontFamily:'AppleSDGothicNeo', fontSize:17},
 		left : 0,
 		right : 0
-	}
-}
-"Window[platform=ios]": {
-	// statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT,
-	// statusBarStyle: Ti.UI.iPhone.StatusBar.GRAY,
-	// includeOpaqueBars: true,
-	// translucent: false,
-
+	},
 	tintColor: Alloy.Globals.COLORS.red,
 	navTintColor: Alloy.Globals.COLORS.red,
 	extendEdges : [Ti.UI.EXTEND_EDGE_TOP, Ti.UI.EXTEND_EDGE_BOTTOM],

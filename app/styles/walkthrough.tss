@@ -1,0 +1,113 @@
+".guidanceLabel": {
+	top: 300,
+	font: {
+		fontFamily: 'AppleSDGothicNeo-Thin', 
+		fontSize: 35
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	color: Alloy.Globals.COLORS.darkGray
+}
+".container": {
+	modal: true,
+	// backgroundImage: 'images/restaurant.jpg',
+	// backgroundLeftCap : 320,
+	backgroundColor: "white"
+}
+"#stilImage":{
+	top: 200,
+	width : 119,
+	height : 58,
+	image: 'images/bbq.png'
+}
+"#stilImage2":{
+	top: 200,
+	width : 160,
+	height : 92,
+	opacity: 0.0,
+	image: 'images/bbqWithPlate.png'
+}
+
+"#scrollableView": {
+	top: 0,
+	// height: 400,
+	tintColor: "black",
+	// pagingControlOnTop: true,
+	showPagingControl: true,
+	// pagingControlAlpha : 0.5,
+	// pagingControlColor: Alloy.Globals.COLORS.darkGray,
+	pagingControlColor:'transparent',
+	pagingControlIndicatorColor : Alloy.Globals.COLORS.gray,
+	pagingControlCurrentIndicatorColor : Alloy.Globals.COLORS.darkGray,
+	overlayEnabled: true
+}
+
+"#step00": {
+	zIndex: 10,
+	backgroundColor: "white",
+	top: 0,
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL
+	// backgroundImage: "images/walkthrough01.png"
+}
+"#step02Image": {
+	top: 115,
+	width: 183,
+	height: 169,
+	image: "images/phoneWithCamera.png"
+}
+"#step03Image": {
+	top: 180,
+	width: 208,
+	height: 110,
+	image: "images/forkAndKnife.png"
+}
+"#welcomeLabel": {
+	top: 250,
+	font: {
+		fontSize: 19
+	},
+	text: L('welcome')
+}
+"#walkthroughStart": {
+	top: 310,
+	font: {
+		fontSize: 15
+	},
+	text: L('walkthroughStart')
+}
+"#step01Label": {
+	text: L('step1_order')
+}
+"#step02Label": {
+	text: L('step2_takePic')
+}
+"#step03Label": {
+	text: L('step3_try')
+}
+"#step03Button": {
+	// visible: false,
+	zIndex: 10,
+	opacity: 0.0,
+	// top: 285,
+	top: 355,
+	height: 70,
+	width: 250,
+	borderRadius: 5,
+	tintColor: Alloy.Globals.COLORS.darkGray,
+	// borderColor: Alloy.Globals.COLORS.gray,
+	backgroundGradient : {
+        type: 'linear',
+        startPoint: { x: '50%', y: '00%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: Alloy.Globals.COLORS.gradient.lickyRed,
+   },
+	color : 'white',
+	font: {
+		fontFamily: 'AppleSDGothicNeo-Thin', 
+		fontSize: 35
+	},
+	// backgroundColor: "#F2F6F6",
+	title: L('letsGo')
+}
+
+

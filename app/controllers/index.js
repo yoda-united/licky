@@ -2,6 +2,7 @@
 AG.mainTabGroup = $.index;
 $.index.open();
 
+
 $.index.addEventListener('focus', function(e){
 	var prevTabIndex = e.previousIndex;
 	
@@ -51,6 +52,24 @@ Ti.App.addEventListener('changeBadge', function(e){
 	$.pushTab.setBadge(e.number || null);
 });
 
-
+/* x-callback-url */
+if( OS_IOS ){
+	var doUrlScheme = function(){
+		var url = Ti.App.getArguments().url;
+		// url = "licky://post/53a5338ec270f264ca00293f?asdf=as";
+		if( url ){
+			var reg = /^(.*):\/\/post\/(\w*)/i;
+			var match = reg.exec(url);
+			// alert( JSON.stringify(match[2]) );
+			if( match ){
+				AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
+					post_id: match[2]
+				});
+			}
+		}
+	};
+	doUrlScheme();
+	Ti.App.addEventListener('resumed', doUrlScheme);
+}
 
 

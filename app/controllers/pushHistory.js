@@ -2,6 +2,9 @@ var args = arguments[0] || {};
 var chatCol = Alloy.createCollection('chat');
 
 function setDefaultFetchData(){
+	if( !AG.isLogIn() ){
+		chatCol.reset();
+	}
 	chatCol.defaultFetchData = {
 		participate_ids : [
 			//따로 채팅기능 구현이 있을 수 있으므로 push용 구분을 위해 system용 id를 같이 넣어준다.
@@ -15,14 +18,7 @@ function setDefaultFetchData(){
 }
 setDefaultFetchData();
 
-function onChangeLoginUser(){
-	setDefaultFetchData();
-	
-	if(!AG.settings.get('cloudSessionId')){
-		chatCol.reset();
-	}	
-}
-AG.settings.on('change:cloudSessionId', onChangeLoginUser);
+AG.loggedInUser.on('change:id', setDefaultFetchData);
 
 $.listViewC.setCollection(chatCol);
 
@@ -40,7 +36,7 @@ $.listViewC.on('itemclick', _.throttle(function(e){
 
 $.getView().addEventListener('focus', function(e) {
 	// 문서에는 명시돼 있지 않지만 로긴한 사용자만 쿼리 날릴수 있는 듯.
-	if( AG.isLogIn()){
+	if( AG.isLogIn() ){
 		chatCol.fetch();
 	}
 });

@@ -1,7 +1,8 @@
 
-".container" : {
+"Window" : {
 	backgroundColor: Alloy.Globals.COLORS.lightGray,
- 	extendEdges : []
+ 	extendEdges : [], //tss에서 작동하지 않아서 js에서 처리
+ 	backgroundColor : 'white'
 }
 
 "#loginBtn" : {

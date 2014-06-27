@@ -1,7 +1,10 @@
 <Alloy>
 	<Window class="container">
 		<RightNavButton platform="ios">
-			<Button id="moreButton" />
+			<View id="navButtonWrap">
+				<Button id="shareButton"/>
+				<Button id="moreButton" />
+			</View>
 		</RightNavButton>
 		
 		<View id="mainWrap">
