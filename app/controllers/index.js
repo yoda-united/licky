@@ -61,7 +61,7 @@ if( OS_IOS ){
 			var reg = /^(.*):\/\/post\/(\w*)/i;
 			var match = reg.exec(url);
 			// alert( JSON.stringify(match[2]) );
-			if( match[2] ){
+			if( match ){
 				AG.utils.openController(AG.mainTabGroup.activeTab, 'postDetail', {
 					post_id: match[2]
 				});
