@@ -1,3 +1,4 @@
+Titanium.UI.backgroundColor = 'white';
 if(ENV_PRODUCTION){
 	var newrelic = require('ti.newrelic'); 
 	newrelic.start("***REMOVED***");

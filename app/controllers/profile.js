@@ -1,5 +1,9 @@
 var args = arguments[0] || {}, userModel = args.userModel;
 
+//init extendEdges
+// 원래 tss에서 지정하면 작동해야하는데 안되서 js에서 처리
+$.profile.extendEdges = [];
+
 if (userModel) {
 	// 다른 사람 프로필
 	Ti.API.info("[profile.js] another user");
