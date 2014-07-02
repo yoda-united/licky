@@ -1,0 +1,13 @@
+<Alloy>
+	<Window class="container">
+		<View class="dialogWrap">
+			<Label class="titleIcon"></Label>
+			<Label class="description">글 작성 성공!</Label>
+			<Label class="recommendText">참여한 글에 댓글이 달리면 Push 알림으로 알려드릴까요?</Label>
+			<View class="btnWrap">
+				<Button id="cancel"></Button>
+				<Button id="please"></Button>
+			</View>
+		</View>
+	</Window>
+</Alloy>

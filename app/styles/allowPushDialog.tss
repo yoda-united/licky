@@ -1,0 +1,44 @@
+
+".container" : {
+  backgroundColor : 'rgba(0,0,0,0.5)'
+}
+
+".dialogWrap":{
+	borderColor : 'gray',
+	height : 350,
+	width : 250,
+	layout : 'vertical',
+	backgroundColor : 'white'
+}
+
+".titleIcon" : {
+	text: "\uf16d", //f16d , f16e
+	font: {
+		fontFamily : 'ionicons',
+		fontSize : 60
+	},
+	color : Alloy.Globals.COLORS.red,
+	top : 10
+}
+
+".btnWrap" : {
+	layout : 'horizontal',
+	width : Ti.UI.SIZE
+}
+
+"Button" : {
+	borderColor : 'gray',
+	width : 100,
+	height : 50,
+	font : {
+		fontSize : 20
+	}
+}
+
+"#cancel" : {
+	title : L('cancel')
+}
+
+"#please" : {
+	title : L('pleasePush')
+}
