@@ -1,14 +1,15 @@
 
-".container" : {
+".container[platform=ios]" : {
   backgroundColor : 'rgba(0,0,0,0.5)'
 }
 
 ".dialogWrap":{
 	borderColor : 'gray',
-	height : 350,
+	// height : 350,
+	height : Ti.UI.SIZE,
 	width : 250,
 	layout : 'vertical',
-	backgroundColor : 'white'
+	backgroundColor : Alloy.Globals.COLORS.whiteGray
 }
 
 ".titleIcon" : {
@@ -17,28 +18,63 @@
 		fontFamily : 'ionicons',
 		fontSize : 60
 	},
-	color : Alloy.Globals.COLORS.red,
-	top : 10
+	color : Alloy.Globals.COLORS.blue,
+	top : 15
+}
+
+".description" : {
+	font : {
+		fontSize : 30,
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	},
+	color : Alloy.Globals.COLORS.blue
+}
+
+".recoWrap": {
+	height : 80,
+	top : 15,
+	bottom : 15,
+	width : 252,
+	left : -1,
+	borderColor : Alloy.Globals.COLORS.lightWarmGray,
+	backgroundColor : Alloy.Globals.COLORS.lightGray	
+}
+".recommandText" : {
+	left: 21,
+	right : 21,
+	height : 50,
+	font : {
+		fontSize : 17
+	},
+	color : Alloy.Globals.COLORS.midGray	
 }
 
 ".btnWrap" : {
 	layout : 'horizontal',
-	width : Ti.UI.SIZE
+	width : Ti.UI.SIZE,
+	height : 50,
+	bottom : 15
 }
 
 "Button" : {
-	borderColor : 'gray',
-	width : 100,
+	borderColor : Alloy.Globals.COLORS.lightWarmGray,
+	borderRadius : 5,
+	width : 105,
 	height : 50,
 	font : {
 		fontSize : 20
-	}
+	},
+	color : Alloy.Globals.COLORS.gray
 }
 
 "#cancel" : {
-	title : L('cancel')
+	title : L('cancel'),
+	right : 15
 }
 
 "#please" : {
-	title : L('pleasePush')
+	title : L('pleasePush'),
+	backgroundColor : Alloy.Globals.COLORS.blue,
+	color : 'white',
+	borderWidth : 0
 }

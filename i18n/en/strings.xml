@@ -55,4 +55,6 @@
 	<string name="step2_takePic">2. 릭키로 찍어요</string>
 	<string name="step3_try">3. 먹어요</string>
 	<string name="letsGo">시작!</string>
+	
+	<string name="pleasePush">알려주세요</string>
 </resources>
