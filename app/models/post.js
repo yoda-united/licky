@@ -29,10 +29,10 @@ exports.definition = {
 					distance = {
 						text : 
 							(AG.currentPosition.get('accuracy') ? 
-								String.format("%.1fkm", AG.utils.calculateDistance([
-									coordi[0],	AG.currentPosition.attributes])) : 
-									"") 
-							+ (venue_name ? ": "+venue_name+", " : ", ") 
+								String.format("%.1fkm", AG.utils.calculateDistance([coordi[0],	AG.currentPosition.attributes])) + ': ' 
+								: ""
+							) 
+							+ (venue_name ? venue_name+", " : "") 
 							+ AG.utils.getGoogleShortAddress(
 								custom['address_'+(( AG.currentLanguage == 'ko')?'ko':'en')]
 							)
