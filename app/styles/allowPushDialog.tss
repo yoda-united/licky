@@ -9,7 +9,8 @@
 	height : Ti.UI.SIZE,
 	width : 250,
 	layout : 'vertical',
-	backgroundColor : Alloy.Globals.COLORS.whiteGray
+	backgroundColor : 'rgba(255,255,255,0.9)',//Alloy.Globals.COLORS.whiteGray,
+	borderRadius : 20
 }
 
 ".titleIcon" : {
@@ -18,7 +19,7 @@
 		fontFamily : 'ionicons',
 		fontSize : 60
 	},
-	color : Alloy.Globals.COLORS.blue,
+	color : Alloy.Globals.COLORS.darkGray,
 	top : 15
 }
 
@@ -27,7 +28,7 @@
 		fontSize : 30,
 		fontFamily : 'AppleSDGothicNeo-UltraLight'
 	},
-	color : Alloy.Globals.COLORS.blue
+	color : Alloy.Globals.COLORS.darkGray
 }
 
 ".recoWrap": {
@@ -64,17 +65,26 @@
 	font : {
 		fontSize : 20
 	},
-	color : Alloy.Globals.COLORS.gray
+	color : Alloy.Globals.COLORS.midGray
 }
 
 "#cancel" : {
 	title : L('cancel'),
-	right : 15
+	right : 15,
+	font : {
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	},
+	backgroundColor : Alloy.Globals.COLORS.lightGray
 }
 
 "#please" : {
 	title : L('pleasePush'),
-	backgroundColor : Alloy.Globals.COLORS.blue,
+	backgroundGradient : {
+        type: 'linear',
+        startPoint: { x: '50%', y: '00%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: Alloy.Globals.COLORS.gradient.lickyRed,
+    },
 	color : 'white',
 	borderWidth : 0
 }
