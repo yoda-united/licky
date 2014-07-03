@@ -48,6 +48,11 @@
 	<string name="friendsPostNeedsLogin">친구 것만 따로 보려면 로그인 먼저 하셔야죠^^</string>
 	<string name="termsAndPrivacy">로그인은 이용약관 및 개인정보 취급정책에\n동의하는 것을 의미합니다.</string>
 	
+	<!-- near tap -->
+	<string name="requireGeoLocationGuidanceOnNearTap">가까운 곳에서 찍힌 음식들을 보려면\n위치 서비스를 켜야 해요</string>
+	<string name="requestGeolocation">위치 정보 허용하기!</string>
+	<string name="turnOnLocationAtSettings">위치 정보를 허용하지 않으셨네요?\n다시 켜는건 좀 복잡해요. ㅠㅠ\nSettings > Privacy > Location > Licky on..</string>
+	
 	<!-- walkthrough -->
 	<string name="welcome">반가워요, </string>
 	<string name="walkthroughStart">  릭키 사용법 3단계 익히고 가실께요~</string>
