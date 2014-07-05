@@ -17,7 +17,7 @@ function geoAuthHandler(){
 			$.getView().add(requestView); 
 			break;
 		case Ti.Geolocation.AUTHORIZATION_UNKNOWN:
-			Ti.API.info('AUTHORIZATION_UNKNOWN');		// 아직!
+			Ti.API.info('AUTHORIZATION_UNKNOWN');	// 허용 여부 묻기 전  
 			
 			$.listViewC.listView.visible = false;
 			$.getView().add(requestView);

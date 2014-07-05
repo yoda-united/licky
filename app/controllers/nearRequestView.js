@@ -3,7 +3,6 @@ var args = arguments[0] || {};
 
 
 function geoAuthHandler(){
-	alert(1);
 	switch ( Ti.Geolocation.getLocationServicesAuthorization() ) {
 		case Ti.Geolocation.AUTHORIZATION_RESTRICTED:	// 시스템 알람에서 위치정보 허용 안한 경우
 		case Ti.Geolocation.AUTHORIZATION_DENIED:	// 시스템 알람에서 위치정보 허용 안하거나 꺼져 있는 경우(테스트 상으로는 이것만 나옴)

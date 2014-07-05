@@ -79,7 +79,9 @@ var resetCommentItems = function(){
 	});
 	$.commentSection.setItems(items);
 	
-	if( !postModel.get('custom_fields') || postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates ){
+	if( !postModel.get('custom_fields') 
+		|| (postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates) 
+		|| Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_UNKNOWN) {
 		$.mapWrap.setHeight(0);
 	}else{
 		/**

@@ -44,8 +44,9 @@
 		<View id="controlBar" >
 			<Button id="fbShareBtn" />
 			<Button id="locationBtn" >
-				<ImageView id="lockImg"></ImageView>
+				<!-- <ImageView id="lockImg"></ImageView> -->
 			</Button>
+			<Button id="requestLocationBtn"></Button>
 			<TextField id="shopNameField"></TextField>
 		</View>
 		
