@@ -1,0 +1,8 @@
+<Alloy>
+	<View class="container">
+		<ImageView id="unkownGeoImg"></ImageView>
+		<Label id="guidanceLabel"></Label>
+		<Button id="requestBtn"></Button>
+		<ImageView id="turnOnLocationImg"></ImageView>
+	</View>
+</Alloy>

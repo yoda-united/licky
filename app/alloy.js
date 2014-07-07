@@ -74,6 +74,9 @@ AG.settings.fetch({
 		if( !AG.settings.has("postWithFacebook") ){
 			AG.settings.save("postWithFacebook", true);
 		}
+		if( !AG.settings.has("postWithLocation") ){
+			AG.settings.save("postWithLocation", true);
+		}
 		if( !AG.settings.has("deviceToken")  ){
 		}else{
 			// 안해도 되는데..

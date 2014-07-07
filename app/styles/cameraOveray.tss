@@ -207,11 +207,11 @@
 	// backgroundImage: "images/fbShareActive.png"
 }
 "#locationBtn" : {
-	left: 64,
+	left: 62,
 	height: 40,
 	width: 40,
 	backgroundImage: "images/locationInactive.png",
-	visible : false
+	visible : true
 }
 "#lockImg" : {
 	top: 5,
@@ -220,12 +220,34 @@
 	height: 12,
 	image: "images/lock.png"
 }
+"#requestLocationBtn" : {
+	right: -170,
+	width: 170,
+	height: 36,
+	maxLength : 240,
+	borderRadius: 8,
+	backgroundGradient : {
+        type: 'linear',
+        startPoint: { x: '50%', y: '00%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: Alloy.Globals.COLORS.gradient.lickyRed,
+   },
+	color : 'white',
+	font: {
+		fontFamily: 'AppleSDGothicNeo-Thin', 
+		fontSize: 17
+	},
+	// title: L("requestGeolocation"),
+	title: L("requestGeolocationForCamera"),
+	// visible: false,
+	zIndex: 20
+}
 "#shopNameField" : {
 	right: 19,
 	width: 140,
-	height: 30,
+	height: 34,
 	maxLength : 240,
-	borderRadius: 12,
+	borderRadius: 8,
 	borderWidth: 0.5,
 	borderColor: Alloy.Globals.COLORS.darkGray,
 	// backgroundColor: Alloy.Globals.COLORS.lightGray,
