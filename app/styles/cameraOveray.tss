@@ -207,7 +207,7 @@
 	// backgroundImage: "images/fbShareActive.png"
 }
 "#locationBtn" : {
-	left: 64,
+	left: 62,
 	height: 40,
 	width: 40,
 	backgroundImage: "images/locationInactive.png",
@@ -221,9 +221,9 @@
 	image: "images/lock.png"
 }
 "#requestLocationBtn" : {
-	right: -165,
-	width: 165,
-	height: 34,
+	right: -170,
+	width: 170,
+	height: 36,
 	maxLength : 240,
 	borderRadius: 8,
 	backgroundGradient : {
@@ -237,7 +237,8 @@
 		fontFamily: 'AppleSDGothicNeo-Thin', 
 		fontSize: 17
 	},
-	title: L("requestGeolocation"),
+	// title: L("requestGeolocation"),
+	title: L("requestGeolocationForCamera"),
 	// visible: false,
 	zIndex: 20
 }

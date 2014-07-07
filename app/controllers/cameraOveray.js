@@ -39,7 +39,7 @@ var showGuidance = function(message){
 				duration: 60,
 				bottom: guidanceBottom_down
 			});
-		}, 900);
+		}, 3000);
 	});
 };
 var setFbShareBtn = function(){
@@ -50,6 +50,11 @@ var setFbShareBtn = function(){
 		showGuidance( L('willNotShareOnFacebook')	);
 		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
 	}
+	
+	$.requestLocationBtn.animate({
+		duration: 50,
+		right: -170
+	});
 };
 $.fbShareBtn.addEventListener('click', function(){
 	AG.settings.save('postWithFacebook', !AG.settings.get("postWithFacebook"), {
@@ -66,9 +71,16 @@ var setLocationBtn = function(opt){
 		case Ti.Geolocation.AUTHORIZATION_DENIED:	// 시스템 알람에서 위치정보 허용 안하거나 꺼져 있는 경우(테스트 상으로는 이것만 나옴)
 			// alert('AUTHORIZATION_DENIED' );
 			guidanceVisible && showGuidance( L('locationAuthDenied') );
+			$.locationBtn.setBackgroundImage('images/locationUnkown.png');
+			$.requestLocationBtn.animate({
+				duration: 50,
+				right: -170
+			});
 			return;
 		case Ti.Geolocation.AUTHORIZATION_UNKNOWN:
 			guidanceVisible && showGuidance( L('locationRequired') );
+			$.locationBtn.setBackgroundImage('images/locationUnkown.png');
+			// guidanceVisible && showGuidance( L('willPostedWithLocation') );
 			// guidanceVisible && $.requestLocationBtn.setVisible(true);
 			if( guidanceVisible ){
 				setTimeout(function(){
@@ -76,21 +88,30 @@ var setLocationBtn = function(opt){
 						duration: 50,
 						right: 19
 					}, function(){
+						return;
 						setTimeout(function(){
 							$.requestLocationBtn.animate({
 								duration: 50,
-								right: -165
+								right: -170
 							});
 						}, 3000);
 					});
-				}, 900);
+				}, 0);
 			}
 			return;
 		case Ti.Geolocation.AUTHORIZATION_AUTHORIZED:
+			// 위치 서비스를 처음 켰을때 버튼을 사라지게 해줘야..
+			$.requestLocationBtn.animate({
+				duration: 50,
+				right: -170
+			});
 			break;
 		default:
 			break;
-	}	
+	}
+	
+
+							
 	if( AG.settings.get('postWithLocation') ){
 		guidanceVisible && showGuidance( L('willPostedWithLocation') );
 		$.locationBtn.setBackgroundImage('images/locationActive.png');
@@ -100,12 +121,17 @@ var setLocationBtn = function(opt){
 	}
 };
 $.locationBtn.addEventListener('click', function(){
-	AG.settings.save('postWithLocation', !AG.settings.get("postWithLocation"), {
-		success: function(){
-			setLocationBtn({guidanceVisible:true});
-		}
-	});
+	if(  Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_UNKNOWN){
+		setLocationBtn({guidanceVisible:true});
+	}else{
+		AG.settings.save('postWithLocation', !AG.settings.get("postWithLocation"), {
+			success: function(){
+				setLocationBtn({guidanceVisible:true});
+			}
+		});
+	}
 });
+
 
 $.requestLocationBtn.addEventListener('click', function(e){
 	AG.currentPosition.getAuthorization(function(e){
