@@ -57,4 +57,5 @@
 	<string name="letsGo">시작!</string>
 	
 	<string name="pleasePush">알려주세요</string>
+	<string name="successPhotoUpload">사진 등록 성공!</string>
 </resources>

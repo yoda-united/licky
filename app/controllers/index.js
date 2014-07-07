@@ -71,5 +71,3 @@ if( OS_IOS ){
 	doUrlScheme();
 	Ti.App.addEventListener('resumed', doUrlScheme);
 }
-
-

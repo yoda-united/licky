@@ -6,6 +6,7 @@
 
 var args = arguments[0] || {};
 
+if(args.title) $.title.text = args.title;
 function onClickCancel(){
 	$.getView().close();
 }
@@ -19,7 +20,10 @@ function onClickPlease(){
 }
 
 function registerForPushNotifications(cb){
+	// alert(Ti.Network.remoteNotificationsEnabled);
+	// alert(Ti.Network.remoteNotificationTypes);
 	if( OS_IOS ){
+		Ti.API.info(Ti.Network.registerForPushNotifications);
 		// Ti.Network.unregisterForPushNotifications();
 		Ti.Network.registerForPushNotifications({
 			types: [
@@ -46,6 +50,19 @@ function registerForPushNotifications(cb){
 				AG.loginController.subscribePushChannel();
 			}
 		});
+		//AG.settings.save("haveRequestPushRegist", true);
 	}
 }
-exports.registerForPushNotifications = registerForPushNotifications;
+
+exports.tryRegisterPush = function(args){
+	// 기존에 푸쉬가 허용되어있는지 확인
+	// acs에 동록되어있는 여부 확인 : property로 저장해둠
+	// 허용이 안되어 있으면 open
+	// 허용이 되어 있으면 acs에 등록되어있는지 여부 확인
+	
+	if(1 || !AG.settings.get('haveRequestPushRegist')){
+		$.getView().open();
+	}
+};
+
+
