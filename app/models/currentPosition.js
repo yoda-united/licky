@@ -8,13 +8,15 @@ exports.definition = {
 	extendModel: function(Model) {
 		_.extend(Model.prototype, {
 			// extended functions and properties go here
-			getAuthorization: function(cb){
+			authorize: function(cb){
 				var	self = this;
 				
 				Ti.Geolocation.getCurrentPosition(function(e){
 					self.set('success', e.success);
 					self.set('error', e.error);
 					self.set(e.coords);
+					
+					self.trigger('changeGeoAuth');
 					cb && cb(e.coords);
 				});
 			},

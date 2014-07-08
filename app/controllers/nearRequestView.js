@@ -21,10 +21,10 @@ function geoAuthHandler(){
 };
 geoAuthHandler();
 
-Ti.App.addEventListener('changeGeoAuth', geoAuthHandler);
+AG.currentPosition.on('changeGeoAuth', geoAuthHandler);
 
 $.requestBtn.addEventListener('click', function(e){
-	AG.currentPosition.getAuthorization(function(e){
-		Ti.App.fireEvent('changeGeoAuth');
-	});
+	AG.currentPosition.authorize();
 });
+
+

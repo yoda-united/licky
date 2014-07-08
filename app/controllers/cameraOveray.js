@@ -134,7 +134,7 @@ $.locationBtn.addEventListener('click', function(){
 
 
 $.requestLocationBtn.addEventListener('click', function(e){
-	AG.currentPosition.getAuthorization(function(e){
+	AG.currentPosition.authorize(function(e){
 		setLocationBtn();
 		getCurrentPosition();
 	});

@@ -3,7 +3,6 @@ $.getView().title=L('nearList');
 
 $.onFirstFocus = function(){
 	$.listViewC.listView.contentTopOffset = -19;
-	geoAuthHandler();
 };
 
 var requestView = Alloy.createController('nearRequestView').getView();;
@@ -34,8 +33,9 @@ function geoAuthHandler(){
 	}
 };
 
-Ti.App.addEventListener('changeGeoAuth', geoAuthHandler);
+AG.currentPosition.on('changeGeoAuth', geoAuthHandler);
 Ti.App.addEventListener('resumed', geoAuthHandler);	// 설정 갔다 온 사용자를 위해서.
+$.getView().addEventListener('focus', geoAuthHandler);
 
 function fetchByCurrentPosition(){
 	AG.currentPosition.update( function(e){
@@ -51,24 +51,4 @@ function fetchByCurrentPosition(){
 	});
 }
 
-// Ti.App.addEventListener('focus:nearTab', function(e){
-$.getView().addEventListener('focus', function(e) {
-	// alert( Ti.Geolocation.getLocationServicesEnabled() );
-	// alert( Ti.Geolocation.getLocationServicesAuthorization() );
-Ti.App.fireEvent('changeGeoAuth');
-	return;
-	AG.currentPosition.update( function(){
-		if( !AG.currentPosition.get('success') ){
-			var dialog = Ti.UI.createAlertDialog({
-			    message: L('locationServiceNeeded'),
-			    ok: L('OK'),
-			    title: L('notice')
-			  });
-			dialog.addEventListener('click', function(){
-				$.index.setActiveTab(prevTabIndex);
-			});
-			dialog.show();
-		}
-	});
-});
 
