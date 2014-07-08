@@ -8,6 +8,7 @@ var args = arguments[0] || {};
 
 if(args.title) $.title.text = args.title;
 function onClickCancel(){
+	AG.settings.set('haveCanceledLocalPushDialog',true);
 	$.getView().close();
 }
 
@@ -19,7 +20,7 @@ function onClickPlease(){
 	});	
 }
 
-function registerForPushNotifications(cb){
+function registerForPushNotifications(channels){
 	// alert(Ti.Network.remoteNotificationsEnabled);
 	// alert(Ti.Network.remoteNotificationTypes);
 	if( OS_IOS ){
@@ -45,23 +46,25 @@ function registerForPushNotifications(cb){
 				Ti.API.info('register for pushnotification error');
 			},
 			success: function(e){
-				_.isFunction(cb) && cb(e);
 				AG.settings.save("deviceToken", Ti.Network.getRemoteDeviceUUID() );
-				AG.loginController.subscribePushChannel();
+				AG.loginController.subscribePushChannel({channels:channels, force:true});
 			}
 		});
-		//AG.settings.save("haveRequestPushRegist", true);
+		AG.settings.save("haveRequestPushRegist", true);
 	}
 }
 
-exports.tryRegisterPush = function(args){
-	// 기존에 푸쉬가 허용되어있는지 확인
-	// acs에 동록되어있는 여부 확인 : property로 저장해둠
-	// 허용이 안되어 있으면 open
-	// 허용이 되어 있으면 acs에 등록되어있는지 여부 확인
-	
-	if(1 || !AG.settings.get('haveRequestPushRegist')){
-		$.getView().open();
+exports.tryRegisterPush = function(args){	
+	//허용 된 상태이거나 내부 허용 dialog(allowPushDialog)에서 취소를 누른적 있거나 
+	if(Ti.Network.remoteNotificationsEnabled || AG.settings.get('haveCanceledLocalPushDialog')){  
+		// 채널 subscribed가 되어 있는지 설정값으로 확인 후 안되어있는 channel만 다시 subscribe 요청
+		// 일단 현재는 아무 일도 안함
+	}else{
+		if(AG.settings.get('haveRequestPushRegist')){ //허용하지 않음 : 설정앱에서 변경해야함을 안내하자
+			alert(L('turnOnRemotePushAtSettings'));
+		}else{ // 아직 한번도 허용할지 물어보지 않음 : 물어보자!
+			$.getView().open();
+		}	
 	}
 };
 

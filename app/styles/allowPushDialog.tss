@@ -47,7 +47,8 @@
 	font : {
 		fontSize : 17
 	},
-	color : Alloy.Globals.COLORS.midGray	
+	color : Alloy.Globals.COLORS.midGray,
+	text : L('wantCommentRemotePush')	
 }
 
 ".btnWrap" : {

@@ -77,11 +77,6 @@ AG.settings.fetch({
 		if( !AG.settings.has("postWithLocation") ){
 			AG.settings.save("postWithLocation", true);
 		}
-		if( !AG.settings.has("deviceToken")  ){
-		}else{
-			// 안해도 되는데..
-			// AG.loginController.subscribePushChannel('broadcast');
-		}
 	}
 });
 

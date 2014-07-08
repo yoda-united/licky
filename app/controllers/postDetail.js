@@ -360,6 +360,11 @@ $.sendBtn.addEventListener('click',_.throttle(function(e) {
 						// fetchComments();
 					// }
 					postModel.set('reviews_count',postModel.get('reviews_count')+1);
+					
+					var allowPushC = Alloy.createController('allowPushDialog',{
+						title: L('successCommentUpload')
+					});
+					allowPushC.tryRegisterPush();
 				},
 				error : function(){
 					$.sendBtn.enabled = true;

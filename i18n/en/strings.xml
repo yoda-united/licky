@@ -14,6 +14,7 @@
 	<string name="myLicks">내가 소화 시킨 것들</string>
 	<string name="someoneLicks">%s 님의 배 속</string>
 	<string name="cancel">취소</string>
+	<string name="confirm">확인</string>
 	<string name="close">닫기</string>
 	<string name="send">전송</string>
 	<string name="back">뒤로</string>
@@ -63,6 +64,7 @@
 	<string name="requestGeolocation">위치 정보 허용하기!</string>
 	<string name="turnOnLocationAtSettings">위치 정보를 허용하지 않으셨네요?\n다시 켜는건 좀 복잡해요. ㅠㅠ\nSettings > Privacy > Location > Licky on..</string>
 	
+	
 	<!-- walkthrough -->
 	<string name="welcome">반가워요, </string>
 	<string name="walkthroughStart">  릭키 사용법 3단계 익히고 가실께요~</string>
@@ -71,6 +73,10 @@
 	<string name="step3_try">3. 먹어요</string>
 	<string name="letsGo">시작!</string>
 	
+	<!-- allow push -->
 	<string name="pleasePush">알려주세요</string>
 	<string name="successPhotoUpload">사진 등록 성공!</string>
+	<string name="successCommentUpload">댓글 등록 성공!</string>
+	<string name="turnOnRemotePushAtSettings">푸쉬 알림을 허용하지 않으셨네요?\n다시 켜는건 좀 복잡해요. ㅠㅠ\n설정앱을 실행하고 알림 > > Licky를 허용하고 다시 Licky로 돌아오세요.</string>
+	<string name="wantCommentRemotePush">참여한 글에 댓글이 달리면 Push 알림으로 알려드릴까요?</string>
 </resources>
