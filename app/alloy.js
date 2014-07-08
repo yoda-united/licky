@@ -99,7 +99,17 @@ Ti.App.addEventListener('changeBadge', function(e){
 	Ti.UI.iPhone.setAppBadge(e.number);
 });
 
-
+//override default ti api
+alert = function(args){
+	var title, message;
+	var param = {};
+	if(typeof args !== 'object'){
+		param.message = args;
+		param.title = '';
+	}
+	var alertDialog = Titanium.UI.createAlertDialog(param);
+	alertDialog.show();
+};
 
 
 
