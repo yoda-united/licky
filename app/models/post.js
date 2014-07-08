@@ -39,7 +39,7 @@ exports.definition = {
 					};
 				}else{
 					distance = {
-						text: ""
+						text: venue_name
 					};
 				}
 				
@@ -109,7 +109,7 @@ exports.definition = {
 					},
 					onerror: function(e){
 						Ti.API.debug(e.error);
-						alert("error");
+						alert("[post.js]error");
 					},
 					timeout: 5000
 				});

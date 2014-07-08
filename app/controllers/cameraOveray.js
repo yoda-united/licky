@@ -110,8 +110,6 @@ var setLocationBtn = function(opt){
 			break;
 	}
 	
-
-							
 	if( AG.settings.get('postWithLocation') ){
 		guidanceVisible && showGuidance( L('willPostedWithLocation') );
 		$.locationBtn.setBackgroundImage('images/locationActive.png');
@@ -123,10 +121,12 @@ var setLocationBtn = function(opt){
 $.locationBtn.addEventListener('click', function(){
 	if(  Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_UNKNOWN){
 		setLocationBtn({guidanceVisible:true});
+		getCurrentPosition();
 	}else{
 		AG.settings.save('postWithLocation', !AG.settings.get("postWithLocation"), {
 			success: function(){
 				setLocationBtn({guidanceVisible:true});
+				getCurrentPosition();
 			}
 		});
 	}
@@ -135,11 +135,11 @@ $.locationBtn.addEventListener('click', function(){
 
 $.requestLocationBtn.addEventListener('click', function(e){
 	AG.currentPosition.authorize(function(e){
-		setLocationBtn();
+		// setLocationBtn();
 		getCurrentPosition();
 	});
 });
-
+AG.currentPosition.on('changeGeoAuth', setLocationBtn);
 
 /**
  *  shop name
@@ -152,15 +152,14 @@ $.shopNameField.addEventListener('change', function(e){
 	foursquare.venue_id = "";
 	foursquare.venue_name = e.value;
 
-	$.distance.setText( e.value +": "
-		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
+	setDistanceLabel();
 });
 $.shopNameField.addEventListener('suggestComplete', function(e){
 	// alert(JSON.stringify(e.itemId));
 	foursquare.venue_id = e.itemId;
 	foursquare.venue_name = $.shopNameField.getValue();
-	$.distance.setText( $.shopNameField.getValue() +": "
-		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
+
+	setDistanceLabel();
 });
 $.shopNameField.addEventListener('return', _.throttle(send,1000));
 
@@ -197,7 +196,9 @@ function getCurrentPosition(){
 	AG.currentPosition.update(function(e){
 		var longitude = e.longitude;
 		var latitude = e.latitude;
-		if( !AG.currentPosition.get('success') ){
+		if( !AG.currentPosition.get('success')  ){
+			currentAddress = {};	// 현재 위치가 서버에 올라가지 않도록 빈 오브젝트로 대체 
+			$.distance.setText( $.shopNameField.getValue() );
 			return;
 		}
 		
@@ -225,10 +226,7 @@ function getCurrentPosition(){
 		AG.utils.googleReverseGeo(_.extend({
 			success: function(add){
 				currentAddress.ko = add;
-				
-				if( AG.currentLanguage == 'ko'){
-					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
-				}
+				setDistanceLabel();
 			},
 			error: function(){
 				
@@ -241,10 +239,7 @@ function getCurrentPosition(){
 		AG.utils.googleReverseGeo(_.extend({
 			success: function(add){
 				currentAddress.en = add;
-				
-				if( AG.currentLanguage == 'en'){
-					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
-				}
+				setDistanceLabel();
 			},
 			error: function(){
 				
@@ -254,6 +249,14 @@ function getCurrentPosition(){
 	});	
 }
 
+function setDistanceLabel(){
+	if( AG.settings.get('postWithLocation') ){
+		$.distance.text =  ($.shopNameField.getValue()? $.shopNameField.getValue()+": ": "")
+			 + AG.utils.getGoogleShortAddress(currentAddress[AG.currentLanguage].results[0]);
+	}else{
+		$.distance.text =  $.shopNameField.getValue();
+	}
+}
 
 $.contentField.addEventListener('postlayout', function(e) {
 	$.contentField.removeEventListener('postlayout',arguments.callee);
@@ -373,7 +376,7 @@ exports.showCamera = function(){
 					// address_en: currentAddress.en.results[0]
 				}
 			};
-			if( currentAddress.ko ){
+			if( AG.settings.get("postWithLocation") ){
 				postContent.custom_fields.coordinates = [currentPosition.longitude, currentPosition.latitude ];
 				postContent.custom_fields.address_ko = currentAddress.ko.results[0];
 				postContent.custom_fields.address_en = currentAddress.en.results[0];

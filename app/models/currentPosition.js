@@ -34,7 +34,8 @@ exports.definition = {
 
 				if( Ti.Geolocation.getLocationServicesAuthorization()
 					== Ti.Geolocation.AUTHORIZATION_UNKNOWN ){
-					// self.set('error');
+					self.set('success', false);
+					self.set('error', true);
 					// cb & cb();
 				}else{
 					Ti.Geolocation.getCurrentPosition(function(e){

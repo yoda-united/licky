@@ -255,7 +255,7 @@
 	clearButtonMode: Ti.UI.INPUT_BUTTONMODE_ALWAYS,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 	tintColor: Alloy.Globals.COLORS.red,
-	paddingLeft: 12,
+	paddingLeft: 8,
 	hintText: L('shopName'),
 	returnKeyType : Ti.UI.RETURNKEY_SEND,
 	autocorrect: false,
