@@ -376,7 +376,7 @@ exports.showCamera = function(){
 					// address_en: currentAddress.en.results[0]
 				}
 			};
-			if( AG.settings.get("postWithLocation") ){
+			if( AG.settings.get("postWithLocation") &&  Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_AUTHORIZED){
 				postContent.custom_fields.coordinates = [currentPosition.longitude, currentPosition.latitude ];
 				postContent.custom_fields.address_ko = currentAddress.ko.results[0];
 				postContent.custom_fields.address_en = currentAddress.en.results[0];
@@ -405,10 +405,9 @@ exports.showCamera = function(){
 						},
 						{
 							success : function(nextPreviewPhoto){
-								var allowPushC = Alloy.createController('allowPushDialog',{
+								AG.allowPushController.tryRegisterPush({
 									title: L('successPhotoUpload')
 								});
-								allowPushC.tryRegisterPush();
 								
 								//alert(nextPreviewPhoto.get('urls').original);
 								if(AG.settings.get('postWithFacebook')){

@@ -48,8 +48,6 @@ var fbHandler = function(e) {
 				AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
 				AG.loggedInUser.save(user);
 
-				subscribePushChannel();
-
 				//$.fbLogin.title = L("facebookConnect");
 				currentWindow.close();
 
@@ -129,7 +127,6 @@ exports.requireLogin = function(args) {
 };
 
 exports.logout = function(callback) {
-	unsubscribePushChannel(['comment']);
 	AG.Cloud.Users.logout(function(e) {
 		if (e.success) {
 			// AG.settings.unset('cloudSessionId',{silent:false});
@@ -145,57 +142,3 @@ exports.logout = function(callback) {
 		}
 	});
 };
-
-var subscribePushChannel = function(args) {
-	args = args || {};
-	var channels = args.channels || ['broadcast', 'comment'];
-	var params = {
-		device_token : AG.settings.get('deviceToken'),
-		type : OS_IOS ? "ios" : "android"
-	};
-
-	if (params.device_token) {
-		_.each(channels, function(channel) {
-			if (!AG.settings.get(channel + 'Subscribed') || args.force) {
-				AG.Cloud.PushNotifications.subscribe(_.extend({
-					channel : channel
-				}, params), function(e) {
-					if (e.success) {
-						AG.settings.save(channel + 'Subscribed', true);
-					} else {
-					}
-				});
-			}
-		});
-	}
-};
-exports.subscribePushChannel = subscribePushChannel;
-
-var unsubscribePushChannel = function(args) {
-	args = args || {};
-	var channels = args.channels || ['broadcast', 'comment'];
-	var params = {
-		device_token : AG.settings.get('deviceToken'),
-		type : OS_IOS ? "ios" : "android"
-	};
-
-	_.each(channels, function(channel) {
-		
-		AG.Cloud.PushNotifications.unsubscribe(_.extend({
-			channel : channel
-		}, params), function(e) {
-			if (e.success) {
-				AG.settings.save(channel + 'Subscribed', false);
-			} else {
-			}
-		});
-	});
-};
-exports.unsubscribePushChannel = unsubscribePushChannel;
-
-// 시스템 remote push 는 혀용했으나 subscribe 된 기록이 없을 경우 subscribe함
-_.defer(function(){
-	if(AG.isLogIn && AG.isLogIn() && Ti.Network.remoteNotificationsEnabled){
-		subscribePushChannel({force:true}); //not force 
-	}
-});

@@ -16,7 +16,7 @@ function resumedHandler(){
 		$.listViewC.listView.headerView = $.listHeaderView;	
 	}else{
 		if(!lastRemoteNotificationsEnabled){
-			AG.loginController.subscribePushChannel();
+			AG.allowPushController.tryRegisterPush({force:true}); 
 			$.listViewC.listView.headerView = $.thanksListHeaderView;
 			setTimeout(function(){
 				$.listViewC.listView.headerView = null;
@@ -79,11 +79,11 @@ $.listViewC.on('itemclick', _.throttle(function(e){
 	});
 },1000));
 
-$.listHeaderView.addEventListener('click', function(e) {
-	var allowPushC = Alloy.createController('allowPushDialog', {
-		title : L('successCommentUpload')
+$.pushAllowButton.addEventListener('click', function(e) {
+	AG.allowPushController.tryRegisterPush({
+		title : L('successCommentUpload'),
+		force : true
 	});
-	allowPushC.tryRegisterPush({force:true}); 
 });
 
 

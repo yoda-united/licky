@@ -3,10 +3,10 @@
  * - 댓글 작성 후
  * - 알림 탭에서
  */
+AG.settings = Alloy.Models.instance('settings');
 
 var args = arguments[0] || {};
 
-if(args.title) $.title.text = args.title;
 function onClickCancel(){
 	AG.settings.set('haveCanceledLocalPushDialog',true);
 	$.getView().close();
@@ -14,12 +14,16 @@ function onClickCancel(){
 
 function onClickPlease(){
 	// push notification
-	registerForPushNotifications(function(e){
-		$.getView().close();
+	registerForPushNotifications({
+		success : function(e){
+			$.getView().close();
+		}
 	});	
 }
 
-function registerForPushNotifications(channels){
+function registerForPushNotifications(args){
+	args = args || {};
+	
 	// alert(Ti.Network.remoteNotificationsEnabled);
 	// alert(Ti.Network.remoteNotificationTypes);
 	if( OS_IOS ){
@@ -43,25 +47,28 @@ function registerForPushNotifications(channels){
 			},
 			error: function(e){
 				Ti.API.info('register for pushnotification error');
+				_.isFunction(args.error) && args.error();
 			},
 			success: function(e){
 				AG.settings.save("deviceToken", Ti.Network.getRemoteDeviceUUID() );
-				AG.loginController.subscribePushChannel({channels:channels, force:true});
+				subscribePushChannel(args);
+				_.isFunction(args.success) && args.success();
 			}
 		});
 		AG.settings.save("haveRequestPushRegist", true);
 	}
 }
 
-exports.tryRegisterPush = function(args){	
+
+function tryRegisterPush(args){
 	args = args || {};
+	if(args.title) $.title.text = args.title;
+
 	if(args.force){
 		if(!Ti.Network.remoteNotificationsEnabled && AG.settings.get('haveRequestPushRegist')){ //허용하지 않음 : 설정앱에서 변경해야함을 안내하자
 			alert(L('turnOnRemotePushAtSettings'));
 		}else{ // 아직 한번도 허용할지 물어보지 않음 : 물어보자!
-			registerForPushNotifications(function(e){
-				Ti.API.info(e);
-			});
+			registerForPushNotifications(args);
 		}
 		return;	
 	}
@@ -77,7 +84,68 @@ exports.tryRegisterPush = function(args){
 		}	
 	}
 };
+exports.tryRegisterPush = tryRegisterPush;
 
+var subscribePushChannel = function(args) {
+	args = args || {};
+	var channels = args.channels || ['broadcast', 'comment'];
+	var params = {
+		device_token : AG.settings.get('deviceToken'),
+		type : OS_IOS ? "ios" : "android"
+	};
 
+	if (params.device_token) {
+		_.each(channels, function(channel) {
+			if (!AG.settings.get(channel + 'Subscribed') || args.force) {
+				AG.Cloud.PushNotifications.subscribe(_.extend({
+					channel : channel
+				}, params), function(e) {
+					if (e.success) {
+						AG.settings.save(channel + 'Subscribed', true);
+					} else {
+					}
+				});
+			}
+		});
+	}
+};
 
+var unsubscribePushChannel = function(args) {
+	args = args || {};
+	var channels = args.channels || ['broadcast', 'comment'];
+	var params = {
+		device_token : AG.settings.get('deviceToken'),
+		type : OS_IOS ? "ios" : "android"
+	};
 
+	if (params.device_token) {
+		_.each(channels, function(channel) {
+			AG.Cloud.PushNotifications.unsubscribe(_.extend({
+				channel : channel
+			}, params), function(e) {
+				if (e.success) {
+					AG.settings.save(channel + 'Subscribed', false);
+				} else {
+				}
+			});
+		});
+	}
+};
+
+AG.settings.on('change:cloudSessionId', function(){
+	if (AG.isLogIn()) {
+		subscribePushChannel();
+	}else{
+		unsubscribePushChannel();
+	}
+});
+
+// 시스템 remote push 는 혀용했으나 subscribe 된 기록이 없을 경우 subscribe함
+_.defer(function(){
+	if(AG.isLogIn && AG.isLogIn() && Ti.Network.remoteNotificationsEnabled){
+		// push callback 등록이 필요하므로 allowPush 컨트롤러를 통해야한다.
+		tryRegisterPush({
+			force:true
+		});  
+	}
+});

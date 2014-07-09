@@ -48,12 +48,16 @@
 		},
 		colors: Alloy.Globals.COLORS.gradient.lickyRed
 	},
-	title: L( 'pushGuideText')
+	title: L( 'pushGuideText'),
+	font: {
+		fontSize : 13
+	},
+	color : Alloy.Globals.COLORS.whiteGray,
+	color : 'white'
 }
 
 ".pushGuideText" : {
 	font: {
-		fontFamily : 'ionicons',
 		fontSize : 13
 	},
 	color : Alloy.Globals.COLORS.whiteGray,
