@@ -80,5 +80,6 @@
 	<string name="turnOnRemotePushAtSettings">푸쉬 알림을 허용하지 않으셨네요?\n다시 켜는건 좀 복잡해요. ㅠㅠ\n설정앱을 실행하고 알림 > Licky에서 알림 설정(배너,배지,사운드)하고 다시 Licky로 돌아오세요.</string>
 	<string name="wantCommentRemotePush">참여한 글에 댓글이 달리면 푸 알림으로 알려드릴까요?</string>
 	<string name="pushGuideText">소식이 있을 때 푸쉬 알림으로 알려드릴까요?</string>
+	<string name="pushGuideSuccessText">푸쉬 알림 허용! 감사해요!</string>
 	<string name="noPush">알림이 아직 없네요.</string>
 </resources>

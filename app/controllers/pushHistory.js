@@ -6,7 +6,7 @@ var animation = require('alloy/animation');
  * UI init
  */
 $.listHeaderView.parent.remove($.listHeaderView);
-$.listHeaderView.parent.remove($.thanksListHeaderView);
+$.thanksListHeaderView.parent.remove($.thanksListHeaderView);
 // $.listViewC.topSection.headerView = $.listHeaderView;
 
 var lastRemoteNotificationsEnabled=Ti.Network.remoteNotificationsEnabled;
@@ -36,8 +36,6 @@ $.getView().addEventListener('focus', function(e) {
 $.getView().addEventListener('blur', function(e) {
 	Ti.App.removeEventListener('resumed', resumedHandler);
 });
-
-AG.test=$;
 
 chatCol.on('reset',function(col){
 	if(!col.length){

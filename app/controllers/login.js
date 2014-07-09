@@ -157,7 +157,7 @@ var subscribePushChannel = function(args) {
 	if (params.device_token) {
 		_.each(channels, function(channel) {
 			if (!AG.settings.get(channel + 'Subscribed') || args.force) {
-				AG.Cloud.PushNotifications.subscribeToken(_.extend({
+				AG.Cloud.PushNotifications.subscribe(_.extend({
 					channel : channel
 				}, params), function(e) {
 					if (e.success) {
@@ -180,7 +180,8 @@ var unsubscribePushChannel = function(args) {
 	};
 
 	_.each(channels, function(channel) {
-		AG.Cloud.PushNotifications.unsubscribeToken(_.extend({
+		
+		AG.Cloud.PushNotifications.unsubscribe(_.extend({
 			channel : channel
 		}, params), function(e) {
 			if (e.success) {
@@ -195,6 +196,6 @@ exports.unsubscribePushChannel = unsubscribePushChannel;
 // 시스템 remote push 는 혀용했으나 subscribe 된 기록이 없을 경우 subscribe함
 _.defer(function(){
 	if(AG.isLogIn && AG.isLogIn() && Ti.Network.remoteNotificationsEnabled){
-		subscribePushChannel(); //not force 
+		subscribePushChannel({force:true}); //not force 
 	}
 });
