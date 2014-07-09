@@ -37,21 +37,11 @@ AG.cameraInfo = {
 	height: 256 // 1136/2 - 44 - 216 - 52
 	// height : 180
 };
-AG.loginController =  Alloy.createController('login');
-AG.notifyController = Alloy.createController('notifyView');
 
-
+//settings가 먼저 이뤄저야함
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');
 // AG.currentPosition = new Backbone.Model();
-
-AG.loggedInUser = Alloy.Models.instance('loggedInUser');
-AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동기 방식.
-AG.isLogIn = function(){
-	return !!AG.settings.get('cloudSessionId');
-};
-
-
 AG.settings.fetch({
 	success: function(){
 		if( !AG.settings.get('isWalkthroughMaster') ){
@@ -79,6 +69,20 @@ AG.settings.fetch({
 		}
 	}
 });
+
+//singleton Controller;
+AG.loginController =  Alloy.createController('login');
+AG.notifyController = Alloy.createController('notifyView');
+AG.allowPushController = Alloy.createController('allowPushDialog');
+
+
+AG.loggedInUser = Alloy.Models.instance('loggedInUser');
+AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동기 방식.
+AG.isLogIn = function(){
+	return !!AG.settings.get('cloudSessionId');
+};
+
+
 
 AG.currentPosition = Alloy.Models.instance('currentPosition');
 AG.currentPosition.update();

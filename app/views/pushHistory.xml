@@ -5,9 +5,7 @@
 		<View id="listHeaderView">
 			<View class="pushGuideWrap">
 				<Label class="pushIcon"></Label>
-				<Button id="pushAllowButton" >
-		            <Label id="pushGuideText" class="pushGuideText"></Label>
-				</Button>
+				<Button id="pushAllowButton"/>
 			</View>
         </View>
         <View id="thanksListHeaderView">

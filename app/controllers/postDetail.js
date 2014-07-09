@@ -361,10 +361,9 @@ $.sendBtn.addEventListener('click',_.throttle(function(e) {
 					// }
 					postModel.set('reviews_count',postModel.get('reviews_count')+1);
 					
-					var allowPushC = Alloy.createController('allowPushDialog',{
+					AG.allowPushController.tryRegisterPush({
 						title: L('successCommentUpload')
 					});
-					allowPushC.tryRegisterPush();
 				},
 				error : function(){
 					$.sendBtn.enabled = true;
