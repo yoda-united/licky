@@ -85,7 +85,6 @@ AG.currentPosition.update();
 
 var appMetaDebounce = _.debounce(function() {
 	Alloy.createWidget('appMetaFromACS').fetch();
-	// AG.notifyController.setBadge(20);
 });
 setTimeout(appMetaDebounce,3000);
 Ti.App.addEventListener('resume', appMetaDebounce);
@@ -105,8 +104,3 @@ alert = function(args){
 	var alertDialog = Titanium.UI.createAlertDialog(param);
 	alertDialog.show();
 };
-
-
-
-
-

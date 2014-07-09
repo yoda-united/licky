@@ -15,7 +15,6 @@ function onClickCancel(){
 function onClickPlease(){
 	// push notification
 	registerForPushNotifications(function(e){
-		alert(e);
 		$.getView().close();
 	});	
 }
@@ -55,6 +54,17 @@ function registerForPushNotifications(channels){
 }
 
 exports.tryRegisterPush = function(args){	
+	args = args || {};
+	if(args.force){
+		if(!Ti.Network.remoteNotificationsEnabled && AG.settings.get('haveRequestPushRegist')){ //허용하지 않음 : 설정앱에서 변경해야함을 안내하자
+			alert(L('turnOnRemotePushAtSettings'));
+		}else{ // 아직 한번도 허용할지 물어보지 않음 : 물어보자!
+			registerForPushNotifications(function(e){
+				Ti.API.info(e);
+			});
+		}
+		return;	
+	}
 	//허용 된 상태이거나 내부 허용 dialog(allowPushDialog)에서 취소를 누른적 있거나 
 	if(Ti.Network.remoteNotificationsEnabled || AG.settings.get('haveCanceledLocalPushDialog')){  
 		// 채널 subscribed가 되어 있는지 설정값으로 확인 후 안되어있는 channel만 다시 subscribe 요청
@@ -67,5 +77,7 @@ exports.tryRegisterPush = function(args){
 		}	
 	}
 };
+
+
 
 

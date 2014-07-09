@@ -195,10 +195,3 @@ function showCamera(){
 		message : L('cameraNeedsLogin')
 	});
 }
-
-
-
-
-
-
-

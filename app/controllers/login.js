@@ -192,7 +192,7 @@ var unsubscribePushChannel = function(args) {
 };
 exports.unsubscribePushChannel = unsubscribePushChannel;
 
-// remote push 는 혀용했으나 subscribe 된 기록이 없을 경우 subscribe함
+// 시스템 remote push 는 혀용했으나 subscribe 된 기록이 없을 경우 subscribe함
 _.defer(function(){
 	if(AG.isLogIn && AG.isLogIn() && Ti.Network.remoteNotificationsEnabled){
 		subscribePushChannel(); //not force 
