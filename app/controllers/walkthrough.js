@@ -11,7 +11,7 @@ $.step02Label.attributedString = Titanium.UI.iOS.createAttributedString({
         {
             type: Titanium.UI.iOS.ATTRIBUTE_FOREGROUND_COLOR,
             value: AG.COLORS.lickyRed,
-            range: [L('step2_takePic').indexOf('릭키'),2]
+            range: [L('step2_takePic').indexOf('Licky'),2]
         }
     ]
 });;

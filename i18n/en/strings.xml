@@ -25,7 +25,7 @@
 	<string name="facebookConnecting">연결중..</string>
 	<string name="defaultLoginMessage">맛있을 땐 리키! 흐릅~</string>
 	<string name="commentNeedsLogin">댓글을 달려면 로그인이 필요합니다.</string>
-	<string name="cameraNeedsLogin">릭키로 음식 사진 찍으시게요? 어서 로그인하세요!</string>
+	<string name="cameraNeedsLogin">Licky로 음식 사진 찍으시게요? 어서 로그인하세요!</string>
 	<string name="logout">로그 아웃</string>
 	<string name="login">로그인</string>
 	<string name="setting">환경설정</string>
@@ -33,7 +33,7 @@
 	
 	<!-- cameraOveray -->
 	<string name="locationServiceNeeded">위치 서비스가 켜져 있어야\n 주변을 찾을 수 있어요.</string>
-	<string name="noFBFriends">릭키를 사용중인 페이스북 친구가 없네요.\n먹는거 좋아하는 친구들에게 릭키를 소개해보세요.</string>
+	<string name="noFBFriends">Licky를 사용중인 페이스북 친구가 없네요.\n먹는거 좋아하는 친구들에게 Licky를 소개해보세요.</string>
 	<string name="willBePostedToFacebook">페이스북에도 공유 하기</string>
 	<string name="willNotShareOnFacebook">페이스북에 공유 하지 않기</string>
 	<string name="willPostedWithLocation">현재 위치를 포함 하기</string>
@@ -67,9 +67,9 @@
 	
 	<!-- walkthrough -->
 	<string name="welcome">반가워요, </string>
-	<string name="walkthroughStart">  릭키 사용법 3단계 익히고 가실께요~</string>
+	<string name="walkthroughStart">  Licky 사용법 3단계 익히고 가실께요~</string>
 	<string name="step1_order">1. 음식을 시켜요</string>
-	<string name="step2_takePic">2. 릭키로 찍어요</string>
+	<string name="step2_takePic">2. Licky로 찍어요</string>
 	<string name="step3_try">3. 먹어요</string>
 	<string name="letsGo">시작!</string>
 	
