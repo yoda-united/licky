@@ -1,5 +1,53 @@
 var args = arguments[0] || {};
 var chatCol = Alloy.createCollection('chat');
+var animation = require('alloy/animation');
+
+/**
+ * UI init
+ */
+$.listHeaderView.parent.remove($.listHeaderView);
+$.listHeaderView.parent.remove($.thanksListHeaderView);
+// $.listViewC.topSection.headerView = $.listHeaderView;
+
+var lastRemoteNotificationsEnabled=Ti.Network.remoteNotificationsEnabled;
+function resumedHandler(){
+	var currentRemoteNotificationsEnabled = Ti.Network.remoteNotificationsEnabled;
+	if(!currentRemoteNotificationsEnabled){
+		$.listViewC.listView.headerView = $.listHeaderView;	
+	}else{
+		if(!lastRemoteNotificationsEnabled){
+			AG.loginController.subscribePushChannel();
+			$.listViewC.listView.headerView = $.thanksListHeaderView;
+			setTimeout(function(){
+				$.listViewC.listView.headerView = null;
+			},4000);
+		}else{
+			$.listViewC.listView.headerView = null;
+		}
+	}
+	lastRemoteNotificationsEnabled=currentRemoteNotificationsEnabled;
+}
+
+$.getView().addEventListener('focus', function(e) {
+	resumedHandler();
+	Ti.App.addEventListener('resumed', resumedHandler);
+});
+
+$.getView().addEventListener('blur', function(e) {
+	Ti.App.removeEventListener('resumed', resumedHandler);
+});
+
+AG.test=$;
+
+chatCol.on('reset',function(col){
+	if(!col.length){
+		//$.pushGuideText.text = '아직 알림이 없네요,\n' + $.pushGuideText.text;
+	}else{
+		
+	}
+});
+
+
 
 function setDefaultFetchData(){
 	if( !AG.isLogIn() ){
@@ -33,12 +81,22 @@ $.listViewC.on('itemclick', _.throttle(function(e){
 	});
 },1000));
 
+$.listHeaderView.addEventListener('click', function(e) {
+	var allowPushC = Alloy.createController('allowPushDialog', {
+		title : L('successCommentUpload')
+	});
+	allowPushC.tryRegisterPush({force:true}); 
+});
+
+
 
 $.getView().addEventListener('focus', function(e) {
 	// 문서에는 명시돼 있지 않지만 로긴한 사용자만 쿼리 날릴수 있는 듯.
 	if( AG.isLogIn() ){
 		chatCol.fetch();
 	}
+	
+	
 });
   
 chatCol.on('reset', function(){

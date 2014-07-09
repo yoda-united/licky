@@ -405,6 +405,11 @@ exports.showCamera = function(){
 						},
 						{
 							success : function(nextPreviewPhoto){
+								var allowPushC = Alloy.createController('allowPushDialog',{
+									title: L('successPhotoUpload')
+								});
+								allowPushC.tryRegisterPush();
+								
 								//alert(nextPreviewPhoto.get('urls').original);
 								if(AG.settings.get('postWithFacebook')){
 									

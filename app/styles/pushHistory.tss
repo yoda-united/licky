@@ -16,3 +16,66 @@
 	},
 	refreshControlTintColor : Alloy.Globals.COLORS.red
 }
+
+"#listHeaderView" :{
+	backgroundColor : Alloy.Globals.COLORS.red,
+	height: Ti.UI.SIZE
+}
+"#thanksListHeaderView" : {
+	backgroundColor : Alloy.Globals.COLORS.whiteGray,
+	height: Ti.UI.SIZE
+}
+".pushGuideWrap" : {
+	layout : 'horizontal',
+	top : 10,
+	bottom : 10,
+	color : Alloy.Globals.COLORS.whiteGray,
+	width : Ti.UI.SIZE,
+	height : Ti.UI.SIZE
+}
+
+".pushGuideText" : {
+	font: {
+		fontFamily : 'ionicons',
+		fontSize : 13
+	},
+	color : Alloy.Globals.COLORS.whiteGray,
+	text : L('pushGuideText')
+}
+
+".pushIcon" : {
+	text : '\uf159',
+	font: {
+		fontFamily : 'ionicons',
+		fontSize : 20
+	},
+	color : Alloy.Globals.COLORS.whiteGray,
+	right : 5
+}
+
+".thanksIcon" : {
+	text : '\uf199',
+	color : Alloy.Globals.COLORS.red
+}
+".thanksText" : {
+	color : Alloy.Globals.COLORS.red
+}
+
+"#noResultFooter" : {
+	height : 30,
+	width : 200,
+	backgroundColor : 'blue',
+	top : 0
+}
+"#noPushResultLabel" : {
+	text : L('noPush'),
+	font : {
+		fontFamily : 'AppleSDGothicNeo-Light',
+		fontSize : 15
+	},
+	top : 10,
+	width : 200,
+	height : 30,
+	color : Alloy.Globals.COLORS.darkGray,
+	borderColor : 'red'
+}

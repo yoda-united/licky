@@ -1,0 +1,91 @@
+
+".container[platform=ios]" : {
+  backgroundColor : 'rgba(0,0,0,0.5)'
+}
+
+".dialogWrap":{
+	borderColor : 'gray',
+	// height : 350,
+	height : Ti.UI.SIZE,
+	width : 250,
+	layout : 'vertical',
+	backgroundColor : 'rgba(255,255,255,0.9)',//Alloy.Globals.COLORS.whiteGray,
+	borderRadius : 20
+}
+
+".titleIcon" : {
+	text: "\uf16d", //f16d , f16e
+	font: {
+		fontFamily : 'ionicons',
+		fontSize : 60
+	},
+	color : Alloy.Globals.COLORS.darkGray,
+	top : 15
+}
+
+".description" : {
+	font : {
+		fontSize : 30,
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	},
+	color : Alloy.Globals.COLORS.darkGray
+}
+
+".recoWrap": {
+	height : 80,
+	top : 15,
+	bottom : 15,
+	width : 252,
+	left : -1,
+	borderColor : Alloy.Globals.COLORS.lightWarmGray,
+	backgroundColor : Alloy.Globals.COLORS.lightGray	
+}
+".recommandText" : {
+	left: 21,
+	right : 21,
+	height : 50,
+	font : {
+		fontSize : 17
+	},
+	color : Alloy.Globals.COLORS.midGray,
+	text : L('wantCommentRemotePush')	
+}
+
+".btnWrap" : {
+	layout : 'horizontal',
+	width : Ti.UI.SIZE,
+	height : 50,
+	bottom : 15
+}
+
+"Button" : {
+	borderColor : Alloy.Globals.COLORS.lightWarmGray,
+	borderRadius : 5,
+	width : 105,
+	height : 50,
+	font : {
+		fontSize : 20
+	},
+	color : Alloy.Globals.COLORS.midGray
+}
+
+"#cancel" : {
+	title : L('cancel'),
+	right : 15,
+	font : {
+		fontFamily : 'AppleSDGothicNeo-UltraLight'
+	},
+	backgroundColor : Alloy.Globals.COLORS.lightGray
+}
+
+"#please" : {
+	title : L('pleasePush'),
+	backgroundGradient : {
+        type: 'linear',
+        startPoint: { x: '50%', y: '00%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: Alloy.Globals.COLORS.gradient.lickyRed,
+    },
+	color : 'white',
+	borderWidth : 0
+}
