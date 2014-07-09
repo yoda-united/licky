@@ -236,7 +236,7 @@ $.shareButton.addEventListener('click', function(e) {
 	// https://github.com/viezel/TiSocial.Framework
 	var Social = require('dk.napp.social');
 	Social.activityView({
-	    text: "먹기전에 릭키! 찰칵!",
+	    text: "먹기전에 Licky! 찰칵!",
 	    url: 'http://www.licky.co/post/'+postModel.id,
 	    removeIcons:"print,copy,contact,camera,mail,readinglist,airdrop"
 	},[
@@ -360,6 +360,11 @@ $.sendBtn.addEventListener('click',_.throttle(function(e) {
 						// fetchComments();
 					// }
 					postModel.set('reviews_count',postModel.get('reviews_count')+1);
+					
+					var allowPushC = Alloy.createController('allowPushDialog',{
+						title: L('successCommentUpload')
+					});
+					allowPushC.tryRegisterPush();
 				},
 				error : function(){
 					$.sendBtn.enabled = true;

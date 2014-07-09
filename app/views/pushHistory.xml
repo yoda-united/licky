@@ -2,5 +2,20 @@
 	<Window class="container">
 		<Require src="baseListView" id="listViewC">
 		</Require>
+		<View id="listHeaderView">
+			<View class="pushGuideWrap">
+				<Label class="pushIcon"></Label>
+	            <Label id="pushGuideText" class="pushGuideText"></Label>
+			</View>
+        </View>
+        <View id="thanksListHeaderView">
+			<View class="pushGuideWrap">
+				<Label id="heartIcon" class="pushIcon thanksIcon"></Label>
+	            <Label class="pushGuideText thanksText"></Label>
+			</View>
+        </View>
+        <!-- <View id="noResultFooter">
+        	<Label id="noPushResultLabel"></Label>
+        </View> -->
 	</Window>
 </Alloy>

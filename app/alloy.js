@@ -77,49 +77,14 @@ AG.settings.fetch({
 		if( !AG.settings.has("postWithLocation") ){
 			AG.settings.save("postWithLocation", true);
 		}
-		if( !AG.settings.has("deviceToken")  ){
-		}else{
-			// 안해도 되는데..
-			// AG.loginController.subscribePushChannel('broadcast');
-		}
 	}
 });
-
-// push notification
-if( OS_IOS ){
-	// Ti.Network.unregisterForPushNotifications();
-	Ti.Network.registerForPushNotifications({
-		types: [
-			Ti.Network.NOTIFICATION_TYPE_BADGE,
-			Ti.Network.NOTIFICATION_TYPE_ALERT,
-			Ti.Network.NOTIFICATION_TYPE_SOUND
-		],
-		callback: function(e){
-			// alert("data: "+JSON.stringify(e.data) +"\n"+e.inBackground);
-			// 뱃지를 0으로 하는거를 무시하지 않으면 무한 반복 푸쉬 됨..
-			if(  e.data.badge === 0 ){
-				return;
-			}
-			AG.notifyController.push({
-				pushEvent: e
-			});
-		},
-		error: function(e){
-			Ti.API.info('register for pushnotification error');
-		},
-		success: function(e){
-			AG.settings.save("deviceToken", Ti.Network.getRemoteDeviceUUID() );
-			AG.loginController.subscribePushChannel();
-		}
-	});
-}
 
 AG.currentPosition = Alloy.Models.instance('currentPosition');
 AG.currentPosition.update();
 
 var appMetaDebounce = _.debounce(function() {
 	Alloy.createWidget('appMetaFromACS').fetch();
-	// AG.notifyController.setBadge(20);
 });
 setTimeout(appMetaDebounce,3000);
 Ti.App.addEventListener('resume', appMetaDebounce);
@@ -128,7 +93,14 @@ Ti.App.addEventListener('changeBadge', function(e){
 	Ti.UI.iPhone.setAppBadge(e.number);
 });
 
-
-
-
-
+//override default ti api
+alert = function(args){
+	var title, message;
+	var param = {};
+	if(typeof args !== 'object'){
+		param.message = args;
+		param.title = '';
+	}
+	var alertDialog = Titanium.UI.createAlertDialog(param);
+	alertDialog.show();
+};
