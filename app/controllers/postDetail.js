@@ -107,12 +107,12 @@ var resetCommentItems = function(){
 				$.mapWrap.add(mapView);
 				mapView.backgroundColor = 'white';
 				
-				// var marker1 = GoogleMaps.createMarker({
-					// latitude:coord[0][1],
-					// longitude:coord[0][0],
-					// image: 'images/logoWithTitle' //png 붙이지 마시오. tishadow에서 보려면 파일 변경후 다시 appify해야함
-				// });
-				// GoogleMaps.addMarker(marker1);
+				var marker1 = GoogleMaps.createMarker({
+					latitude:coord[0][1],
+					longitude:coord[0][0],
+					image: 'images/flag4map' //png 붙이지 마시오. tishadow에서 보려면 파일 변경후 다시 appify해야함
+				});
+				GoogleMaps.addMarker(marker1);
 			})();
 		}
 	}
