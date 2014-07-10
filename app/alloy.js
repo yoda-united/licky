@@ -4,9 +4,12 @@ if(ENV_PRODUCTION){
 	newrelic.start("***REMOVED***");
 }
 
+
 //alias
 var AG = Alloy.Globals;
 AG.slimer = require("ti.cloud.slimer");
+
+AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 
 //extend library
 AG.moment = require('momentExtend');
@@ -29,7 +32,7 @@ AG.facebook = require('facebook');
 AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 AG.facebook.permissions = ["publish_stream","email"];
 
-AG.currentLanguage = Ti.Locale.getCurrentLanguage();
+
 
 AG.cameraInfo = {
 	top : 44,
