@@ -81,7 +81,8 @@ var resetCommentItems = function(){
 	
 	if( !postModel.get('custom_fields') 
 		|| (postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates) ){
-		$.mapWrap.setHeight(0);
+		$.listView.deleteSectionAt(1);
+		$.listView.insertSectionAt(1,Ti.UI.createListSection());
 	}else{
 		/**
 		 * Google Map
@@ -100,10 +101,18 @@ var resetCommentItems = function(){
 					width : 304,
 					height : 119,
 					top:0,
-					userLocation : (Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_UNKNOWN)?true:false
+					userLocation : (Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_AUTHORIZED)?true:false
 				});
 				$.mapWrap.setHeight(119);
 				$.mapWrap.add(mapView);
+				mapView.backgroundColor = 'white';
+				
+				// var marker1 = GoogleMaps.createMarker({
+					// latitude:coord[0][1],
+					// longitude:coord[0][0],
+					// image: 'images/logoWithTitle' //png 붙이지 마시오. tishadow에서 보려면 파일 변경후 다시 appify해야함
+				// });
+				// GoogleMaps.addMarker(marker1);
 			})();
 		}
 	}

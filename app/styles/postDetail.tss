@@ -163,3 +163,13 @@
 	image : 'images/profileMask.png',
 	visible : 'false'
 }
+
+".mapIcon" : {
+	font : {
+		fontFamily : 'ionicons',
+		fontSize : 50
+	},
+	color : Alloy.Globals.COLORS.lightWarmGray,
+	text : '\uf1a5'
+	
+}
