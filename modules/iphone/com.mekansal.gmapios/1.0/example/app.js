@@ -13,10 +13,31 @@ function randomFloatBetween(minValue,maxValue,precision){
     return parseFloat(Math.min(minValue + (Math.random() * (maxValue - minValue)),maxValue).toFixed(precision));
 }
 
-// open a single window
-var win = Ti.UI.createWindow({
+var btnWindow = Ti.UI.createWindow({
 	backgroundColor:'white'
 });
+
+var nav = Titanium.UI.iOS.createNavigationWindow({
+   window: btnWindow
+});
+
+// open a single window
+var win = Ti.UI.createWindow({
+	backgroundColor:'white',
+	url: 'map.js'
+});
+
+var button = Ti.UI.createButton({
+	title: 'Open Map'
+});
+button.addEventListener('click', function(){
+	nav.openWindow(win, {animated:true});
+});
+
+btnWindow.add(button);
+nav.open();
+
+/*
 
 var MekansalGMap = require('com.mekansal.gmapios');
 Ti.API.info("module is => " + MekansalGMap);
@@ -63,6 +84,8 @@ win.add(outerMapView);
 		}, 3000);
 	}, 4000);
 */
+
+/*
 	var tileLayer = MekansalGMap.createTileLayer({
 		name :'gmap',
 		tileUrl : "http://tilesrv01.dsi.gov.tr/basemap/%d/%d/%d.png",
@@ -171,7 +194,8 @@ win.add(outerMapView);
 		"lat": 39.10,
 		"lng": 32.10
 	}); */
-	
+
+/*	
 	var button3 = Ti.UI.createButton({
 		title:"Remove Tile",
 		right:10,
@@ -472,7 +496,7 @@ win.add(removeButton);
 win.add(clearButton);
 */
 
-win.open();
+//win.open();
 
 /*
 setTimeout(function() {

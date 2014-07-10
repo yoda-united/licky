@@ -80,8 +80,7 @@ var resetCommentItems = function(){
 	$.commentSection.setItems(items);
 	
 	if( !postModel.get('custom_fields') 
-		|| (postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates) 
-		|| Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_UNKNOWN) {
+		|| (postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates) ){
 		$.mapWrap.setHeight(0);
 	}else{
 		/**
@@ -100,7 +99,8 @@ var resetCommentItems = function(){
 					zoom: 16, //15, 16이 적당해 보임
 					width : 304,
 					height : 119,
-					top:0
+					top:0,
+					userLocation : (Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_UNKNOWN)?true:false
 				});
 				$.mapWrap.setHeight(119);
 				$.mapWrap.add(mapView);
