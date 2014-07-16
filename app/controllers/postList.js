@@ -75,7 +75,8 @@ $.onFirstFocus = function(e){
 $.fetchFirstCollection = function(){
 	postCol.defaultFetchData = {
 		order : "-created_at",
-		where : $.fetchWhereData
+		where : $.fetchWhereData,
+		show_user_like : true
 	};
 	postCol.fetch(); //최초 fetch
 };

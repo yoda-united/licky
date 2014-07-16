@@ -150,6 +150,37 @@
 	color : "#dfff",
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
 }
+
+".like" : {
+	font: {
+		fontFamily : 'ionicons',
+		fontSize : 30
+	},
+	right: 0,
+	bottom : 0,
+	text : '\uf1df',
+	color : Alloy.Globals.COLORS.lightGray
+}
+".likeCount" : {
+	font: {
+		fontFamily : 'AppleSDGothicNeo-UltraLight',
+		fontSize : 12
+	},
+	right : 27,
+	bottom : 0,
+	textAlign : 'right',
+	text : '15 x',
+	color : Alloy.Globals.COLORS.lightGray
+}
+
+".likeWrap" : {
+	width : 60,
+	height : 30,
+	right : 10,
+	bottom : 10
+}
+
+
 /* postItemTemplate end */
 
 
