@@ -94,6 +94,9 @@ exports.definition = {
 					},
 					distance : distance,
 					likeIcon : likeIcon,
+					likeCount : {
+						text : (this.get('likes_count')||'0') + ' x'
+					},
 					properties :{
 						// backgroundRepeat : true,
 						// backgroundImage : urls.original ,

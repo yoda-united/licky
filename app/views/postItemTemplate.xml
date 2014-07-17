@@ -14,7 +14,7 @@
 		<!-- <Label class="gpsIcon"></Label> -->
 		<Label class="distance" bindId="distance"></Label>
 		<View bindId="like" class="likeWrap">
-			<Label class="likeCount"></Label>
+			<Label bindId="likeCount" class="likeCount"></Label>
 			<Label bindId="likeIcon" class="like"></Label>
 		</View>
 		<ImageView onLoad="hiddenProfileOnLoad" visible="false" bindId="hiddenProfile"></ImageView>
