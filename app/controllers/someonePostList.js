@@ -16,7 +16,8 @@ $.getView().backButtonTitle = L('back');
 postCol.defaultFetchData = {
 	order : "-created_at",
 	where :{
-		user_id: {'$in' : [someoneId]}
+		//user_id: {'$in' : [someoneId]},
+		current_user_liked : true
 	}
 };
 
@@ -25,7 +26,11 @@ $.listViewC.setTemplateControls([
 	'postItemTemplate'
 ]);
 
-postCol.fetch();
+postCol.fetch({
+	success: function(col){
+		alert(col.length);
+	}
+});
 
 $.listViewC.on('itemclick', function(e) {
 	if (e.model) {

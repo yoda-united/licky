@@ -13,6 +13,8 @@
 	<string name="friendsOnly">친구 것만</string>
 	<string name="myLicks">내가 소화 시킨 것들</string>
 	<string name="someoneLicks">%s 님의 배 속</string>
+	<string name="myLikes">내가 별표시한 것들</string>
+	<string name="someoneLikes">%s 님이 별표시한 것들</string>
 	<string name="cancel">취소</string>
 	<string name="confirm">확인</string>
 	<string name="close">닫기</string>

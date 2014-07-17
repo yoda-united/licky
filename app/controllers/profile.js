@@ -37,6 +37,7 @@ if(userModel.get('id')){  // !!!
 var isMe = userModel.get('id') == AG.loggedInUser.get('id');
 $.profile.title = isMe?L('me'):userModel.get('first_name');
 $.foodRowLabel.text = isMe?L('myLicks'):String.format(L('someoneLicks'),userModel.get('first_name'));
+$.likeRowLabel.text = isMe?L('myLikes'):String.format(L('someoneLikes'),userModel.get('first_name'));
 $.contactUsBtn.visible = isMe;
 
 $.getView().addEventListener('focus', function(e) {
@@ -53,11 +54,22 @@ $.mainContent.addEventListener('scroll', _.throttle(function(e){
 		// top: 182.5 - e.y});
 }, 10));
 
-$.foodRow.addEventListener('click', function(e) {
-	AG.utils.openController(AG.mainTabGroup.activeTab, "someonePostList", {
-		userModel : userModel
-	});
+
+
+$.menuTable.addEventListener('click', function(e) {
+	switch(e.row.id){
+		case 'lickyRow':
+			AG.utils.openController(AG.mainTabGroup.activeTab,
+				 "someonePostList", {
+				userModel : userModel,
+				current_user_liked : true
+			});
+		break;
+		case 'likeRow':
+		break;
+	}
 });
+
 
 
 $.settingDialog.addEventListener('click', _.throttle(function(e) {

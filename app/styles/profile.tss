@@ -94,28 +94,47 @@
 }
 "#menuTable": {
 	top: 207.5,	// 프로필 배너 확대될때 떨림을 조금 가리기 위해 5픽셀 위로. 
-	height: 44,
+	height: 88,
 	scrollable: false,
 	separatorInsets : {
 		left: 0,
 		right: 0
 	},
 }
-"#foodRow": {
+".foodRow": {
 	hasChild: true,
 	selectionStyle : Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY,
 	height : 44
 }
 
-"#foodRowLabel" :{
-	left: 15,
+".spoon" : {
+	text : '\uf0f5 '	
+
+}
+
+".star" : {
+	text : '\uf005'
+}
+
+".rowIcon" : {
+	left : 15,
+	width : 18,
+	textAlign : 'center',
+	font : {
+		fontFamily : 'fontAwesome',
+		fontSize : 18
+	},
+	color : Alloy.Globals.COLORS.darkGray
+}
+".rowLabel" :{
+	left: 38,
 	font: {
 		fontSize : 18
 	},
 	color: Alloy.Globals.COLORS.darkGray
 }
 
-"#foodRowCount" : {
+".rowCount" : {
 	right : 5,
 	textAlign : 'right',
 	font : {
