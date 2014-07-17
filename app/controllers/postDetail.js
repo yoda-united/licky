@@ -11,14 +11,36 @@ $.listView.addEventListener('itemclick', function(e) {
 			});
 		break;
 		case "like":
-			Alloy.createModel('like').save({
+			var likeModel = Alloy.createModel('like',{
 				post_id : postModel.id
-			},{
-				success : function(model){
-					postModel.set('current_user_liked',true);
-				},
-				wait : true
 			});
+			if(!postModel.get('current_user_liked')){
+				AG.Cloud.Likes.create({
+				    post_id : postModel.id
+				}, function (e) {
+				    if (e.success) {
+				        postModel.set({
+				        	'current_user_liked' : true,
+				        	'likes_count' : (postModel.get('likes_count')||0)+1
+				        });
+				    } else {
+				       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+				    }
+				});
+			}else{
+				AG.Cloud.Likes.remove({
+				    post_id : postModel.id
+				}, function (e) {
+				    if (e.success) {
+				    	 postModel.set({
+				        	'current_user_liked' : false,
+				        	'likes_count' : (postModel.get('likes_count')||1)-1
+				        });
+				    } else {
+				       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+				    }
+				});
+			}
 			
 		break;
 	}
