@@ -64,6 +64,8 @@
 	<string name="requestGeolocation">위치 정보 허용하기!</string>
 	<string name="turnOnLocationAtSettings">위치 정보를 허용하지 않으셨네요?\n다시 켜는건 좀 복잡해요. ㅠㅠ\nSettings > Privacy > Location > Licky on..</string>
 	
+	<!-- profile tap -->
+	<string name="bugReport">버그 신고 및 제안하기</string>
 	
 	<!-- walkthrough -->
 	<string name="welcome">반가워요, </string>

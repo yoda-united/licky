@@ -134,7 +134,7 @@
 }
 
 "#contactUsBtn" : {
-	title : '버그 신고 및 제안하기',
+	title : L('bugReport'),
 	borderRadius: 5,
 	borderWidth : 0.5,
 	borderColor : Alloy.Globals.COLORS.darkGray,
