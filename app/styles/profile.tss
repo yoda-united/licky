@@ -137,7 +137,7 @@
 	title : L('bugReport'),
 	borderRadius: 5,
 	borderWidth : 0.5,
-	borderColor : Alloy.Globals.COLORS.darkGray,
+	borderColor : Alloy.Globals.COLORS.defaultGray,
 	height: 44,
 	width: 232,
 	color: Alloy.Globals.COLORS.darkGray,
