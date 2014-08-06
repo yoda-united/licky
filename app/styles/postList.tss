@@ -16,10 +16,10 @@
 }
 
 "#listHeaderView" : {
-	backgroundColor :'transparent',
-	// backgroundColor: Alloy.Globals.COLORS.whiteGray,
+	// backgroundColor :'transparent',
+	backgroundColor: Alloy.Globals.COLORS.lightGray,
 	// borderWidth: 1,
-	// backgroundColor : Alloy.Globals.COLORS.midGray,
+	// borderColor: Alloy.Globals.COLORS.lightGray,
 	// backgroundGradient : {
 		// type: 'linear',
 		// colors: [ 
@@ -29,14 +29,13 @@
 	// },
 	height : 45
 }
-
 "#tBar" : {
 	// bottom: -3,
 	left: 10,
 	backgroundColor : Alloy.Globals.COLORS.red,
 	index : 0,
 	width : 125,
-	height: 30
+	height: 32
 }
 
 ".allLabel" : {

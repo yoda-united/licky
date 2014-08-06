@@ -140,7 +140,7 @@
 	borderColor : Alloy.Globals.COLORS.defaultGray,
 	height: 44,
 	width: 232,
-	color: Alloy.Globals.COLORS.darkGray,
+	color: Alloy.Globals.COLORS.midGray,
 	bottom : 10,
 	font : {
 		fontSize : 17,

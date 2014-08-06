@@ -8,7 +8,7 @@
 		// height: Ti.UI.SIZE,
 		// backgroundColor: Alloy.Globals.COLORS.darkGray,
 		// backgroundColor: "#929292",
-		backgroundColor: Alloy.Globals.COLORS.lightWarmGray,
+		backgroundColor: Alloy.Globals.COLORS.darkGray,
 		// style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
 		showVerticalScrollIndicator :false,
 		
