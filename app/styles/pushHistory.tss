@@ -16,11 +16,12 @@
 	},
 	refreshControlTintColor : Alloy.Globals.COLORS.red
 }
-
-"#listHeaderView" :{
-	
-	height: Ti.UI.SIZE
+"#listHeaderView" : {
+	// backgroundColor :'transparent',
+	backgroundColor: Alloy.Globals.COLORS.whiteGray,
+	height : Ti.UI.SIZE
 }
+	
 "#thanksListHeaderView" : {
 	backgroundColor : Alloy.Globals.COLORS.whiteGray,
 	height: Ti.UI.SIZE
@@ -33,9 +34,10 @@
 	width : Ti.UI.SIZE,
 	height : Ti.UI.SIZE
 }
-"#pushAllowButton": {
+"#pushAllowButton" : {
 	borderRadius: 5,
 	width : 250,
+	height: 32,
 	backgroundGradient: {
 		type: 'linear',
 		startPoint: {

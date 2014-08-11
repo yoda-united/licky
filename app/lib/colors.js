@@ -34,13 +34,14 @@ exports = {
 	 * for Licky
 	 */
 	// for background
-	whiteGray: '#FEFEFE',	// main background
-	lightGray: '#f7f7f7',
+	whiteGray: '#F8F8F8',	// main background
+	lightGray: '#EAEAEA',
 	lightWarmGray: '#EFEFEE',	// sub background
 	duff: '#E1C56B',
 	
 	// for foreground 
-	darkGray: '#525252',	// deactivate
+	darkGray: '#333',	// deactivate
+	defaultGray: '#B2B2B2',
 	// lickyOrange: '#EB7436',	// main point
 	lickyOrange: '#FD4526',	// main point
 	lickyRed: '#FD3D39',	// sub point
