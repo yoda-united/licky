@@ -22,6 +22,10 @@ $.profile.title = isMe?L('me'):userModel.get('first_name');
 $.foodRowLabel.text = isMe?L('myLicks'):String.format(L('someoneLicks'),userModel.get('first_name'));
 $.likeRowLabel.text = isMe?L('myLikes'):String.format(L('someoneLikes'),userModel.get('first_name'));
 $.contactUsBtn.visible = isMe;
+if(!isMe){
+	$.menuTable.deleteRow($.likeRow);
+	$.menuTable.height = 44;
+}
 
 $.getView().addEventListener('focus', function(e) {
 	$.setProperties();

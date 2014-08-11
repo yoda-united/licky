@@ -34,6 +34,7 @@ if(!args.likedPostOnly){
 		return 0; // equal
 	};
 	postCol.fetch = function(args){
+		args = args || {};
 		var likeCol = Alloy.createCollection('like');
 		likeCol.fetch({
 			data : {
@@ -44,17 +45,22 @@ if(!args.likedPostOnly){
 				sel : { all : ["likeable_id"]}
 			},
 			success : function(col){
+				if(col.length === 0){
+					args.success && args.success();
+					return;
+				}
 				postCol.likedIds = col.map(function(m){ return m.get('likeable_id'); });
 				postCol.defaultFetchData = {
 					per_page : 1000,
 					where :{
 						id: {'$in' : postCol.likedIds }
 					},
-					error : function(){
-						args.error && args.error(); 
-					}
+					show_user_like : true
 				};
 				postCol.originFetch(args);
+			},
+			error : function(){
+				args.error && args.error(); 
 			}
 		});
 	};
