@@ -394,6 +394,9 @@ function defineCloud(k) {
 				method: "remove",
 				restMethod: "delete",
 				verb: "DELETE"
+			}, {
+				method: "query",
+				executor: h
 			}]
 		}, {
 			property: "Messages",
