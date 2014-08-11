@@ -17,7 +17,6 @@ exports.definition = {
 			// extended functions and properties go here
 			doDefaultTransform : function(){
 				
-				Ti.API.info(this.get('photo'));
 				var urls = this.get('photo') && this.get('photo').urls || {}, 
 					profileUrl = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", this.get('user').external_accounts[0].external_id, 80, 80),
 					custom = this.get("custom_fields"),
@@ -44,6 +43,15 @@ exports.definition = {
 				}
 				
 				var isMine = this.get('user').id == AG.loggedInUser.get('id'); 
+				
+				var likeIcon = this.get('current_user_liked')?
+					{
+						text : '\uf1e0', //iconic star
+						color : AG.COLORS.red
+					}:{
+						text : '\uf1df',
+						color : AG.COLORS.lightGray
+					};
 				
 				var commentCountText = "";
 				if( this.get('reviews_count') ){
@@ -85,6 +93,10 @@ exports.definition = {
 						text : commentCountText
 					},
 					distance : distance,
+					likeIcon : likeIcon,
+					likeCount : {
+						text : (this.get('likes_count')||'0') + ' x'
+					},
 					properties :{
 						// backgroundRepeat : true,
 						// backgroundImage : urls.original ,
@@ -103,9 +115,6 @@ exports.definition = {
 				var client = Ti.Network.createHTTPClient({
 					onload: function(e){
 						callback(JSON.parse(this.responseText));
-						Ti.API.info("----");
-						Ti.API.info(JSON.parse(this.responseText));
-						Ti.API.info("----");
 					},
 					onerror: function(e){
 						Ti.API.debug(e.error);

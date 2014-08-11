@@ -2,14 +2,47 @@ var args = arguments[0] || {},
 	postModel = args.postModel;
 
 $.listView.addEventListener('itemclick', function(e) {
-	if (e.bindId == "profileImage") {
-		// alert(JSON.stringify(e));
-		// alert(commentCol.get(e.itemId).get('user'));
-		AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
-			//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
-			// userModel : Alloy.createModel('user', postModel.get('user'))
-			userModel :e.section.id === "commentSection" ? Alloy.createModel('user', commentCol.get(e.itemId).get('user')) : Alloy.createModel('user', postModel.get('user'))
-		});
+	switch(e.bindId){
+		case "profileImage":
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
+				//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
+				// userModel : Alloy.createModel('user', postModel.get('user'))
+				userModel :e.section.id === "commentSection" ? Alloy.createModel('user', commentCol.get(e.itemId).get('user')) : Alloy.createModel('user', postModel.get('user'))
+			});
+		break;
+		case "like":
+			var likeModel = Alloy.createModel('like',{
+				post_id : postModel.id
+			});
+			if(!postModel.get('current_user_liked')){
+				AG.Cloud.Likes.create({
+				    post_id : postModel.id
+				}, function (e) {
+				    if (e.success) {
+				        postModel.set({
+				        	'current_user_liked' : true,
+				        	'likes_count' : (postModel.get('likes_count')||0)+1
+				        });
+				    } else {
+				       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+				    }
+				});
+			}else{
+				AG.Cloud.Likes.remove({
+				    post_id : postModel.id
+				}, function (e) {
+				    if (e.success) {
+				    	 postModel.set({
+				        	'current_user_liked' : false,
+				        	'likes_count' : (postModel.get('likes_count')||1)-1
+				        });
+				    } else {
+				       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+				    }
+				});
+			}
+			
+		break;
 	}
 });
 
@@ -28,6 +61,9 @@ function resetPostContent(){
 	contentItem.properties.backgroundColor = Alloy.Globals.COLORS.whiteGray;
 	contentItem.properties.canEdit = false;
 	// contentItem.photo.height = 180;
+	contentItem.like = {
+		visible : true
+	};
 	$.contentSection.setItems([
 		contentItem
 	]);
@@ -39,7 +75,11 @@ if(!args.postModel && args.post_id){
 postModel.on('change',resetPostContent);
 
 // model이 없을 땐 fetch하고 있을땐 바로 resetPostContent호출해서 그려줌
-(!args.postModel && args.post_id)?postModel.fetch():resetPostContent();
+(!args.postModel && args.post_id)?postModel.fetch({
+	data : {
+		show_user_like : true
+	}
+}):resetPostContent();
 
 
 var commentCol = Alloy.createCollection('review');
