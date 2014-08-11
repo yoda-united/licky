@@ -16,23 +16,6 @@ if (userModel) {
 }
 
 
-// 해당 사용자가 작성한 post 수 확인 
-// 주의!!!!!! loggedIn User로 인해 get('id') 함수로 id를 가져와야함)
-if(userModel.get('id')){  // !!!
-	var postCol = Alloy.createCollection('post');
-	postCol.fetch({
-		data : {
-			per_page : 1,
-			where :{
-				user_id: {'$in' : [userModel.get('id')]} // !!!
-			},
-		},
-		success : function(col){
-			$.foodRowCount.text = col.meta.total_results;
-		}
-	});
-}
-
 // title & label 변경
 var isMe = userModel.get('id') == AG.loggedInUser.get('id');
 $.profile.title = isMe?L('me'):userModel.get('first_name');
@@ -61,11 +44,15 @@ $.menuTable.addEventListener('click', function(e) {
 		case 'lickyRow':
 			AG.utils.openController(AG.mainTabGroup.activeTab,
 				 "someonePostList", {
-				userModel : userModel,
-				current_user_liked : true
+				userModel : userModel
 			});
 		break;
 		case 'likeRow':
+			AG.utils.openController(AG.mainTabGroup.activeTab,
+				"someonePostList", {
+				userModel : userModel,
+				likedPostOnly : true
+			});
 		break;
 	}
 });
@@ -170,6 +157,36 @@ exports.setProperties = function() {
 			}
 		}
 	});
+	
+	// 해당 사용자가 작성한 post 수 확인 
+	// 주의!!!!!! loggedIn User로 인해 get('id') 함수로 id를 가져와야함)
+	if(userModel.get('id')){  // !!!
+		var postCol = Alloy.createCollection('post');
+		postCol.fetch({
+			data : {
+				per_page : 1,
+				where :{
+					user_id: {'$in' : [userModel.get('id')]} // !!!
+				}
+			},
+			success : function(col){
+				$.foodRowCount.text = col.meta.total_results;
+			}
+		});
+		
+		var likeCol = Alloy.createCollection('like');
+		likeCol.fetch({
+			data : {
+				user_id : userModel.get('id'),
+				likeable_type : 'Post',
+				per_page : 1
+			},
+			success : function(col){
+				$.likeRowCount.text = col.meta.total_results;
+				// Ti.API.info(col.meta.total_results);
+			}
+		});
+	}
 };
 
 $.name.addEventListener('click', function(e){

@@ -15,7 +15,7 @@
 	                <TableViewRow id="lickyRow" class="foodRow">
 	                	<Label class="rowIcon spoon"></Label>
 	                	<Label id="foodRowLabel" class="rowLabel"></Label>
-	                	<Label id="foodRowCount" class="rowCount">110</Label>
+	                	<Label id="foodRowCount" class="rowCount"></Label>
 	                </TableViewRow>
 	                <TableViewRow id="likeRow" class="foodRow">
 	                	<Label class="rowIcon star"></Label>
