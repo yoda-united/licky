@@ -11,48 +11,52 @@ $.listView.addEventListener('itemclick', function(e) {
 			});
 		break;
 		case "like":
-			var likeModel = Alloy.createModel('like',{
-				post_id : postModel.id
-			});
-			if(!postModel.get('current_user_liked')){
-				AG.Cloud.Likes.create({
-				    post_id : postModel.id
-				}, function (e) {
-				    if (e.success) {
-				        // postModel.set({
-				        	// 'current_user_liked' : true,
-				        	// 'likes_count' : (postModel.get('likes_count')||0)+1
-				        // });
-				    } else {
-				       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
-				       postModel.set({
-				        	'current_user_liked' : false,
-				        	'likes_count' : (postModel.get('likes_count')||1)-1
-				        });
-				    }
-				});
-				postModel.set({
-		        	'current_user_liked' : true,
-		        	'likes_count' : (postModel.get('likes_count')||0)+1
-		        });
-			}else{
-				AG.Cloud.Likes.remove({
-				    post_id : postModel.id
-				}, function (e) {
-				    if (e.success) {
-				    } else {
-				    	 postModel.set({
+			AG.loginController.requireLogin({
+				success: function(){
+					var likeModel = Alloy.createModel('like',{
+						post_id : postModel.id
+					});
+					if(!postModel.get('current_user_liked')){
+						AG.Cloud.Likes.create({
+						    post_id : postModel.id
+						}, function (e) {
+						    if (e.success) {
+						        // postModel.set({
+						        	// 'current_user_liked' : true,
+						        	// 'likes_count' : (postModel.get('likes_count')||0)+1
+						        // });
+						    } else {
+						       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+						       postModel.set({
+						        	'current_user_liked' : false,
+						        	'likes_count' : (postModel.get('likes_count')||1)-1
+						        });
+						    }
+						});
+						postModel.set({
 				        	'current_user_liked' : true,
 				        	'likes_count' : (postModel.get('likes_count')||0)+1
 				        });
-				       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
-				    }
-				});
-				postModel.set({
-		        	'current_user_liked' : false,
-		        	'likes_count' : (postModel.get('likes_count')||1)-1
-		        });
-			}
+					}else{
+						AG.Cloud.Likes.remove({
+						    post_id : postModel.id
+						}, function (e) {
+						    if (e.success) {
+						    } else {
+						    	 postModel.set({
+						        	'current_user_liked' : true,
+						        	'likes_count' : (postModel.get('likes_count')||0)+1
+						        });
+						       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+						    }
+						});
+						postModel.set({
+				        	'current_user_liked' : false,
+				        	'likes_count' : (postModel.get('likes_count')||1)-1
+				        });
+					}
+				}
+			});
 			
 		break;
 	}
