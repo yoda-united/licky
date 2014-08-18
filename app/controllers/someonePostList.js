@@ -47,7 +47,8 @@ if(!args.likedPostOnly){
 			},
 			success : function(col){
 				if(col.length === 0){
-					args.success && args.success();
+					postCol.reset();					
+					args.success && args.success(col);
 					return;
 				}
 				postCol.likedIds = col.map(function(m){ return m.get('likeable_id'); });
@@ -78,7 +79,16 @@ $.listViewC.setTemplateControls([
 
 $.getView().addEventListener('focus', function(e) {
 	this.removeEventListener('focus',arguments.callee);
-	postCol.fetch();
+	postCol.fetch({
+		success: function(col){
+			if(col.length === 0){
+				$.listViewC.listView.footerView = Alloy.createController('noItemView',{
+					iconText : args.likedPostOnly?'\uf1df':'\uf164',
+					labelText : args.likedPostOnly?'이거다 싶은 음식을 보면 별표를 눌러주세요.\n이 목록에 쌓입니다.':'아직 Licky로 먹은게 하나도 없네요..'						
+				}).getView();
+			}
+		}
+	});
 });
 
 

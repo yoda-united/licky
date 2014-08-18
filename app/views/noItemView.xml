@@ -1,0 +1,8 @@
+<Alloy>
+	<View class="container">
+		<View id="labelWrap">
+			<Label id="iconLabel"></Label>
+			<Label id="textLabel"></Label>
+		</View>
+	</View>
+</Alloy>
