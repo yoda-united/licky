@@ -7,6 +7,7 @@ Ti.include(
     'notifyTokens.js',
     'subscribeToken.js',
     'unsubscribeToken.js',
+    'updateSubscription.js',
     'showChannels.js',
     'queryChannels.js',
     'setBadge.js',
@@ -32,6 +33,7 @@ windowFunctions['Push Notifications'] = function () {
         rows.push('Unsubscribe');
         rows.push('Subscribe Token');
         rows.push('Unsubscribe Token');
+        rows.push('Update Subscription');
     }
     else {
         // Our other platforms do not support push notifications yet.

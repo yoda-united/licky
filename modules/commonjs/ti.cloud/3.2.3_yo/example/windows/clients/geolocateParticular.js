@@ -8,7 +8,7 @@ windowFunctions['Geolocate Particular'] = function (evt) {
         height: 40 + u,
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
-        keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD
+        keyboardType: (Ti.Platform.name === 'android') ? Ti.UI.KEYBOARD_NUMBER_PAD : Ti.UI.KEYBOARD_DECIMAL_PAD
     });
     win.add(ipAddress);
 

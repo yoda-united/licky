@@ -10,8 +10,7 @@ Ti.include(
     'search.js',
     'show.js',
     'showMe.js',
-    'update.js',
-	'secureIdentity.js'
+    'update.js'
 );
 
 windowFunctions['Users'] = function (evt) {
@@ -24,7 +23,6 @@ windowFunctions['Users'] = function (evt) {
             'Login Status',
             'Create User',
             'Login User',
-	        'Secure Identity',
             'Request Reset Password',
             'Resend Confirmation',
             'Show Current User',

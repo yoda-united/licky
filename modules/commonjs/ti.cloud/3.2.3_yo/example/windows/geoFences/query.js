@@ -13,7 +13,12 @@ windowFunctions['Query Geo Fences'] = function (evt) {
 
     table.addEventListener('click', function (evt) {
         if (evt.row.id) {
-            handleOpenWindow({ target: 'Update GeoFence', id: evt.row.id });
+            handleOpenWindow({ 
+                target: 'Update GeoFence', 
+                id: evt.row.id, 
+                loc: evt.row.loc,
+                payload: evt.row.payload
+            });
         }
     });
 
@@ -28,9 +33,12 @@ windowFunctions['Query Geo Fences'] = function (evt) {
                 } else {
                     var data = [];
                     for (var i = 0, l = e.geo_fences.length; i < l; i++) {
+                        var payload = e.geo_fences[i].payload;
+                        var loc = e.geo_fences[i].loc;
                         data.push(Ti.UI.createTableViewRow({
-                            title: e.geo_fences[i].payload,
-                            loc: e.geo_fences[i].loc,
+                            title: payload.name + " " + JSON.stringify(loc.coordinates),
+                            loc: loc,
+                            payload: payload,
                             id: e.geo_fences[i].id
                         }));
                     }

@@ -8,13 +8,37 @@ windowFunctions['Create Geo Fence'] = function (evt) {
     });
     win.add(content);
 
-    var geo_fence = Ti.UI.createTextField({
-        hintText: 'geo_fence',
+    var name = Ti.UI.createTextField({
+        hintText: 'name',
         top: 10 + u, left: 10 + u, right: 10 + u,
         height: 40 + u,
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
     });
-    content.add(geo_fence);
+    content.add(name);
+
+    var latitude = Ti.UI.createTextField({
+        hintText: 'latitude',
+        top: 10 + u, left: 10 + u, right: 10 + u,
+        height: 40 + u,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+    });
+    content.add(latitude);
+
+    var longitude = Ti.UI.createTextField({
+        hintText: 'longitude',
+        top: 10 + u, left: 10 + u, right: 10 + u,
+        height: 40 + u,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+    });
+    content.add(longitude);
+
+    var radius = Ti.UI.createTextField({
+        hintText: 'radius',
+        top: 10 + u, left: 10 + u, right: 10 + u,
+        height: 40 + u,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+    });
+    content.add(radius);
 
     var button = Ti.UI.createButton({
         title: 'Create',
@@ -23,7 +47,7 @@ windowFunctions['Create Geo Fence'] = function (evt) {
     });
     content.add(button);
 
-    var fields = [ geo_fence ];
+    var fields = [ name, latitude, longitude, radius ];
 
     function submitForm() {
         for (var i = 0; i < fields.length; i++) {
@@ -36,7 +60,15 @@ windowFunctions['Create Geo Fence'] = function (evt) {
         button.hide();
 
         Cloud.GeoFences.create({
-            geo_fence: geo_fence.value
+            geo_fence: {
+                loc: {
+                    coordinates: [parseFloat(longitude.value), parseFloat(latitude.value)],
+                    radius: radius.value
+                },
+                payload: {
+                    name: name.value
+                }
+            }
         }, function (e) {
             if (e.success) {
                 alert('Created!');
@@ -53,7 +85,7 @@ windowFunctions['Create Geo Fence'] = function (evt) {
     }
 
     win.addEventListener('open', function () {
-        geo_fence.focus();
+        name.focus();
     });
     win.open();
 };

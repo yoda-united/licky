@@ -138,7 +138,8 @@ Ti.include(
     'windows/social/table.js',
     'windows/status/table.js',
     'windows/users/table.js',
-    'windows/accessControlLists/table.js'
+    'windows/accessControlLists/table.js',
+    'windows/genericSendRequest.js'
 );
 
 // Define our main window.
@@ -161,7 +162,7 @@ var table = Ti.UI.createTableView({
         'Events',
         'Files',
         'Friends',
-        'GeoFences',
+        'Geo Fences',
         'Key Values',
         'Likes',
         'Messages',
@@ -173,7 +174,8 @@ var table = Ti.UI.createTableView({
         'Push Schedules',
         'Reviews',
         'Social',
-        'Status'
+        'Status',
+        'Generic Send Request'
     ])
 });
 table.addEventListener('click', handleOpenWindow);

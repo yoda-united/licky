@@ -1,5 +1,7 @@
 windowFunctions['Update GeoFence'] = function (evt) {
     var geo_fence_id = evt.id;
+    var payload = evt.payload;
+    var loc = evt.loc;
     var win = createWindow();
     var offset = addBackButton(win);
     var content = Ti.UI.createScrollView({
@@ -9,13 +11,37 @@ windowFunctions['Update GeoFence'] = function (evt) {
     });
     win.add(content);
 
-    var geo_fence = Ti.UI.createTextField({
-        hintText: 'geo_fence',
+    var name = Ti.UI.createTextField({
+        hintText: 'name',
         top: 10 + u, left: 10 + u, right: 10 + u,
         height: 40 + u,
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
     });
-    content.add(geo_fence);
+    content.add(name);
+
+    var latitude = Ti.UI.createTextField({
+        hintText: 'latitude',
+        top: 10 + u, left: 10 + u, right: 10 + u,
+        height: 40 + u,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+    });
+    content.add(latitude);
+
+    var longitude = Ti.UI.createTextField({
+        hintText: 'longitude',
+        top: 10 + u, left: 10 + u, right: 10 + u,
+        height: 40 + u,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+    });
+    content.add(longitude);
+
+    var radius = Ti.UI.createTextField({
+        hintText: 'radius',
+        top: 10 + u, left: 10 + u, right: 10 + u,
+        height: 40 + u,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+    });
+    content.add(radius);
 
     var updateButton = Ti.UI.createButton({
         title: 'Update',
@@ -34,7 +60,7 @@ windowFunctions['Update GeoFence'] = function (evt) {
     });
     content.add(remove);
 
-    var fields = [ geo_fence ];
+    var fields = [ name, latitude, longitude, radius ];
 
     function submitForm() {
         for (var i = 0; i < fields.length; i++) {
@@ -48,7 +74,15 @@ windowFunctions['Update GeoFence'] = function (evt) {
 
         var params = {
             id: geo_fence_id,
-            geo_fence: geo_fence.value
+            geo_fence: {
+                loc: {
+                    coordinates: [parseFloat(longitude.value), parseFloat(latitude.value)],
+                    radius: radius.value
+                },
+                payload: {
+                    name: name.value
+                }
+            }
         };
 
         Cloud.GeoFences.update(params, function (e) {
@@ -67,7 +101,10 @@ windowFunctions['Update GeoFence'] = function (evt) {
     }
 
     win.addEventListener('open', function () {
-        geo_fence.focus();
+        name.value = payload.name;
+        latitude.value = loc.coordinates[1];
+        longitude.value = loc.coordinates[0];
+        radius.value = loc.radius;
     });
     win.open();
 };
