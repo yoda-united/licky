@@ -76,7 +76,8 @@ $.fetchFirstCollection = function(){
 	postCol.defaultFetchData = {
 		order : "-created_at",
 		where : $.fetchWhereData,
-		show_user_like : true
+		show_user_like : true,
+		per_page : 30
 	};
 	postCol.fetch(); //최초 fetch
 };

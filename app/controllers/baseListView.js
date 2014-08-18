@@ -165,7 +165,7 @@ function updateListMarker(col,itemIndex){
 	if(col.meta && col.meta.total_pages>col.meta.page){
 		$.listView.setMarker({
 			sectionIndex:sectionId,
-			itemIndex : $.section.items.length-1
+			itemIndex : $.section.items.length-10
 		});
 	}else{
 		//끝까지 로딩 한경우

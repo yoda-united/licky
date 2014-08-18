@@ -16,6 +16,7 @@ if(!args.likedPostOnly){
 	postCol.defaultFetchData = {
 		order : "-created_at",
 		show_user_like : true,
+		per_page : 30,
 		where :{
 			user_id: {'$in' : [someoneId]}
 		}
