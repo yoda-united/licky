@@ -78,7 +78,9 @@ function resetPostContent(){
 	};
 	$.contentSection.setItems([
 		contentItem
-	]);
+	],{
+		animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
+	});
 }
 
 if(!args.postModel && args.post_id){
@@ -129,7 +131,9 @@ var resetCommentItems = function(){
 		
 		items.push(item);
 	});
-	$.commentSection.setItems(items);
+	$.commentSection.setItems(items,{
+		animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
+	});
 	
 	if( !postModel.get('custom_fields') 
 		|| (postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates) ){

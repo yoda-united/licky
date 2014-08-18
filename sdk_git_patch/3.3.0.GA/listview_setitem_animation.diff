@@ -1,0 +1,73 @@
+From b369d294d493064811bd1f3d641804d28e3c5bf3 Mon Sep 17 00:00:00 2001
+From: Vishal Duggal <vishalduggal@gmail.com>
+Date: Wed, 13 Aug 2014 17:42:24 +0530
+Subject: [PATCH] [TIMOB-16115] Break setItems into two dispatch blocks
+
+---
+ iphone/Classes/TiUIListSectionProxy.m | 50 ++++++++++++++++++++++++++++++-----
+ 1 file changed, 43 insertions(+), 7 deletions(-)
+
+diff --git a/iphone/Classes/TiUIListSectionProxy.m b/iphone/Classes/TiUIListSectionProxy.m
+index bed57fc..1540762 100644
+--- a/iphone/Classes/TiUIListSectionProxy.m
++++ b/iphone/Classes/TiUIListSectionProxy.m
+@@ -120,13 +120,49 @@
+ 
+ - (void)setItems:(id)args withObject:(id)properties
+ {
+-	ENSURE_TYPE_OR_NIL(args,NSArray);
+-	NSArray *items = args;
+-	UITableViewRowAnimation animation = [TiUIListView animationStyleForProperties:properties];
+-	[self.dispatcher dispatchUpdateAction:^(UITableView *tableView) {
+-		[_items setArray:items];
+-		[tableView reloadSections:[NSIndexSet indexSetWithIndex:_sectionIndex] withRowAnimation:animation];
+-	}];
++    ENSURE_TYPE_OR_NIL(args,NSArray);
++    NSArray *items = args;
++    UITableViewRowAnimation animation = [TiUIListView animationStyleForProperties:properties];
++    NSUInteger oldCount = [_items count];
++    NSUInteger newCount = [items count];
++    if ((animation == UITableViewRowAnimationNone) && (oldCount != newCount)) {
++        NSUInteger minCount = MIN(oldCount, newCount);
++        NSUInteger maxCount = MAX(oldCount, newCount);
++        NSUInteger diffCount = maxCount - minCount;
++        
++        //Dispath block for difference
++        [self.dispatcher dispatchUpdateAction:^(UITableView *tableView) {
++            [_items setArray:items];
++            NSMutableArray *indexPaths = [[NSMutableArray alloc] initWithCapacity:diffCount];
++            for (NSUInteger i = 0; i < diffCount; ++i) {
++                [indexPaths addObject:[NSIndexPath indexPathForRow:(minCount + i) inSection:_sectionIndex]];
++            }
++            if (newCount > oldCount) {
++                [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
++            } else {
++                [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
++            }
++            [indexPaths release];
++        }];
++        
++        //Dispatch block for common items
++        if (minCount > 0) {
++            [self.dispatcher dispatchUpdateAction:^(UITableView *tableView) {
++                NSMutableArray *indexPaths = [[NSMutableArray alloc] initWithCapacity:minCount];
++                for (NSUInteger i = 0; i < minCount; ++i) {
++                    [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:_sectionIndex]];
++                }
++                [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
++                [indexPaths release];
++            }];
++        }
++        
++    } else {
++        [self.dispatcher dispatchUpdateAction:^(UITableView *tableView) {
++            [_items setArray:items];
++            [tableView reloadSections:[NSIndexSet indexSetWithIndex:_sectionIndex] withRowAnimation:animation];
++        }];
++    }
+ }
+ 
+ - (void)appendItems:(id)args
+-- 
+1.8.4.2
+

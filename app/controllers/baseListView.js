@@ -34,7 +34,9 @@ var sectionId = 1;
 			newCol.on('add',handlers.collection.add);
 			newCol.on('destroy',handlers.collection.destroy);
 			
-			$.section.setItems([]);
+			$.section.setItems([],{
+				animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
+			});
 		},
 		/**
 		  * 주의!!!!!!! CREATION-ONLY
