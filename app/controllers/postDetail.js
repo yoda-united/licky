@@ -19,27 +19,39 @@ $.listView.addEventListener('itemclick', function(e) {
 				    post_id : postModel.id
 				}, function (e) {
 				    if (e.success) {
-				        postModel.set({
-				        	'current_user_liked' : true,
-				        	'likes_count' : (postModel.get('likes_count')||0)+1
-				        });
+				        // postModel.set({
+				        	// 'current_user_liked' : true,
+				        	// 'likes_count' : (postModel.get('likes_count')||0)+1
+				        // });
 				    } else {
 				       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+				       postModel.set({
+				        	'current_user_liked' : false,
+				        	'likes_count' : (postModel.get('likes_count')||1)-1
+				        });
 				    }
 				});
+				postModel.set({
+		        	'current_user_liked' : true,
+		        	'likes_count' : (postModel.get('likes_count')||0)+1
+		        });
 			}else{
 				AG.Cloud.Likes.remove({
 				    post_id : postModel.id
 				}, function (e) {
 				    if (e.success) {
-				    	 postModel.set({
-				        	'current_user_liked' : false,
-				        	'likes_count' : (postModel.get('likes_count')||1)-1
-				        });
 				    } else {
+				    	 postModel.set({
+				        	'current_user_liked' : true,
+				        	'likes_count' : (postModel.get('likes_count')||0)+1
+				        });
 				       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
 				    }
 				});
+				postModel.set({
+		        	'current_user_liked' : false,
+		        	'likes_count' : (postModel.get('likes_count')||1)-1
+		        });
 			}
 			
 		break;
