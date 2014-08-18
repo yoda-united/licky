@@ -32,7 +32,10 @@ AG.facebook = require('facebook');
 AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 AG.facebook.permissions = ["publish_stream","email"];
 
-
+Alloy.Globals.is ={
+	iOS7 : (OS_IOS && parseInt(Ti.Platform.version, 10) >= 7),
+	talliPhone : (OS_IOS && Ti.Platform.displayCaps.platformHeight == 568)
+};
 
 AG.cameraInfo = {
 	top : 44,
