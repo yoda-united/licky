@@ -8,28 +8,30 @@
 }
 
 "#labelWrap": {
-	height: 180 
+	top: 0,
+	height: 300 
 }
 
 "#iconLabel": {
-	text: '\uf1df',
+	// text: '\uf1e0',
 	font: {
 		fontFamily: 'ionicons',
-		fontSize: 150
+		fontSize: 90
 	},
-	color : '#555',
-	top : 0
+	color : Alloy.Globals.COLORS.lightGray,
+	top : 35
 }
 
 "#textLabel": {
 	text: L('noItemDefaultText'),
 	font: {
 		fontFamily: 'AppleSDGothicNeo-UltraLight',
-		fontSize: 15
+		// fontSize: 15
 	},
-	color: Alloy.Globals.COLORS.midGray,
-	left: 10,
-	right: 10,
-	bottom: 0,
+	color: Alloy.Globals.COLORS.defaultGray,
+	// left: 10,
+	// right: 10,
+	// bottom: 0,
+	top: 190,
 	textAlign : 'center'
 }

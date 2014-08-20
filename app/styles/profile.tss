@@ -108,21 +108,20 @@
 }
 
 ".spoon" : {
-	text : '\uf0f5 '	
-
+	text : '\uf27a \uf297 '	
 }
 
 ".star" : {
-	text : '\uf005'
+	text : '\uf1e0 '
 }
 
 ".rowIcon" : {
-	left : 15,
+	left : 13,
 	width : 18,
-	textAlign : 'center',
+	// textAlign : 'center',
 	font : {
-		fontFamily : 'fontAwesome',
-		fontSize : 18
+		fontFamily : 'ionicons',
+		fontSize : 20
 	},
 	color : Alloy.Globals.COLORS.darkGray
 }
