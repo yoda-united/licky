@@ -86,7 +86,7 @@ exports.definition = {
 						image : profileUrl
 					},
 					commentCount : {
-						text : this.get('reviews_count')? "\uf16b " + this.get('reviews_count') : ""
+						text : this.get('reviews_count')? "\uf11f " + this.get('reviews_count') : ""
 					},
 					distance : distance,
 					likeCount : {
