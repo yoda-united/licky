@@ -10,7 +10,7 @@ $.listView.addEventListener('itemclick', function(e) {
 				userModel :e.section.id === "commentSection" ? Alloy.createModel('user', commentCol.get(e.itemId).get('user')) : Alloy.createModel('user', postModel.get('user'))
 			});
 		break;
-		case "like":
+		case "likeWrap":
 			AG.loginController.requireLogin({
 				success: function(){
 					var likeModel = Alloy.createModel('like',{
@@ -77,7 +77,7 @@ function resetPostContent(){
 	contentItem.properties.backgroundColor = Alloy.Globals.COLORS.whiteGray;
 	contentItem.properties.canEdit = false;
 	// contentItem.photo.height = 180;
-	contentItem.like = {
+	contentItem.likeWrap = {
 		visible : true
 	};
 	$.contentSection.setItems([

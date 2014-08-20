@@ -49,15 +49,11 @@ exports.definition = {
 						text : '\uf1e0', //iconic star
 						color : AG.COLORS.red
 					}:{
-						text : '\uf1df',
-						color : AG.COLORS.lightGray
+						// text : '\uf1df ',
+						text: '\uf1e0',
+						color : '#eddd'
 					};
 				
-				var commentCountText = "";
-				if( this.get('reviews_count') ){
-					commentCountText = String.format(' %d', this.get('reviews_count') || 0);
-				}
-
 				// BOG-196 관련 임시 조치
 				this.cachedBlob = this.cachedBlob || this.collection?this.collection.recentBlob:'';
 				this.collection && (this.collection.recentBlob = null);
@@ -90,13 +86,20 @@ exports.definition = {
 						image : profileUrl
 					},
 					commentCount : {
-						text : commentCountText
+						text : this.get('reviews_count')? "\uf16b " + this.get('reviews_count') : ""
 					},
 					distance : distance,
-					likeIcon : likeIcon,
 					likeCount : {
-						text : (this.get('likes_count')||'0') + ' x'
+						text : this.get('likes_count')? "\uf1e0 " + this.get('likes_count') : ""
 					},
+					likeIcon : likeIcon,
+					likeText : this.get('current_user_liked')?
+						{
+							text: " "+L('liked')
+						}:
+						{
+							text: " " +L('like')
+						},
 					properties :{
 						// backgroundRepeat : true,
 						// backgroundImage : urls.original ,

@@ -26,7 +26,9 @@ exports = {
 		silver : [ { color: '#dbddde', offset: 0.0}, { color: '#898c90', offset: 1.0 } ],
 		white : [ { color: '#FcFEFE', offset: 0.0}, { color: '#FEFEFE', offset: 1.0 } ],
 		
-		lickyRed: [ { color: '#E01410', offset: 0.0}, {color: '#FD3848', offset:0.85},{color: '#FD3259', offset: 1.0}]
+		lickyRed: [ { color: '#E01410', offset: 0.0}, {color: '#FD3848', offset:0.85},{color: '#FD3259', offset: 1.0}],
+		transparencySilver : [ { color: '#40dbddde', offset: 0.0}, { color: '#40918e92', offset: 1.0 } ],
+		transparencyBlack : [ { color: '#08000000', offset: 0.0}, { color: '#13565656', offset: 1.0 } ]
 		// lickyRed: [ { color: 'black', offset: 0.0}, {color: '#FD3259', offset: 1.0}]
 	},
 	

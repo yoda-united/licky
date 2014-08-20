@@ -14,6 +14,8 @@
 	<string name="myLicks">내가 소화 시킨 것들</string>
 	<string name="someoneLicks">%s 님의 배 속</string>
 	<string name="myLikes">이거야!</string>
+	<string name="like">우와!</string>
+	<string name="liked">이거다!</string>
 	<string name="someoneLikes">%s님의 별 목록</string>
 	<string name="cancel">취소</string>
 	<string name="confirm">확인</string>
