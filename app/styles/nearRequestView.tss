@@ -10,7 +10,7 @@
 
 "#guidanceLabel": {
 	top: 250,
-	color: Alloy.Globals.COLORS.darkGray,
+	color: Alloy.Globals.COLORS.defaultGray,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	text: L("requireGeoLocationGuidanceOnNearTap")
 }
@@ -20,7 +20,7 @@
 	height: 60,
 	width: 250,
 	borderRadius: 5,
-	tintColor: Alloy.Globals.COLORS.darkGray,
+	// tintColor: Alloy.Globals.COLORS.darkGray,
 	backgroundGradient : {
         type: 'linear',
         startPoint: { x: '50%', y: '00%' },

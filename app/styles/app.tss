@@ -1,5 +1,5 @@
 "Window":{
-	backgroundColor : Alloy.Globals.COLORS.lightGray
+	backgroundColor : Alloy.Globals.COLORS.darkGray
 }
 "Window[platform=ios]": {
 	// statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT,
