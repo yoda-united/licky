@@ -81,6 +81,16 @@
 "#step02Label": {
 	text: L('step2_takePic')
 }
+".step02ContentTitle": {
+	font : {
+		fontSize : 18,
+		fontFamily : 'AppleSDGothicNeo-Thin'
+	},
+	text : L('step2_contentTitle'),
+	color : Alloy.Globals.COLORS.midGray,
+	// borderColor : 'red',
+	top : 260
+}
 "#step03Label": {
 	text: L('step3_try')
 }
