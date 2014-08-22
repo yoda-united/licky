@@ -39,7 +39,7 @@ var showGuidance = function(message){
 				duration: 60,
 				bottom: guidanceBottom_down
 			});
-		}, 900);
+		}, 3000);
 	});
 };
 var setFbShareBtn = function(){
@@ -50,8 +50,12 @@ var setFbShareBtn = function(){
 		showGuidance( L('willNotShareOnFacebook')	);
 		$.fbShareBtn.setBackgroundImage('images/fbShareInactive.png');
 	}
+	
+	$.requestLocationBtn.animate({
+		duration: 50,
+		right: -170
+	});
 };
-
 $.fbShareBtn.addEventListener('click', function(){
 	AG.settings.save('postWithFacebook', !AG.settings.get("postWithFacebook"), {
 		success: function(){
@@ -60,6 +64,82 @@ $.fbShareBtn.addEventListener('click', function(){
 	});
 });
 
+var setLocationBtn = function(opt){
+	var guidanceVisible = opt && opt.guidanceVisible;
+	switch ( Ti.Geolocation.getLocationServicesAuthorization() ) {
+		case Ti.Geolocation.AUTHORIZATION_RESTRICTED:	// 시스템 알람에서 위치정보 허용 안한 경우
+		case Ti.Geolocation.AUTHORIZATION_DENIED:	// 시스템 알람에서 위치정보 허용 안하거나 꺼져 있는 경우(테스트 상으로는 이것만 나옴)
+			// alert('AUTHORIZATION_DENIED' );
+			guidanceVisible && showGuidance( L('locationAuthDenied') );
+			$.locationBtn.setBackgroundImage('images/locationUnkown.png');
+			$.requestLocationBtn.animate({
+				duration: 50,
+				right: -170
+			});
+			return;
+		case Ti.Geolocation.AUTHORIZATION_UNKNOWN:
+			guidanceVisible && showGuidance( L('locationRequired') );
+			$.locationBtn.setBackgroundImage('images/locationUnkown.png');
+			// guidanceVisible && showGuidance( L('willPostedWithLocation') );
+			// guidanceVisible && $.requestLocationBtn.setVisible(true);
+			if( guidanceVisible ){
+				setTimeout(function(){
+					$.requestLocationBtn.animate({
+						duration: 50,
+						right: 19
+					}, function(){
+						return;
+						setTimeout(function(){
+							$.requestLocationBtn.animate({
+								duration: 50,
+								right: -170
+							});
+						}, 3000);
+					});
+				}, 0);
+			}
+			return;
+		case Ti.Geolocation.AUTHORIZATION_AUTHORIZED:
+			// 위치 서비스를 처음 켰을때 버튼을 사라지게 해줘야..
+			$.requestLocationBtn.animate({
+				duration: 50,
+				right: -170
+			});
+			break;
+		default:
+			break;
+	}
+	
+	if( AG.settings.get('postWithLocation') ){
+		guidanceVisible && showGuidance( L('willPostedWithLocation') );
+		$.locationBtn.setBackgroundImage('images/locationActive.png');
+	}else{
+		guidanceVisible && showGuidance( L('willNotPostedWithLocation') );
+		$.locationBtn.setBackgroundImage('images/locationInactive.png');
+	}
+};
+$.locationBtn.addEventListener('click', function(){
+	if(  Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_UNKNOWN){
+		setLocationBtn({guidanceVisible:true});
+		getCurrentPosition();
+	}else{
+		AG.settings.save('postWithLocation', !AG.settings.get("postWithLocation"), {
+			success: function(){
+				setLocationBtn({guidanceVisible:true});
+				getCurrentPosition();
+			}
+		});
+	}
+});
+
+
+$.requestLocationBtn.addEventListener('click', function(e){
+	AG.currentPosition.authorize(function(e){
+		// setLocationBtn();
+		getCurrentPosition();
+	});
+});
+AG.currentPosition.on('changeGeoAuth', setLocationBtn);
 
 /**
  *  shop name
@@ -72,15 +152,14 @@ $.shopNameField.addEventListener('change', function(e){
 	foursquare.venue_id = "";
 	foursquare.venue_name = e.value;
 
-	$.distance.setText( e.value +": "
-		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
+	setDistanceLabel();
 });
 $.shopNameField.addEventListener('suggestComplete', function(e){
 	// alert(JSON.stringify(e.itemId));
 	foursquare.venue_id = e.itemId;
 	foursquare.venue_name = $.shopNameField.getValue();
-	$.distance.setText( $.shopNameField.getValue() +": "
-		+ AG.utils.getGoogleShortAddress(currentAddress.ko.results[0]) );
+
+	setDistanceLabel();
 });
 $.shopNameField.addEventListener('return', _.throttle(send,1000));
 
@@ -117,7 +196,9 @@ function getCurrentPosition(){
 	AG.currentPosition.update(function(e){
 		var longitude = e.longitude;
 		var latitude = e.latitude;
-		if( !AG.currentPosition.get('success') ){
+		if( !AG.currentPosition.get('success')  ){
+			currentAddress = {};	// 현재 위치가 서버에 올라가지 않도록 빈 오브젝트로 대체 
+			$.distance.setText( $.shopNameField.getValue() );
 			return;
 		}
 		
@@ -145,10 +226,7 @@ function getCurrentPosition(){
 		AG.utils.googleReverseGeo(_.extend({
 			success: function(add){
 				currentAddress.ko = add;
-				
-				if( AG.currentLanguage == 'ko'){
-					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
-				}
+				setDistanceLabel();
 			},
 			error: function(){
 				
@@ -161,10 +239,7 @@ function getCurrentPosition(){
 		AG.utils.googleReverseGeo(_.extend({
 			success: function(add){
 				currentAddress.en = add;
-				
-				if( AG.currentLanguage == 'en'){
-					$.distance.text = AG.utils.getGoogleShortAddress(add.results[0]);
-				}
+				setDistanceLabel();
 			},
 			error: function(){
 				
@@ -174,6 +249,14 @@ function getCurrentPosition(){
 	});	
 }
 
+function setDistanceLabel(){
+	if( AG.settings.get('postWithLocation') ){
+		$.distance.text =  ($.shopNameField.getValue()? $.shopNameField.getValue()+": ": "")
+			 + AG.utils.getGoogleShortAddress(currentAddress[AG.currentLanguage].results[0]);
+	}else{
+		$.distance.text =  $.shopNameField.getValue();
+	}
+}
 
 $.contentField.addEventListener('postlayout', function(e) {
 	$.contentField.removeEventListener('postlayout',arguments.callee);
@@ -183,6 +266,7 @@ $.contentField.addEventListener('postlayout', function(e) {
 	//fake cursor
 	// $.fakeCursor.start();
 	setFbShareBtn();
+	setLocationBtn();
 });
 
 
@@ -292,7 +376,7 @@ exports.showCamera = function(){
 					// address_en: currentAddress.en.results[0]
 				}
 			};
-			if( currentAddress.ko ){
+			if( AG.settings.get("postWithLocation") &&  Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_AUTHORIZED){
 				postContent.custom_fields.coordinates = [currentPosition.longitude, currentPosition.latitude ];
 				postContent.custom_fields.address_ko = currentAddress.ko.results[0];
 				postContent.custom_fields.address_en = currentAddress.en.results[0];
@@ -321,6 +405,10 @@ exports.showCamera = function(){
 						},
 						{
 							success : function(nextPreviewPhoto){
+								AG.allowPushController.tryRegisterPush({
+									title: L('successPhotoUpload')
+								});
+								
 								//alert(nextPreviewPhoto.get('urls').original);
 								if(AG.settings.get('postWithFacebook')){
 									

@@ -1,0 +1,43 @@
+
+".container" : {
+}
+"#unkownGeoImg":{
+	top: 105,
+	// width: 192,
+	// height: 277,
+	image: "images/unkownGeo.png"
+}
+
+"#guidanceLabel": {
+	top: 250,
+	color: Alloy.Globals.COLORS.defaultGray,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	text: L("requireGeoLocationGuidanceOnNearTap")
+}
+
+"#requestBtn": {
+	top: 300,
+	height: 60,
+	width: 250,
+	borderRadius: 5,
+	// tintColor: Alloy.Globals.COLORS.darkGray,
+	backgroundGradient : {
+        type: 'linear',
+        startPoint: { x: '50%', y: '00%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: Alloy.Globals.COLORS.gradient.lickyRed,
+   },
+	color : 'white',
+	font: {
+		fontFamily: 'AppleSDGothicNeo-Thin', 
+		fontSize: 25
+	},
+	title: L("requestGeolocation")
+}
+"#turnOnLocationImg": {
+	image: "images/turnOnLocation.png",
+	top: 310,
+	width: 213,
+	height: 51,
+	visible: false
+}

@@ -75,7 +75,9 @@ $.onFirstFocus = function(e){
 $.fetchFirstCollection = function(){
 	postCol.defaultFetchData = {
 		order : "-created_at",
-		where : $.fetchWhereData
+		where : $.fetchWhereData,
+		show_user_like : true,
+		per_page : 30
 	};
 	postCol.fetch(); //최초 fetch
 };
@@ -195,10 +197,3 @@ function showCamera(){
 		message : L('cameraNeedsLogin')
 	});
 }
-
-
-
-
-
-
-

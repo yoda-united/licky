@@ -1,0 +1,37 @@
+
+".container": {
+	height : 347 //가운데에서 20px 뺏음
+}
+
+".container[if=Alloy.Globals.is.talliPhone]" : {
+	height :435 //가운데에서 20px 뺏음
+}
+
+"#labelWrap": {
+	top: 0,
+	height: 300 
+}
+
+"#iconLabel": {
+	// text: '\uf1e0',
+	font: {
+		fontFamily: 'ionicons',
+		fontSize: 90
+	},
+	color : Alloy.Globals.COLORS.lightGray,
+	top : 35
+}
+
+"#textLabel": {
+	text: L('noItemDefaultText'),
+	font: {
+		fontFamily: 'AppleSDGothicNeo-UltraLight',
+		// fontSize: 15
+	},
+	color: Alloy.Globals.COLORS.defaultGray,
+	// left: 10,
+	// right: 10,
+	// bottom: 0,
+	top: 190,
+	textAlign : 'center'
+}

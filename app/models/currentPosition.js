@@ -8,6 +8,18 @@ exports.definition = {
 	extendModel: function(Model) {
 		_.extend(Model.prototype, {
 			// extended functions and properties go here
+			authorize: function(cb){
+				var	self = this;
+				
+				Ti.Geolocation.getCurrentPosition(function(e){
+					self.set('success', e.success);
+					self.set('error', e.error);
+					self.set(e.coords);
+					
+					self.trigger('changeGeoAuth');
+					cb && cb(e.coords);
+				});
+			},
 			update: function(cb){
 				var	self = this;
 				
@@ -19,13 +31,20 @@ exports.definition = {
 					}
 				}
 				self.set('timestamp', Date.now() );
-									
-				Ti.Geolocation.getCurrentPosition(function(e){
-					self.set('success', e.success);
-					self.set('error', e.error);
-					self.set(e.coords);
-					cb && cb(e.coords);
-				});
+
+				if( Ti.Geolocation.getLocationServicesAuthorization()
+					== Ti.Geolocation.AUTHORIZATION_UNKNOWN ){
+					self.set('success', false);
+					self.set('error', true);
+					// cb & cb();
+				}else{
+					Ti.Geolocation.getCurrentPosition(function(e){
+						self.set('success', e.success);
+						self.set('error', e.error);
+						self.set(e.coords);
+						cb && cb(e.coords);
+					});
+				}
 			}
 		});
 

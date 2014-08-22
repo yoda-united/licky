@@ -27,7 +27,7 @@ exports.definition = {
 				catch (e) {
 				   return null;
 				}
-				// Ti.API.info(payloadObj);
+				var profileUrl  = payloadObj.user.external_accounts[0] && payloadObj.user.external_accounts[0].external_id ? String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", payloadObj.user.external_accounts[0].external_id, 128, 128):'';
 				return {
 					template : 'pushItemTemplate',
 					title : {
@@ -39,7 +39,7 @@ exports.definition = {
 						image : payloadObj.photo_urls.original
 					},
 					profile : {
-						image : String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", payloadObj.user.external_accounts[0].external_id, 128, 128),
+						image : profileUrl
 					},
 					userName : {
 						text : payloadObj.user.frist_name + ' ' + payloadObj.user.last_name

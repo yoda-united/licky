@@ -1,5 +1,5 @@
 "Window":{
-	backgroundColor : Alloy.Globals.COLORS.lightGray
+	backgroundColor : Alloy.Globals.COLORS.darkGray
 }
 "Window[platform=ios]": {
 	// statusBarStyle: Ti.UI.iPhone.StatusBar.LIGHT_CONTENT,
@@ -111,13 +111,22 @@
 	// //borderColor : 'red',
 	// verticalAlign : null
 // }
-".commentCount" : {
+".verticalMetaWrap": {
 	left: 13,
 	top : 48,
-	width : 40,
+	layout: "vertical",
+	// backgroundColor: "#3fff",
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE
+}
+".commentCount" : {
+	// left: 13,
+	// top : 48,
+	// width : 40,
 	textAlign : 'left',
 	font : {
-		fontFamily : 'FontAwesome',
+		// fontFamily : 'FontAwesome',
+		fontFamily : 'ionicons',
 		fontSize : 12
 	},
 	// color : '#eedc'
@@ -150,6 +159,57 @@
 	color : "#dfff",
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP
 }
+".likeCount" : {
+	// backgroundColor:"yellow",
+	// left: 13,
+	// top : 52,
+	font: {
+		fontFamily : 'ionicons',
+		fontSize : 12
+	},
+	textAlign : 'left',
+	color : '#eddd',
+}
+
+".likeWrap" : {
+	layout: "horizontal",
+	// backgroundColor: "#2fff",
+    backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '100%' },
+        endPoint: { x: '50%', y: '0%' },
+        colors: Alloy.Globals.COLORS.gradient.transparencyBlack
+    },	
+	borderRadius: 5,
+	// width : 60,
+	width: Ti.UI.SIZE,
+	height : 38,
+	right : 11,
+	bottom : 10
+}
+".likeIcon" : {
+	left: 10,
+	// verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+	font : {
+		fontFamily : 'ionicons',
+		fontSize : 19
+	},
+	color : '#eddd'
+}
+".likeText" : {
+	right: 10,
+	height: Ti.UI.FILL,
+	// verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM,
+	font : {
+		fontFamily : 'AppleSDGothicNeo-regular',
+		fontSize : 14
+	},
+	color : '#eddd'
+}
+
+
+
+
 /* postItemTemplate end */
 
 

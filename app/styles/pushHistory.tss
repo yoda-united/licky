@@ -16,3 +16,93 @@
 	},
 	refreshControlTintColor : Alloy.Globals.COLORS.red
 }
+"#listHeaderView" : {
+	// backgroundColor :'transparent',
+	backgroundColor: Alloy.Globals.COLORS.whiteGray,
+	height : Ti.UI.SIZE
+}
+	
+"#thanksListHeaderView" : {
+	backgroundColor : Alloy.Globals.COLORS.whiteGray,
+	height: Ti.UI.SIZE
+}
+".pushGuideWrap" : {
+	layout : 'horizontal',
+	top : 10,
+	bottom : 10,
+	color : Alloy.Globals.COLORS.whiteGray,
+	width : Ti.UI.SIZE,
+	height : Ti.UI.SIZE
+}
+"#pushAllowButton" : {
+	borderRadius: 5,
+	width : 250,
+	height: 32,
+	backgroundGradient: {
+		type: 'linear',
+		startPoint: {
+			x: '50%',
+			y: '00%'
+		},
+		endPoint: {
+			x: '50%',
+			y: '100%'
+		},
+		colors: Alloy.Globals.COLORS.gradient.lickyRed
+	},
+	title: L( 'pushGuideText'),
+	font: {
+		fontSize : 13
+	},
+	color : Alloy.Globals.COLORS.whiteGray,
+	color : 'white'
+}
+
+".pushGuideText" : {
+	font: {
+		fontSize : 13
+	},
+	color : Alloy.Globals.COLORS.whiteGray,
+	text : L('pushGuideText')
+}
+
+".pushIcon" : {
+	text : '\uf159',
+	font: {
+		fontFamily : 'ionicons',
+		fontSize : 30
+	},
+	color : Alloy.Globals.COLORS.red,
+	right : 5
+}
+
+".thanksIcon" : {
+	text : '\uf199',
+	font : {
+		fontSize : 30
+	},
+	color : Alloy.Globals.COLORS.red
+}
+".thanksText" : {
+	color : Alloy.Globals.COLORS.red,
+	text : L('pushGuideSuccessText')
+}
+
+"#noResultFooter" : {
+	height : 30,
+	width : 200,
+	backgroundColor : 'blue',
+	top : 0
+}
+"#noPushResultLabel" : {
+	text : L('noPush'),
+	font : {
+		fontFamily : 'AppleSDGothicNeo-Light',
+		fontSize : 15
+	},
+	top : 10,
+	width : 200,
+	height : 30,
+	color : Alloy.Globals.COLORS.darkGray,
+	borderColor : 'red'
+}

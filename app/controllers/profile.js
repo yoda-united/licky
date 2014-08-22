@@ -16,28 +16,16 @@ if (userModel) {
 }
 
 
-// 해당 사용자가 작성한 post 수 확인 
-// 주의!!!!!! loggedIn User로 인해 get('id') 함수로 id를 가져와야함)
-if(userModel.get('id')){  // !!!
-	var postCol = Alloy.createCollection('post');
-	postCol.fetch({
-		data : {
-			per_page : 1,
-			where :{
-				user_id: {'$in' : [userModel.get('id')]} // !!!
-			},
-		},
-		success : function(col){
-			$.foodRowCount.text = col.meta.total_results;
-		}
-	});
-}
-
 // title & label 변경
 var isMe = userModel.get('id') == AG.loggedInUser.get('id');
 $.profile.title = isMe?L('me'):userModel.get('first_name');
 $.foodRowLabel.text = isMe?L('myLicks'):String.format(L('someoneLicks'),userModel.get('first_name'));
+$.likeRowLabel.text = isMe?L('myLikes'):String.format(L('someoneLikes'),userModel.get('first_name'));
 $.contactUsBtn.visible = isMe;
+if(!isMe){
+	$.menuTable.deleteRow($.likeRow);
+	$.menuTable.height = 44;
+}
 
 $.getView().addEventListener('focus', function(e) {
 	$.setProperties();
@@ -53,11 +41,26 @@ $.mainContent.addEventListener('scroll', _.throttle(function(e){
 		// top: 182.5 - e.y});
 }, 10));
 
-$.foodRow.addEventListener('click', function(e) {
-	AG.utils.openController(AG.mainTabGroup.activeTab, "someonePostList", {
-		userModel : userModel
-	});
+
+
+$.menuTable.addEventListener('click', function(e) {
+	switch(e.row.id){
+		case 'lickyRow':
+			AG.utils.openController(AG.mainTabGroup.activeTab,
+				 "someonePostList", {
+				userModel : userModel
+			});
+		break;
+		case 'likeRow':
+			AG.utils.openController(AG.mainTabGroup.activeTab,
+				"someonePostList", {
+				userModel : userModel,
+				likedPostOnly : true
+			});
+		break;
+	}
 });
+
 
 
 $.settingDialog.addEventListener('click', _.throttle(function(e) {
@@ -95,7 +98,7 @@ $.contactUsBtn.addEventListener('click', function(e) {
 	});
 	
 	if(!emailDialog.isSupported()){
-		alert('릭키 메일 주소는 app@licky.co \n클립보드에 복사했으니 원하는 메일 앱에 붙여 넣고 메일 주세요!');
+		alert('Licky 메일 주소는 app@licky.co \n클립보드에 복사했으니 원하는 메일 앱에 붙여 넣고 메일 주세요!');
 		Ti.UI.Clipboard.setText('app@licky.co');
 	} else {
 		emailDialog.open();
@@ -158,6 +161,36 @@ exports.setProperties = function() {
 			}
 		}
 	});
+	
+	// 해당 사용자가 작성한 post 수 확인 
+	// 주의!!!!!! loggedIn User로 인해 get('id') 함수로 id를 가져와야함)
+	if(userModel.get('id')){  // !!!
+		var postCol = Alloy.createCollection('post');
+		postCol.fetch({
+			data : {
+				per_page : 1,
+				where :{
+					user_id: {'$in' : [userModel.get('id')]} // !!!
+				}
+			},
+			success : function(col){
+				$.foodRowCount.text = col.meta.total_results;
+			}
+		});
+		
+		var likeCol = Alloy.createCollection('like');
+		likeCol.fetch({
+			data : {
+				user_id : userModel.get('id'),
+				likeable_type : 'Post',
+				per_page : 1
+			},
+			success : function(col){
+				$.likeRowCount.text = col.meta.total_results;
+				// Ti.API.info(col.meta.total_results);
+			}
+		});
+	}
 };
 
 $.name.addEventListener('click', function(e){

@@ -12,9 +12,15 @@
 			
 	        <TableView id="menuTable" >
 	            <TableViewSection >
-	                <TableViewRow id="foodRow">
-	                	<Label id="foodRowLabel"></Label>
-	                	<Label id="foodRowCount">110</Label>
+	                <TableViewRow id="lickyRow" class="foodRow">
+	                	<Label class="rowIcon spoon"></Label>
+	                	<Label id="foodRowLabel" class="rowLabel"></Label>
+	                	<Label id="foodRowCount" class="rowCount"></Label>
+	                </TableViewRow>
+	                <TableViewRow id="likeRow" class="foodRow">
+	                	<Label class="rowIcon star"></Label>
+	                	<Label id="likeRowLabel" class="rowLabel"></Label>
+	                	<Label id="likeRowCount" class="rowCount"></Label>
 	                </TableViewRow>
 	            </TableViewSection>
 	        </TableView>

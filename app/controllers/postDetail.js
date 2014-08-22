@@ -2,14 +2,63 @@ var args = arguments[0] || {},
 	postModel = args.postModel;
 
 $.listView.addEventListener('itemclick', function(e) {
-	if (e.bindId == "profileImage") {
-		// alert(JSON.stringify(e));
-		// alert(commentCol.get(e.itemId).get('user'));
-		AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
-			//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
-			// userModel : Alloy.createModel('user', postModel.get('user'))
-			userModel :e.section.id === "commentSection" ? Alloy.createModel('user', commentCol.get(e.itemId).get('user')) : Alloy.createModel('user', postModel.get('user'))
-		});
+	switch(e.bindId){
+		case "profileImage":
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
+				//user가 backbone 모델 형태가 아니므로 model로 만들어서 넘겨준다.
+				// userModel : Alloy.createModel('user', postModel.get('user'))
+				userModel :e.section.id === "commentSection" ? Alloy.createModel('user', commentCol.get(e.itemId).get('user')) : Alloy.createModel('user', postModel.get('user'))
+			});
+		break;
+		case "likeWrap":
+			AG.loginController.requireLogin({
+				success: function(){
+					var likeModel = Alloy.createModel('like',{
+						post_id : postModel.id
+					});
+					if(!postModel.get('current_user_liked')){
+						AG.Cloud.Likes.create({
+						    post_id : postModel.id
+						}, function (e) {
+						    if (e.success) {
+						        // postModel.set({
+						        	// 'current_user_liked' : true,
+						        	// 'likes_count' : (postModel.get('likes_count')||0)+1
+						        // });
+						    } else {
+						       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+						       postModel.set({
+						        	'current_user_liked' : false,
+						        	'likes_count' : (postModel.get('likes_count')||1)-1
+						        });
+						    }
+						});
+						postModel.set({
+				        	'current_user_liked' : true,
+				        	'likes_count' : (postModel.get('likes_count')||0)+1
+				        });
+					}else{
+						AG.Cloud.Likes.remove({
+						    post_id : postModel.id
+						}, function (e) {
+						    if (e.success) {
+						    } else {
+						    	 postModel.set({
+						        	'current_user_liked' : true,
+						        	'likes_count' : (postModel.get('likes_count')||0)+1
+						        });
+						       // alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+						    }
+						});
+						postModel.set({
+				        	'current_user_liked' : false,
+				        	'likes_count' : (postModel.get('likes_count')||1)-1
+				        });
+					}
+				}
+			});
+			
+		break;
 	}
 });
 
@@ -28,9 +77,14 @@ function resetPostContent(){
 	contentItem.properties.backgroundColor = Alloy.Globals.COLORS.whiteGray;
 	contentItem.properties.canEdit = false;
 	// contentItem.photo.height = 180;
+	contentItem.likeWrap = {
+		visible : true
+	};
 	$.contentSection.setItems([
 		contentItem
-	]);
+	],{
+		animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
+	});
 }
 
 if(!args.postModel && args.post_id){
@@ -39,7 +93,11 @@ if(!args.postModel && args.post_id){
 postModel.on('change',resetPostContent);
 
 // model이 없을 땐 fetch하고 있을땐 바로 resetPostContent호출해서 그려줌
-(!args.postModel && args.post_id)?postModel.fetch():resetPostContent();
+(!args.postModel && args.post_id)?postModel.fetch({
+	data : {
+		show_user_like : true
+	}
+}):resetPostContent();
 
 
 var commentCol = Alloy.createCollection('review');
@@ -77,10 +135,14 @@ var resetCommentItems = function(){
 		
 		items.push(item);
 	});
-	$.commentSection.setItems(items);
+	$.commentSection.setItems(items,{
+		animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
+	});
 	
-	if( !postModel.get('custom_fields') || postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates ){
-		$.mapWrap.setHeight(0);
+	if( !postModel.get('custom_fields') 
+		|| (postModel.get('custom_fields') && !postModel.get('custom_fields').coordinates) ){
+		$.listView.deleteSectionAt(1);
+		$.listView.insertSectionAt(1,Ti.UI.createListSection());
 	}else{
 		/**
 		 * Google Map
@@ -98,10 +160,19 @@ var resetCommentItems = function(){
 					zoom: 16, //15, 16이 적당해 보임
 					width : 304,
 					height : 119,
-					top:0
+					top:0,
+					userLocation : (Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_AUTHORIZED)?true:false
 				});
 				$.mapWrap.setHeight(119);
 				$.mapWrap.add(mapView);
+				mapView.backgroundColor = 'white';
+				
+				var marker1 = GoogleMaps.createMarker({
+					latitude:coord[0][1],
+					longitude:coord[0][0],
+					image: 'images/flag4map' //png 붙이지 마시오. tishadow에서 보려면 파일 변경후 다시 appify해야함
+				});
+				GoogleMaps.addMarker(marker1);
 			})();
 		}
 	}
@@ -234,7 +305,7 @@ $.shareButton.addEventListener('click', function(e) {
 	// https://github.com/viezel/TiSocial.Framework
 	var Social = require('dk.napp.social');
 	Social.activityView({
-	    text: "먹기전에 릭키! 찰칵!",
+	    text: "먹기전에 Licky! 찰칵!",
 	    url: 'http://www.licky.co/post/'+postModel.id,
 	    removeIcons:"print,copy,contact,camera,mail,readinglist,airdrop"
 	},[
@@ -358,6 +429,10 @@ $.sendBtn.addEventListener('click',_.throttle(function(e) {
 						// fetchComments();
 					// }
 					postModel.set('reviews_count',postModel.get('reviews_count')+1);
+					
+					AG.allowPushController.tryRegisterPush({
+						title: L('successCommentUpload')
+					});
 				},
 				error : function(){
 					$.sendBtn.enabled = true;

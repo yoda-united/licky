@@ -63,7 +63,7 @@ GoogleMaps.prototype.initMap = function (params)
 	if ( that.platform == "android" )
 	{
 		that.mapView = that.module.createView({
-		    userLocation: true,
+		    userLocation: params.userLocation,
 		    mapType: that.module.NORMAL_TYPE,
 		    animate: true,
 		    region: {latitude: params.latitude, longitude: params.longitude, latitudeDelta: 0.1, longitudeDelta: 0.1 },
@@ -85,7 +85,8 @@ GoogleMaps.prototype.initMap = function (params)
 				latitude: params.latitude, 
 				longitude: params.longitude
 			},
-			zoom: params.zoom
+			zoom: params.zoom,
+			myLocation : params.userLocation
 		});	
 						
 		that.mapView = Titanium.UI.createView({

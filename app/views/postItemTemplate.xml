@@ -8,11 +8,18 @@
 		<Label class="photoTitle" bindId="title"></Label>
 		<Label class="time" bindId="time"></Label>
 		<Label class="userName" bindId="userName"></Label>
-		
-		<Label class="commentCount" bindId="commentCount"></Label>
+		<View class="verticalMetaWrap">
+			<Label class="commentCount" bindId="commentCount"></Label>
+			<Label class="likeCount" bindId="likeCount"></Label>
+		</View>
 		<MaskedImage id="profileImage" class="profileImage" bindId="profileImage"></MaskedImage>
 		<!-- <Label class="gpsIcon"></Label> -->
 		<Label class="distance" bindId="distance"></Label>
+		<View bindId="likeWrap" class="likeWrap">
+			<!-- <Label bindId="likeCount" class="likeCount"></Label> -->
+			<Label bindId="likeIcon" class="likeIcon"></Label>
+			<Label bindId="likeText" class="likeText"></Label>
+		</View>
 		<ImageView onLoad="hiddenProfileOnLoad" visible="false" bindId="hiddenProfile"></ImageView>
 	</ItemTemplate>
 </Alloy>

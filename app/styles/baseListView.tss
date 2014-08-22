@@ -12,13 +12,15 @@
 		left: 0,
 		right : 0
 	},
-	backgroundColor: Alloy.Globals.COLORS.lightGray
+	// backgroundColor: Alloy.Globals.COLORS.lightGray
+	backgroundColor: Alloy.Globals.COLORS.darkGray
 }
 
 "#loadingActivity" : {
 	// left: 119,
-	style : Titanium.UI.iPhone.ActivityIndicatorStyle.DARK,
+	style : Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN,
 	message : L('loading'),
+	color: Alloy.Globals.COLORS.midGray,
 	font : {
 		fontSize : 15,
 		fontFamily : 'AppleSDGothicNeo-UltraLight'

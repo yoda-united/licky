@@ -4,3 +4,8 @@
 	backgroundColor: Alloy.Globals.COLORS.red,
 	height : 108
 }
+
+".likeWrap" : {
+	// height: 40,
+	visible :false
+}

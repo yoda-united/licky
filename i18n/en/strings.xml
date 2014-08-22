@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+	<!-- globally -->
 	<string name="timeLine">타임라인</string>
 	<string name="timeLineTabTitle">타임라인</string>
 	<string name="pushHistory">알림</string>
@@ -12,7 +13,12 @@
 	<string name="friendsOnly">친구 것만</string>
 	<string name="myLicks">내가 소화 시킨 것들</string>
 	<string name="someoneLicks">%s 님의 배 속</string>
+	<string name="myLikes">이거야!</string>
+	<string name="like">우와!</string>
+	<string name="liked">이거다!</string>
+	<string name="someoneLikes">%s님의 별 목록</string>
 	<string name="cancel">취소</string>
+	<string name="confirm">확인</string>
 	<string name="close">닫기</string>
 	<string name="send">전송</string>
 	<string name="back">뒤로</string>
@@ -23,16 +29,25 @@
 	<string name="facebookConnecting">연결중..</string>
 	<string name="defaultLoginMessage">맛있을 땐 리키! 흐릅~</string>
 	<string name="commentNeedsLogin">댓글을 달려면 로그인이 필요합니다.</string>
-	<string name="cameraNeedsLogin">릭키로 음식 사진 찍으시게요? 어서 로그인하세요!</string>
+	<string name="cameraNeedsLogin">Licky로 음식 사진 찍으시게요? 어서 로그인하세요!</string>
 	<string name="logout">로그 아웃</string>
 	<string name="login">로그인</string>
 	<string name="setting">환경설정</string>
 	<string name="geoPurpose">주변 검색 및 글 작성 시 위치 기록용</string>
+	
+	<!-- cameraOveray -->
 	<string name="locationServiceNeeded">위치 서비스가 켜져 있어야\n 주변을 찾을 수 있어요.</string>
-	<string name="noFBFriends">릭키를 사용중인 페이스북 친구가 없네요.\n먹는거 좋아하는 친구들에게 릭키를 소개해보세요.</string>
-	<string name="willBePostedToFacebook">페이스북에 공유 하기</string>
+	<string name="noFBFriends">Licky를 사용중인 페이스북 친구가 없네요.\n먹는거 좋아하는 친구들에게 Licky를 소개해보세요.</string>
+	<string name="willBePostedToFacebook">페이스북에도 공유 하기</string>
 	<string name="willNotShareOnFacebook">페이스북에 공유 하지 않기</string>
+	<string name="willPostedWithLocation">현재 위치를 포함 하기</string>
+	<string name="willNotPostedWithLocation">현재 위치를 포함 하지 않기</string>
+	<string name="requestGeolocationForCamera">위치 정보 기록 할래요?</string>
+	<string name="locationAuthDenied">위치 서비스를 활성화 해야 사용 할 수 있습니다.</string>
+	<string name="locationRequired">현재 위치를 포함</string>
 	<string name="shopName">가게 이름</string>
+	
+	<!-- -->
 	<string name="failToDelete">삭제하지 못했습니다. 다시 시도해 주세요.</string>
 	<string name="deletedLick">삭제된거네요..</string>
 	<string name="report">신고하기</string>
@@ -41,18 +56,37 @@
 	<string name="successReportedInappropriate">신고 접수 되었습니다.</string>
 	<string name="failToReport">신고 접수하지 못했어요. 잠시 후 다시 시도해주세요.</string>
 	<string name="successUnReport">신고 취소 되었습니다.</string>
-	<string name="failUnReport">신고 취소하지 못했어. 잠시 후 다시 시도해주세요.</string>
+	<string name="failUnReport">신고 취소하지 못했어요. 잠시 후 다시 시도해주세요.</string>
 	<string name="unReportDialogTitle">이미 신고 하셨어요.</string>
 	<string name="failToTokenRenewalLogin">Facebook 정보를 갱신하는데 실패했어요. 잠시후 다시 시도해 주세요.</string>
 	<string name="leftACommentOnYourLicky"> 님이 댓글을 남겼어요: </string>
 	<string name="friendsPostNeedsLogin">친구 것만 따로 보려면 로그인 먼저 하셔야죠^^</string>
 	<string name="termsAndPrivacy">로그인은 이용약관 및 개인정보 취급정책에\n동의하는 것을 의미합니다.</string>
 	
+	<!-- near tap -->
+	<string name="requireGeoLocationGuidanceOnNearTap">가까운 곳에서 찍힌 음식들을 보려면\n위치 서비스를 켜야 해요</string>
+	<string name="requestGeolocation">위치 정보 허용하기!</string>
+	<string name="turnOnLocationAtSettings">위치 정보를 허용하지 않으셨네요?\n다시 켜는건 좀 복잡해요. ㅠㅠ\nSettings > Privacy > Location > Licky on..</string>
+	
+	<!-- profile tap -->
+	<string name="bugReport">버그 신고 및 제안하기</string>
+	
 	<!-- walkthrough -->
 	<string name="welcome">반가워요, </string>
-	<string name="walkthroughStart">  릭키 사용법 3단계 익히고 가실께요~</string>
+	<string name="walkthroughStart">  Licky 사용법 3단계 익히고 가실께요~</string>
 	<string name="step1_order">1. 음식을 시켜요</string>
-	<string name="step2_takePic">2. 릭키로 찍어요</string>
+	<string name="step2_takePic">2. Licky로 찍어요</string>
+	<string name="step2_contentTitle">아기다리고기다리던</string>
 	<string name="step3_try">3. 먹어요</string>
 	<string name="letsGo">시작!</string>
+	
+	<!-- allow push -->
+	<string name="pleasePush">알려주세요</string>
+	<string name="successPhotoUpload">사진 등록 성공!</string>
+	<string name="successCommentUpload">댓글 등록 성공!</string>
+	<string name="turnOnRemotePushAtSettings">푸쉬 알림을 허용하지 않으셨네요?\n다시 켜는건 좀 복잡해요. ㅠㅠ\n설정앱을 실행하고 알림 > Licky에서 알림 설정(배너,배지,사운드)하고 다시 Licky로 돌아오세요.</string>
+	<string name="wantCommentRemotePush">참여한 글에 댓글이 달리면 푸쉬 알림으로 알려드릴까요?</string>
+	<string name="pushGuideText">소식이 있을 때 푸쉬 알림으로 알려드릴까요?</string>
+	<string name="pushGuideSuccessText">푸쉬 알림 허용! 감사해요!</string>
+	<string name="noPush">알림이 아직 없네요.</string>
 </resources>

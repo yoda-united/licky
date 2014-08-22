@@ -9,12 +9,12 @@
 		<Button platform="android" id="cameraBtn"  onClick="showCamera"></Button>
 		
 		<View id="listHeaderView">
-            <TabbedBar id="tBar" platform="ios">
-	            <Labels>
-	                <Label class="allLabel"></Label>
-	                <Label class="friendsLabel"></Label>
-	            </Labels>
-	        </TabbedBar>
+	            <TabbedBar id="tBar" platform="ios">
+		            <Labels>
+		                <Label class="allLabel"></Label>
+		                <Label class="friendsLabel"></Label>
+		            </Labels>
+		        </TabbedBar>
         </View>
 	</Window>
 </Alloy>

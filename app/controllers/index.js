@@ -16,23 +16,9 @@ $.index.addEventListener('focus', function(e){
 		});
 	};
 	
-	if(e.tab.title === $.nearTab.title){
-		// if( !AG.currentPosition.get('accuracy') ){
-		AG.currentPosition.update( function(){
-			if( !AG.currentPosition.get('success') ){
-				var dialog = Ti.UI.createAlertDialog({
-				    message: L('locationServiceNeeded'),
-				    ok: L('OK'),
-				    title: L('notice')
-				  });
-				dialog.addEventListener('click', function(){
-					$.index.setActiveTab(prevTabIndex);
-				});
-				dialog.show();
-			}
-		});
-		// }
-	}
+	// if(e.tab.title === $.nearTab.title){
+		// Ti.App.fireEvent('focus:nearTab');
+	// }
 });
 
 AG.mainTabGroup.add( AG.notifyController.getView() );
@@ -71,5 +57,3 @@ if( OS_IOS ){
 	doUrlScheme();
 	Ti.App.addEventListener('resumed', doUrlScheme);
 }
-
-

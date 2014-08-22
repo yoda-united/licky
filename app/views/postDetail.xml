@@ -30,17 +30,18 @@
 				<ListSection id="mapSection">
 					<HeaderView>
 						<View id="mapWrap" >
+							<Label class="mapIcon"></Label>
 							<ImageView image="images/mapBorder.png" zIndex="20" touchEnabled="false"/>
 						</View>
 						<!-- <View width="306" height="1" top="119" backgroundColor="red" /> -->
 					</HeaderView>
-	                <FooterView>
+	                <!-- <FooterView>
 	                    <View height="15" backgroundColor="white" />
-	                </FooterView>
+	                </FooterView> -->
 				</ListSection>
 				<ListSection id="commentSection">
 					<HeaderView>
-						<!-- <View height="20" backgroundColor="white" /> -->
+						<View height="15" backgroundColor="white" />
 					</HeaderView>
 				</ListSection>
 				<ListSection>
