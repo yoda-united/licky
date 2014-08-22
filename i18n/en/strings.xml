@@ -89,4 +89,7 @@
 	<string name="pushGuideText">소식이 있을 때 푸쉬 알림으로 알려드릴까요?</string>
 	<string name="pushGuideSuccessText">푸쉬 알림 허용! 감사해요!</string>
 	<string name="noPush">알림이 아직 없네요.</string>
+		
+	<!-- error message -->
+	<string name="defaultError">앗! 데이터를 가져오는데 문제 발생! 다시해보고 안되면 신고해주기~ :)</string>
 </resources>
