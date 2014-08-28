@@ -52,7 +52,8 @@ var fbHandler = function(e) {
 				currentWindow.close();
 
 			} else {
-				alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+				//alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+				alert(L('errorExternalAccountLogin'));
 				$.fbLogin.title = L("facebookConnect");
 			}
 		});
@@ -68,6 +69,7 @@ $.fbLogin.addEventListener('click', function(e) {
 			forceDialogAuth : false
 		});
 	} else {
+		// android일 경우 
 		AG.Cloud.Users.login({
 			login : 'admin',
 			password : 'bogoyo'
@@ -138,7 +140,7 @@ exports.logout = function(callback) {
 			alert(L('logoutMessage'));
 			callback && callback();
 		} else {
-			alert("로그 아웃이 실패 했는데..\n다시 시도 해보실래요?;;");
+			alert(L('failToLogout'));
 		}
 	});
 };

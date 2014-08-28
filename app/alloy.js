@@ -60,7 +60,7 @@ AG.settings.fetch({
 					var user = e.users[0];
 					AG.loggedInUser.save(user);
 				} else {
-					alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
+					//alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
 				}
 			}); 
 		}

@@ -98,7 +98,7 @@ $.contactUsBtn.addEventListener('click', function(e) {
 	});
 	
 	if(!emailDialog.isSupported()){
-		alert('Licky 메일 주소는 app@licky.co \n클립보드에 복사했으니 원하는 메일 앱에 붙여 넣고 메일 주세요!');
+		alert(L('notSupportEmail'));
 		Ti.UI.Clipboard.setText('app@licky.co');
 	} else {
 		emailDialog.open();

@@ -172,7 +172,6 @@ $.closeBtn.addEventListener('click', function(e) {
 	if(OS_IOS){
 		Ti.Media.hideCamera();
 	}else{
-		alert(Ti.Android);
 		var activity = Ti.Android.currentActivity;
 	}
 });
