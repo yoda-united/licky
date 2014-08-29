@@ -47,7 +47,10 @@
 				</ListSection>
 				<ListSection>
 	                <FooterView>
-	                    <ImageView image="images/listFooter.png" height="34" ></ImageView>
+	                    <!-- <ImageView image="images/listFooter.png" height="34" ></ImageView> -->
+	                    <View id="footerDummyView" height="177" backgroundColor="white">
+	                    	<!-- <ImageView image="images/listFooter.png" height="34" bottom="-14"></ImageView> -->
+	                    </View>
 	                </FooterView>
 				</ListSection>
 			</ListView>
