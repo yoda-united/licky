@@ -30,6 +30,7 @@
 				<ListSection id="mapSection">
 					<HeaderView>
 						<View id="mapWrap" >
+							<View id="overMapView"></View>
 							<Label class="mapIcon"></Label>
 							<ImageView image="images/mapBorder.png" zIndex="20" touchEnabled="false"/>
 						</View>

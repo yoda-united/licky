@@ -12,7 +12,7 @@
 		// style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
 		showVerticalScrollIndicator :false,
 		
-	bottom : 44,
+	bottom : 20,
 	willScrollOnStatusTap : true
 }
 "#listView[platform=ios]": {
@@ -127,6 +127,12 @@
 	height: 119, //주의 postDetail.js 에서도 height를 다룸
 	backgroundColor: "white"
 }
+"#overMapView": {
+	zIndex: 30,
+	// height: 119, 
+	backgroundColor: "transparent"
+	// opacity: 0.0
+}
 "#commentField": {
 	borderColor: Alloy.Globals.COLORS.gray,
 	borderRadius: 15,
@@ -167,7 +173,7 @@
 ".mapIcon" : {
 	font : {
 		fontFamily : 'ionicons',
-		fontSize : 50
+		fontSize : 40
 	},
 	color : Alloy.Globals.COLORS.lightWarmGray,
 	text : '\uf1a5'
