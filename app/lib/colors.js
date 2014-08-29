@@ -28,7 +28,9 @@ exports = {
 		
 		lickyRed: [ { color: '#E01410', offset: 0.0}, {color: '#FD3848', offset:0.85},{color: '#FD3259', offset: 1.0}],
 		transparencySilver : [ { color: '#40dbddde', offset: 0.0}, { color: '#40918e92', offset: 1.0 } ],
-		transparencyBlack : [ { color: '#05000000', offset: 0.0}, { color: '#11565656', offset: 1.0 } ]
+		transparencyBlack : [ { color: '#05000000', offset: 0.0}, { color: '#11565656', offset: 1.0 } ],
+		// height 11
+		dropShadow : [ { color: '#00000000', offset: 0.0}, { color: '#21000000', offset: 0.42}, { color: '#43000000', offset: 0.8}, { color: '#53000000', offset: 1.0 } ]
 		// lickyRed: [ { color: 'black', offset: 0.0}, {color: '#FD3259', offset: 1.0}]
 	},
 	

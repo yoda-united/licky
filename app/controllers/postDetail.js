@@ -159,7 +159,7 @@ var resetCommentItems = function(){
 				var mapView = GoogleMaps.initMap({
 					latitude:coord[0][1],
 					longitude:coord[0][0],
-					zoom: 16, //15, 16이 적당해 보임
+					zoom: 15, //15, 16이 적당해 보임
 					width : 304,
 					height : 119,
 					top:0,
@@ -177,6 +177,11 @@ var resetCommentItems = function(){
 				GoogleMaps.addMarker(marker1);
 			})();
 		}
+		$.overMapView.addEventListener('click', function(e){
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'mapWindow', {
+				postModel: postModel
+			});
+		});
 	}
 	return items;
 };
@@ -383,6 +388,8 @@ var doCommentBlur = function(){
 	}
 	$.commentField.blur();
 };
+
+
 
 $.listView.addEventListener('singletap', function(e) {
 	//$.commentField.blur();

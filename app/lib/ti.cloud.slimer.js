@@ -87,6 +87,12 @@ exports.user_showUser = function(data, id, cb) {
    InvokeService(path.join(''), "GET", data, cb);
 };
 
+exports.application_index1 = function(data, cb) {
+   var path = [];
+   path.push('/qr');
+   InvokeService(path.join(''), "GET", data, cb);
+};
+
 exports.useraccess_login = function(data, cb) {
    var path = [];
    path.push('/api/login');
@@ -186,5 +192,11 @@ exports.application_appBetaUdid = function(data, cb) {
 exports.application_fblogin = function(data, cb) {
    var path = [];
    path.push('/device_reg_result/');
+   InvokeService(path.join(''), "GET", data, cb);
+};
+
+exports.application_notMatched = function(data, cb) {
+   var path = [];
+   path.push('*');
    InvokeService(path.join(''), "GET", data, cb);
 };
