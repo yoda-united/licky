@@ -91,7 +91,7 @@ $.contactUsBtn.addEventListener('click', function(e) {
 	});
 	var emailDialog = Ti.UI.createEmailDialog({
 		subject : '[제안] Licky',
-		toRecipients : ['app@licky.co'],
+		toRecipients : ['sup@licky.co'],
 		messageBody : bodyString,
 		barColor : '#3498db',
 		html : true
@@ -99,7 +99,7 @@ $.contactUsBtn.addEventListener('click', function(e) {
 	
 	if(!emailDialog.isSupported()){
 		alert(L('notSupportEmail'));
-		Ti.UI.Clipboard.setText('app@licky.co');
+		Ti.UI.Clipboard.setText('sup@licky.co');
 	} else {
 		emailDialog.open();
 	}	
