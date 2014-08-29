@@ -360,7 +360,7 @@ exports.showCamera = function(){
 			///
 			var postContent = {
 				title : $.contentField.value,
-				content : '_#Are you hacker?? Free beer lover? Please contact us! (app@licky.co) :)#_',
+				content : '_#Are you hacker?? Free beer lover? Please contact us! (sup@licky.co) :)#_',
 				photo : blob,
 				//user_id: AG.loggedInUser.get('id'),
 				"photo_sizes[medium_320]" : AG.cameraInfo.width + 'x' + AG.cameraInfo.height,
