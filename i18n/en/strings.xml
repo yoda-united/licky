@@ -99,4 +99,6 @@
 	<string name="failToDeletePost">글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.</string>
 	<string name="failToCreateComment">댓글 작성이 정상적으로 되지 않네요. 잠시후 다시 시도해보실래요?</string>
 	
+	<!-- no items -->
+	<string name="noPushItem">알려드릴 내용이 없네요.\n글이나 댓글을 남겨보세요.</string>
 </resources>
