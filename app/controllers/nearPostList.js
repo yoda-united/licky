@@ -36,6 +36,9 @@ function geoAuthHandler(){
 AG.currentPosition.on('changeGeoAuth', geoAuthHandler);
 Ti.App.addEventListener('resumed', geoAuthHandler);	// 설정 갔다 온 사용자를 위해서.
 $.getView().addEventListener('focus', geoAuthHandler);
+$.getView().addEventListener('focus', function(){
+	Ti.Analytics.featureEvent('nearTab.focused');
+});
 
 function fetchByCurrentPosition(){
 	AG.currentPosition.update( function(e){

@@ -12,6 +12,7 @@ if(AG.settings.get("platformHeight") < 568){
 }
 
 function send(e) {
+	Ti.Analytics.featureEvent('camera.return');
 	Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
 	Ti.Media.takePicture();
 }
@@ -166,6 +167,7 @@ $.shopNameField.addEventListener('return', _.throttle(send,1000));
 
 
 $.closeBtn.addEventListener('click', function(e) {
+	Ti.Analytics.featureEvent('camera.close');
 	if( $.shopNameField.hasText() ){
 		// alert($.shopNameField.getValue()+"ddd");
 	}
@@ -285,6 +287,7 @@ $.fieldWrap.addEventListener('click', function(){
 
 
 exports.showCamera = function(){
+	Ti.Analytics.featureEvent('camera.show');
 	if(OS_IOS){
 		Ti.Media.hideCamera();
 	}
@@ -390,6 +393,7 @@ exports.showCamera = function(){
 				wait:true,
 				success : function(nextPost){
 					Ti.API.info(nextPost.attributes);
+					Ti.Analytics.featureEvent('camera.created.post');
 					
 					// if(AG.settings.get('postWithFacebook')){
 						var sharePhoto = Alloy.createModel('photo');
@@ -404,13 +408,14 @@ exports.showCamera = function(){
 						},
 						{
 							success : function(nextPreviewPhoto){
+								Ti.Analytics.featureEvent('camera.created.ogimage');
 								AG.allowPushController.tryRegisterPush({
 									title: L('successPhotoUpload')
 								});
 								
 								//alert(nextPreviewPhoto.get('urls').original);
 								if(AG.settings.get('postWithFacebook')){
-									
+									Ti.Analytics.featureEvent('camera.enabled.facebookshare');
 									var goFacebook = function(){
 										AG.facebook.requestWithGraphPath('me/links', {
 											// message : "",
@@ -418,6 +423,7 @@ exports.showCamera = function(){
 											// link: 'http://dasolute.com/asdf3.html'
 										}, "POST", function(e) {
 											if (e.success) {
+												Ti.Analytics.featureEvent('camera.created.facebookshare');
 												//alert("Success!  From FB: " + e.result);
 											} else {
 												if (e.error) {

@@ -137,7 +137,7 @@ function getObjects(_model, _opts) {
         !_opts.data ? _opts.data = {} : _opts.data;
         _opts.data['classname'] = object_name;
     }
-    Ti.API.info(" querying for all objects of type " + _model.config.settings.object_name + " " + (_opts.data && _opts.data.q));
+    //Ti.API.info(" querying for all objects of type " + _model.config.settings.object_name + " " + (_opts.data && _opts.data.q));
     object_method.query((_opts.data || {}), function(e) {
         if (e.success) {
             // if (e[object_name].length !== 0) {

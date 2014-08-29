@@ -1,6 +1,8 @@
 var args = arguments[0] || {},
 	postModel = args.postModel;
-
+if(postModel && postModel.id) {
+	Ti.Analytics.featureEvent('show.postDetail',{post_id:postModel.id});
+}
 $.listView.addEventListener('itemclick', function(e) {
 	switch(e.bindId){
 		case "profileImage":

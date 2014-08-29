@@ -158,6 +158,7 @@ $.listHeaderView.parent.remove($.listHeaderView);
 $.listViewC.topSection.headerView = $.listHeaderView;
 
 $.tBar.addEventListener('click', function(e) {
+	Ti.Analytics.featureEvent('list.filtertab.click');
 	switch(e.index){
 		case 0:
 			$.listViewC.setCollection(postCol);
