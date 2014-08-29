@@ -398,7 +398,7 @@ $.listView.addEventListener('delete', function(e) {
 				}
 			},
 			error : function(e){
-				alert('댓글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.');
+				alert(L('failToDeleteComment'));
 			}
 		});
 	}

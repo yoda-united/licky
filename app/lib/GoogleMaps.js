@@ -244,7 +244,7 @@ GoogleMaps.prototype.createPolyline = function (params)
 		}
 		
 		Ti.API.info(androidPath);	
-		alert("sayı : " + androidPath.length);	
+		//alert("sayı : " + androidPath.length);	
 		
 		polyline = that.module.createRoute({
 			color: params.pathColor,

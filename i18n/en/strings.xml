@@ -76,6 +76,7 @@
 	<string name="walkthroughStart">  Licky 사용법 3단계 익히고 가실께요~</string>
 	<string name="step1_order">1. 음식을 시켜요</string>
 	<string name="step2_takePic">2. Licky로 찍어요</string>
+	<string name="step2_contentTitle">아기다리고기다리던</string>
 	<string name="step3_try">3. 먹어요</string>
 	<string name="letsGo">시작!</string>
 	
@@ -88,4 +89,14 @@
 	<string name="pushGuideText">소식이 있을 때 푸쉬 알림으로 알려드릴까요?</string>
 	<string name="pushGuideSuccessText">푸쉬 알림 허용! 감사해요!</string>
 	<string name="noPush">알림이 아직 없네요.</string>
+		
+	<!-- error message -->
+	<string name="defaultError">앗! 데이터를 가져오는데 문제 발생! 다시해보고 안되면 신고해주기~ :)</string>
+	<string name="errorExternalAccountLogin">Facebook 계정으로 Licky 로그인하는 과정에서 문제가 발생했어요.\n 다시해보고 안되면 app@licky.co로 신고해주세요.</string>
+	<string name="failToLogout">로그 아웃이 실패 했는데..\n다시 시도 해보실래요?;;</string>
+	<string name="failToDeleteComment">댓글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.</string>
+	<string name="notSupportEmail">Licky 메일 주소는 app@licky.co \n클립보드에 복사했으니 원하는 메일 앱에 붙여 넣고 메일 주세요!</string>
+	<string name="failToDeletePost">글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.</string>
+	<string name="failToCreateComment">댓글 작성이 정상적으로 되지 않네요. 잠시후 다시 시도해보실래요?</string>
+	
 </resources>

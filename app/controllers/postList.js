@@ -105,7 +105,7 @@ function searchFacebookFriends(){
 			        		}
 						}, function (e) {
 						    if (e.success) {
-						        arguments.callee();
+						        searchFacebookFriends();
 						    } else {
 						    	alert(L('failToTokenRenewalLogin'));
 					        	$.tBar.setIndex(0);
@@ -132,7 +132,7 @@ function fetchOnlyFriendsPost(userIds) {
 		Ti.API.info(friendPostCol.defaultFetchData);
 		friendPostCol.fetch({
 			error:function(){
-				alert('error');
+				alert(L('defaultError'));
 			}
 		});
 	}else{

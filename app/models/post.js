@@ -121,7 +121,7 @@ exports.definition = {
 					},
 					onerror: function(e){
 						Ti.API.debug(e.error);
-						alert("[post.js]error");
+						alert(L('failToDeletePost'));
 					},
 					timeout: 5000
 				});

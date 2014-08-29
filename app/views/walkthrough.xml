@@ -8,6 +8,7 @@
             </View>
             <View id="step02">
             	<ImageView id="step02Image"></ImageView>
+            	<Label class="step02ContentTitle"></Label>
             	<Label id="step02Label" class="guidanceLabel"></Label>
             </View>
             <View id="step03">
