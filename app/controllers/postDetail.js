@@ -114,15 +114,6 @@ var testLabel = Ti.UI.createLabel({
 
 var GoogleMapsClass, GoogleMaps;
 
-function resetFooterHeight(offset){
-	if( $.footerDummyView.height == 34){
-		return;
-	}else if( $.footerDummyView.height < 34 ){
-		$.footerDummyView.height = 34;
-	}else{
-		$.footerDummyView.height = $.footerDummyView.height - offset;
-	}
-}
 
 var resetCommentItems = function(){
 	var items = [];
@@ -143,7 +134,6 @@ var resetCommentItems = function(){
 		item.properties.height = comment.get('_itemHeight') + 48;
 		
 		items.push(item);
-		resetFooterHeight(48);
 	});
 	$.commentSection.setItems(items,{
 		animationStyle : Ti.UI.iPhone.RowAnimationStyle.NONE
@@ -191,7 +181,6 @@ var resetCommentItems = function(){
 			});
 		});
 		
-		resetFooterHeight($.mapWrap.height);
 	}
 	return items;
 };
