@@ -1,0 +1,22 @@
+
+".container": {
+	backgroundColor: "transparent",
+	navBarHidden: true,
+	tabBarHidden: true
+}
+
+"#containScrollView": {
+	opacity: 0,
+	backgroundColor: 'black',
+	contentWidth: 'auto',
+	contentHeight: 'auto',
+	showVerticalScrollIndicator: true,
+	showHorizontalScrollIndicator: true,
+	minZoomScale: 0.5,
+	maxZoomScale: 2,
+	height: '100%',
+	width: '100%'
+}
+"#mainImageView":{
+	zIndex: 20
+}

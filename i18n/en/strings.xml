@@ -70,6 +70,8 @@
 	
 	<!-- profile tap -->
 	<string name="bugReport">버그 신고 및 제안하기</string>
+	<string name="viewPicture">프로필 사진 보기</string>
+	<string name="viewProfileOnFacebook">Facebook 프로필 보기</string>
 	
 	<!-- walkthrough -->
 	<string name="welcome">반가워요, </string>
