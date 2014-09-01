@@ -31,13 +31,13 @@ $.scrollableView.addEventListener('scrollend', function(e){
 		// $.step03Button.setVisible(true);
 		$.stilImage2.animate({
 			opacity: 1.0,
-			delay: 300,
+			delay: 100,
 			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
 			duration: 400
 		});
 		$.step03Button.animate({
 			opacity: 1.0,
-			delay: 600,
+			delay: 400,
 			curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
 			duration: 400
 		});

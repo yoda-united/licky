@@ -134,7 +134,13 @@ var unsubscribePushChannel = function(args) {
 
 AG.settings.on('change:cloudSessionId', function(){
 	if (AG.isLogIn()) {
-		subscribePushChannel();
+		if(Ti.Network.remoteNotificationsEnabled){
+			tryRegisterPush({
+				force:true
+			});  
+		}else{
+			subscribePushChannel();
+		}
 	}else{
 		unsubscribePushChannel();
 	}
