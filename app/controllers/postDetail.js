@@ -1,8 +1,5 @@
 var args = arguments[0] || {},
 	postModel = args.postModel;
-	
-var _new = require('underscore1.7.0');
-
 if(postModel && postModel.id) {
 	Ti.Analytics.featureEvent('show.postDetail',{post_id:postModel.id});
 }
