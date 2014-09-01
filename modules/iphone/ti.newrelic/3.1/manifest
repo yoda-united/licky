@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 3.1
+apiversion: 2
+description: New Relic for Mobile iOS Titanium Module
+author: New Relic, Inc.
+license: New Relic, Inc.
+copyright: New Relic, Inc.
+
+
+# these should not be edited
+name: NewRelic
+moduleid: ti.newrelic
+guid: 33165a0a-6369-421a-9737-d48965e60b4d
+platform: iphone
+minsdk: 3.1.2.GA
