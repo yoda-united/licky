@@ -101,6 +101,11 @@
 		right: 0
 	},
 }
+
+"#profileViewOptionDialog": {
+	cancel: 2
+}
+
 ".foodRow": {
 	hasChild: true,
 	selectionStyle : Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY,

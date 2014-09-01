@@ -91,15 +91,15 @@ $.contactUsBtn.addEventListener('click', function(e) {
 	});
 	var emailDialog = Ti.UI.createEmailDialog({
 		subject : '[제안] Licky',
-		toRecipients : ['app@licky.co'],
+		toRecipients : ['sup@licky.co'],
 		messageBody : bodyString,
 		barColor : '#3498db',
 		html : true
 	});
 	
 	if(!emailDialog.isSupported()){
-		alert('Licky 메일 주소는 app@licky.co \n클립보드에 복사했으니 원하는 메일 앱에 붙여 넣고 메일 주세요!');
-		Ti.UI.Clipboard.setText('app@licky.co');
+		alert(L('notSupportEmail'));
+		Ti.UI.Clipboard.setText('sup@licky.co');
 	} else {
 		emailDialog.open();
 	}	
@@ -192,6 +192,35 @@ exports.setProperties = function() {
 		});
 	}
 };
+
+$.profileImage.addEventListener('click', function(){
+	$.profileViewOptionDialog.show();
+});
+$.profileViewOptionDialog.addEventListener('click', function(e) {
+	var fb_id = userModel.get('external_accounts')[0].external_id;
+	switch(this.options[e.index]){
+		case L('viewPicture'):
+			Ti.API.info("vi");
+			// scrollView.add(imagev);
+			// $.profile.add(scrollView);
+			
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'imageWindow', {
+				imageUrl: String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 640, 640)
+			}, {animated:false});
+		break;
+		case L('viewProfileOnFacebook'):
+			if(Ti.Platform.canOpenURL("fb://profile/" + fb_id)){
+				Ti.Platform.openURL("fb://profile/" + fb_id);
+			}else{
+				Ti.Platform.openURL("http://facebook.com/" + fb_id);
+			}
+		break;
+		
+		case L('cancel'):
+		default :
+		break;
+	}
+});
 
 $.name.addEventListener('click', function(e){
 	// AG.notifyController.setBadge(10);

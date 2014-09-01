@@ -3,16 +3,18 @@
 	tabBarHidden : true,
 	fullscreen : false
 }
-
+"#mainWrap": {
+	backgroundColor: Alloy.Globals.COLORS.darkGray
+}
 "#listView" : {
 		// height: Ti.UI.SIZE,
-		// backgroundColor: Alloy.Globals.COLORS.darkGray,
 		// backgroundColor: "#929292",
-		backgroundColor: Alloy.Globals.COLORS.darkGray,
+		// backgroundColor: Alloy.Globals.COLORS.darkGray,
+		backgroundColor: "transparent",
 		// style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
 		showVerticalScrollIndicator :false,
-		
-	bottom : 44,
+	bottom : -143,
+	// top: 0,
 	willScrollOnStatusTap : true
 }
 "#listView[platform=ios]": {
@@ -38,6 +40,7 @@
 "#navButtonWrap" : {
 	layout : 'horizontal'
 }
+
 
 ".commentTemplate" : {
 	// backgroundColor: 'white',
@@ -127,6 +130,12 @@
 	height: 119, //주의 postDetail.js 에서도 height를 다룸
 	backgroundColor: "white"
 }
+"#overMapView": {
+	zIndex: 30,
+	// height: 119, 
+	backgroundColor: "transparent"
+	// opacity: 0.0
+}
 "#commentField": {
 	borderColor: Alloy.Globals.COLORS.gray,
 	borderRadius: 15,
@@ -167,7 +176,7 @@
 ".mapIcon" : {
 	font : {
 		fontFamily : 'ionicons',
-		fontSize : 50
+		fontSize : 40
 	},
 	color : Alloy.Globals.COLORS.lightWarmGray,
 	text : '\uf1a5'

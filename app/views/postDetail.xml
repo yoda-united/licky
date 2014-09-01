@@ -30,6 +30,7 @@
 				<ListSection id="mapSection">
 					<HeaderView>
 						<View id="mapWrap" >
+							<View id="overMapView"></View>
 							<Label class="mapIcon"></Label>
 							<ImageView image="images/mapBorder.png" zIndex="20" touchEnabled="false"/>
 						</View>
@@ -43,10 +44,11 @@
 					<HeaderView>
 						<View height="15" backgroundColor="white" />
 					</HeaderView>
-				</ListSection>
-				<ListSection>
-	                <FooterView>
-	                    <ImageView image="images/listFooter.png" height="34" ></ImageView>
+					<FooterView>
+	                    <!-- <ImageView image="images/listFooter.png" height="34" ></ImageView> -->
+	                    <View id="footerDummyView" height="188" backgroundColor="white">
+	                    	<!-- <ImageView image="images/listFooter.png" height="34" bottom="-14"></ImageView> -->
+	                    </View>
 	                </FooterView>
 				</ListSection>
 			</ListView>

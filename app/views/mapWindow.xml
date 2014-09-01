@@ -1,0 +1,6 @@
+<Alloy>
+	<Window class="container">
+		<View id="mapWrap">
+		</View>
+	</Window>
+</Alloy>

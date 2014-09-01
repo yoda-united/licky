@@ -23,7 +23,7 @@ $.listViewC.setTemplateControls([
 ]);
 
 
-$.listViewC.on('itemclick', function(e) {
+$.listViewC.on('itemclick', require('underscore1.7.0').throttle(function(e) {
 	if (e.model) {
 		if (e.bindId == "profileImage") {
 			AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
@@ -36,7 +36,7 @@ $.listViewC.on('itemclick', function(e) {
 			});
 		}
 	}
-}); 
+},1000,{trailing: false})); 
 
 
 
@@ -105,7 +105,7 @@ function searchFacebookFriends(){
 			        		}
 						}, function (e) {
 						    if (e.success) {
-						        arguments.callee();
+						        searchFacebookFriends();
 						    } else {
 						    	alert(L('failToTokenRenewalLogin'));
 					        	$.tBar.setIndex(0);
@@ -132,7 +132,7 @@ function fetchOnlyFriendsPost(userIds) {
 		Ti.API.info(friendPostCol.defaultFetchData);
 		friendPostCol.fetch({
 			error:function(){
-				alert('error');
+				alert(L('defaultError'));
 			}
 		});
 	}else{
@@ -158,6 +158,7 @@ $.listHeaderView.parent.remove($.listHeaderView);
 $.listViewC.topSection.headerView = $.listHeaderView;
 
 $.tBar.addEventListener('click', function(e) {
+	Ti.Analytics.featureEvent('list.filtertab.click');
 	switch(e.index){
 		case 0:
 			$.listViewC.setCollection(postCol);

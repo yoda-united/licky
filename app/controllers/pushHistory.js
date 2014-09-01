@@ -93,11 +93,15 @@ $.getView().addEventListener('focus', function(e) {
 	if( AG.isLogIn() ){
 		chatCol.fetch();
 	}
-	
-	
 });
   
-chatCol.on('reset', function(){
+chatCol.on('reset', function(col){
 	AG.notifyController.setBadge(0);
+	if(col.length === 0){
+		$.listViewC.listView.footerView = Alloy.createController('noItemView',{
+			iconText : '\uf16d',
+			labelText : L('noPushItem')						
+		}).getView();
+	}
 });
 

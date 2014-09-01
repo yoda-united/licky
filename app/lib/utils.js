@@ -40,7 +40,7 @@ exports.calculateDistance = function(args,type){
  * @param {Object} controllerName
  * @param {Object} controllerArgument
  */
-exports.openController = _.throttle(function(navGroup,name,args){
+exports.openController = _.throttle(function(navGroup,name,args, openOption){
 	var w=Alloy.createController(name,args).getView();
 	if (OS_ANDROID){
 		w.addEventListener('open',function(e){
@@ -59,7 +59,7 @@ exports.openController = _.throttle(function(navGroup,name,args){
 		});
 		w.open();
 	}else{
-		navGroup.open(w,{animated:true});
+		navGroup.open(w,openOption || {animated:true});
 	}
 },1000);
 

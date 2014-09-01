@@ -1,6 +1,8 @@
 var args = arguments[0] || {},
 	postModel = args.postModel;
-
+if(postModel && postModel.id) {
+	Ti.Analytics.featureEvent('show.postDetail',{post_id:postModel.id});
+}
 $.listView.addEventListener('itemclick', function(e) {
 	switch(e.bindId){
 		case "profileImage":
@@ -110,9 +112,7 @@ var testLabel = Ti.UI.createLabel({
 	}});
 
 
-var GoogleMapsClass,
-	GoogleMaps;
-		
+var GoogleMapsClass, GoogleMaps;
 
 
 var resetCommentItems = function(){
@@ -157,7 +157,7 @@ var resetCommentItems = function(){
 				var mapView = GoogleMaps.initMap({
 					latitude:coord[0][1],
 					longitude:coord[0][0],
-					zoom: 16, //15, 16이 적당해 보임
+					zoom: 15, //15, 16이 적당해 보임
 					width : 304,
 					height : 119,
 					top:0,
@@ -179,6 +179,13 @@ var resetCommentItems = function(){
 	return items;
 };
 
+$.overMapView.addEventListener('click', require('underscore1.7.0').throttle(function(e){
+	if( postModel.get('custom_fields') && postModel.get('custom_fields').coordinates){
+		AG.utils.openController(AG.mainTabGroup.activeTab, 'mapWindow', {
+			postModel: postModel
+		});
+	}
+},1000,{trailing: false}));
 commentCol.on('reset',function(col){
 	resetCommentItems();
 });
@@ -382,6 +389,8 @@ var doCommentBlur = function(){
 	$.commentField.blur();
 };
 
+
+
 $.listView.addEventListener('singletap', function(e) {
 	//$.commentField.blur();
 	doCommentBlur();
@@ -398,7 +407,7 @@ $.listView.addEventListener('delete', function(e) {
 				}
 			},
 			error : function(e){
-				alert('댓글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.');
+				alert(L('failToDeleteComment'));
 			}
 		});
 	}

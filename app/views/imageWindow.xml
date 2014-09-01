@@ -1,0 +1,9 @@
+<Alloy>
+	<Window class="container">
+		<ScrollView id="containScrollView">
+			<ActivityIndicator id="activityIndicator"/>			
+			<ImageView id="mainImageView">
+			</ImageView>
+		</ScrollView>
+	</Window>
+</Alloy>
