@@ -41,6 +41,7 @@
 	layout : 'horizontal'
 }
 
+
 ".commentTemplate" : {
 	// backgroundColor: 'white',
 	height : Ti.UI.SIZE

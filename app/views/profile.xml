@@ -28,9 +28,14 @@
 		</ScrollView>
 
 
-        <OptionDialog id="settingDialog">
-        </OptionDialog>
-
+        <OptionDialog id="settingDialog"></OptionDialog>
+		<OptionDialog id="profileViewOptionDialog">
+            <Options>
+                <Option>L('viewPicture')</Option>
+                <Option>L('viewProfileOnFacebook')</Option>
+                <Option>L('cancel')</Option>
+            </Options>
+		</OptionDialog>
 		<!-- <Button id="loginBtn" class="beforeLogin afterLogin" zIndex="10" /> -->
 	</Window>
 </Alloy>

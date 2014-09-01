@@ -193,6 +193,35 @@ exports.setProperties = function() {
 	}
 };
 
+$.profileImage.addEventListener('click', function(){
+	$.profileViewOptionDialog.show();
+});
+$.profileViewOptionDialog.addEventListener('click', function(e) {
+	var fb_id = userModel.get('external_accounts')[0].external_id;
+	switch(this.options[e.index]){
+		case L('viewPicture'):
+			Ti.API.info("vi");
+			// scrollView.add(imagev);
+			// $.profile.add(scrollView);
+			
+			AG.utils.openController(AG.mainTabGroup.activeTab, 'imageWindow', {
+				imageUrl: String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 640, 640)
+			}, {animated:false});
+		break;
+		case L('viewProfileOnFacebook'):
+			if(Ti.Platform.canOpenURL("fb://profile/" + fb_id)){
+				Ti.Platform.openURL("fb://profile/" + fb_id);
+			}else{
+				Ti.Platform.openURL("http://facebook.com/" + fb_id);
+			}
+		break;
+		
+		case L('cancel'):
+		default :
+		break;
+	}
+});
+
 $.name.addEventListener('click', function(e){
 	// AG.notifyController.setBadge(10);
 });
