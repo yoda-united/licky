@@ -23,7 +23,7 @@ $.listViewC.setTemplateControls([
 ]);
 
 
-$.listViewC.on('itemclick', function(e) {
+$.listViewC.on('itemclick', require('underscore1.7.0').throttle(function(e) {
 	if (e.model) {
 		if (e.bindId == "profileImage") {
 			AG.utils.openController(AG.mainTabGroup.activeTab, 'profile', {
@@ -36,7 +36,7 @@ $.listViewC.on('itemclick', function(e) {
 			});
 		}
 	}
-}); 
+},1000,{trailing: false})); 
 
 
 

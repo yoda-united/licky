@@ -1,5 +1,8 @@
 var args = arguments[0] || {},
 	postModel = args.postModel;
+	
+var _new = require('underscore1.7.0');
+
 if(postModel && postModel.id) {
 	Ti.Analytics.featureEvent('show.postDetail',{post_id:postModel.id});
 }
@@ -175,16 +178,17 @@ var resetCommentItems = function(){
 				GoogleMaps.addMarker(marker1);
 			})();
 		}
-		$.overMapView.addEventListener('click', function(e){
-			AG.utils.openController(AG.mainTabGroup.activeTab, 'mapWindow', {
-				postModel: postModel
-			});
-		});
-		
 	}
 	return items;
 };
 
+$.overMapView.addEventListener('click', require('underscore1.7.0').throttle(function(e){
+	if( postModel.get('custom_fields') && postModel.get('custom_fields').coordinates){
+		AG.utils.openController(AG.mainTabGroup.activeTab, 'mapWindow', {
+			postModel: postModel
+		});
+	}
+},1000,{trailing: false}));
 commentCol.on('reset',function(col){
 	resetCommentItems();
 });
