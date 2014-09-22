@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="acs-oauth-secret-development" type="string">***REMOVED***</property>
+    <property name="acs-oauth-key-development" type="string">***REMOVED***</property>
+    <property name="acs-api-key-development" type="string">***REMOVED***</property>
+    <!-- for real on simulator or run device -->
+    <property name="_real_.acs-oauth-secret-development" type="string">***REMOVED***</property>
+    <property name="_real_.acs-oauth-key-development" type="string">***REMOVED***</property>
+    <property name="_real_.acs-api-key-development" type="string">***REMOVED***</property>
+    <!-- end -->
+    <property name="acs-oauth-secret-production" type="string">***REMOVED***</property>
+    <property name="acs-oauth-key-production" type="string">***REMOVED***</property>
+    <property name="acs-api-key-production" type="string">***REMOVED***</property>
+    <property name="ti.facebook.appid">***REMOVED***</property>
+    <property name="dev.ti.facebook.appid">***REMOVED***</property>
+    <property name="acs-service-baseurl-slimer">***REMOVED***</property>
+    <property name="dev.acs-service-baseurl-slimer">***REMOVED***</property>
+    <id>***REMOVED***</id>
+    <dev.id>***REMOVED***</dev.id>
+    <name>Licky</name>
+    <dev.name>DEV Licky</dev.name>
+    <version>1.0.0</version>
+    <publisher>Licky.co</publisher>
+    <url>http://licky.co</url>
+    <description>Licky!</description>
+    <copyright>2014 by Yoda United.</copyright>
+    <icon>appicon.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>***REMOVED***</guid>
+    <property name="ti.ui.defaultunit" type="string">dip</property>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+        <orientations device="ipad">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+        </orientations>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <tool-api-level>16</tool-api-level>
+        <manifest>
+            <application android:theme="@android:style/Theme.Holo.Light"/>
+        </manifest>
+    </android>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules>
+        <module platform="iphone">bogoyo.ui</module>
+        <module platform="commonjs" version="3.2.3_yo">ti.cloud</module>
+        <module platform="iphone" version="3.1.2">facebook</module>
+        <module platform="android">facebook</module>
+        <module platform="iphone">ti.imagefactory</module>
+        <module platform="iphone">dk.napp.social</module>
+        <module platform="iphone">com.mekansal.gmapios</module>
+        <module platform="iphone">ti.newrelic</module>
+    </modules>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+        <target device="ipad">false</target>
+        <target device="iphone">true</target>
+        <target device="mobileweb">false</target>
+        <target device="tizen">false</target>
+    </deployment-targets>
+    <sdk-version>3.3.0.GA</sdk-version>
+    <plugins>
+        <plugin version="1.0">ti.alloy</plugin>
+    </plugins>
+</ti:app>

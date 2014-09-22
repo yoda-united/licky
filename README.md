@@ -15,15 +15,18 @@
 - Web Server : [Node.ACS](http://docs.appcelerator.com/cloud/latest/)
 
 ## 실행방법
-tiapp.xml은 보안상 소스파일에 포함되어 있지 않습니다. 로컬에서 실행해 보시려면 다음을 참고하세요.
-1. `tiapp.sample.xml` 파일읠 `tiapp.xml`로 이름을 변경
-2. `tiapp.xml`을 열어 아래사항을 당신의 환경에 맞게 수정하세요.
-
-        ㅁ
-        ㅁ
-
+`tiapp.xml`과 `manifest` 파일은 보안상 소스파일에 포함되어 있지 않습니다. 프로젝트 실행을 위해서는 다음 안내사항을 따르세요.
+1. `tiapp.sample.xml` 파일을 `tiapp.xml`로 이름을 변경
+2. `tiapp.xml`을 열어 `***REMOVED***`라고 되어 있는 부분을 당신의 환경에 맞게 수정하세요.
+		...
+		<property name="acs-oauth-secret-development" type="string">***REMOVED***</property>
+    	<property name="acs-oauth-key-development" type="string">***REMOVED***</property>
+    	<property name="acs-api-key-development" type="string">***REMOVED***</property>
+    	...
     * 위 내용은 titanium studio나 ti cli를 통해 프로젝트를 생성하고 acs를 활성하한후 생성된 tiapp.xml의 내용을 참고하세요.
     * Facebook APP ID는 http://developers.facebook.com 에서 app생성 가능합니다.
+3. `manifest.sample` 파일을 `manifest`로 이름을 변경
+4. `manifest`를 열어 appid 및 guid등을 변경
 
 ## TODO
 - 본 프로젝트는 iPhone 앱에 해당하는 내용이며 ACS관련 소스는 공개 예정에 있습니다.

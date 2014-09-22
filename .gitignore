@@ -8,3 +8,5 @@ Resources
 *.log
 tn.json
 tiapp.xml
+manifest
+passwords.txt
