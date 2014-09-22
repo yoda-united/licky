@@ -205,22 +205,6 @@ function getCurrentPosition(){
 		
 		currentPosition.longitude = longitude;
 		currentPosition.latitude = latitude;
-		
-		if(AG.settings.get("platformHeight") >= 568){
-			// var GoogleMapsClass = require('GoogleMaps');
-			// var GoogleMaps = new GoogleMapsClass({
-				// iOSKey: "***REMOVED***"
-			// });
-			// var mapView = GoogleMaps.initMap({
-				// latitude:latitude,
-				// longitude:longitude,
-				// zoom: 13, //15, 16이 적당해 보임
-				// width : Ti.UI.FILL,
-				// height : 108,
-			// });
-			// $.mapWrap.add(mapView);
-		}
-		
 		//alert(currentPosition);
 		//mapView.setLocation(currentPosition);
 		
