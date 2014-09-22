@@ -7,7 +7,7 @@ if(!GoogleMaps){
 	(function(){
 		GoogleMapsClass = require('GoogleMaps');
 		GoogleMaps = new GoogleMapsClass({
-			iOSKey: "***REMOVED***"
+			iOSKey: Ti.APP.Properties.getString('google-map-ios-key')
 		});
 		var coord = postModel.get("custom_fields").coordinates;
 		var mapView = GoogleMaps.initMap({
