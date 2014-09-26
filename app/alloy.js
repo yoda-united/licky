@@ -13,7 +13,7 @@ AG.currentLanguage = Ti.Locale.getCurrentLanguage();
 
 //extend library
 AG.moment = require('momentExtend');
-moment.lang(AG.currentLanguage);
+AG.moment.lang(AG.currentLanguage);
 _.str = require('underscore.string');
 Titanium.UI.createMaskedImage;
 
