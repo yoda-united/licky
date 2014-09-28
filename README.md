@@ -6,8 +6,7 @@
 
 ## 열려있습니다. 환영합니다.
 기능 제안이나 Pull Request 모두 환영합니다.
-- 제안 및 버그 신고는 http://sup.licky.co 고객지원 사이트를 이용해주세요.
-- Pull Request는 Github의 Pull Request 통해서 해주세요.
+- 제안 및 버그 신고는 sup@licky.co나 [github issue](https://github.com/yoda-united/licky/issues)를 이용해주세요..
 
 ## 개발 환경
 - App : [Titanium Mobile Platform](http://www.appcelerator.com/titanium/)
@@ -30,6 +29,13 @@
 
 ## TODO
 - 본 프로젝트는 iPhone 앱에 해당하는 내용이며 ACS관련 소스는 공개 예정에 있습니다.
+
+## 사용 module
+- bogoyo.ui : licky용으로 제작된 ui 관련 모듈 (소스는 공개 예정)
+- [yomybaby/TiGMap](https://github.com/yomybaby/TiGMap) :  com.mekansal.gmapios 모듈의 fork 버전으로 최신 google map sdk 적용하고 버그수정을 했습니다.
+- dk.napp.social
+- ti.imagefactory
+- ti.newrelic
 
 ## MIT License
 The MIT License (MIT)
