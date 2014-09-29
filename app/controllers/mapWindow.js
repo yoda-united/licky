@@ -22,6 +22,7 @@ $.getView().addEventListener('open', function(e) {
 				// top:0,
 				userLocation : (
 					(geoAuth == Ti.Geolocation.AUTHORIZATION_ALWAYS) ||
+					(geoAuth == Ti.Geolocation.AUTHORIZATION_AUTHORIZED) ||
 					(geoAuth == Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE)
 				)?true:false
 			});
