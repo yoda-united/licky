@@ -67,12 +67,13 @@
 	top: 0,
 	right : 0,
 	textAlign : 'left',
-	width : Ti.UI.SIZE
+	width : Ti.UI.SIZE,
+	color : Alloy.Globals.COLORS.gray
 }
 "#fakeCursor" : {
 	top : 20,
 	right : 0,
-	width : 2,
+	width : 3,
 	height : 38,
 	images : ['images/1px_red.png','images/1px_trans.png'],
 	duration : 500

@@ -151,9 +151,10 @@ var resetCommentItems = function(){
 			(function(){
 				GoogleMapsClass = require('GoogleMaps');
 				GoogleMaps = new GoogleMapsClass({
-					iOSKey: Ti.APP.Properties.getString('google-map-ios-key')
+					iOSKey: Ti.App.Properties.getString('google-map-ios-key')
 				});
 				var coord = postModel.get("custom_fields").coordinates;
+				var geoAuth = Ti.Geolocation.getLocationServicesAuthorization();
 				var mapView = GoogleMaps.initMap({
 					latitude:coord[0][1],
 					longitude:coord[0][0],
@@ -161,7 +162,10 @@ var resetCommentItems = function(){
 					width : 304,
 					height : 119,
 					top:0,
-					userLocation : (Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_AUTHORIZED)?true:false
+					userLocation : (
+						(geoAuth == Ti.Geolocation.AUTHORIZATION_ALWAYS) ||
+						(geoAuth == Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE)
+					)?true:false
 				});
 				$.mapWrap.setHeight(119);
 				$.mapWrap.add(mapView);
@@ -312,7 +316,6 @@ $.shareButton.addEventListener('click', function(e) {
 	// https://github.com/viezel/TiSocial.Framework
 	var Social = require('dk.napp.social');
 	Social.activityView({
-	    text: "먹기전에 Licky! 찰칵!",
 	    url: 'http://www.licky.co/post/'+postModel.id,
 	    removeIcons:"print,copy,contact,camera,mail,readinglist,airdrop"
 	},[

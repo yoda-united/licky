@@ -21,7 +21,8 @@ function geoAuthHandler(){
 			$.listViewC.listView.visible = false;
 			$.getView().add(requestView);
 			break;
-		case Ti.Geolocation.AUTHORIZATION_AUTHORIZED:
+		case Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE:
+		case Ti.Geolocation.AUTHORIZATION_ALWAYS:
 			Ti.API.info('AUTHORIZATION_AUTHORIZED');
 
 			$.getView().remove( requestView);

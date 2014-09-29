@@ -15,4 +15,4 @@ name: MekansalGMap
 moduleid: com.mekansal.gmapios
 guid: 45cae3da-4232-49d0-ba7e-0b65ce0bc932
 platform: iphone
-minsdk: 3.1.0.GA
+minsdk: 3.3.0.GA

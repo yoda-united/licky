@@ -179,7 +179,17 @@ $.closeBtn.addEventListener('click', function(e) {
 });
 
 $.contentField.addEventListener('change', function(e) {
-	$.contentLabel.text = this.value;
+	if(!this.value){
+		$.contentLabel.applyProperties({
+			text: L('postMessageHintText'),
+			color : AG.COLORS.gray
+		}); 
+	}else{
+		$.contentLabel.applyProperties({
+			text: this.value,
+			color : 'white'
+		}); 
+	}
 });
 
 
