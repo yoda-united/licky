@@ -182,7 +182,7 @@ $.contentField.addEventListener('change', function(e) {
 	if(!this.value){
 		$.contentLabel.applyProperties({
 			text: L('postMessageHintText'),
-			color : AG.COLORS.defaultGray
+			color : AG.COLORS.gray
 		}); 
 	}else{
 		$.contentLabel.applyProperties({

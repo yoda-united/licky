@@ -68,7 +68,7 @@
 	right : 0,
 	textAlign : 'left',
 	width : Ti.UI.SIZE,
-	color : Alloy.Globals.COLORS.defaultGray
+	color : Alloy.Globals.COLORS.gray
 }
 "#fakeCursor" : {
 	top : 20,
