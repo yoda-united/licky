@@ -32,8 +32,10 @@ AG.facebook = require('facebook');
 AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 AG.facebook.permissions = ["publish_stream","email"];
 
+var platformVersionInt = parseInt(Ti.Platform.version, 10);
 Alloy.Globals.is ={
-	iOS7 : (OS_IOS && parseInt(Ti.Platform.version, 10) >= 7),
+	iOS7 : (OS_IOS && platformVersionInt == 7),
+	iOS8 : (OS_IOS && platformVersionInt >= 8),
 	talliPhone : (OS_IOS && Ti.Platform.displayCaps.platformHeight == 568)
 };
 

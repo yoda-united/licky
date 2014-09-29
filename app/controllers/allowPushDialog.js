@@ -24,37 +24,54 @@ function onClickPlease(){
 function registerForPushNotifications(args){
 	args = args || {};
 	
+	var pushRegHandlers = {
+		callback: function(e){
+			// alert("data: "+JSON.stringify(e.data) +"\n"+e.inBackground);
+			// 뱃지를 0으로 하는거를 무시하지 않으면 무한 반복 푸쉬 됨..
+			if(  e.data.badge === 0 ){
+				return;
+			}
+			AG.notifyController.push({
+				pushEvent: e
+			});
+		},
+		error: function(e){
+			Ti.API.info('register for pushnotification error');
+			_.isFunction(args.error) && args.error();
+		},
+		success: function(e){
+			AG.settings.save("deviceToken", e.deviceToken || Ti.Network.getRemoteDeviceUUID()  );
+			subscribePushChannel(args);
+			_.isFunction(args.success) && args.success();
+		}
+	};
+	
 	// alert(Ti.Network.remoteNotificationsEnabled);
 	// alert(Ti.Network.remoteNotificationTypes);
-	if( OS_IOS ){
-		Ti.API.info(Ti.Network.registerForPushNotifications);
+	if( Alloy.Globals.is.iOS8 ){
+		function registerForPush() {
+	        Ti.Network.registerForPushNotifications(pushRegHandlers);
+	        // Remove event listener once registered for push notifications
+	        Ti.App.iOS.removeEventListener('usernotificationsettings', registerForPush); 
+	    };
+	 
+		// Wait for user settings to be registered before registering for push notifications
+	    Ti.App.iOS.addEventListener('usernotificationsettings', registerForPush);
+	 
+	    // Register notification types to use
+	    Ti.App.iOS.registerUserNotificationSettings({
+		    types: [Ti.App.iOS.USER_NOTIFICATION_TYPE_ALERT, Ti.App.iOS.USER_NOTIFICATION_TYPE_SOUND, Ti.App.iOS.USER_NOTIFICATION_TYPE_BADGE]
+	    });
+	    AG.settings.save("haveRequestPushRegist", true);
+	}else if(OS_IOS){
 		// Ti.Network.unregisterForPushNotifications();
-		Ti.Network.registerForPushNotifications({
+		Ti.Network.registerForPushNotifications(_.extend({
 			types: [
 				Ti.Network.NOTIFICATION_TYPE_BADGE,
 				Ti.Network.NOTIFICATION_TYPE_ALERT,
 				Ti.Network.NOTIFICATION_TYPE_SOUND
-			],
-			callback: function(e){
-				// alert("data: "+JSON.stringify(e.data) +"\n"+e.inBackground);
-				// 뱃지를 0으로 하는거를 무시하지 않으면 무한 반복 푸쉬 됨..
-				if(  e.data.badge === 0 ){
-					return;
-				}
-				AG.notifyController.push({
-					pushEvent: e
-				});
-			},
-			error: function(e){
-				Ti.API.info('register for pushnotification error');
-				_.isFunction(args.error) && args.error();
-			},
-			success: function(e){
-				AG.settings.save("deviceToken", Ti.Network.getRemoteDeviceUUID() );
-				subscribePushChannel(args);
-				_.isFunction(args.success) && args.success();
-			}
-		});
+			]
+		},pushRegHandlers));
 		AG.settings.save("haveRequestPushRegist", true);
 	}
 }
@@ -153,5 +170,11 @@ _.defer(function(){
 		tryRegisterPush({
 			force:true
 		});  
+	}else if(!Ti.Network.remoteNotificationsEnabled && AG.settings.get("haveRequestPushRegist")) {//ios7에서 ios8 업그레이드시 버그 수정위함 꼼수
+		registerForPushNotifications({
+			force:true
+		});
 	}
+	
+	
 });
