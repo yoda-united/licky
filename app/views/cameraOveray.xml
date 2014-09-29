@@ -13,7 +13,7 @@
 			<View id="fieldOpacityBG"></View>
 			<Label class="userName" id="userName"></Label>
 			<View id="fakeFieldWrap">
-				<Label id="contentLabel" class="photoTitle"></Label>
+				<Label id="contentLabel" class="photoTitle">L('postMessageHintText')</Label>
 				<ImageView id="fakeCursor"></ImageView>
 			</View>
 			<!-- <Label class="commentCount" bindId="commentCount"></Label> -->
