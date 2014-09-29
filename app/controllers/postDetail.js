@@ -316,7 +316,6 @@ $.shareButton.addEventListener('click', function(e) {
 	// https://github.com/viezel/TiSocial.Framework
 	var Social = require('dk.napp.social');
 	Social.activityView({
-	    text: "먹기전에 Licky! 찰칵!",
 	    url: 'http://www.licky.co/post/'+postModel.id,
 	    removeIcons:"print,copy,contact,camera,mail,readinglist,airdrop"
 	},[
