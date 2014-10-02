@@ -85,12 +85,12 @@ $.contactUsBtn.addEventListener('click', function(e) {
 		appVersion : Ti.App.version
 	};
 	
-	var bodyString='<br/><br/> <strong>* 사용자 환경 *</strong><br/>';
+	var bodyString='<br/><br/> <strong>* '+L('userEnvironment') + '*</strong><br/>';
 	_.each(phoneInfo,function(value,key){
 		bodyString+=String.format("<strong>%s</strong> : %s<br/>",key,value);
 	});
 	var emailDialog = Ti.UI.createEmailDialog({
-		subject : '[제안] Licky',
+		subject : L('mailSubject'),
 		toRecipients : ['sup@licky.co'],
 		messageBody : bodyString,
 		barColor : '#3498db',
@@ -200,7 +200,6 @@ $.profileViewOptionDialog.addEventListener('click', function(e) {
 	var fb_id = userModel.get('external_accounts')[0].external_id;
 	switch(this.options[e.index]){
 		case L('viewPicture'):
-			Ti.API.info("vi");
 			// scrollView.add(imagev);
 			// $.profile.add(scrollView);
 			

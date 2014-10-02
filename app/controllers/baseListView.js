@@ -139,7 +139,7 @@ var handlers = (function(){
 						updateListMarker($.getCollection());
 					},
 					error : function(){
-						alert('정상적으로 삭제하지 못했습니다. 새로고침 후 다시 시도해주세요.');
+						alert(L('failToDelete'));
 					}
 				});
 			}
