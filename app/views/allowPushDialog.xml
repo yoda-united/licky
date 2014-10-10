@@ -2,7 +2,7 @@
 	<Window class="container">
 		<View class="dialogWrap">
 			<Label class="titleIcon"></Label>
-			<Label id="title" class="description">글 작성 성공!</Label>
+			<Label id="title" class="description"></Label>
 			<View class="recoWrap">
 				<Label id="content" class="recommandText"></Label>
 			</View>
