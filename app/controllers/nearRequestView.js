@@ -14,6 +14,8 @@ function geoAuthHandler(){
 			break;
 		case Ti.Geolocation.AUTHORIZATION_UNKNOWN:
 		case Ti.Geolocation.AUTHORIZATION_AUTHORIZED:
+		case Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE:
+		case Ti.Geolocation.AUTHORIZATION_ALWAYS:
 			break;
 		default:
 			break;
