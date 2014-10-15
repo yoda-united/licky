@@ -7,6 +7,6 @@ tmp
 Resources
 *.log
 tn.json
-tiapp.xml
+#tiapp.xml
 /manifest
 passwords.txt
