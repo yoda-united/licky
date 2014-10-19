@@ -49,7 +49,7 @@
 	<string name="postMessageHintText">드립 입력창</string>
 	
 	<!-- -->
-	<string name="failToDelete">삭제하지 못했습니다. 다시 시도해 주세요.</string>
+	<string name="failToDelete">정상적으로 삭제하지 못했습니다. 새로고침 후 다시 시도해주세요.</string>
 	<string name="deletedLick">삭제된거네요..</string>
 	<string name="report">신고하기</string>
 	<string name="delete">삭제</string>
@@ -73,6 +73,12 @@
 	<string name="bugReport">버그 신고 및 제안하기</string>
 	<string name="viewPicture">프로필 사진 보기</string>
 	<string name="viewProfileOnFacebook">Facebook 프로필 보기</string>
+	<string name="nothingPost">이거다 싶은 음식을 보면 별표를 눌러주세요.\n이 목록에 쌓입니다.</string>
+	<string name="nothingLikedPost">아직 Licky로 먹은게 하나도 없네요..</string>
+	
+	<!-- mail to Licky -->
+	<string name="userEnvironment">사용자 환경</string>
+	<string name="mailSubject">[제안] Licky</string>
 	
 	<!-- walkthrough -->
 	<string name="welcome">반가워요, </string>
