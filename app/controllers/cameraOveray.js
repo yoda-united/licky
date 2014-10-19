@@ -112,7 +112,7 @@ var setLocationBtn = function(opt){
 		default:
 			break;
 	}
-
+	
 	if( AG.settings.get('postWithLocation') ){
 		guidanceVisible && showGuidance( L('willPostedWithLocation') );
 		$.locationBtn.setBackgroundImage('images/locationActive.png');
@@ -368,24 +368,26 @@ exports.showCamera = function(){
 					foursquare_venue_id: foursquare.venue_id,
 					// foursquare_venue_name: foursquare.venue_name,
 					venue_name: foursquare.venue_name,
-
+					
 					// coordinates: [currentPosition.longitude, currentPosition.latitude ],
 					// address_ko: currentAddress.ko.results[0],
 					// address_en: currentAddress.en.results[0]
 				}
 			};
-			var geoAuth = Ti.Geolocation.getLocationServicesAuthorization();
-			if( AG.settings.get("postWithLocation") &&
-					// Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_AUTHORIZED
-					((geoAuth == Ti.Geolocation.AUTHORIZATION_ALWAYS) ||
-					(geoAuth == Ti.Geolocation.AUTHORIZATION_AUTHORIZED) ||
-					(geoAuth == Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE))
-					){
+			
+			
+			if( AG.settings.get("postWithLocation") &&  
+				( 
+					Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_AUTHORIZED
+					|| Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_ALWAYS
+					|| Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE
+				)
+			){
 				postContent.custom_fields.coordinates = [currentPosition.longitude, currentPosition.latitude ];
 				postContent.custom_fields.address_ko = currentAddress.ko.results[0];
 				postContent.custom_fields.address_en = currentAddress.en.results[0];
 			}
-
+			
 			var fbOgImageBlog = ImageFactory.compress(ImageFactory.imageAsResized($.fbOgImageRenderView.toImage(null,true),{
 				width : fbImageSize_2x.width,
 				height :fbImageSize_2x.height,
@@ -396,7 +398,7 @@ exports.showCamera = function(){
 				success : function(nextPost){
 					Ti.API.info(nextPost.attributes);
 					Ti.Analytics.featureEvent('camera.created.post');
-
+					
 					// if(AG.settings.get('postWithFacebook')){
 						var sharePhoto = Alloy.createModel('photo');
 						sharePhoto.save({
