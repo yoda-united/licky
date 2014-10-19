@@ -101,6 +101,8 @@ var setLocationBtn = function(opt){
 			}
 			return;
 		case Ti.Geolocation.AUTHORIZATION_AUTHORIZED:
+		case Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE:
+		case Ti.Geolocation.AUTHORIZATION_ALWAYS:
 			// 위치 서비스를 처음 켰을때 버튼을 사라지게 해줘야..
 			$.requestLocationBtn.animate({
 				duration: 50,
@@ -372,7 +374,15 @@ exports.showCamera = function(){
 					// address_en: currentAddress.en.results[0]
 				}
 			};
-			if( AG.settings.get("postWithLocation") &&  Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_AUTHORIZED){
+			
+			
+			if( AG.settings.get("postWithLocation") &&  
+				( 
+					Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_AUTHORIZED
+					|| Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_ALWAYS
+					|| Ti.Geolocation.getLocationServicesAuthorization() == Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE
+				)
+			){
 				postContent.custom_fields.coordinates = [currentPosition.longitude, currentPosition.latitude ];
 				postContent.custom_fields.address_ko = currentAddress.ko.results[0];
 				postContent.custom_fields.address_en = currentAddress.en.results[0];
