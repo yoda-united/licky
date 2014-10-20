@@ -33,11 +33,16 @@ AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 AG.facebook.permissions = ["publish_stream","email"];
 
 var platformVersionInt = parseInt(Ti.Platform.version, 10);
-Alloy.Globals.is ={
-	iOS7 : (OS_IOS && platformVersionInt == 7),
-	iOS8 : (OS_IOS && platformVersionInt >= 8),
-	talliPhone : (OS_IOS && Ti.Platform.displayCaps.platformHeight == 568)
-};
+(function(){
+	var platformHeight = Ti.Platform.displayCaps.platformHeight;
+	Alloy.Globals.is = {
+		iOS7 : (OS_IOS && platformVersionInt == 7),
+		iOS8 : (OS_IOS && platformVersionInt >= 8),
+		talliPhone : (OS_IOS && platformHeight == 568),
+		iPhone6 : (OS_IOS && platformHeight == 667),
+		iPhone6Plus : (OS_IOS && platformHeight == 736)
+	};
+})();
 
 AG.cameraInfo = {
 	top : 44,
