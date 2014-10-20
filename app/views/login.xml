@@ -1,16 +1,18 @@
 <Alloy>
 	<NavigationWindow platform="ios">
-	<Window class="container">
-		<Button id="closeBtn" />
-		
-		<View id="loginView">
-			<ImageView id="logo" />
-			<Label id="loginGuidance" />
-			<Button id="facebookImage" />
-			<Button id="fbLogin" />
+		<Window class="container">
+			<Button id="closeBtn" />
 			
-			<Label id="termsLabel"></Label>
-		</View>		
-	</Window>
+			<View id="loginView">
+				<ImageView id="logo" />
+				<Label id="loginGuidance" />
+				<View class="fbButtonWrap">
+					<Button id="facebookImage" />
+					<Button id="fbLogin" />
+				</View>
+				
+				<Label id="termsLabel"></Label>
+			</View>		
+		</Window>
 	</NavigationWindow>
 </Alloy>
