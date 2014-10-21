@@ -7,6 +7,13 @@
 	height :435 //가운데에서 20px 뺏음
 }
 
+".container[if=Alloy.Globals.is.iPhone6]" : {
+	top : 50
+}
+".container[if=Alloy.Globals.is.iPhone6Plus]" : {
+	top : 80
+}
+
 "#labelWrap": {
 	top: 0,
 	height: 300 
