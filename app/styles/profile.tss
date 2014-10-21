@@ -40,6 +40,14 @@
 	top: 0,
 	preventDefaultImage : true
 }
+"#profileBannerImage[if=Alloy.Globals.is.iPhone6Plus]":{
+	width: 414,
+	height: 275
+}
+"#profileBannerImage[if=Alloy.Globals.is.iPhone6]":{
+	width: 375,
+	height: 249
+}
 "#profileImage": {
 	preventDefaultImage : false,
 	defaultImage: "images/defaultProfilePicture.png",
@@ -56,7 +64,8 @@
 	width: 72,
 	height: 32,
 	top: 66,
-	left: 158,
+	// left: 158,
+	left: '50%',
 	// borderColor: "red",
 	// borderWidth: 1,
 	image: "images/wireForButton.png"
@@ -71,6 +80,12 @@
 	// borderColor: "#fff",
 	// borderWidht: 1,
 	// borderRadius: 14
+}
+"#profileSettingBtn[if=Alloy.Globals.is.iPhone6Plus]":{
+	left: '62%'
+}
+"#profileSettingBtn[if=Alloy.Globals.is.iPhone6]":{
+	left: '62%'
 }
 "#name": {
 	// borderWidth:1,

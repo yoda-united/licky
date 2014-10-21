@@ -11,10 +11,13 @@
 	// canScroll: false,
 	separatorStyle : Titanium.UI.iPhone.ListViewSeparatorStyle.NONE,
 	height: 30,
-	bottom: 95
+	bottom: -150
 }
 
 
+"#shopNameSuggestList" : {
+	height: 50
+}
 "#shopNameSuggestion" : {
 	// left: 5,
 	// right: 5,

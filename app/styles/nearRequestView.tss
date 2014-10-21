@@ -1,6 +1,14 @@
 
 ".container" : {
 }
+
+".container[if=Alloy.Globals.is.iPhone6]" : {
+	top : 50
+}
+".container[if=Alloy.Globals.is.iPhone6Plus]" : {
+	top : 80
+}
+
 "#unkownGeoImg":{
 	top: 105,
 	// width: 192,

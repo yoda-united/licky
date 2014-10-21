@@ -150,8 +150,20 @@
 		fontSize :15
 	},
 	bottom : 5,
-	scrollsToTop : false
+	scrollsToTop : false,
+	autocorrect :false
 }
+".mapBorder" : {
+	//image : "images/mapBorder.png",
+	backgroundImage : "images/mapBorder.png",
+	zIndex : 20,
+	touchEnabled : false,
+	height : 119,
+	left : 5,
+	right : 5, 
+	backgroundLeftCap : 20
+}
+
 "#sendBtn" : {
 	right : 5,
 	width : 50,
@@ -161,7 +173,16 @@
 	color : Alloy.Globals.COLORS.red
 }
 
-
+"#footerDummyView" : {
+	height : 188,
+	backgroundColor : "white"
+}
+"#footerDummyView[if=Alloy.Globals.is.iPhone6]" : {
+	height : 288
+}
+"#footerDummyView[if=Alloy.Globals.is.iPhone6Plus]" : {
+	height : 348
+}
 
 
 ".hiddenProfile" : {
