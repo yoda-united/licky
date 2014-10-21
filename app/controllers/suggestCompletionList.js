@@ -1,7 +1,7 @@
 var args = arguments[0] || {};
 
-var bottom_up = 270,
-	bottom_down = 95;
+var bottom_up = 57,
+	bottom_down = -150;
 
 var venues = [],	// 결
 	position,	// 검색할 위

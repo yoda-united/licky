@@ -1,6 +1,5 @@
 
 ".container" : {
-  //backgroundColor : 'white'
   // layout : 'vertical'
 }
 
@@ -173,20 +172,23 @@
 
 
 ".leadingEdge" : {
-	zIndex: 10,
 	// top: 311.5
-	top: null,	// app.tss 에 지정된 값을 삭제해야 bottom값이 적용됨 
-	bottom: 268
+	top: 26
 }
+
+"#controlWrap" : {
+	height : 79,
+	clipMode : Titanium.UI.iOS.CLIP_MODE_DISABLED 
+}
+
 "#guidanceLabel": {
-	zIndex: 15,
 	borderRadius: 11,
 	borderWidth: 0.5,
 	borderColor: Alloy.Globals.COLORS.darkGray,
 	backgroundColor: Alloy.Globals.COLORS.whiteGray,
 	color: Alloy.Globals.COLORS.darkGray,
 
-	bottom: 232,
+	bottom: 16,
 	left: 18,
 	height: 36,
 	font : {
@@ -195,9 +197,8 @@
 	}
 }
 "#controlBar" : {
-	zIndex: 20,
 	// top: 312,
-	bottom: 216,	// softKeyboard's height
+	bottom: 0,	// softKeyboard's height
 	height: 52,
 	backgroundColor: Alloy.Globals.COLORS.whiteGray
 }
@@ -267,17 +268,19 @@
 	// top: 352,
 	bottom:0,
 	height: 216,	// softKeyboard's height
-	// width: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
 	// backgroundColor : 'red',
 	// borderColor : 'orange',
 	// borderWidth : '1px',
-	backgroundImage: "images/behindKeyboard.png"
+	image: "/images/behindKeyboard.png",
+	// backgroundImage: "images/behindKeyboard.png",
+	contentMode : 'aspectfill'
 }
 
 "#fbOgImageRenderView" : {
 	width : 320,
 	height : 170,
-	top: 600
+	top: 1000
 }
 
 "#captureNavImage" : {

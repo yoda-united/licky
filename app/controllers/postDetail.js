@@ -367,7 +367,7 @@ if(OS_IOS){
 $.commentField.addEventListener('focus', function(e) {
 	if(OS_IOS){
 		$.mainWrap.animate({
-			bottom: AG.is.iPhone6Plus?226:216,
+			bottom: AG.settings.get('keyboardframeHeight'),
 			duration : 200
 		});
 	}

@@ -26,7 +26,7 @@
 		<!-- <View id="mapWrap" /> -->
 		
 		<!-- <View id="shopNameGuidanceWrap" > -->
-		<Require src="suggestCompletionList" id="suggestCompletionListC"/>
+		
 	       <!-- <ListView id="shopNameSuggestList" defaultItemTemplate="template">
 	            <Templates>
 	                <ItemTemplate name="template" id="shopNameSuggestTemplate" >
@@ -38,19 +38,21 @@
 	            </ListSection>
 	        </ListView>
 		 </View> -->
-		
-		<View class="leadingEdge" />
-		<Label id="guidanceLabel"></Label>
-		<View id="controlBar" >
-			<Button id="fbShareBtn" />
-			<Button id="locationBtn" >
-				<!-- <ImageView id="lockImg"></ImageView> -->
-			</Button>
-			<Button id="requestLocationBtn"></Button>
-			<TextField id="shopNameField"></TextField>
+		<View id="controlWrap">
+			<Require src="suggestCompletionList" id="suggestCompletionListC"/>
+			<View class="leadingEdge" />
+			<Label id="guidanceLabel"></Label>
+			<View id="controlBar" >
+				<Button id="fbShareBtn" />
+				<Button id="locationBtn" >
+					<!-- <ImageView id="lockImg"></ImageView> -->
+				</Button>
+				<Button id="requestLocationBtn"></Button>
+				<TextField id="shopNameField"></TextField>
+			</View>
 		</View>
 		
-		<View id="behindKeyboard" />
+		<ImageView id="behindKeyboard"></ImageView>
 
 		<View id="fbOgImageRenderView">
 			<ImageView id="captureContentImage"></ImageView>

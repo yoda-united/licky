@@ -80,8 +80,20 @@ AG.settings.fetch({
 		if( !AG.settings.has("postWithLocation") ){
 			AG.settings.save("postWithLocation", true);
 		}
+		
+		if( !AG.settings.has('keyboardframeHeight') ){
+			AG.settings.save('keyboardframeHeight',AG.is.iPhone6Plus?226:216); //iphone5 default keyboard height
+		}
 	}
 });
+
+Ti.App.addEventListener('keyboardframechanged', function(e) {
+	if(e.keyboardFrame.height>0){
+		AG.settings.save('keyboardframeHeight',e.keyboardFrame.height);
+	}
+});
+
+
 
 //singleton Controller;
 AG.loginController =  Alloy.createController('login');
