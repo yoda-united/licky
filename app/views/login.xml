@@ -1,7 +1,7 @@
 <Alloy>
 	<NavigationWindow platform="ios">
 		<Window class="container">
-			<Button id="closeBtn" />
+			
 			
 			<View id="loginView">
 				<ImageView id="logo" />
@@ -12,7 +12,8 @@
 				</View>
 				
 				<Label id="termsLabel"></Label>
-			</View>		
+			</View>	
+			<Button id="closeBtn" />	
 		</Window>
 	</NavigationWindow>
 </Alloy>
