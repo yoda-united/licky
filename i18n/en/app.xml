@@ -1,0 +1,4 @@
+<resources>
+    <!-- <string name="NSLocationAlwaysUsageDescription"></string> -->
+    <string name="NSLocationWhenInUseUsageDescription">Need for searching near post</string>
+</resources>
