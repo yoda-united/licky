@@ -42,12 +42,26 @@
 	// visible: false,
 	top: 60
 }
+
+"#loginView[if=Alloy.Globals.is.iPhone6]" : {
+	top : 50,
+	bottom : 25
+}
+"#loginView[if=Alloy.Globals.is.iPhone6Plus]" : {
+	top : 80,
+	bottom : 40
+}
+
+
 "#logo": { 
 	backgroundImage: "images/logoWithTitle.png",
 	width: 77,
 	height: 91,
 	top: 40
 }
+
+
+
 "#loginGuidance": {
 	text: L("defaultLoginMessage"),
 	top: 317,
@@ -60,17 +74,15 @@
 }
 "#facebookImage": {
 	// top: 334,
-	bottom: 60,
-	left: 22,
 	height: 55,
 	width: 55,
+	left: 22,
 	backgroundImage: 'images/facebookLogo.png',
 	zIndex:10
 }
 "#fbLogin": {
 	borderRadius: 5,
 	// top: 334,
-	bottom: 60,
 	left: 65,
 	height: 55,
 	width: 232,
@@ -83,6 +95,12 @@
 	backgroundColor: Alloy.Globals.COLORS.facebookBlue,
 	verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 	// backgroundColor: '#4063A7'
+}
+
+".fbButtonWrap" : {
+	bottom: 60,
+	width : 320,
+	height : 55
 }
 
 "#termsLabel" : {

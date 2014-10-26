@@ -73,6 +73,17 @@
 	// bottom : 0
 	top: 0
 }
+
+".photo[if=Alloy.Globals.is.iPhone6]" : {
+	width : 375,
+	height : 300
+}
+
+".photo[if=Alloy.Globals.is.iPhone6Plus]" : {
+	width : 414,
+	height : 331.2
+}
+
 ".userName" : {
 	// color : Alloy.Globals.COLORS.whiteGray,
 	color : "#dfff",

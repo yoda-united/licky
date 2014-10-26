@@ -1,21 +1,29 @@
 <Alloy>
 	<Window class="container">
-		<ImageView id="stilImage"></ImageView>
-		<ImageView id="stilImage2"></ImageView>
+		<View class="ip6Wrap">
+			<ImageView id="stilImage"></ImageView>
+			<ImageView id="stilImage2"></ImageView>
+		</View>
 		<ScrollableView id="scrollableView" >
-            <View id="step01">
-            	<Label id="step01Label" class="guidanceLabel"></Label>
+			<View class="ip6Wrap">
+	            <View id="step01">
+	            	<Label id="step01Label" class="guidanceLabel"></Label>
+	            </View>
             </View>
-            <View id="step02">
-            	<ImageView id="step02Image"></ImageView>
-            	<Label class="step02ContentTitle"></Label>
-            	<Label id="step02Label" class="guidanceLabel"></Label>
+            <View class="ip6Wrap">
+	            <View id="step02">
+	            	<ImageView id="step02Image"></ImageView>
+	            	<Label class="step02ContentTitle"></Label>
+	            	<Label id="step02Label" class="guidanceLabel"></Label>
+	            </View>
             </View>
-            <View id="step03">
-            	<ImageView id="step03Image"></ImageView>
-            	<Label id="step03Label" class="guidanceLabel"></Label>
-            	<Button id="step03Button"></Button>
-            </View>
+            <View class="ip6Wrap">
+	            <View id="step03">
+	            	<ImageView id="step03Image"></ImageView>
+	            	<Label id="step03Label" class="guidanceLabel"></Label>
+	            	<Button id="step03Button"></Button>
+	            </View>
+	        </View>
         </ScrollableView>
 	</Window>
 </Alloy>

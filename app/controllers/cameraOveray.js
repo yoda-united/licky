@@ -7,9 +7,11 @@ var currentPosition = {},
 var args = arguments[0],
 	postCol = args.collection;
 
-if(AG.settings.get("platformHeight") < 568){
-	// $.cameraOveray.remove($.mapWrap);
-}
+var onKeyboardHeightChange  = function(){
+	$.controlWrap.bottom = AG.settings.get('keyboardframeHeight');
+};
+onKeyboardHeightChange();
+AG.settings.on('change:keyboardframeHeight',onKeyboardHeightChange);
 
 function send(e) {
 	Ti.Analytics.featureEvent('camera.return');
@@ -178,6 +180,10 @@ $.closeBtn.addEventListener('click', function(e) {
 	}else{
 		var activity = Ti.Android.currentActivity;
 	}
+	if(Ti.Media.availableCameras == 0){
+		$.fakeCameraWin.close();
+	}
+	AG.settings.off('change:keyboardframeHeight',onKeyboardHeightChange);
 });
 
 $.contentField.addEventListener('change', function(e) {
@@ -247,7 +253,7 @@ function getCurrentPosition(){
 }
 
 function setDistanceLabel(){
-	if( AG.settings.get('postWithLocation') ){
+	if( AG.settings.get('postWithLocation') && currentAddress[AG.currentLanguage]){
 		$.distance.text =  ($.shopNameField.getValue()? $.shopNameField.getValue()+": ": "")
 			 + AG.utils.getGoogleShortAddress(currentAddress[AG.currentLanguage].results[0]);
 	}else{
@@ -299,6 +305,7 @@ exports.showCamera = function(){
 		success : function(event) {
 			if(OS_IOS){
 				_.defer(function(){
+					AG.settings.off('change:keyboardframeHeight',onKeyboardHeightChange);
 					Ti.Media.hideCamera();
 				});
 			}
@@ -472,19 +479,33 @@ exports.showCamera = function(){
 		cancel : function() {
 		},
 		error : function(error) {
-			var message;
-			if (error.code == Ti.Media.NO_CAMERA) {
-				message = 'Device does not have video recording capabilities';
-			} else {
-				message = 'Unexpected error: ' + error.code;
+			if(ENV_DEV || EVN_TEST){
+				var win = Ti.UI.createWindow({
+					backgroundColor:'white',
+					fullscreen : true
+				});
+				win.add($.getView());
+				
+				
+				win.open({
+					modal:true
+				});
+				$.fakeCameraWin = win;
+			}else{
+				var message;
+				if (error.code == Ti.Media.NO_CAMERA) {
+					message = 'Device does not have camera';
+				} else {
+					message = 'Unexpected error: ' + error.code;
+				}
+		
+				Ti.UI.createAlertDialog({
+					title : 'Camera',
+					message : message
+				}).show();
 			}
-	
-			Ti.UI.createAlertDialog({
-				title : 'Camera',
-				message : message
-			}).show();
 		},
-		overlay : this.getView(),
+		overlay : $.getView(),
 		saveToPhotoGallery : false,
 		allowEditing : false,
 		showControls : false,

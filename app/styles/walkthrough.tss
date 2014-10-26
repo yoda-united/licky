@@ -120,4 +120,10 @@
 	title: L('letsGo')
 }
 
+".ip6Wrap[if=Alloy.Globals.is.iPhone6]" : {
+	top : 50
+}
+".ip6Wrap[if=Alloy.Globals.is.iPhone6Plus]" : {
+	top : 80
+}
 

@@ -159,7 +159,8 @@ var resetCommentItems = function(){
 					latitude:coord[0][1],
 					longitude:coord[0][0],
 					zoom: 15, //15, 16이 적당해 보임
-					width : 304,
+					left : 10,
+					right : 10,
 					height : 119,
 					top:0,
 					userLocation : (
@@ -366,7 +367,7 @@ if(OS_IOS){
 $.commentField.addEventListener('focus', function(e) {
 	if(OS_IOS){
 		$.mainWrap.animate({
-			bottom:216,
+			bottom: AG.settings.get('keyboardframeHeight'),
 			duration : 200
 		});
 	}
