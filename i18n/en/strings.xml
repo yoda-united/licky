@@ -1,113 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-	<!-- globally -->
-	<string name="timeLine">타임라인</string>
-	<string name="timeLineTabTitle">타임라인</string>
-	<string name="pushHistory">알림</string>
-	<string name="pushHistoryTabTitle">알림</string>
-	<string name="allList">전체</string>
-	<string name="friendList">친구</string>
-	<string name="nearList">근처</string>
-	<string name="me">나</string>
-	<string name="all">전체</string>
-	<string name="friendsOnly">친구 것만</string>
-	<string name="myLicks">내가 소화 시킨 것들</string>
-	<string name="someoneLicks">%s 님의 배 속</string>
-	<string name="myLikes">이거야!</string>
-	<string name="like">우와!</string>
-	<string name="liked">이거다!</string>
-	<string name="someoneLikes">%s님의 별 목록</string>
-	<string name="cancel">취소</string>
-	<string name="confirm">확인</string>
-	<string name="close">닫기</string>
-	<string name="send">전송</string>
-	<string name="back">뒤로</string>
-	<string name="notice">알림</string>
-	<string name="loading">불러오는 중</string>
-	<string name="signInWithFacebook">Facebook으로 로그인하기</string>
-	<string name="logoutMessage">로그아웃 성공</string>
-	<string name="facebookConnecting">연결중..</string>
-	<string name="defaultLoginMessage">맛있을 땐 리키! 흐릅~</string>
-	<string name="commentNeedsLogin">댓글을 달려면 로그인이 필요합니다.</string>
-	<string name="cameraNeedsLogin">Licky로 음식 사진 찍으시게요? 어서 로그인하세요!</string>
-	<string name="logout">로그 아웃</string>
-	<string name="login">로그인</string>
-	<string name="setting">환경설정</string>
-	<string name="geoPurpose">주변 검색 및 글 작성 시 위치 기록용</string>
-	
-	<!-- cameraOveray -->
-	<string name="locationServiceNeeded">위치 서비스가 켜져 있어야\n 주변을 찾을 수 있어요.</string>
-	<string name="noFBFriends">Licky를 사용중인 페이스북 친구가 없네요.\n먹는거 좋아하는 친구들에게 Licky를 소개해보세요.</string>
-	<string name="willBePostedToFacebook">페이스북에도 공유 하기</string>
-	<string name="willNotShareOnFacebook">페이스북에 공유 하지 않기</string>
-	<string name="willPostedWithLocation">현재 위치를 포함 하기</string>
-	<string name="willNotPostedWithLocation">현재 위치를 포함 하지 않기</string>
-	<string name="requestGeolocationForCamera">위치 정보 기록 할래요?</string>
-	<string name="locationAuthDenied">위치 서비스를 활성화 해야 사용 할 수 있습니다.</string>
-	<string name="locationRequired">현재 위치를 포함</string>
-	<string name="shopName">가게 이름</string>
-	<string name="postMessageHintText">드립 입력창</string>
-	
-	<!-- -->
-	<string name="failToDelete">정상적으로 삭제하지 못했습니다. 새로고침 후 다시 시도해주세요.</string>
-	<string name="deletedLick">삭제된거네요..</string>
-	<string name="report">신고하기</string>
-	<string name="delete">삭제</string>
-	<string name="unReport">신고 취소하기</string>
-	<string name="successReportedInappropriate">신고 접수 되었습니다.</string>
-	<string name="failToReport">신고 접수하지 못했어요. 잠시 후 다시 시도해주세요.</string>
-	<string name="successUnReport">신고 취소 되었습니다.</string>
-	<string name="failUnReport">신고 취소하지 못했어요. 잠시 후 다시 시도해주세요.</string>
-	<string name="unReportDialogTitle">이미 신고 하셨어요.</string>
-	<string name="failToTokenRenewalLogin">Facebook 정보를 갱신하는데 실패했어요. 잠시후 다시 시도해 주세요.</string>
-	<string name="leftACommentOnYourLicky"> 님이 댓글을 남겼어요: </string>
-	<string name="friendsPostNeedsLogin">친구 것만 따로 보려면 로그인 먼저 하셔야죠^^</string>
-	<string name="termsAndPrivacy">로그인은 이용약관 및 개인정보 취급정책에\n동의하는 것을 의미합니다.</string>
-	
-	<!-- near tap -->
-	<string name="requireGeoLocationGuidanceOnNearTap">가까운 곳에서 찍힌 음식들을 보려면\n위치 서비스를 켜야 해요</string>
-	<string name="requestGeolocation">위치 정보 허용하기!</string>
-	<string name="turnOnLocationAtSettings">위치 정보를 허용하지 않으셨네요?\n다시 켜는건 좀 복잡해요. ㅠㅠ\nSettings > Privacy > Location > Licky on..</string>
-	
-	<!-- profile tap -->
-	<string name="bugReport">버그 신고 및 제안하기</string>
-	<string name="viewPicture">프로필 사진 보기</string>
-	<string name="viewProfileOnFacebook">Facebook 프로필 보기</string>
-	<string name="nothingPost">이거다 싶은 음식을 보면 별표를 눌러주세요.\n이 목록에 쌓입니다.</string>
-	<string name="nothingLikedPost">아직 Licky로 먹은게 하나도 없네요..</string>
-	
-	<!-- mail to Licky -->
-	<string name="userEnvironment">사용자 환경</string>
-	<string name="mailSubject">[제안] Licky</string>
-	
-	<!-- walkthrough -->
-	<string name="welcome">반가워요, </string>
-	<string name="walkthroughStart">  Licky 사용법 3단계 익히고 가실께요~</string>
-	<string name="step1_order">1. 음식을 시켜요</string>
-	<string name="step2_takePic">2. Licky로 찍어요</string>
-	<string name="step2_contentTitle">아기다리고기다리던</string>
-	<string name="step3_try">3. 먹어요</string>
-	<string name="letsGo">시작!</string>
-	
-	<!-- allow push -->
-	<string name="pleasePush">알려주세요</string>
-	<string name="successPhotoUpload">사진 등록 성공!</string>
-	<string name="successCommentUpload">댓글 등록 성공!</string>
-	<string name="turnOnRemotePushAtSettings">푸쉬 알림을 허용하지 않으셨네요?\n다시 켜는건 좀 복잡해요. ㅠㅠ\n설정앱을 실행하고 알림 > Licky에서 알림 설정(배너,배지,사운드)하고 다시 Licky로 돌아오세요.</string>
-	<string name="wantCommentRemotePush">참여한 글에 댓글이 달리면 푸쉬 알림으로 알려드릴까요?</string>
-	<string name="pushGuideText">소식이 있을 때 푸쉬 알림으로 알려드릴까요?</string>
-	<string name="pushGuideSuccessText">푸쉬 알림 허용! 감사해요!</string>
-	<string name="noPush">알림이 아직 없네요.</string>
-		
-	<!-- error message -->
-	<string name="defaultError">앗! 데이터를 가져오는데 문제 발생! 다시해보고 안되면 신고해주기~ :)</string>
-	<string name="errorExternalAccountLogin">Facebook 계정으로 Licky 로그인하는 과정에서 문제가 발생했어요.\n 다시해보고 안되면 app@licky.co로 신고해주세요.</string>
-	<string name="failToLogout">로그 아웃이 실패 했는데..\n다시 시도 해보실래요?;;</string>
-	<string name="failToDeleteComment">댓글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.</string>
-	<string name="notSupportEmail">Licky 메일 주소는 app@licky.co \n클립보드에 복사했으니 원하는 메일 앱에 붙여 넣고 메일 주세요!</string>
-	<string name="failToDeletePost">글을 정상적으로 삭제하지 못했습니다.\n새로고침 후 다시 시도해주세요.</string>
-	<string name="failToCreateComment">댓글 작성이 정상적으로 되지 않네요. 잠시후 다시 시도해보실래요?</string>
-	
-	<!-- no items -->
-	<string name="noPushItem">알려드릴 내용이 없네요.\n글이나 댓글을 남겨보세요.</string>
+  <!--globally-->
+  <string name="timeLine">Timeline</string>
+  <string name="timeLineTabTitle">Timelines</string>
+  <string name="pushHistory">Notification</string>
+  <string name="pushHistoryTabTitle">Notifications</string>
+  <string name="allList">All</string>
+  <string name="friendList">Friends</string>
+  <string name="nearList">Near</string>
+  <string name="me">Me</string>
+  <string name="all">All</string>
+  <string name="friendsOnly">Friend\'s</string>
+  <string name="myLicks">My licks</string>
+  <string name="someoneLicks">%s\'s licks</string>
+  <string name="myLikes">Love it!</string>
+  <string name="like">Love it!</string>
+  <string name="liked">Love it!</string>
+  <string name="someoneLikes">%s\'s Love it</string>
+  <string name="cancel">Cancel</string>
+  <string name="confirm">Confirm</string>
+  <string name="close">Close</string>
+  <string name="send">Send</string>
+  <string name="back">Back</string>
+  <string name="notice">Notification</string>
+  <string name="loading">Loading</string>
+  <string name="signInWithFacebook">Sign in with Facebook</string>
+  <string name="logoutMessage">Logged out</string>
+  <string name="facebookConnecting">Connecting...</string>
+  <string name="defaultLoginMessage">Love it? then Lick it!</string>
+  <string name="commentNeedsLogin">Please log in</string>
+  <string name="cameraNeedsLogin">Please log in</string>
+  <string name="logout">Logout</string>
+  <string name="login">Login</string>
+  <string name="setting">Settings</string>
+  <string name="geoPurpose">Search and post location</string>
+  <!--cameraOveray-->
+  <string name="locationServiceNeeded">Please allow Licky to access your location</string>
+  <string name="noFBFriends">There is no Facebook friend on Licky.\nLet your friends meet Licky</string>
+  <string name="willBePostedToFacebook">Share on Facebook</string>
+  <string name="willNotShareOnFacebook">Don\'t share on Facebook</string>
+  <string name="willPostedWithLocation">Include current location</string>
+  <string name="willNotPostedWithLocation">Don\'t include current location</string>
+  <string name="requestGeolocationForCamera">Want to add location?</string>
+  <string name="locationAuthDenied">Please enable location service</string>
+  <string name="locationRequired">Add current location</string>
+  <string name="shopName">Shop Name</string>
+  <string name="postMessageHintText">Add text</string>
+  <!---->
+  <string name="failToDelete">Fail to delete. Please refresh page and try again</string>
+  <string name="deletedLick">This has been already deleted</string>
+  <string name="report">Report</string>
+  <string name="delete">Delete</string>
+  <string name="unReport">Cancel a report</string>
+  <string name="successReportedInappropriate">Your report is successfully submitted</string>
+  <string name="failToReport">Fail to submit a report. please try again</string>
+  <string name="successUnReport">Your report is successfully canceled</string>
+  <string name="failUnReport">Fail to cancel a report. Please try again</string>
+  <string name="unReportDialogTitle">You\'ve already reported this</string>
+  <string name="failToTokenRenewalLogin">Failed to update Facebook information. Please try again </string>
+  <string name="leftACommentOnYourLicky">commented on your Lick</string>
+  <string name="friendsPostNeedsLogin">Please log in</string>
+  <string name="termsAndPrivacy">Once you log in, it assumes that you agree with the Terms of Use and Privacy Policy</string>
+  <!--near tap-->
+  <string name="requireGeoLocationGuidanceOnNearTap">Please log in to see the licks near by you</string>
+  <string name="requestGeolocation">Allow to access location</string>
+  <string name="turnOnLocationAtSettings">Check to not allow Licky to access location? It\'s a little bit complicated to enable again. \nSettings &gt; Privacy &gt; Location &gt; Licky on..</string>
+  <!--profile tap-->
+  <string name="bugReport"> Suggestions &amp; Bug reports</string>
+  <string name="viewPicture">View a profile photo</string>
+  <string name="viewProfileOnFacebook">View a Facebook profile</string>
+  <string name="nothingPost">Tap a star mark on a lick you like. \n will be appear on the list</string>
+  <string name="nothingLikedPost">You haven\'t eat yet with Licky</string>
+  <!--mail to Licky-->
+  <string name="userEnvironment">User Environment</string>
+  <string name="mailSubject">[Suggestion] Licky</string>
+  <!--walkthrough-->
+  <string name="welcome">Welcome</string>
+  <string name="walkthroughStart">3 Steps for Licky starter</string>
+  <string name="step1_order">Make an order</string>
+  <string name="step2_takePic">Take a picture with Licky</string>
+  <string name="step2_contentTitle">Love it!  Enjoy it!</string>
+  <string name="step3_try">Enjoy it!</string>
+  <string name="letsGo">Start!</string>
+  <!--allow push-->
+  <string name="pleasePush">Allow</string>
+  <string name="successPhotoUpload">Successfully uploaded</string>
+  <string name="successCommentUpload">Done</string>
+  <string name="turnOnRemotePushAtSettings">Check to not allow Licky to send push notification? It\'s a little bit complicated. \nOpen a setting menu and turn on an alert(banner, badge and sound) on Alert setting. Then back to Licky.</string>
+  <string name="wantCommentRemotePush">Want to get push notification when someone comments on your lick or lick that you commented or loved?</string>
+  <string name="pushGuideText">Want to get a push notification when there is a new update?</string>
+  <string name="pushGuideSuccessText">Thank you for allowing push notification</string>
+  <string name="noPush">There is no notification</string>
+  <!--error message-->
+  <string name="defaultError">Fail to update data. please try again. If it keep fail to update, report us.</string>
+  <string name="errorExternalAccountLogin">Fail to log in Licky with your Facebook account. Please try again. If it keep fail to log in, please report to app@licky.co</string>
+  <string name="failToLogout">Fail to log out. Please try again</string>
+  <string name="failToDeleteComment">Fail to delete a comment. Please refresh page and try again</string>
+  <string name="notSupportEmail">Any Suggestion or a bug report? Please send an email to app@licky.co\n it\'s copied to clipboard.</string>
+  <string name="failToDeletePost">Fail to delete a lick. Please refresh and try again</string>
+  <string name="failToCreateComment">Fail to upload a comment. Please try again</string>
+  <!--no items-->
+  <string name="noPushItem">There is no news. let\'s left some licks or comments</string>
 </resources>
