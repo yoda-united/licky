@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--<string name="NSLocationAlwaysUsageDescription"></string>-->
+  <string name="NSLocationWhenInUseUsageDescription">This will make it much easier for you to find and post stuff nearby.</string>
+</resources>

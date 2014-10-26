@@ -11,7 +11,7 @@
 					<Button id="fbLogin" />
 				</View>
 				
-				<Label id="termsLabel"></Label>
+				<Widget src="nl.fokkezb.html2as.widget" id="termsLabel"></Widget>
 			</View>	
 			<Button id="closeBtn" />	
 		</Window>

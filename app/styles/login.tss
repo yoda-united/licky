@@ -105,11 +105,12 @@
 
 "#termsLabel" : {
 	bottom : 15,
-	// left : 22,
-	// right: 22,
+	left : 22,
+	right: 22,
 	color: Alloy.Globals.COLORS.darkGray,
-	text : L('termsAndPrivacy'),
+	/*text : L('termsAndPrivacy'),*/
 	font : {
 		fontSize: 13
-	}
+	},
+	textAlign : 'center'
 }

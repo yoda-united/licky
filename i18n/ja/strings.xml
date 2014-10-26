@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--globally-->
+  <string name="timeLine">タイムライン</string>
+  <string name="timeLineTabTitle">タイムライン</string>
+  <string name="pushHistory">通知</string>
+  <string name="pushHistoryTabTitle">通知</string>
+  <string name="allList">すべて</string>
+  <string name="friendList">友達</string>
+  <string name="nearList">周辺</string>
+  <string name="me">自分</string>
+  <string name="all">すべて</string>
+  <string name="friendsOnly">友達のみ</string>
+  <string name="myLicks">自分が食べたもの</string>
+  <string name="someoneLicks">%s さんが食べたもの</string>
+  <string name="myLikes">「いいね！」リスト</string>
+  <string name="like">いいね！</string>
+  <string name="liked">いいね！</string>
+  <string name="someoneLikes">%sさんの「いいね！」リスト</string>
+  <string name="cancel">取り消し</string>
+  <string name="confirm">確認</string>
+  <string name="close">閉じる</string>
+  <string name="send">転送</string>
+  <string name="back">戻る</string>
+  <string name="notice">通知</string>
+  <string name="loading">ロード中</string>
+  <string name="signInWithFacebook">Facebookでログイン</string>
+  <string name="logoutMessage">ログアウト完了</string>
+  <string name="facebookConnecting">連結中。。</string>
+  <string name="defaultLoginMessage">うまいときはLicky! </string>
+  <string name="commentNeedsLogin">コメントを投稿するためにはログインが必要です。</string>
+  <string name="cameraNeedsLogin">Lickyで食べ物の写真を撮りたい？今すぐログイン！</string>
+  <string name="logout">ログアウト</string>
+  <string name="login">ログイン</string>
+  <string name="setting">環境設定</string>
+  <string name="geoPurpose">周辺検索およびポスティング時の位置記録用</string>
+  <!--cameraOveray-->
+  <string name="locationServiceNeeded">周辺を検索するためには位置サービスを活性化させて下さい。</string>
+  <string name="noFBFriends">Lickyを使用中のFacebookの友達がいません。グルメなお友達にLickyを紹介してみてはいかがでしょうか。</string>
+  <string name="willBePostedToFacebook">Facebookにも共有する。</string>
+  <string name="willNotShareOnFacebook">Facebookに共有しない。</string>
+  <string name="willPostedWithLocation">現在位置を共有する</string>
+  <string name="willNotPostedWithLocation">現在位置を共有しない</string>
+  <string name="requestGeolocationForCamera">位置情報を記録しますか？</string>
+  <string name="locationAuthDenied">位置情報サービスを活性化すると使えます。</string>
+  <string name="locationRequired">現在の位置を含む</string>
+  <string name="shopName">店の名前</string>
+  <string name="postMessageHintText">入力欄</string>
+  <!---->
+  <string name="failToDelete">正常に削除されませんでした。しばらく経ってからもう一度試してみて下さい。</string>
+  <string name="deletedLick">削除されました</string>
+  <string name="report">スパム報告</string>
+  <string name="delete">削除</string>
+  <string name="unReport">削除取り消し</string>
+  <string name="successReportedInappropriate">スパム報告が完了しました。</string>
+  <string name="failToReport">スパム報告が完了されませんでした。しばらく経ってからやり直して下さい。</string>
+  <string name="successUnReport">スパム報告が取り消されました。</string>
+  <string name="failUnReport">スパム報告が完了されませんでした。しばらく経ってからやり直して下さい。</string>
+  <string name="unReportDialogTitle">もうスパム報告しました。</string>
+  <string name="failToTokenRenewalLogin">Facebook情報の更新に失敗しました。しばらく経ってからやり直して下さい。</string>
+  <string name="leftACommentOnYourLicky">さんがコメントをしました:</string>
+  <string name="friendsPostNeedsLogin">友達のポスティングをみるためにはログインが必要です^^</string>
+  <string name="termsAndPrivacy">ログインは利用規約および個人情報取扱政策に同意することを意味します。</string>
+  <!--near tap-->
+  <string name="requireGeoLocationGuidanceOnNearTap">近所で撮られた食べ物をみるためには位置情報サービスを活性化させて下さい。</string>
+  <string name="requestGeolocation">位置情報を許可する</string>
+  <string name="turnOnLocationAtSettings">iPhoneの環境設定にある位置情報サービスのLickyを活性化させて下さい。</string>
+  <!--profile tap-->
+  <string name="bugReport">バグ報告および提案</string>
+  <string name="viewPicture">プロフィール写真をみる</string>
+  <string name="viewProfileOnFacebook">Facebook プロフィールをみる</string>
+  <string name="nothingPost">おいしそうな食べ物をみたら星をタップして下さい。このリストに追加されます。</string>
+  <string name="nothingLikedPost">まだLickyで食べたものがありません。</string>
+  <!--mail to Licky-->
+  <string name="userEnvironment">ユーザー環境</string>
+  <string name="mailSubject">[提案] Licky</string>
+  <!--walkthrough-->
+  <string name="welcome">ようこそ、</string>
+  <string name="walkthroughStart">Licky 使用法3ステップ</string>
+  <string name="step1_order">1. 食べ物を注文します</string>
+  <string name="step2_takePic">2. Lickyで撮ります</string>
+  <string name="step2_contentTitle">肉だ！</string>
+  <string name="step3_try">3. 食べます</string>
+  <string name="letsGo">スタート</string>
+  <!--allow push-->
+  <string name="pleasePush">はい</string>
+  <string name="successPhotoUpload">写真登録完了</string>
+  <string name="successCommentUpload">書き込み完了!</string>
+  <string name="turnOnRemotePushAtSettings">プッシュ通知を許可していません。\n　iPhoneの環境設定にあるLickyのプッシュ通知を活性化させて下さい。</string>
+  <string name="wantCommentRemotePush">自分のポスティングにコメントがついた場合プッシュ通知で知らせますか？</string>
+  <string name="pushGuideText">お知らせがある時プッシュ通知で知らせますか？</string>
+  <string name="pushGuideSuccessText">プッシュ通知設定！ありがとうございます！</string>
+  <string name="noPush">まだ、お知らせはありません。</string>
+  <!--error message-->
+  <string name="defaultError">不明なエラー発生</string>
+  <string name="errorExternalAccountLogin">FacebookアカウントでLickyにログイン中に問題が発生しました。</string>
+  <string name="failToLogout">ログアウトに失敗しました。\nもう一度やり直しますか？</string>
+  <string name="failToDeleteComment">コメントを正常的に削除できませんでした。\nしばらく経ってからやり直して下さい。</string>
+  <string name="notSupportEmail">Lickyのメールアドレスは app@licky.co \nです。クリップボードにコビーされたアドレスをメールアプリに貼付けてメールを送って下さい。</string>
+  <string name="failToDeletePost">ポスティングの削除に失敗しました。\nしばらく経ってからやり直して下さい。</string>
+  <string name="failToCreateComment">コメント作成に失敗しました。しばらく経ってからやり直して下さい。</string>
+  <!--no items-->
+  <string name="noPushItem">お知らせがありません。\nポスティングまたはコメントをしてみましょう。</string>
+</resources>

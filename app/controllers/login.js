@@ -13,19 +13,20 @@ $.termsLabel.addEventListener('click', function(e) {
 });
 
 if (OS_IOS) {
-	$.termsLabel.attributedString = Ti.UI.iOS.createAttributedString({
-		text : L('termsAndPrivacy'),
-		attributes : [{
-			type : Ti.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE,
-			value : Ti.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
-			range : [L('termsAndPrivacy').indexOf('이용약관'), '이용약관'.length]
-		}, {
-			type : Ti.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE,
-			value : Ti.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
-			range : [L('termsAndPrivacy').indexOf('개인정보 취급정책'), '개인정보 취급정책'.length]
-		}]
-	});
+	// $.termsLabel.attributedString = Ti.UI.iOS.createAttributedString({
+	// 	text : L('termsAndPrivacy'),
+	// 	attributes : [{
+	// 		type : Ti.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE,
+	// 		value : Ti.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
+	// 		range : [L('termsAndPrivacy').indexOf('이용약관'), '이용약관'.length]
+	// 	}, {
+	// 		type : Ti.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE,
+	// 		value : Ti.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
+	// 		range : [L('termsAndPrivacy').indexOf('개인정보 취급정책'), '개인정보 취급정책'.length]
+	// 	}]
+	// });
 }
+$.termsLabel.html = L('termsAndPrivacy');
 
 // currentWindow.addEventListener('swipe', function(e){
 // if( e.direction === 'down'){
