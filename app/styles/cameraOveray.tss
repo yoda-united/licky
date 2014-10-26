@@ -173,11 +173,11 @@
 
 ".leadingEdge" : {
 	// top: 311.5
-	top: 26
+	top: 157
 }
 
 "#controlWrap" : {
-	height : 79,
+	height : 210,
 	clipMode : Titanium.UI.iOS.CLIP_MODE_DISABLED 
 }
 
