@@ -26,6 +26,8 @@ if(ENV_DEV || ENV_TEST){
 	Ti.App.idleTimerDisabled = true;
 }
 
+AG.loggedInUser = Alloy.Models.instance('loggedInUser');
+
 // settings
 Ti.Geolocation.purpose = L('geoPurpose');//'위치 기반 검색 제공 및 ';
 AG.facebook = require('facebook');
@@ -103,7 +105,7 @@ AG.notifyController = Alloy.createController('notifyView');
 AG.allowPushController = Alloy.createController('allowPushDialog');
 
 
-AG.loggedInUser = Alloy.Models.instance('loggedInUser');
+
 AG.loggedInUser.fetch(); //주의! : properties 아답터를 사용하므로 동기 방식.
 AG.isLogIn = function(){
 	return !!AG.settings.get('cloudSessionId');
