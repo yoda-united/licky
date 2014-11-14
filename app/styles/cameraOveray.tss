@@ -290,7 +290,7 @@
 }
 
 "#captureContentImage" : {
-	top  : 44
+	top  : 0
 }
 
 "#captureTitle" : {
@@ -299,4 +299,8 @@
 	top : null,
 	textAlign : 'right',
 	width : Ti.UI.SIZE
+}
+"#captureDistance" : {
+	left: 9,
+	top: 9
 }

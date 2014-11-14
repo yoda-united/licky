@@ -341,6 +341,9 @@ exports.showCamera = function(){
 				// 캡쳐하기 위해서 불필요한 부분 감추고 필요한 부분 보인다.
 				// $.fieldWrap.width = AG.cameraInfo.width;
 				// $.fieldWrap.height = AG.cameraInfo.height;
+				$.profileImage.visible = false;
+				$.userName.visible = false;
+				$.distance.visible = false;
 				$.fieldOpacityBG.visible = false;
 				$.fieldWrap.backgroundImage = croppedImage;
 
@@ -351,7 +354,7 @@ exports.showCamera = function(){
 				$.contentLabel.visible = false;  
 				
 				$.captureTitle.text = $.contentLabel.text;
-				
+				$.captureDistance.text = $.distance.text;
 				$.captureContentImage.width = AG.cameraInfo.width;
 				$.captureContentImage.height = AG.cameraInfo.height;
 				$.captureContentImage.image = $.fieldWrap.toImage(null, true);
