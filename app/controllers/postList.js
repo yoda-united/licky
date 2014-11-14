@@ -127,6 +127,7 @@ function fetchOnlyFriendsPost(userIds) {
 			where : _.extend(_.clone($.fetchWhereData),{
 				user_id: {'$in' : userIds}
 			}),
+			per_page : 30
 			//order : "-created_at"
 		};
 		Ti.API.info(friendPostCol.defaultFetchData);
@@ -168,9 +169,6 @@ $.tBar.addEventListener('click', function(e) {
 			AG.loginController.requireLogin({
 				success : function(){
 					$.listViewC.setCollection(friendPostCol);
-					if(postCol.length){
-						friendPostCol.trigger('reset',friendPostCol);
-					}
 					searchFacebookFriends();
 				},
 				cancel : function(){
