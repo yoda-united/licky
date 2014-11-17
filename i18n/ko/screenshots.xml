@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="writeView">음식 사진을 찍어요. 아주 간편하게!</string>
+    <string name="listView">친구들이 찍은 먹짤을 구경해요.</string>
+    <string name="detailView">자세히 볼까요?</string>
+</resources>
