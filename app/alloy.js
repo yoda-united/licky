@@ -29,8 +29,10 @@ if(ENV_DEV || ENV_TEST){
 // settings
 Ti.Geolocation.purpose = L('geoPurpose');//'위치 기반 검색 제공 및 ';
 AG.facebook = require('facebook');
-AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
-AG.facebook.permissions = ["publish_stream","email"];
+// AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
+
+AG.facebook.permissions = ["publish_actions","email"];
+AG.facebook.initialize(1000);
 
 var platformVersionInt = parseInt(Ti.Platform.version, 10);
 (function(){
@@ -138,4 +140,3 @@ Ti.Analytics.featureEvent('app.start');
 Ti.App.addEventListener('resume', function(e) {
 	Ti.Analytics.featureEvent('app.resume');
 });
-

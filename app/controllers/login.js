@@ -65,9 +65,7 @@ $.fbLogin.addEventListener('click', function(e) {
 	$.fbLogin.title = L('facebookConnecting');
 
 	if (OS_IOS) {
-		AG.facebook.authorize({
-			forceDialogAuth : false
-		});
+		AG.facebook.authorize();
 	} else {
 		// android일 경우 
 		AG.Cloud.Users.login({
