@@ -168,7 +168,7 @@ exports.setProperties = function() {
 		var postCol = Alloy.createCollection('post');
 		postCol.fetch({
 			data : {
-				per_page : 1,
+				limit : 1,
 				where :{
 					user_id: {'$in' : [userModel.get('id')]} // !!!
 				}
@@ -183,7 +183,7 @@ exports.setProperties = function() {
 			data : {
 				user_id : userModel.get('id'),
 				likeable_type : 'Post',
-				per_page : 1
+				limit : 1
 			},
 			success : function(col){
 				$.likeRowCount.text = col.meta.total_results;
