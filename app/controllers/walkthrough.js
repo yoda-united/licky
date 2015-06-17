@@ -5,7 +5,7 @@ $.step03Button.addEventListener('click', function(){
 	$.walkthrough.close();
 });
 
-$.step02Label.attributedString = Titanium.UI.iOS.createAttributedString({
+$.step02Label.attributedString = Ti.UI.createAttributedString({
     text: L('step2_takePic'),
     attributes: [
         {
