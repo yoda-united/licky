@@ -77,7 +77,7 @@ $.fetchFirstCollection = function(){
 		order : "-created_at",
 		where : $.fetchWhereData,
 		show_user_like : true,
-		per_page : 30
+		limit : 30
 	};
 	postCol.fetch(); //최초 fetch
 };
@@ -88,7 +88,7 @@ function searchFacebookFriends(){
 		var friendIds = [];
 		AG.Cloud.SocialIntegrations.searchFacebookFriends(
 			{
-				per_page : 10000
+				limit : 1000
 			},
 			function (e){
 			    if (e.success) {
@@ -127,7 +127,7 @@ function fetchOnlyFriendsPost(userIds) {
 			where : _.extend(_.clone($.fetchWhereData),{
 				user_id: {'$in' : userIds}
 			}),
-			per_page : 30
+			limit : 30
 			//order : "-created_at"
 		};
 		Ti.API.info(friendPostCol.defaultFetchData);

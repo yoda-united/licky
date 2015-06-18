@@ -1,5 +1,5 @@
 var args = arguments[0] || {};
-
+var DEFAULT_LIMIT = 30;
 if(args.listViewProperties) {
 	$.listView.applyProperties(args.listViewProperties);
 }
@@ -106,11 +106,13 @@ var handlers = (function(){
 			'marker' : function(e) {
 				Ti.API.info('marker fired');
 				//fetch next page
+				var fetchData = _.deepExtend({
+					limit : DEFAULT_LIMIT,
+					where : {"_id":{"$lt":$.getCollection().last().id}}
+				},$.defaultFetchData);
+				console.log(fetchData);
 				$.getCollection().fetch({
-					data : _.extend({
-						per_page : $.getCollection().meta.per_page,
-						page : $.getCollection().meta.page+1
-					},$.defaultFetchData),
+					data : fetchData,
 					add : true,
 					addLater : true,
 					success : function(col){
@@ -164,7 +166,7 @@ $.listView.addEventListener('delete', handlers.listView['delete']);
  * @param {Object} itemIndex
  */
 function updateListMarker(col,itemIndex){
-	if(col.meta && col.meta.total_pages>col.meta.page){
+	if(col.meta && col.meta.total_results> ( ($.defaultFetchData && $.defaultFetchData.limit) || DEFAULT_LIMIT) ){
 		$.listView.setMarker({
 			sectionIndex:sectionId,
 			itemIndex : $.section.items.length-10

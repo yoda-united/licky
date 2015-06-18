@@ -1,3 +1,17 @@
+
+_.deepExtend = function(target, source) {
+    for (var prop in source)
+        if (typeof target[prop]=='object')
+						if(typeof source[prop]=='object')
+            	_.deepExtend(target[prop], source[prop]);
+						else
+							target[prop] = source[prop];
+        else
+            target[prop] = source[prop];
+    return target;
+};
+
+
 Titanium.UI.backgroundColor = 'white';
 if(ENV_PRODUCTION){
 	var newrelic = require('ti.newrelic'); 

@@ -213,7 +213,7 @@ function fetchComments(options){
 		data : {
 			order : '-created_at',
 			post_id : postModel.id,
-			per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
+			limit : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
 		},
 		success: function(){
 			if( options && options.success){
@@ -520,5 +520,3 @@ $.getView().addEventListener('open', function(e) {
 $.getView().addEventListener('close', function(){
 	AG.notifyController.getView().removeEventListener("notifyExpose", refreshByNotification);
 });
-
-

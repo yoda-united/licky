@@ -83,7 +83,6 @@ function updateDisplayIfMe(){
 		},
 		success : function(col){
 			$.likeRowCount.text = col.meta.total_results;
-			// Ti.API.info(col.meta.total_results);
 		}
 	});
 }
