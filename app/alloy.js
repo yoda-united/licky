@@ -48,7 +48,7 @@ AG.facebook = require('facebook');
 // AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 
 AG.facebook.permissions = ["publish_actions","email"];
-AG.facebook.initialize(1000);
+AG.facebook.initialize(10000);
 
 var platformVersionInt = parseInt(Ti.Platform.version, 10);
 (function(){

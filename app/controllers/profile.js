@@ -17,7 +17,7 @@ $.profile.extendEdges = [];
                                                                                          
 
 function updateDefaultInfo(){
-	if(userModel){
+	if(userModel && userModel.get('id')){
 		var fb_id = userModel.get('external_accounts')[0].external_id;
 		$.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 140, 140);
 		$.getView().title = $.name.text = userModel.get('first_name');
