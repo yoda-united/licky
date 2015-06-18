@@ -12,11 +12,11 @@
   <string name="all">All</string>
   <string name="friendsOnly">Friend\'s</string>
   <string name="myLicks">My licks</string>
-  <string name="someoneLicks">%s\'s licks</string>
+  <string name="someoneLicks">%s's licks</string>
   <string name="myLikes">Love it!</string>
   <string name="like">Love it!</string>
   <string name="liked">Love it!</string>
-  <string name="someoneLikes">%s\'s Love it</string>
+  <string name="someoneLikes">%s's Love it</string>
   <string name="cancel">Cancel</string>
   <string name="confirm">Confirm</string>
   <string name="close">Close</string>

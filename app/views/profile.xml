@@ -1,34 +1,32 @@
 <Alloy>
-	<Window class="container">
-		<Button id="cameraBtn" platform="android" onClick="showCamera"></Button>
-
-		<ImageView id="profileBannerImage" />
-		<!-- <View id="controlBar" /> -->
-		<ScrollView id="mainContent" backgroundColor="transparent" >
-    		<ImageView id="profileImage" />
-			<Label id="name" />
-			<ImageView id="wireForBtnImg" />
-			<Button id="profileSettingBtn" />
-			
-	        <TableView id="menuTable" >
-	            <TableViewSection >
-	                <TableViewRow id="lickyRow" class="foodRow">
-	                	<Label class="rowIcon spoon"></Label>
-	                	<Label id="foodRowLabel" class="rowLabel"></Label>
-	                	<Label id="foodRowCount" class="rowCount"></Label>
-	                </TableViewRow>
-	                <TableViewRow id="likeRow" class="foodRow">
-	                	<Label class="rowIcon star"></Label>
-	                	<Label id="likeRowLabel" class="rowLabel"></Label>
-	                	<Label id="likeRowCount" class="rowCount"></Label>
-	                </TableViewRow>
-	            </TableViewSection>
-	        </TableView>
-	        <Button id="contactUsBtn"/>
-		</ScrollView>
-
-
-        <OptionDialog id="settingDialog"></OptionDialog>
+	<Window class="container" title="">
+		
+		<TableView id="menuTable" >
+				<TableViewSection id="menuSection" >
+						<TableViewRow id="coverRow" selectionStyle="NONE">
+							<ImageView id="profileBannerImage" />
+							<View class="hSIZE">
+								<ImageView id="profileImage" />
+								<Label id="name"></Label>
+								<ImageView id="wireForBtnImg" />
+								<Button id="profileSettingBtn" />
+							</View>
+						</TableViewRow>
+						<TableViewRow id="lickyRow" class="foodRow">
+							<Label class="rowIcon spoon"></Label>
+							<Label id="foodRowLabel" class="rowLabel"></Label>
+							<Label id="foodRowCount" class="rowCount"></Label>
+						</TableViewRow>
+						<TableViewRow id="likeRow" class="foodRow">
+							<Label class="rowIcon star"></Label>
+							<Label id="likeRowLabel" class="rowLabel"></Label>
+							<Label id="likeRowCount" class="rowCount"></Label>
+						</TableViewRow>
+				</TableViewSection>
+		</TableView>
+		<Button id="contactUsBtn"/>
+		
+    <OptionDialog id="settingDialog"></OptionDialog>
 		<OptionDialog id="profileViewOptionDialog">
             <Options>
                 <Option>L('viewPicture')</Option>

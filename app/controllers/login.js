@@ -40,6 +40,7 @@ var fbHandler = function(e) {
 		var token = this.accessToken;
 		Ti.API.info('Logged in ' + token);
 		AG.Cloud.SocialIntegrations.externalAccountLogin({
+			id : e.uid,
 			type : 'facebook',
 			token : token
 		}, function(e) {
@@ -49,13 +50,13 @@ var fbHandler = function(e) {
 				AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
 				AG.loggedInUser.save(user);
 
-				//$.fbLogin.title = L("facebookConnect");
 				currentWindow.close();
+				$.fbLogin.title = L("signInWithFacebook");
 
 			} else {
 				//alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
 				alert(L('errorExternalAccountLogin'));
-				$.fbLogin.title = L("facebookConnect");
+				$.fbLogin.title = L("signInWithFacebook");
 			}
 		});
 	} else {
@@ -64,28 +65,7 @@ var fbHandler = function(e) {
 
 $.fbLogin.addEventListener('click', function(e) {
 	$.fbLogin.title = L('facebookConnecting');
-
-	if (OS_IOS) {
-		AG.facebook.authorize();
-	} else {
-		// android일 경우 
-		AG.Cloud.Users.login({
-			login : 'admin',
-			password : 'bogoyo'
-		}, function(e) {
-			if (e.success) {
-				var user = e.users[0];
-
-				AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
-				AG.loggedInUser.save(user);
-				$.fbLogin.title = L("facebookConnect");
-				currentWindow.close();
-			} else {
-				alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
-				$.fbLogin.title = L("facebookConnect");
-			}
-		});
-	}
+	AG.facebook.authorize();
 });
 
 // $.emailBtn.addEventListener('click', function(e) {
@@ -102,8 +82,8 @@ AG.facebook.addEventListener('logout', fbHandler);
 
 // Navigation Window를 써서 그런지 window 재사용시 화면의 일부가 안보이는 문제 임시 해결
 currentWindow.addEventListener('close', function(e) {
-	AG.loginController = Alloy.createController('login');
-	$ = null;
+	// AG.loginController = Alloy.createController('login');
+	// $ = null;
 });
 
 exports.requireLogin = function(args) {
@@ -131,10 +111,11 @@ exports.logout = function(callback) {
 	AG.Cloud.Users.logout(function(e) {
 		if (e.success) {
 			// AG.settings.unset('cloudSessionId',{silent:false});
-			AG.settings.save('cloudSessionId', null);
+			AG.settings.save({'cloudSessionId': null},{
+				wait: true
+			});
 			AG.loggedInUser.clearWithoutId();
-			AG.loggedInUser.save();
-			Ti.API.info(AG.loggedInUser.toJSON());
+			// AG.loggedInUser.save();
 			AG.facebook.logout();
 			alert(L('logoutMessage'));
 			callback && callback();

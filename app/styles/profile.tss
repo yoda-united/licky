@@ -54,7 +54,7 @@
 	image: "images/defaultProfilePicture.png",
 	height: 70,
 	width: 70,
-	top: 30,
+	top: 0,
 	zIndex: 10,
 	borderColor: "#eee",
 	borderWidth: 1,
@@ -63,20 +63,22 @@
 "#wireForBtnImg": {
 	width: 72,
 	height: 32,
-	top: 66,
+	top: 36,
 	// left: 158,
 	left: '50%',
 	// borderColor: "red",
 	// borderWidth: 1,
-	image: "images/wireForButton.png"
+	image: "images/wireForButton.png",
+	visible:false
 }
 "#profileSettingBtn": {
 	height: 50,
 	width: 50,
-	top: 78,
+	top: 48,
 	left: 214,
 	zIndex: 10,
-	backgroundImage: "images/profileSettingButton.png"
+	backgroundImage: "images/profileSettingButton.png",
+	visible : false
 	// borderColor: "#fff",
 	// borderWidht: 1,
 	// borderRadius: 14
@@ -90,7 +92,7 @@
 "#name": {
 	// borderWidth:1,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-	top: 105 ,
+	top: 75 ,
 	color: "#fff",
 	font : {
 		fontSize : 18,
@@ -108,9 +110,9 @@
 	height: 30
 }
 "#menuTable": {
-	top: 207.5,	// 프로필 배너 확대될때 떨림을 조금 가리기 위해 5픽셀 위로. 
-	height: 88,
-	scrollable: false,
+	/*top: 207.5,	// 프로필 배너 확대될때 떨림을 조금 가리기 위해 5픽셀 위로. */
+	/*height: 88,*/
+	/*scrollable: false,*/
 	separatorInsets : {
 		left: 0,
 		right: 0
@@ -185,4 +187,5 @@
 		fontFamily : 'AppleSDGothicNeo-Light'
 	},
 	backgroundColor: Alloy.Globals.COLORS.whiteGray,
+	visible : false
 }
