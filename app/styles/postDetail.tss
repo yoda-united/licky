@@ -4,7 +4,7 @@
 	fullscreen : false
 }
 "#mainWrap": {
-	backgroundColor: Alloy.Globals.COLORS.darkGray
+	backgroundColor: 'white'
 }
 "#listView" : {
 		// height: Ti.UI.SIZE,
@@ -13,7 +13,8 @@
 		backgroundColor: "transparent",
 		// style: Titanium.UI.iPhone.ListViewStyle.GROUPED,
 		showVerticalScrollIndicator :false,
-	bottom : -143,
+		bottom: 44,
+	/*bottom : -143,*/
 	// top: 0,
 	willScrollOnStatusTap : true
 }
@@ -44,7 +45,7 @@
 
 ".commentTemplate" : {
 	// backgroundColor: 'white',
-	height : Ti.UI.SIZE
+	/*height : 'SIZE'*/
 }
 ".commentTemplate[platform=ios]" : {
 	selectionStyle : Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE
@@ -172,18 +173,6 @@
 	title : L('send','Send'),
 	color : Alloy.Globals.COLORS.red
 }
-
-"#footerDummyView" : {
-	height : 188,
-	backgroundColor : "white"
-}
-"#footerDummyView[if=Alloy.Globals.is.iPhone6]" : {
-	height : 288
-}
-"#footerDummyView[if=Alloy.Globals.is.iPhone6Plus]" : {
-	height : 348
-}
-
 
 ".hiddenProfile" : {
 	width : 10,
