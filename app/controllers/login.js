@@ -49,8 +49,11 @@ var fbHandler = function(e) {
 				var user = e.users[0];
 				AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
 				AG.loggedInUser.save(user);
-
+				
+				$.trigger('login');
 				currentWindow.close();
+				
+				//재활용을 위한 text 초기화
 				$.fbLogin.title = L("signInWithFacebook");
 
 			} else {
@@ -111,13 +114,15 @@ exports.logout = function(callback) {
 	AG.Cloud.Users.logout(function(e) {
 		if (e.success) {
 			// AG.settings.unset('cloudSessionId',{silent:false});
+			
+			AG.loggedInUser.clearWithoutId();
+			AG.loggedInUser.save();
+			AG.facebook.logout();
+			alert(L('logoutMessage'));
 			AG.settings.save({'cloudSessionId': null},{
 				wait: true
 			});
-			AG.loggedInUser.clearWithoutId();
-			// AG.loggedInUser.save();
-			AG.facebook.logout();
-			alert(L('logoutMessage'));
+			$.trigger('logout');
 			callback && callback();
 		} else {
 			alert(L('failToLogout'));

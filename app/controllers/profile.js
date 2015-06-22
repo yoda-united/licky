@@ -64,7 +64,7 @@ function updateDefaultInfo(){
                                
 
 function updateDisplayIfMe(){
-	if(! (userModel && userModel.get('id') == AG.loggedInUser.get('id'))){
+	if(!AG.isLogIn() || userModel && userModel.get('id') != AG.loggedInUser.get('id')){
 		return;
 	}
 	
@@ -103,12 +103,13 @@ var loginChangeHandler = function(){
 	updateDefaultInfo();
 	updateDisplayIfMe();
 }
-AG.settings.on('change:cloudSessionId', loginChangeHandler);
+
+AG.loginController.on('login logout', loginChangeHandler);
 loginChangeHandler(); //initial update
 
 // flush 
 $.profile.addEventListener('close',function(){
-	AG.settings.off('change:cloudSessionId', loginChangeHandler);
+	AG.loginController.off('login logout', loginChangeHandler);
 });
 
 

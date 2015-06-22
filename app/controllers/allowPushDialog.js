@@ -149,18 +149,18 @@ var unsubscribePushChannel = function(args) {
 	}
 };
 
-AG.settings.on('change:cloudSessionId', function(){
-	if (AG.isLogIn()) {
-		if(Ti.Network.remoteNotificationsEnabled){
-			tryRegisterPush({
-				force:true
-			});  
-		}else{
-			subscribePushChannel();
-		}
+AG.loginController.on('login',function () {
+	if(Ti.Network.remoteNotificationsEnabled){
+		tryRegisterPush({
+			force:true
+		});  
 	}else{
-		unsubscribePushChannel();
+		subscribePushChannel();
 	}
+});
+
+AG.loginController.on('logout',function(){
+	unsubscribePushChannel();
 });
 
 // 시스템 remote push 는 혀용했으나 subscribe 된 기록이 없을 경우 subscribe함
