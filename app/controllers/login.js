@@ -48,7 +48,9 @@ var fbHandler = function(e) {
 			if (e.success) {
 				var user = e.users[0];
 				AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
-				AG.loggedInUser.save(user);
+				AG.loggedInUser.save(user,{
+					wait:true
+				});
 				
 				$.trigger('login');
 				currentWindow.close();

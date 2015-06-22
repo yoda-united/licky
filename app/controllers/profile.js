@@ -24,7 +24,7 @@ function updateDefaultInfo(){
 		$.foodRowLabel.text = String.format(L('someoneLicks'),userModel.get('first_name'));
 		$.likeRowLabel.text = String.format(L('someoneLikes'),userModel.get('first_name'));
 		
-		$.menuTable.deleteRow($.likeRow);
+		
 		
 		// cover 얻어오는 api가 login이 되어있을때만 가능
 		AG.facebook.requestWithGraphPath(fb_id, {
@@ -63,17 +63,22 @@ function updateDefaultInfo(){
 //    \/_/\/___/  \/_/ \/_/\/____/
                                
 
+var asdf = $.likeRow;
 function updateDisplayIfMe(){
-	if(!AG.isLogIn() || userModel && userModel.get('id') != AG.loggedInUser.get('id')){
+	if(
+    !AG.isLogIn() || 
+    (userModel && userModel.get('id')) != AG.loggedInUser.get('id')
+  ){
+    $.menuTable.deleteRow($.likeRow);
 		return;
 	}
-	
+  
 	$.wireForBtnImg.visible = true;
 	$.profileSettingBtn.visible = true;
 	$.contactUsBtn.visible = true;
 	
-	$.menuTable.data = [$.coverRow, $.lickyRow, $.likeRow];
-	
+	//$.menuTable.insertRowAfter(1,Ti.UI.createTableViewRow());
+  $.menuTable.data= [$.coverRow,$.lickyRow, $.likeRow];
 	var likeCol = Alloy.createCollection('like');
 	likeCol.fetch({
 		data : {

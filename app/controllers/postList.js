@@ -86,6 +86,7 @@ function searchFacebookFriends(){
 		var friendIds = [];
 		AG.Cloud.SocialIntegrations.searchFacebookFriends(
 			{
+				per_page : 1000,
 				limit : 1000
 			},
 			function (e){

@@ -28,6 +28,8 @@
 		fontSize : 30,
 		fontFamily : 'AppleSDGothicNeo-UltraLight'
 	},
+  textAlign:'center',
+  width : 'FILL',
 	color : Alloy.Globals.COLORS.darkGray
 }
 

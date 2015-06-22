@@ -69,6 +69,15 @@ AG.cameraInfo = {
 	// height : 180
 };
 
+(function(){
+	var dw = Ti.Platform.displayCaps.platformWidth;
+	AG.itemHeights = {
+		listHeight : 108,// * dw / 320,
+		detailHeight : 256 * dw / 320
+	}
+})();
+console.log(AG.itemHeights);
+
 //settings가 먼저 이뤄저야함
 //singleton Models (static id)
 AG.settings = Alloy.Models.instance('settings');

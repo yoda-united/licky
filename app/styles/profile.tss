@@ -145,14 +145,16 @@
 		fontFamily : 'ionicons',
 		fontSize : 20
 	},
-	color : Alloy.Globals.COLORS.darkGray
+	color : Alloy.Globals.COLORS.darkGray,
+	highlightedColor: 'white'
 }
 ".rowLabel" :{
 	left: 38,
 	font: {
 		fontSize : 18
 	},
-	color: Alloy.Globals.COLORS.darkGray
+	color: Alloy.Globals.COLORS.darkGray,
+	highlightedColor : 'white'
 }
 
 ".rowCount" : {
@@ -188,4 +190,8 @@
 	},
 	backgroundColor: Alloy.Globals.COLORS.whiteGray,
 	visible : false
+}
+
+"TableViewRow":{
+	selectedBackgroundColor : Alloy.Globals.COLORS.lickyRed
 }
