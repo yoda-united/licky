@@ -66,7 +66,7 @@ $.listView.addEventListener('itemclick', function(e) {
 
 function resetPostContent(){
 	var contentItem = postModel.doDefaultTransform();
-	var photoHeight =  Ti.UI.createImageView({image:contentItem.photo.image}).toImage().height/2;
+	// var photoHeight =  Ti.UI.createImageView({image:contentItem.photo.image}).toImage().height/2;
 	contentItem.template = 'postItemTemplate';
 	if(OS_IOS){
 		contentItem.properties.selectionStyle = Ti.UI.iPhone.ListViewCellSelectionStyle.NONE;
@@ -74,8 +74,8 @@ function resetPostContent(){
 	contentItem.distance.height = 35; // 주소가 두줄 나오게 BOG-113
 	// contentItem.properties.height = 180;
 	// alert(Alloy.Globals.cameraInfo.width+","+ photoHeight);
-	contentItem.photo.height = photoHeight;
-	contentItem.properties.height = photoHeight;
+	// contentItem.photo.height = photoHeight;
+	contentItem.properties.height = Alloy.Globals.itemHeights.detailHeight;
 	contentItem.properties.backgroundColor = Alloy.Globals.COLORS.whiteGray;
 	contentItem.properties.canEdit = false;
 	// contentItem.photo.height = 180;
@@ -213,7 +213,7 @@ function fetchComments(options){
 		data : {
 			order : '-created_at',
 			post_id : postModel.id,
-			per_page : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
+			limit : 1000 //TODO : 일단 1000개로 했지만 추후 변경 필요 
 		},
 		success: function(){
 			if( options && options.success){
@@ -520,5 +520,3 @@ $.getView().addEventListener('open', function(e) {
 $.getView().addEventListener('close', function(){
 	AG.notifyController.getView().removeEventListener("notifyExpose", refreshByNotification);
 });
-
-

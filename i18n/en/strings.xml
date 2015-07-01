@@ -10,13 +10,13 @@
   <string name="nearList">Near</string>
   <string name="me">Me</string>
   <string name="all">All</string>
-  <string name="friendsOnly">Friend\'s</string>
+  <string name="friendsOnly">Friend's</string>
   <string name="myLicks">My licks</string>
-  <string name="someoneLicks">%s\'s licks</string>
+  <string name="someoneLicks">%s's licks</string>
   <string name="myLikes">Love it!</string>
   <string name="like">Love it!</string>
   <string name="liked">Love it!</string>
-  <string name="someoneLikes">%s\'s Love it</string>
+  <string name="someoneLikes">%s's Love it</string>
   <string name="cancel">Cancel</string>
   <string name="confirm">Confirm</string>
   <string name="close">Close</string>
@@ -38,15 +38,15 @@
   <string name="locationServiceNeeded">Please allow Licky to access your location</string>
   <string name="noFBFriends">There is no Facebook friend on Licky.\nLet your friends meet Licky</string>
   <string name="willBePostedToFacebook">Share on Facebook</string>
-  <string name="willNotShareOnFacebook">Don\'t share on Facebook</string>
+  <string name="willNotShareOnFacebook">Don't share on Facebook</string>
   <string name="willPostedWithLocation">Include current location</string>
-  <string name="willNotPostedWithLocation">Don\'t include current location</string>
+  <string name="willNotPostedWithLocation">Don't include current location</string>
   <string name="requestGeolocationForCamera">Want to add location?</string>
   <string name="locationAuthDenied">Please enable location service</string>
   <string name="locationRequired">Add current location</string>
   <string name="shopName">Shop Name</string>
   <string name="postMessageHintText">Add text</string>
-  <!---->
+  <!-- -->
   <string name="failToDelete">Fail to delete. Please refresh page and try again</string>
   <string name="deletedLick">This has been already deleted</string>
   <string name="report">Report</string>
@@ -56,21 +56,21 @@
   <string name="failToReport">Fail to submit a report. please try again</string>
   <string name="successUnReport">Your report is successfully canceled</string>
   <string name="failUnReport">Fail to cancel a report. Please try again</string>
-  <string name="unReportDialogTitle">You\'ve already reported this</string>
+  <string name="unReportDialogTitle">You've already reported this</string>
   <string name="failToTokenRenewalLogin">Failed to update Facebook information. Please try again </string>
   <string name="leftACommentOnYourLicky">commented on your Lick</string>
   <string name="friendsPostNeedsLogin">Please log in</string>
-  <string name="termsAndPrivacy">Once you log in, it assumes that you agree with the Terms of Use and Privacy Policy</string>
+  <string name="termsAndPrivacy">Once you log in, it assumes that you agree with the &lt;u&gt;Terms&lt;/u&gt; of Use and &lt;u&gt;Privacy&lt;/u&gt; Policy</string>
   <!--near tap-->
   <string name="requireGeoLocationGuidanceOnNearTap">Please log in to see the licks near by you</string>
   <string name="requestGeolocation">Allow to access location</string>
-  <string name="turnOnLocationAtSettings">Check to not allow Licky to access location? It\'s a little bit complicated to enable again. \nSettings &gt; Privacy &gt; Location &gt; Licky on..</string>
+  <string name="turnOnLocationAtSettings">Check to not allow Licky to access location? It's a little bit complicated to enable again. \nSettings &gt; Privacy &gt; Location &gt; Licky on..</string>
   <!--profile tap-->
   <string name="bugReport"> Suggestions &amp; Bug reports</string>
   <string name="viewPicture">View a profile photo</string>
   <string name="viewProfileOnFacebook">View a Facebook profile</string>
   <string name="nothingPost">Tap a star mark on a lick you like. \n will be appear on the list</string>
-  <string name="nothingLikedPost">You haven\'t eat yet with Licky</string>
+  <string name="nothingLikedPost">You haven't eat yet with Licky</string>
   <!--mail to Licky-->
   <string name="userEnvironment">User Environment</string>
   <string name="mailSubject">[Suggestion] Licky</string>
@@ -86,9 +86,9 @@
   <string name="pleasePush">Allow</string>
   <string name="successPhotoUpload">Successfully uploaded</string>
   <string name="successCommentUpload">Done</string>
-  <string name="turnOnRemotePushAtSettings">Check to not allow Licky to send push notification? It\'s a little bit complicated. \nOpen a setting menu and turn on an alert(banner, badge and sound) on Alert setting. Then back to Licky.</string>
+  <string name="turnOnRemotePushAtSettings">Check to not allow Licky to send push notification? It's a little bit complicated. \nOpen a setting menu and turn on an alert(banner, badge and sound) on Alert setting. Then back to Licky.</string>
   <string name="wantCommentRemotePush">Want to get push notification when someone comments on your lick or lick that you commented or loved?</string>
-  <string name="pushGuideText">Want to get a push notification when there is a new update?</string>
+  <string name="pushGuideText">Want to get a push notification?</string>
   <string name="pushGuideSuccessText">Thank you for allowing push notification</string>
   <string name="noPush">There is no notification</string>
   <!--error message-->
@@ -96,9 +96,9 @@
   <string name="errorExternalAccountLogin">Fail to log in Licky with your Facebook account. Please try again. If it keep fail to log in, please report to app@licky.co</string>
   <string name="failToLogout">Fail to log out. Please try again</string>
   <string name="failToDeleteComment">Fail to delete a comment. Please refresh page and try again</string>
-  <string name="notSupportEmail">Any Suggestion or a bug report? Please send an email to app@licky.co\n it\'s copied to clipboard.</string>
+  <string name="notSupportEmail">Any Suggestion or a bug report? Please send an email to app@licky.co\n it's copied to clipboard.</string>
   <string name="failToDeletePost">Fail to delete a lick. Please refresh and try again</string>
   <string name="failToCreateComment">Fail to upload a comment. Please try again</string>
   <!--no items-->
-  <string name="noPushItem">There is no news. let\'s left some licks or comments</string>
+  <string name="noPushItem">There is no news. let's left some licks or comments</string>
 </resources>

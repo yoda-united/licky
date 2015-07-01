@@ -65,7 +65,7 @@ exports.definition = {
 			defaultFetchData : {},
 			fetch: function(options){
 				options = options || {};
-				options.data = _.extend(options.data || {}, this.defaultFetchData);
+				options.data = _.deepExtend(options.data || {}, this.defaultFetchData);
 				Backbone.Collection.prototype.fetch.call(this, options);
 			}
 		});

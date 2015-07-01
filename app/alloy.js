@@ -1,3 +1,17 @@
+
+_.deepExtend = function(target, source) {
+    for (var prop in source)
+        if (typeof target[prop]=='object')
+						if(typeof source[prop]=='object')
+            	_.deepExtend(target[prop], source[prop]);
+						else
+							target[prop] = source[prop];
+        else
+            target[prop] = source[prop];
+    return target;
+};
+
+
 Titanium.UI.backgroundColor = 'white';
 if(ENV_PRODUCTION){
 	var newrelic = require('ti.newrelic'); 
@@ -34,7 +48,7 @@ AG.facebook = require('facebook');
 // AG.facebook.appid = Ti.App.Properties.getString("ti.facebook.appid");
 
 AG.facebook.permissions = ["publish_actions","email"];
-AG.facebook.initialize(1000);
+AG.facebook.initialize(10000);
 
 var platformVersionInt = parseInt(Ti.Platform.version, 10);
 (function(){
@@ -54,6 +68,15 @@ AG.cameraInfo = {
 	height: 256 // 1136/2 - 44 - 216 - 52
 	// height : 180
 };
+
+(function(){
+	var dw = Ti.Platform.displayCaps.platformWidth;
+	AG.itemHeights = {
+		listHeight : 108,// * dw / 320,
+		detailHeight : 256 * dw / 320
+	}
+})();
+console.log(AG.itemHeights);
 
 //settings가 먼저 이뤄저야함
 //singleton Models (static id)

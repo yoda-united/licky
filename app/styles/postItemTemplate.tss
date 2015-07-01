@@ -2,8 +2,10 @@
 	// Titanium.UI.ListItemselectedBackgroundColor : String
 	selectionStyle : Titanium.UI.iPhone.ListViewCellSelectionStyle.NONE,
 	backgroundColor: Alloy.Globals.COLORS.red,
-	height : 108
+	height : Alloy.Globals.itemHeights.listHeight
 }
+
+
 
 ".likeWrap" : {
 	// height: 40,

@@ -16,7 +16,7 @@ if(!args.likedPostOnly){
 	postCol.defaultFetchData = {
 		order : "-created_at",
 		show_user_like : true,
-		per_page : 30,
+		limit : 30,
 		where :{
 			user_id: {'$in' : [someoneId]}
 		}
@@ -41,7 +41,7 @@ if(!args.likedPostOnly){
 			data : {
 				user_id : userModel.get('id'),
 				likeable_type : 'Post',
-				per_page : 1000,
+				limit : 1000,
 				order : "-created_at",
 				sel : { all : ["likeable_id"]}
 			},
@@ -53,7 +53,7 @@ if(!args.likedPostOnly){
 				}
 				postCol.likedIds = col.map(function(m){ return m.get('likeable_id'); });
 				postCol.defaultFetchData = {
-					per_page : 1000,
+					limit : 1000,
 					where :{
 						id: {'$in' : postCol.likedIds }
 					},

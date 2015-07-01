@@ -10,9 +10,11 @@ exports.fetch = function(args){
 		osname : Ti.Platform.osname,
 		model : Ti.Platform.model,
 		osVersion : versionStringToNumber(Ti.Platform.version),
+		osVersion_str : Ti.Platform.version
 		locale : Ti.Platform.locale,
 		appId : Ti.App.id,
-		appVersion : versionStringToNumber(Ti.App.version)
+		appVersion : versionStringToNumber(Ti.App.version),
+		appVersion_str : Ti.App.version
 	};
 	
 	Cloud.KeyValues.get({
@@ -70,10 +72,11 @@ exports.fetch = function(args){
 
 function versionStringToNumber(str){
 	str = str +'';
-	var multiNum = [1, 0.0001, 0.00000001],
+	var multiNum = [1, 0.0001, 0.00000001, 0.000000000001],
 		versionNum = 0;
 		
 	_.each(str.split('.'),function(v,index){
+		if(index>multiNum.length-1) return;
 		versionNum += parseInt(v)*multiNum[index];
 	});
 	

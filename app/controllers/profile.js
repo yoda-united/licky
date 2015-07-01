@@ -1,47 +1,132 @@
-var args = arguments[0] || {}, userModel = args.userModel;
-
+var args = arguments[0] || {}, userModel = args.userModel || AG.loggedInUser;
 //init extendEdges
 // 원래 tss에서 지정하면 작동해야하는데 안되서 js에서 처리
+
 $.profile.extendEdges = [];
 
-if (userModel) {
-	// 다른 사람 프로필
-	Ti.API.info("[profile.js] another user");
-} else if(AG.isLogIn()){
-	Ti.API.info("[profile.js] loggedInUser");
-	userModel = AG.loggedInUser;
-} else{
-	//에러 방지 차원에서 빈모델 생성
-	userModel = Alloy.createModel('user');
+
+
+
+//  ____               ___                  ___    __        ______             ___         
+// /\  _`\           /'___\                /\_ \  /\ \__    /\__  _\          /'___\        
+// \ \ \/\ \     __ /\ \__/   __     __  __\//\ \ \ \ ,_\   \/_/\ \/     ___ /\ \__/  ___   
+//  \ \ \ \ \  /'__`\ \ ,__\/'__`\  /\ \/\ \ \ \ \ \ \ \/      \ \ \   /' _ `\ \ ,__\/ __`\ 
+//   \ \ \_\ \/\  __/\ \ \_/\ \L\.\_\ \ \_\ \ \_\ \_\ \ \_      \_\ \__/\ \/\ \ \ \_/\ \L\ \
+//    \ \____/\ \____\\ \_\\ \__/.\_\\ \____/ /\____\\ \__\     /\_____\ \_\ \_\ \_\\ \____/
+//     \/___/  \/____/ \/_/ \/__/\/_/ \/___/  \/____/ \/__/     \/_____/\/_/\/_/\/_/ \/___/ 
+                                                                                         
+
+function updateDefaultInfo(){
+	if(userModel && userModel.get('id')){
+		var fb_id = userModel.get('external_accounts')[0].external_id;
+		$.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 140, 140);
+		$.getView().title = $.name.text = userModel.get('first_name');
+		$.foodRowLabel.text = String.format(L('someoneLicks'),userModel.get('first_name'));
+		$.likeRowLabel.text = String.format(L('someoneLikes'),userModel.get('first_name'));
+		
+		
+		
+		// cover 얻어오는 api가 login이 되어있을때만 가능
+		AG.facebook.requestWithGraphPath(fb_id, {
+			fields : 'cover'
+		}, "GET", function(e) {
+			if (e.success) {
+				var resultObj = JSON.parse(e.result);
+				if(resultObj.cover){
+					$.profileBannerImage.image = resultObj.cover.source;
+				}
+			}
+		});
+		
+		
+		var postCol = Alloy.createCollection('post');
+		postCol.fetch({
+			data : {
+				limit : 1,
+				where :{
+					user_id: {'$in' : [userModel.get('id')]} // !!!
+				}
+			},
+			success : function(col){
+				$.foodRowCount.text = col.meta.total_results;
+			}
+		});
+	}
+}
+
+//                                
+//  __          /'\_/`\           
+// /\_\    ____/\      \     __   
+// \/\ \  /',__\ \ \__\ \  /'__`\ 
+//  \ \ \/\__, `\ \ \_/\ \/\  __/ 
+//   \ \_\/\____/\ \_\\ \_\ \____\
+//    \/_/\/___/  \/_/ \/_/\/____/
+                               
+
+var asdf = $.likeRow;
+function updateDisplayIfMe(){
+	if(
+    !AG.isLogIn() || 
+    (userModel && userModel.get('id')) != AG.loggedInUser.get('id')
+  ){
+    $.menuTable.deleteRow($.likeRow);
+		return;
+	}
+  
+	$.wireForBtnImg.visible = true;
+	$.profileSettingBtn.visible = true;
+	$.contactUsBtn.visible = true;
+	
+	//$.menuTable.insertRowAfter(1,Ti.UI.createTableViewRow());
+  $.menuTable.data= [$.coverRow,$.lickyRow, $.likeRow];
+	var likeCol = Alloy.createCollection('like');
+	likeCol.fetch({
+		data : {
+			user_id : userModel.get('id'),
+			likeable_type : 'Post',
+			limit : 1
+		},
+		success : function(col){
+			$.likeRowCount.text = col.meta.total_results;
+		}
+	});
 }
 
 
-// title & label 변경
-var isMe = userModel.get('id') == AG.loggedInUser.get('id');
-$.profile.title = isMe?L('me'):userModel.get('first_name');
-$.foodRowLabel.text = isMe?L('myLicks'):String.format(L('someoneLicks'),userModel.get('first_name'));
-$.likeRowLabel.text = isMe?L('myLikes'):String.format(L('someoneLikes'),userModel.get('first_name'));
-$.contactUsBtn.visible = isMe;
-if(!isMe){
-	$.menuTable.deleteRow($.likeRow);
-	$.menuTable.height = 44;
+
+//  __  __              __            __               ____                        ___                         
+// /\ \/\ \            /\ \          /\ \__           /\  _`\   __                /\_ \                        
+// \ \ \ \ \  _____    \_\ \     __  \ \ ,_\    __    \ \ \/\ \/\_\    ____  _____\//\ \      __     __  __    
+//  \ \ \ \ \/\ '__`\  /'_` \  /'__`\ \ \ \/  /'__`\   \ \ \ \ \/\ \  /',__\/\ '__`\\ \ \   /'__`\  /\ \/\ \   
+//   \ \ \_\ \ \ \L\ \/\ \L\ \/\ \L\.\_\ \ \_/\  __/    \ \ \_\ \ \ \/\__, `\ \ \L\ \\_\ \_/\ \L\.\_\ \ \_\ \  
+//    \ \_____\ \ ,__/\ \___,_\ \__/.\_\\ \__\ \____\    \ \____/\ \_\/\____/\ \ ,__//\____\ \__/.\_\\/`____ \ 
+//     \/_____/\ \ \/  \/__,_ /\/__/\/_/ \/__/\/____/     \/___/  \/_/\/___/  \ \ \/ \/____/\/__/\/_/ `/___/> \
+//              \ \_\                                                          \ \_\                     /\___/
+//               \/_/                                                           \/_/                     \/__/ 
+
+var loginChangeHandler = function(){
+	updateDefaultInfo();
+	updateDisplayIfMe();
 }
 
-$.getView().addEventListener('focus', function(e) {
-	$.setProperties();
+AG.loginController.on('login logout', loginChangeHandler);
+loginChangeHandler(); //initial update
+
+// flush 
+$.profile.addEventListener('close',function(){
+	AG.loginController.off('login logout', loginChangeHandler);
 });
 
-$.mainContent.addEventListener('scroll', _.throttle(function(e){
-	// $.profileBannerImage.setHeight( 212.5 - e.y);
-	$.profileBannerImage.animate({
-		duration: 15,
-		height: 212.5 - e.y});
-	// $.controlBar.animate({
-		// duration: 10,
-		// top: 182.5 - e.y});
-}, 10));
 
 
+//                              __             
+//                             /\ \__          
+//    __   __  __     __    ___\ \ ,_\   ____  
+//  /'__`\/\ \/\ \  /'__`\/' _ `\ \ \/  /',__\ 
+// /\  __/\ \ \_/ |/\  __//\ \/\ \ \ \_/\__, `\
+// \ \____\\ \___/ \ \____\ \_\ \_\ \__\/\____/
+//  \/____/ \/__/   \/____/\/_/\/_/\/__/\/___/ 
+                                            
 
 $.menuTable.addEventListener('click', function(e) {
 	switch(e.row.id){
@@ -59,20 +144,6 @@ $.menuTable.addEventListener('click', function(e) {
 			});
 		break;
 	}
-});
-
-
-
-$.settingDialog.addEventListener('click', _.throttle(function(e) {
-	if (e.index === 0) {
-		// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
-		AG.loginController.logout(function(e){
-			AG.mainTabGroup.setActiveTab(0);
-		});
-	}
-},1000));
-$.profileSettingBtn.addEventListener('click', function(e) {
-	$.settingDialog.show();
 });
 
 $.contactUsBtn.addEventListener('click', function(e) {
@@ -106,121 +177,15 @@ $.contactUsBtn.addEventListener('click', function(e) {
 });
 
 
-//로그인 상태 변경시
-AG.settings.on('change:cloudSessionId', loginChangeHandler);
-
-//로그인된 사용자 모델(local에 저장한 properties model) 변경시
-AG.loggedInUser.on('change', function(model) {
-
+$.profileSettingBtn.addEventListener('click', function(e) {
+	$.settingDialog.show();
 });
 
-// $.loginBtn.addEventListener('click', function(e) {
-	// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
-// });
-function loginChangeHandler(changedValue) {
-	if(changedValue && !userModel.get('id')){
-		userModel = AG.loggedInUser;
-	}
-	
-	// 최초에 이미 로그인 되어 있을 경우에 대한 처리
-	if (AG.isLogIn() || userModel.get('id')) {
-		// $.resetClass($.loginBtn, 'afterLogin');
-		$.menuTable.setVisible(true);
-		$.name.setVisible(true);
-		
-	} else {
-		// $.resetClass($.loginBtn, 'beforeLogin');
-		$.menuTable.setVisible(false);
-		$.name.setVisible(false);
-		
-		$.profileBannerImage.setImage(null);
-		$.profileImage.setImage( $.profileImage.getDefaultImage() );
-	}
-	
-	isMe = userModel.get('id') == AG.loggedInUser.get('id');
-	$.wireForBtnImg.visible = isMe;
-	$.profileSettingBtn.visible = isMe;
-}
-loginChangeHandler();
-
-exports.setProperties = function() {
-	if (!userModel.get('id')) {
-		return;
-	}
-
-	var fb_id = userModel.get('external_accounts')[0].external_id;
-	$.name.text = userModel.get('first_name');
-	$.profileImage.image = String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 140, 140);
-	AG.facebook.requestWithGraphPath(fb_id, {
-		fields : 'cover'
-	}, "GET", function(e) {
-		if (e.success) {
-			var resultObj = JSON.parse(e.result);
-			if(resultObj.cover){
-				$.profileBannerImage.image = resultObj.cover.source;
-			}
-		}
-	});
-	
-	// 해당 사용자가 작성한 post 수 확인 
-	// 주의!!!!!! loggedIn User로 인해 get('id') 함수로 id를 가져와야함)
-	if(userModel.get('id')){  // !!!
-		var postCol = Alloy.createCollection('post');
-		postCol.fetch({
-			data : {
-				per_page : 1,
-				where :{
-					user_id: {'$in' : [userModel.get('id')]} // !!!
-				}
-			},
-			success : function(col){
-				$.foodRowCount.text = col.meta.total_results;
-			}
-		});
-		
-		var likeCol = Alloy.createCollection('like');
-		likeCol.fetch({
-			data : {
-				user_id : userModel.get('id'),
-				likeable_type : 'Post',
-				per_page : 1
-			},
-			success : function(col){
-				$.likeRowCount.text = col.meta.total_results;
-				// Ti.API.info(col.meta.total_results);
-			}
+$.settingDialog.addEventListener('click', _.throttle(function(e) {
+	if (e.index === 0) {
+		// AG.settings.get('cloudSessionId') ? AG.loginController.logout() : AG.loginController.requireLogin();
+		AG.loginController.logout(function(e){
+			AG.mainTabGroup.setActiveTab(0);
 		});
 	}
-};
-
-$.profileImage.addEventListener('click', function(){
-	$.profileViewOptionDialog.show();
-});
-$.profileViewOptionDialog.addEventListener('click', function(e) {
-	var fb_id = userModel.get('external_accounts')[0].external_id;
-	switch(this.options[e.index]){
-		case L('viewPicture'):
-			// scrollView.add(imagev);
-			// $.profile.add(scrollView);
-			
-			AG.utils.openController(AG.mainTabGroup.activeTab, 'imageWindow', {
-				imageUrl: String.format("https://graph.facebook.com/%s/picture?width=%d&height=%d", fb_id, 640, 640)
-			}, {animated:false});
-		break;
-		case L('viewProfileOnFacebook'):
-			if(Ti.Platform.canOpenURL("fb://profile/" + fb_id)){
-				Ti.Platform.openURL("fb://profile/" + fb_id);
-			}else{
-				Ti.Platform.openURL("http://facebook.com/" + fb_id);
-			}
-		break;
-		
-		case L('cancel'):
-		default :
-		break;
-	}
-});
-
-$.name.addEventListener('click', function(e){
-	// AG.notifyController.setBadge(10);
-});
+},1000));

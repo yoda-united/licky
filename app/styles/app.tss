@@ -242,3 +242,19 @@
 	backgroundImage: "images/camera.png"
 	// title : L('takePhoto')
 }
+
+".hSIZE":{
+	height : "SIZE"
+}
+
+".wSIZE":{
+	width : "SIZE"
+}
+
+".hFILL":{
+	height : "FILL"
+}
+
+".wFILL":{
+	width : "FILL"
+}

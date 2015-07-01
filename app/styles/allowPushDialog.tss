@@ -28,11 +28,13 @@
 		fontSize : 30,
 		fontFamily : 'AppleSDGothicNeo-UltraLight'
 	},
+  textAlign:'center',
+  width : 'FILL',
 	color : Alloy.Globals.COLORS.darkGray
 }
 
 ".recoWrap": {
-	height : 80,
+	height : "SIZE",
 	top : 15,
 	bottom : 15,
 	width : 252,
@@ -43,7 +45,9 @@
 ".recommandText" : {
 	left: 21,
 	right : 21,
-	height : 50,
+  top : 15,
+  bottom: 15,
+	height : "SIZE",
 	font : {
 		fontSize : 17
 	},

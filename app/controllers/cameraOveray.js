@@ -353,7 +353,7 @@ exports.showCamera = function(){
 				// $.contentLabel.textAlign = 'right';  
 				$.contentLabel.visible = false;  
 				
-				$.captureTitle.text = $.contentLabel.text;
+				$.captureTitle.text = $.contentField.value;
 				$.captureDistance.text = $.distance.text;
 				$.captureContentImage.width = AG.cameraInfo.width;
 				$.captureContentImage.height = AG.cameraInfo.height;

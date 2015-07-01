@@ -39,20 +39,18 @@ $.listViewC.on('itemclick', require('underscore1.7.0').throttle(function(e) {
 },1000,{trailing: false})); 
 
 
-
-AG.settings.on('change:cloudSessionId',function(model, changedValue, options){
-	/**
-	 * facebook 친구
-	 */
+AG.loginController.on('login',function () {
 	$.listViewC.listView.scrollToItem(1,0);
-	if(changedValue){
-		searchFacebookFriends();
-	} else { //로그아웃시
-		if($.tBar.index==1){
-			$.tBar.setIndex(0);
-			$.tBar.fireEvent('click',{index:0});
-			$.listViewC.setCollection(postCol);
-		}
+	searchFacebookFriends();
+	postCol.reset(postCol.models); //새로 fetch하지 않음. 삭제 가능여부를 새로 판단해야하기에 때문에 다시 reset함.
+});
+
+AG.loginController.on('logout',function () {
+	$.listViewC.listView.scrollToItem(1,0);
+	if($.tBar.index==1){
+		$.tBar.setIndex(0);
+		$.tBar.fireEvent('click',{index:0});
+		$.listViewC.setCollection(postCol);
 	}
 	postCol.reset(postCol.models); //새로 fetch하지 않음. 삭제 가능여부를 새로 판단해야하기에 때문에 다시 reset함.
 });
@@ -77,7 +75,7 @@ $.fetchFirstCollection = function(){
 		order : "-created_at",
 		where : $.fetchWhereData,
 		show_user_like : true,
-		per_page : 30
+		limit : 30
 	};
 	postCol.fetch(); //최초 fetch
 };
@@ -88,7 +86,8 @@ function searchFacebookFriends(){
 		var friendIds = [];
 		AG.Cloud.SocialIntegrations.searchFacebookFriends(
 			{
-				per_page : 10000
+				per_page : 1000,
+				limit : 1000
 			},
 			function (e){
 			    if (e.success) {
@@ -127,7 +126,7 @@ function fetchOnlyFriendsPost(userIds) {
 			where : _.extend(_.clone($.fetchWhereData),{
 				user_id: {'$in' : userIds}
 			}),
-			per_page : 30
+			limit : 30
 			//order : "-created_at"
 		};
 		Ti.API.info(friendPostCol.defaultFetchData);

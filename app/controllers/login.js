@@ -13,19 +13,20 @@ $.termsLabel.addEventListener('click', function(e) {
 });
 
 if (OS_IOS) {
-	$.termsLabel.attributedString = Ti.UI.createAttributedString({
-		text : L('termsAndPrivacy'),
-		attributes : [{
-			type : Ti.UI.ATTRIBUTE_UNDERLINES_STYLE,
-			value : Ti.UI.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
-			range : [L('termsAndPrivacy').indexOf('이용약관'), '이용약관'.length]
-		}, {
-			type : Ti.UI.ATTRIBUTE_UNDERLINES_STYLE,
-			value : Ti.UI.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
-			range : [L('termsAndPrivacy').indexOf('개인정보 취급정책'), '개인정보 취급정책'.length]
-		}]
-	});
+	// $.termsLabel.attributedString = Ti.UI.iOS.createAttributedString({
+	// 	text : L('termsAndPrivacy'),
+	// 	attributes : [{
+	// 		type : Ti.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE,
+	// 		value : Ti.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
+	// 		range : [L('termsAndPrivacy').indexOf('이용약관'), '이용약관'.length]
+	// 	}, {
+	// 		type : Ti.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE,
+	// 		value : Ti.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE,
+	// 		range : [L('termsAndPrivacy').indexOf('개인정보 취급정책'), '개인정보 취급정책'.length]
+	// 	}]
+	// });
 }
+$.termsLabel.html = L('termsAndPrivacy');
 
 // currentWindow.addEventListener('swipe', function(e){
 // if( e.direction === 'down'){
@@ -39,6 +40,7 @@ var fbHandler = function(e) {
 		var token = this.accessToken;
 		Ti.API.info('Logged in ' + token);
 		AG.Cloud.SocialIntegrations.externalAccountLogin({
+			id : e.uid,
 			type : 'facebook',
 			token : token
 		}, function(e) {
@@ -46,15 +48,20 @@ var fbHandler = function(e) {
 			if (e.success) {
 				var user = e.users[0];
 				AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
-				AG.loggedInUser.save(user);
-
-				//$.fbLogin.title = L("facebookConnect");
+				AG.loggedInUser.save(user,{
+					wait:true
+				});
+				
+				$.trigger('login');
 				currentWindow.close();
+				
+				//재활용을 위한 text 초기화
+				$.fbLogin.title = L("signInWithFacebook");
 
 			} else {
 				//alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
 				alert(L('errorExternalAccountLogin'));
-				$.fbLogin.title = L("facebookConnect");
+				$.fbLogin.title = L("signInWithFacebook");
 			}
 		});
 	} else {
@@ -63,28 +70,7 @@ var fbHandler = function(e) {
 
 $.fbLogin.addEventListener('click', function(e) {
 	$.fbLogin.title = L('facebookConnecting');
-
-	if (OS_IOS) {
-		AG.facebook.authorize();
-	} else {
-		// android일 경우 
-		AG.Cloud.Users.login({
-			login : 'admin',
-			password : 'bogoyo'
-		}, function(e) {
-			if (e.success) {
-				var user = e.users[0];
-
-				AG.settings.save('cloudSessionId', AG.Cloud.sessionId);
-				AG.loggedInUser.save(user);
-				$.fbLogin.title = L("facebookConnect");
-				currentWindow.close();
-			} else {
-				alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
-				$.fbLogin.title = L("facebookConnect");
-			}
-		});
-	}
+	AG.facebook.authorize();
 });
 
 // $.emailBtn.addEventListener('click', function(e) {
@@ -101,8 +87,8 @@ AG.facebook.addEventListener('logout', fbHandler);
 
 // Navigation Window를 써서 그런지 window 재사용시 화면의 일부가 안보이는 문제 임시 해결
 currentWindow.addEventListener('close', function(e) {
-	AG.loginController = Alloy.createController('login');
-	$ = null;
+	// AG.loginController = Alloy.createController('login');
+	// $ = null;
 });
 
 exports.requireLogin = function(args) {
@@ -130,12 +116,15 @@ exports.logout = function(callback) {
 	AG.Cloud.Users.logout(function(e) {
 		if (e.success) {
 			// AG.settings.unset('cloudSessionId',{silent:false});
-			AG.settings.save('cloudSessionId', null);
+			
 			AG.loggedInUser.clearWithoutId();
 			AG.loggedInUser.save();
-			Ti.API.info(AG.loggedInUser.toJSON());
 			AG.facebook.logout();
 			alert(L('logoutMessage'));
+			AG.settings.save({'cloudSessionId': null},{
+				wait: true
+			});
+			$.trigger('logout');
 			callback && callback();
 		} else {
 			alert(L('failToLogout'));
