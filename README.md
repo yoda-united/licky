@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/yoda-united/licky.png?label=ready&title=Ready)](https://waffle.io/yoda-united/licky)
 <img src="http://www.licky.co/images/logoTitle.png"/>
 
 # Licky Mobile App
